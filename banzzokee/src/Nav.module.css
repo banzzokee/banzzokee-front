@@ -1,0 +1,14 @@
+.Navigation{
+  background-color: #FAFAFA;
+  width: 375px;
+  height: 79px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+img {
+  width: 33px;
+  height: 33px;
+}
