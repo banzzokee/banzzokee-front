@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
 import MainPage from './pages/Home/MainPage';
-import './App.css';
 import Nav from './Nav';
 import Header from './Header'
+import './App.css';
 // import Register from './Register'
 // import EmailConfirm from './EmailConfirm';
 // import Notification from './Notification';
