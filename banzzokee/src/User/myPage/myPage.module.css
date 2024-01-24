@@ -1,0 +1,99 @@
+.container {
+  width: 375px;
+  height: 645px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.userInfo {
+  height: 400px;
+  padding: 20px 30px;
+  font-size: 15px;
+  background-color: #e1e1e1;
+}
+
+.profilePhoto {
+  margin: 0 auto;
+  width: 150px;
+  height: 150px;
+  background-color: #bebebe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.badgeIcon {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: -10px;
+  top: 0px;
+}
+
+.userID {
+  font-size: 16px;
+  font-weight: bold;
+}
+.viewShelterButton {
+  position: relative;
+  left: 0;
+}
+.profileContent {
+  margin-top: 20px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  gap: 10px;
+}
+.viewArticles {
+  width: 100%;
+  background-color: lightblue;
+  height: 245px;
+}
+
+.chooseCategory {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.category {
+  cursor: pointer;
+  width: 50%;
+  /* height: 50px; */
+  text-align: center;
+  padding: 10px;
+}
+
+.articleList {
+  /* width: 500px; */
+  /* height: 300px; */
+  /* word-wrap: break-word; */
+  background-color: white;
+}
+
+.article {
+  width: 300px;
+
+  font-size: 16px;
+
+  /* height: 100%; */
+  background-color: aquamarine;
+  display: flex;
+  overflow: hidden;
+  /* padding: 10px; */
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
