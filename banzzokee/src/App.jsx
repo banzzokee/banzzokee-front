@@ -2,7 +2,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
 import MainPage from './pages/Home/MainPage';
 import Nav from './Nav';
-import Header from './Header'
+import Header from './Header';
+import MyPage from './pages/User/myPage';
 import './App.css';
 // import Register from './Register'
 // import EmailConfirm from './EmailConfirm';
@@ -11,15 +12,15 @@ import './App.css';
 // import GoogleRegister from './GoogleRegister';
 // import Filter from './Filter';
 
-
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<MainPage />} />
-          <Route path='/Header' element={<Header />} />
-          <Route path='/Nav' element={<Nav />} />
+          <Route path="/" element={<MainPage />} />
+          <Route path="/Header" element={<Header />} />
+          <Route path="/Nav" element={<Nav />} />
+          <Route path="/myPage" element={<MyPage />} />
           {/* <Route path='/Register' element={<Register />} /> */}
           {/* <Route path='/EmailConfirm' element={<EmailConfirm />} /> */}
           {/* <Route path='/Notification' element={<Notification />} /> */}
