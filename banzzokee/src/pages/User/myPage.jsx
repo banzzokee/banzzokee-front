@@ -1,9 +1,10 @@
 import styles from './myPage.module.css';
 import Button from '/src/components/Button';
-import BadgeIcon from '/src/components/BadgeIcon';
-import BasicProfileIcon from '/src/components/BasicProfileIcon';
-
+// import BadgeIcon from '/src/components/BadgeIcon';
+import BasicProfileIcon from '../../../public/BasicProfileIcon';
 import { useState } from 'react';
+import Header from '../../Header';
+import Nav from '../../Nav';
 
 export default function MyPage() {
   const [button1Color, setButton1Color] = useState('#bebebe');
@@ -22,6 +23,7 @@ export default function MyPage() {
 
   return (
     <>
+      <Header></Header>
       <div className={styles.sese}></div>
       <div className={styles.container}>
         <div className={styles.userInfo}>
@@ -76,6 +78,7 @@ export default function MyPage() {
           <div className={styles.articleList}></div>
         </div>
       </div>
+      <Nav></Nav>
     </>
   );
 }
