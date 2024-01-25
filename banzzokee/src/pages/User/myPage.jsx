@@ -1,7 +1,8 @@
 import styles from './MyPage.module.css';
 import Button from '/src/components/Button';
+import { Link } from 'react-router-dom';
 // import BadgeIcon from '/src/components/BadgeIcon';
-import BasicProfileIcon from '../../../public/BasicProfileIcon';
+// import BasicProfileIcon from '../../../public/BasicProfileIcon';
 import { useState } from 'react';
 import Header from '../../Header';
 import Nav from '../../Nav';
@@ -27,9 +28,7 @@ export default function MyPage() {
       <div className={styles.sese}></div>
       <div className={styles.container}>
         <div className={styles.userInfo}>
-          <div className={styles.profilePhoto}>
-            <BasicProfileIcon size="big"></BasicProfileIcon>
-          </div>
+          <div className={styles.profilePhoto}>{/* <BasicProfileIcon size="big"></BasicProfileIcon> */}</div>
           {/* <BadgeIcon className={styles.badgeIcon}></BadgeIcon> */}
           <div className={styles.profileContent}>
             <Button
@@ -59,7 +58,9 @@ export default function MyPage() {
           <p>500자 미만으로 작성해 주세 작성해 주세요.500자 미만으로 작성해 주세요500자 미만으로 작성해 주세요</p>
           <div className={styles.buttons}>
             <Button type="submit" size="big">
-              게시물 작성
+              <Link to="/CreateAdoptPage" className={styles.createAdopt}>
+                게시물 작성
+              </Link>
             </Button>
             <Button type="submit" size="big">
               팔로잉 보호소
