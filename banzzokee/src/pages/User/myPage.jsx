@@ -1,4 +1,4 @@
-import styles from './myPage.module.css';
+import styles from './MyPage.module.css';
 import Button from '/src/components/Button';
 // import BadgeIcon from '/src/components/BadgeIcon';
 import BasicProfileIcon from '../../../public/BasicProfileIcon';

@@ -3,7 +3,9 @@ import React from 'react';
 import MainPage from './pages/Home/MainPage';
 import Nav from './Nav';
 import Header from './Header';
-import MyPage from './pages/User/myPage';
+import MyPage from './pages/User/MyPage';
+import ChatListPage from './pages/Chat/ChatListPage';
+import ViewArticlePage from './pages/Article/ViewArticlePage';
 import './App.css';
 // import Register from './Register'
 // import EmailConfirm from './EmailConfirm';
@@ -20,7 +22,9 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/Header" element={<Header />} />
           <Route path="/Nav" element={<Nav />} />
-          <Route path="/myPage" element={<MyPage />} />
+          <Route path="/MyPage" element={<MyPage />} />
+          <Route path="/ChatListPage" element={<ChatListPage />} />
+          <Route path="/ViewArticlePage" element={<ViewArticlePage />} />
           {/* <Route path='/Register' element={<Register />} /> */}
           {/* <Route path='/EmailConfirm' element={<EmailConfirm />} /> */}
           {/* <Route path='/Notification' element={<Notification />} /> */}
