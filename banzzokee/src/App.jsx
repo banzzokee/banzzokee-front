@@ -6,6 +6,7 @@ import Header from './Header';
 import MyPage from './pages/User/MyPage';
 import ChatListPage from './pages/Chat/ChatListPage';
 import ViewArticlePage from './pages/Article/ViewArticlePage';
+import LoginPage from './pages/User/LoginPage';
 import './App.css';
 // import Register from './Register'
 // import EmailConfirm from './EmailConfirm';
@@ -25,6 +26,7 @@ function App() {
           <Route path="/MyPage" element={<MyPage />} />
           <Route path="/ChatListPage" element={<ChatListPage />} />
           <Route path="/ViewArticlePage" element={<ViewArticlePage />} />
+          <Route path="/LoginPage" element={<LoginPage />} />
           {/* <Route path='/Register' element={<Register />} /> */}
           {/* <Route path='/EmailConfirm' element={<EmailConfirm />} /> */}
           {/* <Route path='/Notification' element={<Notification />} /> */}
