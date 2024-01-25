@@ -1,0 +1,66 @@
+.container {
+  /* background-color: gainsboro; */
+  width: 375px;
+  height: 645px;
+  padding: 40px;
+}
+.logo {
+  /* object-fit: cover; */
+  display: block;
+  margin: 0 auto;
+  width: 150px;
+  height: auto;
+}
+.loginInput {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  height: 40px;
+  border: none;
+  border-bottom: 2px solid #d9d9d9;
+  font-size: 20px;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.loginButton {
+  height: 50px;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-size: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.googleLogo {
+  width: 30px;
+  height: 30px;
+}
+
+.orLines {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.line {
+  width: 100%;
+  height: 1.5px;
+  background-color: gray;
+}
+
+.text {
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  color: gray;
+  margin-top: 10px;
+}

@@ -1,4 +1,4 @@
-import styles from './settingPage.module.css';
+import styles from './SettingPage.module.css';
 export default function MyPage() {
   return (
     <>

@@ -1,11 +1,11 @@
-import styles from './myPage.module.css';
+import styles from './MyPage.module.css';
 import Button from '/src/components/Button';
+import { Link } from 'react-router-dom';
 // import BadgeIcon from '/src/components/BadgeIcon';
 // import BasicProfileIcon from '../../../public/BasicProfileIcon';
 import { useState } from 'react';
 import Header from '../../Header';
 import Nav from '../../Nav';
-import CreateAdoptPage from '../Article/CreateAdoptPage';
 
 export default function MyPage() {
   const [button1Color, setButton1Color] = useState('#bebebe');
@@ -28,9 +28,7 @@ export default function MyPage() {
       <div className={styles.sese}></div>
       <div className={styles.container}>
         <div className={styles.userInfo}>
-          <div className={styles.profilePhoto}>
-            {/* <BasicProfileIcon size="big"></BasicProfileIcon> */}
-          </div>
+          <div className={styles.profilePhoto}>{/* <BasicProfileIcon size="big"></BasicProfileIcon> */}</div>
           {/* <BadgeIcon className={styles.badgeIcon}></BadgeIcon> */}
           <div className={styles.profileContent}>
             <Button

@@ -1,0 +1,43 @@
+.container {
+  height: 645px;
+  width: 375px;
+  padding: 10px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.message {
+  height: 100px;
+  background-color: lightblue;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 5px;
+  display: flex;
+  /* align-items: center; */
+  justify-content: left;
+}
+.userImage {
+  background-color: #d9d9d9;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin: auto 0;
+}
+.userContent {
+  flex: 1;
+  margin-left: 10px;
+  /* background-color: lightcoral; */
+  font-size: 16px;
+}
+.userAndTime {
+  display: flex;
+  justify-content: space-between;
+}
+.userName {
+  font-weight: bold;
+}
+.sendTime {
+  /* float: right; */
+}
+.chatBody {
+  text-align: left;
+}

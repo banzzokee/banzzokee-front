@@ -4,6 +4,10 @@ import './App.css';
 import MainPage from './pages/Home/MainPage';
 import Nav from './Nav';
 import Header from './Header';
+import ChatListPage from './pages/Chat/chatListPage';
+import ViewArticlePage from './pages/Article/ViewArticlePage';
+import LoginPage from './pages/User/LoginPage';
+import './App.css';
 import MyPage from './pages/User/myPage';
 import CreateAdoptPage from './pages/Article/CreateAdoptPage';
 import Notification from './pages/Home/Notification';
@@ -22,12 +26,15 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/Header" element={<Header />} />
           <Route path="/Nav" element={<Nav />} />
-          <Route path="/myPage" element={<MyPage />} />
+          <Route path="/MyPage" element={<MyPage />} />
+          <Route path="/ChatListPage" element={<ChatListPage />} />
+          <Route path="/ViewArticlePage" element={<ViewArticlePage />} />
+          <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/CreateAdoptPage" element={<CreateAdoptPage />} />
-          <Route path='/Notification' element={<Notification />} />
+          <Route path="/Notification" element={<Notification />} />
           {/* <Route path='/Register' element={<Register />} /> */}
           {/* <Route path='/EmailConfirm' element={<EmailConfirm />} /> */}
-          
+
           {/* <Route path='/Login' element={<Login />} /> */}
           {/* <Route path='/GoogleRegister' element={<GoogleRegister />} /> */}
           {/* <Route path='/Filter' element={<Filter />} /> */}
