@@ -11,10 +11,12 @@ import './App.css';
 import MyPage from './pages/User/myPage';
 import CreateAdoptPage from './pages/Article/CreateAdoptPage';
 import Notification from './pages/Home/Notification';
+import Register from './pages/User/Register';
+import Back from './Back';
+import CreateReviewPage from './pages/Article/CreateReviewPage';
+import Tag from './Tag';
 
-// import Register from './Register'
 // import EmailConfirm from './EmailConfirm';
-// import Login from './Login';
 // import GoogleRegister from './GoogleRegister';
 // import Filter from './Filter';
 
@@ -32,10 +34,12 @@ function App() {
           <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/CreateAdoptPage" element={<CreateAdoptPage />} />
           <Route path="/Notification" element={<Notification />} />
-          {/* <Route path='/Register' element={<Register />} /> */}
+          <Route path='/Register' element={<Register />} />
+          <Route path='/Back' element={<Back />} />
+          <Route path='/CreateAdoptPage' element={<CreateAdoptPage />} />
+          <Route path='/CreateReviewPage' element={<CreateReviewPage />} />
+          <Route path='/Tag' element={<Tag />} />
           {/* <Route path='/EmailConfirm' element={<EmailConfirm />} /> */}
-
-          {/* <Route path='/Login' element={<Login />} /> */}
           {/* <Route path='/GoogleRegister' element={<GoogleRegister />} /> */}
           {/* <Route path='/Filter' element={<Filter />} /> */}
         </Routes>

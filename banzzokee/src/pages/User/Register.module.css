@@ -1,0 +1,91 @@
+.register_Page {
+  width: 375px;
+  height: 812px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  border: 1px solid rgb(177, 177, 177);
+}
+
+.registerTitle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 70px;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  /* background-color: #e87070; */
+}
+
+.infoContainer {
+  height: 50px;
+  border: 1px solid #dadada;
+  background-color: #FAFAFA;
+}
+
+.info {
+  margin-left: 10px;
+}
+
+.inputGroup {
+  display: flex;
+  /* margin-bottom: 15px; */
+  border: 1px solid #dadada;
+  /* background-color: #e87070; */
+  /* margin: 10px 0; */
+  height: 65px;
+  /* margin: 0 auto; */
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+.emailConfirm {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  background-color: #D9D9D9;
+}
+
+label {
+  width: 100px;
+  margin: 10px;
+  /* background-color: aqua; */
+}
+
+input {
+  border: 1px solid #9C9A9A;
+  border-radius: 5px;
+  height: 35px;
+  margin-right: 10px;
+  margin-top: 5px;
+  /* display: flex; */
+
+  /* background-color: #D9D9D9; */
+}
+
+.emailconfirm_Button, .confirmButton {
+  height: 20px;
+  margin-top: 15px;
+}
+
+.registerButton {
+  border: none;
+  height: 50px;
+  color: #FFFFFF;
+  font-size: 18px;
+  margin-top: 40px;
+  background-color: #9C9A9A;
+}
+
+.errorMessage {
+  color: #ff0000;
+  font-size: 12px;
+}
