@@ -13,7 +13,9 @@ export default function ViewArticlePage() {
             <div className={styles.headerLeft}>
               <div className={styles.userImage}></div>
               <div className={styles.nameAndDate}>
-                <div className={styles.name}>user_123</div>
+                <Link to="/ShelterMyPage">
+                  <div className={styles.name}>user_123</div>
+                </Link>
                 <div className={styles.date}>2023-01-03</div>
               </div>
             </div>

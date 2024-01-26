@@ -21,28 +21,39 @@ export default function MyPage() {
       setButton2Color('white');
     }
   };
-
+  const settingIcon = <img src="../../../public/Setting.svg"></img>;
+  const photo = <img src="../../../public/User.png"></img>;
   return (
     <>
       <Header></Header>
-      <div className={styles.sese}></div>
       <div className={styles.container}>
         <div className={styles.userInfo}>
-          <div className={styles.profilePhoto}>{/* <BasicProfileIcon size="big"></BasicProfileIcon> */}</div>
+          <div className={styles.settingIcon}>
+            <Link to="/settingPage">{settingIcon}</Link>
+          </div>
+          <div className={styles.profilePhoto}>{photo}</div>
           {/* <BadgeIcon className={styles.badgeIcon}></BadgeIcon> */}
-          <div className={styles.profileContent}>
-            <Button
-              className={styles.viewShelterButton}
-              style={{
-                position: 'absolute',
-                left: '0',
+          <div className={styles.profileHeader}>
+            <Link
+              className={styles.button}
+              to={{
+                pathname: '/ShelterInfoPage',
+                data: { name: '서울보호소', body: '주소: 서울시 ㅇㅇ구 ㅇㅇ길' },
               }}
-              type="submit"
-              size="small"
             >
-              보호소 조회
-            </Button>
-            <span className={styles.userID}>User ID</span>
+              <Button
+                className={styles.viewShelterButton}
+                style={{
+                  position: 'absolute',
+                  left: '0',
+                }}
+                type="submit"
+                size="small"
+              >
+                보호소 조회
+              </Button>
+            </Link>
+            <span className={styles.userID}>User_ID</span>
             <Button
               className={styles.profileEditButton}
               style={{
@@ -63,7 +74,7 @@ export default function MyPage() {
               </Link>
             </Button>
             <Button type="submit" size="big">
-              팔로잉 보호소
+              <Link to="/FollowingPage">팔로잉 보호소</Link>
             </Button>
           </div>
         </div>

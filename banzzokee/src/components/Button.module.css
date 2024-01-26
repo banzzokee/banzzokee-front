@@ -4,6 +4,7 @@
   border: none;
   padding: 5px 10px;
   background-color: #bebebe;
+  color: white;
 }
 
 .small {
@@ -12,6 +13,6 @@
 
 .big {
   font-size: 20px;
-  width: 80%;
+  width: 100%;
   /* margin: 0 auto; */
 }

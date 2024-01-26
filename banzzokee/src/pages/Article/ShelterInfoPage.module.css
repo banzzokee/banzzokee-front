@@ -1,0 +1,26 @@
+.container {
+  width: 375px;
+  height: 645px;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: white;
+}
+
+.picture {
+  width: 100px;
+  height: 100px;
+  background-color: #bebebe;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.shelterInfo {
+  text-align: left;
+  padding: 10px 20px;
+}
+
+.shelterName {
+  font-weight: bold;
+}

@@ -4,40 +4,40 @@
   padding: 10px;
   overflow: hidden;
   overflow-y: scroll;
+  background-color: #e1e1e1;
 }
-.message {
+.follower {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.followButton {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+}
+.followerInfo {
   height: 100px;
-  background-color: lightblue;
+  background-color: white;
   border-radius: 10px;
   padding: 10px;
   margin-top: 5px;
   display: flex;
-  /* align-items: center; */
+  align-items: center;
   justify-content: left;
+  width: 220px;
 }
 .userImage {
   background-color: #d9d9d9;
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  margin: auto 0;
-}
-.userContent {
-  flex: 1;
-  margin-left: 10px;
-  /* background-color: lightcoral; */
-  font-size: 16px;
-}
-.userAndTime {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
 }
+
 .userName {
+  margin-left: 10px;
   font-weight: bold;
-}
-.sendTime {
-  color: #d9d9d9;
-}
-.chatBody {
-  text-align: left;
 }
