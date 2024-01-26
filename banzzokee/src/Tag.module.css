@@ -1,0 +1,35 @@
+.tag_container {
+  display: flex;
+}
+
+.tag_box {
+  width: 225px;
+  height: 400px;
+  background-color: #D9D9D9;
+  display: flex;
+  flex-wrap: wrap; /*요소가 너무 많으면 다음 줄로 넘어감*/
+}
+
+.tag_item {
+  display: flex;
+  align-items: center;
+  margin-right: 1px; 
+  margin-bottom: 1px; 
+}
+
+.tag_item label {
+  width: 50px;
+}
+
+.tag_item button {
+  border: none;
+  border-radius: 15px;
+  background-color: #F6F6F6;
+  padding: 5px 5px;
+  margin-right: 5px;
+  /* margin-bottom: 5px; */
+}
+
+.label {
+  margin-right: -20px;
+}

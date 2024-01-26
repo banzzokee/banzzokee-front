@@ -11,6 +11,10 @@ import './App.css';
 import MyPage from './pages/User/MyPage';
 import CreateAdoptPage from './pages/Article/CreateAdoptPage';
 import Notification from './pages/Home/Notification';
+import Register from './pages/User/Register';
+import Back from './Back';
+import CreateReviewPage from './pages/Article/CreateReviewPage';
+import Tag from './Tag';
 import MapPage from './pages/Map/MapPage';
 import ShelterMyPage from './pages/Article/ShelterMyPage';
 import ShelterInfoPage from './pages/Article/ShelterInfoPage';
@@ -18,9 +22,7 @@ import SettingPage from './pages/User/SettingPage';
 import FollowingPage from './pages/User/FollowingPage';
 import AccountInfoPage from './pages/User/AccountInfoPage';
 
-// import Register from './Register'
 // import EmailConfirm from './EmailConfirm';
-// import Login from './Login';
 // import GoogleRegister from './GoogleRegister';
 // import Filter from './Filter';
 
@@ -39,12 +41,17 @@ function App() {
           <Route path="/MapPage" element={<MapPage />} />
           <Route path="/CreateAdoptPage" element={<CreateAdoptPage />} />
           <Route path="/Notification" element={<Notification />} />
+          <Route path='/Register' element={<Register />} />
+          <Route path='/Back' element={<Back />} />
+          <Route path='/CreateAdoptPage' element={<CreateAdoptPage />} />
+          <Route path='/CreateReviewPage' element={<CreateReviewPage />} />
+          <Route path='/Tag' element={<Tag />} />
           <Route path="/ShelterMyPage" element={<ShelterMyPage />} />
           <Route path="/ShelterInfoPage" element={<ShelterInfoPage />} />
           <Route path="/SettingPage" element={<SettingPage />} />
           <Route path="/FollowingPage" element={<FollowingPage />} />
           <Route path="/AccountInfoPage" element={<AccountInfoPage />} />
-          {/* <Route path='/Register' element={<Register />} /> */}
+          
           {/* <Route path='/EmailConfirm' element={<EmailConfirm />} /> */}
           {/* <Route path='/Login' element={<Login />} /> */}
           {/* <Route path='/GoogleRegister' element={<GoogleRegister />} /> */}
