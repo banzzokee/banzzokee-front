@@ -10,15 +10,21 @@
   padding: 20px 30px;
   font-size: 15px;
   background-color: #e1e1e1;
+  position: relative;
 }
 
+.settingIcon {
+  position: absolute;
+  right: 20px;
+}
 .profilePhoto {
-  margin: 0 auto;
   width: 150px;
   height: 150px;
   background-color: #bebebe;
+  margin: 0 auto;
   border-radius: 50%;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
@@ -38,20 +44,19 @@
   position: relative;
   left: 0;
 }
-.profileContent {
-  margin-top: 20px;
+.profileHeader {
+  margin-top: 10px;
   position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 20px;
 }
 .buttons {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   height: 100px;
   gap: 10px;
 }
@@ -62,12 +67,12 @@
 }
 
 .chooseCategory {
-  height: 50px;
   display: flex;
   align-items: center;
 }
 
 .category {
+  height: 50px;
   cursor: pointer;
   width: 50%;
   /* height: 50px; */
