@@ -27,6 +27,7 @@
 }
 .name {
   font-weight: bold;
+  color: black;
 }
 .date {
   font-size: 12px;
@@ -55,6 +56,22 @@
   height: 375px;
   background-color: lightblue;
   position: relative;
+  overflow-x: scroll;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.imgContainer {
+  width: 100%;
+  height: 100%;
+}
+.imgContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .status {

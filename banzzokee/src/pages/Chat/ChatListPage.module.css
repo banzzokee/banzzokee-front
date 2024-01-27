@@ -7,7 +7,7 @@
 }
 .message {
   height: 100px;
-  background-color: lightblue;
+  background-color: rgb(208, 237, 246);
   border-radius: 10px;
   padding: 10px;
   margin-top: 5px;
@@ -25,7 +25,6 @@
 .userContent {
   flex: 1;
   margin-left: 10px;
-  /* background-color: lightcoral; */
   font-size: 16px;
 }
 .userAndTime {
@@ -36,7 +35,8 @@
   font-weight: bold;
 }
 .sendTime {
-  color: #d9d9d9;
+  color: black;
+  font-size: 14px;
 }
 .chatBody {
   text-align: left;

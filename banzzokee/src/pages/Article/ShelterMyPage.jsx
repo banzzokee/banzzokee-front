@@ -1,5 +1,5 @@
 import styles from './ShelterMyPage.module.css';
-import Header from '../../Header';
+import BackHeader from '../../BackHeader';
 import Nav from '../../Nav';
 import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
@@ -8,7 +8,7 @@ export default function ShelterMyPage() {
   const photo = <img src="../../../public/User.png"></img>;
   return (
     <>
-      <Header></Header>
+      <BackHeader></BackHeader>
       <div className={styles.container}>
         <div className={styles.shelterInfo}>
           <div className={styles.picture}>{photo}</div>
