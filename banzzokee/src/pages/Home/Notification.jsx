@@ -4,11 +4,13 @@ import Back from '../../Back';
 export default function() {
   return(
     <div className={styles.notification_Page}>
+      <div className={styles.back}>
         <Back />
+      </div>
       <div className={styles.notification_Header}>
         <div className={styles.notification_Logo}>
           <img src="/Notification.png" alt="Notification" className={styles.notification_Img} />
-          알림
+          <span>알림</span>
         </div>
       </div>
       <ul>

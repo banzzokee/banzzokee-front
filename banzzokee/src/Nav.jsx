@@ -3,7 +3,7 @@ import styles from './Nav.module.css';
 
 export default function Nav() {
   return (
-    <div className={styles.Navigation}>
+    <div className={styles.navigation}>
       <Link className="Chat" to="/ChatListPage">
         <img src="/Chatting.png" alt="채팅" className={styles.Chatting} />
       </Link>

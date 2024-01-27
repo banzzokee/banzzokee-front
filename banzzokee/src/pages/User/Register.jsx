@@ -71,6 +71,5 @@ export default function Register() {
           <button type="submit" id="registerButton" className={styles.registerButton}>가입하기</button>
         </form>
       </div>
-    
   )
 }

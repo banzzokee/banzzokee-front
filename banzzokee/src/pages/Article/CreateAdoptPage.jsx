@@ -10,6 +10,7 @@ export default function CreateAdoptPage() {
     <div className={styles.create_Page}>
       <Back />
       <h2 className={styles.adopt_Title}>분양 구하기 게시글</h2>
+
       {/* 스크롤 시작되는 부분 */}
       <form style={{ overflowY: 'scroll', maxHeight: '800px' }} className={styles.container}>
         <div className={styles.inputGroup}>
@@ -28,7 +29,7 @@ export default function CreateAdoptPage() {
         </div>
         <div className={styles.inputGroup}>
           <label>상태</label>
-          <div className={styles.state_box}>
+          <div className={styles.stateBox}>
             <button className={styles.ongoing}>분양중</button>
             <button className={styles.booking}>예약중</button>
             <button className={styles.completion}>분양완료</button>

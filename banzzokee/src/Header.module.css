@@ -1,4 +1,4 @@
-.Header{
+.header {
   background-color: #FAFAFA;
   width: 375px;
   height: 88px;
@@ -8,15 +8,16 @@
   border-bottom: 1px solid #DFDFDF;
 }
 
-.Logo{
+.logo {
   width: 141px;
   height: 88px;
   margin-left: 117px;
 }
 
-.Notification{
+.notification {
   width: 33px;
   height: 35px;
+  background-color: #FAFAFA;
   margin-left: 52px;
   margin-top: 13px;
 }

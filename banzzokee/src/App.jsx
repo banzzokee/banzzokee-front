@@ -7,13 +7,11 @@ import Header from './Header';
 import ChatListPage from './pages/Chat/chatListPage';
 import ViewArticlePage from './pages/Article/ViewArticlePage';
 import LoginPage from './pages/User/LoginPage';
-import './App.css';
 import MyPage from './pages/User/MyPage';
 import CreateAdoptPage from './pages/Article/CreateAdoptPage';
 import Notification from './pages/Home/Notification';
 import Register from './pages/User/Register';
 import Back from './Back';
-import CreateReviewPage from './pages/Article/CreateReviewPage';
 import Tag from './Tag';
 import MapPage from './pages/Map/MapPage';
 import ShelterMyPage from './pages/Article/ShelterMyPage';
@@ -21,9 +19,12 @@ import ShelterInfoPage from './pages/Article/ShelterInfoPage';
 import SettingPage from './pages/User/SettingPage';
 import FollowingPage from './pages/User/FollowingPage';
 import AccountInfoPage from './pages/User/AccountInfoPage';
+import EmailConfirm from './pages/User/EmailConfirm';
 
-// import EmailConfirm from './EmailConfirm';
-// import GoogleRegister from './GoogleRegister';
+import GoogleRegister from './pages/User/GoogleRegister';
+import CreateReviewPage from './pages/Article/CreateReviewPage';
+
+
 // import Filter from './Filter';
 
 function App() {
@@ -51,10 +52,11 @@ function App() {
           <Route path="/SettingPage" element={<SettingPage />} />
           <Route path="/FollowingPage" element={<FollowingPage />} />
           <Route path="/AccountInfoPage" element={<AccountInfoPage />} />
-          
-          {/* <Route path='/EmailConfirm' element={<EmailConfirm />} /> */}
+          <Route path='/EmailConfirm' element={<EmailConfirm />} />
+
           {/* <Route path='/Login' element={<Login />} /> */}
-          {/* <Route path='/GoogleRegister' element={<GoogleRegister />} /> */}
+          <Route path='/GoogleRegister' element={<GoogleRegister />} />
+          <Route path='/CreateReviewPage' element={<CreateReviewPage />} />
           {/* <Route path='/Filter' element={<Filter />} /> */}
         </Routes>
       </BrowserRouter>
