@@ -1,12 +1,12 @@
 import styles from './ShelterInfoPage.module.css';
-import Header from '../../Header';
+import BackHeader from '../../BackHeader';
 import Nav from '../../Nav';
 
 export default function ShelterInfoPage() {
   const photo = <img src="../../../public/User.png"></img>;
   return (
     <>
-      <Header></Header>
+      <BackHeader></BackHeader>
       <div className={styles.container}>
         <div className={styles.picture}>{photo}</div>
         <div className={styles.shelterName}>user_123</div>

@@ -1,18 +1,16 @@
 .container {
-  box-sizing: border-box;
   width: 375px;
-  height: 724px;
+  height: 645px;
   margin: 0 auto;
   background-color: #e1e1e1;
   font-size: 16px;
   color: black;
   padding: 30px 30px;
 }
-.title {
-  text-align: center;
-  padding-top: 10px;
-  font-weight: bold;
+input {
+  width: 100%;
 }
+
 p {
-  margin-top: 10px;
+  font-weight: normal;
 }

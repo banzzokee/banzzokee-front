@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 // import BadgeIcon from '/src/components/BadgeIcon';
 // import BasicProfileIcon from '../../../public/BasicProfileIcon';
 import { useState } from 'react';
-import Header from '../../Header';
 import Nav from '../../Nav';
 
 export default function MyPage() {
@@ -21,16 +20,20 @@ export default function MyPage() {
       setButton2Color('white');
     }
   };
-  const settingIcon = <img src="../../../public/Setting.svg"></img>;
+
   const photo = <img src="../../../public/User.png"></img>;
   return (
     <>
-      <Header></Header>
+      {/* <BackHeader style={{ back: { display: 'none' }, all: { backgroundColor: 'gray' } }}></BackHeader> */}
+      <div className={styles.myPageHeader}>
+        <div className={styles.settingIcon}>
+          <Link to="/settingPage">
+            <img src="../../../public/Setting.svg" />
+          </Link>
+        </div>
+      </div>
       <div className={styles.container}>
         <div className={styles.userInfo}>
-          <div className={styles.settingIcon}>
-            <Link to="/settingPage">{settingIcon}</Link>
-          </div>
           <div className={styles.profilePhoto}>{photo}</div>
           {/* <BadgeIcon className={styles.badgeIcon}></BadgeIcon> */}
           <div className={styles.profileHeader}>

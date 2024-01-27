@@ -1,12 +1,12 @@
 import styles from './ViewArticlePage.module.css';
 import { Link } from 'react-router-dom';
-import Header from '../../Header';
+import BackHeader from '../../BackHeader';
 import Nav from '../../Nav';
 
 export default function ViewArticlePage() {
   return (
     <>
-      <Header></Header>
+      <BackHeader></BackHeader>
       <div className={styles.container}>
         <div className={styles.article}>
           <div className={styles.articleHeader}>
@@ -19,7 +19,7 @@ export default function ViewArticlePage() {
                 <div className={styles.date}>2023-01-03</div>
               </div>
             </div>
-            <Link className="chat" to="/ChatPage">
+            <Link className="chat" to="/Message">
               <div className={styles.messageButton}>
                 메세지
                 <img className={styles.messageIcon} src="../../../public/Message.png" />
@@ -28,6 +28,10 @@ export default function ViewArticlePage() {
           </div>
 
           <div className={styles.articlePhotos}>
+            <div className={styles.imgContainer}>
+              <img src="../../../public/dog.webp" alt="" />
+            </div>
+
             <div className={styles.status}>분양중</div>
           </div>
           <div className={styles.articleTexts}>
