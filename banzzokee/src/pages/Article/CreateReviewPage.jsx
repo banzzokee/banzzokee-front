@@ -2,7 +2,6 @@ import { useState } from 'react'
 import Back from '../../Back';
 import styles from './CreateReviewPage.module.css'
 
-
 export default function CreateReviewPage() {
   const [subject, setSubject] = useState();
   const [content, setContent] = useState();

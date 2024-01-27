@@ -1,5 +1,5 @@
-.Header {
-  background-color: #fafafa;
+.header {
+  background-color: #FAFAFA;
   width: 375px;
   height: 88px;
   margin: 0 auto;
@@ -8,15 +8,16 @@
   border-bottom: 1px solid #dfdfdf;
 }
 
-.Logo {
+.logo {
   width: 141px;
   height: 88px;
   margin-left: 117px;
 }
 
-.Notification {
+.notification {
   width: 33px;
   height: 35px;
+  background-color: #FAFAFA;
   margin-left: 52px;
   margin-top: 13px;
 }

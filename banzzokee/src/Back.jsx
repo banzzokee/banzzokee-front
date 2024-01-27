@@ -8,5 +8,7 @@ export default function Back() {
     navigate(-1); //이전 페이지로 이동
   };
 
-  return <img src="/Arrow.png" alt="Arrow" className={styles.arrow} onClick={onClickBtn} />;
+  return (
+      <img src="/Arrow.png" alt="Arrow" className={styles.arrow} onClick={onClickBtn} />
+  )
 }

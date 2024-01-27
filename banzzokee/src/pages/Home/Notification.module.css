@@ -2,17 +2,23 @@
   width: 375px;
   height: 812px;
   margin: 0 auto;
-  border: 1px solid rgb(177, 177, 177);
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  border: 1px solid rgb(217, 217, 217);
 }
+
 .notification_Header {
   display: flex;
   height: 65px;
   align-items: center;
 }
 
+.back {
+  position: absolute;
+  left: 0;
+}
 
 .notification_Logo {
   font-weight: 900;
@@ -24,6 +30,7 @@
   width: 30px;
   height: 30px;
   margin-right: 5px;
+  margin-top: 5px;
 }
 
 ul {
@@ -31,6 +38,7 @@ ul {
   flex-direction: column;
   padding: 0;
 }
+
 li{
   list-style: none;
   width: 330px;
