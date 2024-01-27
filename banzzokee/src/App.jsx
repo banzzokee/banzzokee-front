@@ -20,11 +20,12 @@ import SettingPage from './pages/User/SettingPage';
 import FollowingPage from './pages/User/FollowingPage';
 import AccountInfoPage from './pages/User/AccountInfoPage';
 import EmailConfirm from './pages/User/EmailConfirm';
-
 import GoogleRegister from './pages/User/GoogleRegister';
 import CreateReviewPage from './pages/Article/CreateReviewPage';
+import Message from './pages/Chat/Message';
+import DeleteAccount from './pages/User/DeleteAccount';
 
-
+// import GoogleRegister from './GoogleRegister';
 // import Filter from './Filter';
 
 function App() {
@@ -42,21 +43,23 @@ function App() {
           <Route path="/MapPage" element={<MapPage />} />
           <Route path="/CreateAdoptPage" element={<CreateAdoptPage />} />
           <Route path="/Notification" element={<Notification />} />
-          <Route path='/Register' element={<Register />} />
-          <Route path='/Back' element={<Back />} />
-          <Route path='/CreateAdoptPage' element={<CreateAdoptPage />} />
-          <Route path='/CreateReviewPage' element={<CreateReviewPage />} />
-          <Route path='/Tag' element={<Tag />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/Back" element={<Back />} />
+          <Route path="/CreateAdoptPage" element={<CreateAdoptPage />} />
+          <Route path="/CreateReviewPage" element={<CreateReviewPage />} />
+          <Route path="/Tag" element={<Tag />} />
           <Route path="/ShelterMyPage" element={<ShelterMyPage />} />
           <Route path="/ShelterInfoPage" element={<ShelterInfoPage />} />
           <Route path="/SettingPage" element={<SettingPage />} />
           <Route path="/FollowingPage" element={<FollowingPage />} />
           <Route path="/AccountInfoPage" element={<AccountInfoPage />} />
           <Route path='/EmailConfirm' element={<EmailConfirm />} />
-
-          {/* <Route path='/Login' element={<Login />} /> */}
+          <Route path="/Message" element={<Message />} />
+          <Route path="/DeleteAccount" element={<DeleteAccount />} />
           <Route path='/GoogleRegister' element={<GoogleRegister />} />
           <Route path='/CreateReviewPage' element={<CreateReviewPage />} />
+  
+          {/* <Route path='/Login' element={<Login />} /> */}
           {/* <Route path='/Filter' element={<Filter />} /> */}
         </Routes>
       </BrowserRouter>

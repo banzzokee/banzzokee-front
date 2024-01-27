@@ -1,6 +1,5 @@
 import styles from './LoginPage.module.css';
 import { Link } from 'react-router-dom';
-import Register from './Register';
 
 export default function LoginPage() {
   return (
@@ -17,7 +16,7 @@ export default function LoginPage() {
           </div>
           <div className={styles.text}>
             아직 회원이 아니신가요?
-            <Link to='/Register'>
+            <Link to="/Register">
               <span>회원가입</span>
             </Link>
           </div>

@@ -1,8 +1,9 @@
-import styles from './SettingPage.module.css';
-
-export default function MyPage() {
+import styles from './AccountInfoPage.module.css';
+import BackHeader from '../../BackHeader';
+export default function AccountInfoPage() {
   return (
     <>
+      <BackHeader style={{ backgroundColor: '#e1e1e1' }}></BackHeader>
       <div className={styles.container}>
         <p className={styles.title}>개인정보 조회</p>
         <p>이메일: </p>

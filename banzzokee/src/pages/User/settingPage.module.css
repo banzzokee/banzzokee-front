@@ -1,7 +1,6 @@
 .container {
-  box-sizing: border-box;
   width: 375px;
-  height: 645px;
+  height: 724px;
   margin: 0 auto;
   background-color: #e1e1e1;
   font-size: 16px;
@@ -12,15 +11,19 @@
   margin: 0;
 }
 .eachSetting {
-  margin-top: 20px;
+  padding-top: 20px;
 }
 p {
   text-align: left;
-  margin-top: 10px;
+  font-weight: 300;
+  font-size: 16px;
+  color: black;
 }
 .eachOnOff {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
 }
 .onOffBox {
   width: 40px;
@@ -44,7 +47,9 @@ p {
 .title {
   font-weight: bold;
 }
-
+.option {
+  margin-top: 10px;
+}
 .logOut {
   margin-top: 20px;
 }
