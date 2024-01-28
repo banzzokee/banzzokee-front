@@ -1,5 +1,5 @@
 import styles from './Message.module.css';
-import Back from '../../Back';
+import Back from '../../components/common/back/Back';
 
 export default function Message() {
   return (

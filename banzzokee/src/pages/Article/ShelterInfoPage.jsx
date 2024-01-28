@@ -1,6 +1,6 @@
 import styles from './ShelterInfoPage.module.css';
-import BackHeader from '../../BackHeader';
-import Nav from '../../Nav';
+import BackHeader from '../../components/common/header/BackHeader';
+import Nav from '../../components/common/nav/Nav';
 
 export default function ShelterInfoPage() {
   const photo = <img src="../../../public/User.png"></img>;

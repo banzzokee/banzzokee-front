@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Back from '../../Back';
+import Back from '../../components/common/back/Back';
 import styles from './CreateAdoptPage.module.css'
 import Tag from '../../Tag';
 
@@ -30,7 +30,7 @@ export default function CreateAdoptPage() {
         <div className={styles.inputGroup}>
           <label>상태</label>
           <div className={styles.stateBox}>
-            <button className={styles.ongoing}>분양중</button>
+            <button type='button' className={styles.ongoing}>분양중</button>
             <button className={styles.booking}>예약중</button>
             <button className={styles.completion}>분양완료</button>
           </div>

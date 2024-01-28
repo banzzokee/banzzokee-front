@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Back from '../../Back';
+import Back from '../../components/common/back/Back';
 import styles from './CreateReviewPage.module.css'
 
 export default function CreateReviewPage() {

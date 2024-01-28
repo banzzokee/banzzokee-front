@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import Header from '../../Header';
+import Header from '../../components/common/header/Header';
 import styles from './MainPage.module.css';
-import Nav from '../../Nav';
+import Nav from '../../components/common/nav/Nav';
 
 export default function MainPage() {
   return (
