@@ -1,10 +1,13 @@
+.CreateAdoptPage {
+  border: 1px solid #d9d9d9;
+}
+
 .create_Page {
   width: 375px;
-  height: 812px;
+  height: 724px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgb(217, 217, 217);
 }
 
 .adopt_Title {
@@ -14,6 +17,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  padding: 10px;
 }
 
 /* 스크롤바 스타일링 */
@@ -51,7 +55,7 @@
 .stateBox {
   width: 100%;
   height: 40px;
-  margin-right: 14px;
+  /* margin-right: 14px; */
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -66,14 +70,15 @@
 
 .inputGroup textarea {
   border: none;
-  width: 285px;
+  width: 100%;
   height: 255px;
   resize: none;
+  margin-right: 0;
   background-color: #d9d9d9;
 }
 
 .textTitle {
-  width: 75px;
+  width: 100px;
 }
 
 .button {

@@ -1,10 +1,9 @@
 .register_Page {
   width: 375px;
-  height: 812px;
+  height: 724px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgb(177, 177, 177);
 }
 
 .registerTitle {
@@ -48,7 +47,7 @@ label {
   margin: 10px;
 }
 
-input {
+.input {
   border: 1px solid #9C9A9A;
   border-radius: 2px;
   height: 35px;
