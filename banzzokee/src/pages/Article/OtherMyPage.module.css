@@ -9,7 +9,7 @@
 .shelterInfo {
   padding: 20px 30px;
   height: 400px;
-  background-color: beige;
+  background-color: #e1e1e1;
 }
 
 .picture {
@@ -41,7 +41,7 @@
 }
 .articleContainer {
   height: 245px;
-  overflow: hidden;
+  overflow: scroll;
 }
 .articleHeader {
   height: 50px;

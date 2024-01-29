@@ -1,8 +1,7 @@
 .container {
   height: 645px;
   width: 375px;
-  padding: 10px;
-  overflow: hidden;
+  padding: 0 10px;
   overflow-y: scroll;
 }
 .message {

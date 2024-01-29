@@ -1,14 +1,14 @@
-import styles from './ShelterMyPage.module.css';
+import styles from './OtherMyPage.module.css';
 import BackHeader from '../../components/common/header/BackHeader';
 import Nav from '../../components/common/nav/Nav';
 import Button from '../../components/common/button/Button';
 import { Link } from 'react-router-dom';
 
-export default function ShelterMyPage() {
+export default function OtherMyPage() {
   const photo = <img src="../../../public/User.png"></img>;
   return (
     <>
-      <BackHeader></BackHeader>
+      <BackHeader style={{ backgroundColor: '#e1e1e1' }}></BackHeader>
       <div className={styles.container}>
         <div className={styles.shelterInfo}>
           <div className={styles.picture}>{photo}</div>

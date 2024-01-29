@@ -1,7 +1,7 @@
-import Button from '../../components/Button';
+import Button from '../../components/common/button/Button';
 import styles from './ChangePass.module.css';
 
-import BackHeader from '../../BackHeader';
+import BackHeader from '../../components/common/header/BackHeader';
 
 export default function ChangePass() {
   return (

@@ -14,13 +14,13 @@ import Register from './pages/register/Register';
 import Back from './components/common/back/Back';
 import Tag from './Tag';
 import MapPage from './pages/Map/MapPage';
-import ShelterMyPage from './pages/Article/ShelterMyPage';
+import OtherMyPage from './pages/Article/OtherMyPage';
 import ShelterInfoPage from './pages/Article/ShelterInfoPage';
-import SettingPage from './pages/User/SettingPage';
+import SettingPage from './pages/Setting/SettingPage';
 import FollowingPage from './pages/User/FollowingPage';
 import AccountInfoPage from './pages/User/AccountInfoPage';
-import EmailConfirm from './pages/User/EmailConfirm';
-import GoogleRegister from './pages/User/GoogleRegister';
+import EmailConfirm from './pages/register/EmailConfirm';
+import GoogleRegister from './pages/register/GoogleRegister';
 import CreateReviewPage from './pages/Article/CreateReviewPage';
 import Message from './pages/Chat/Message';
 import DeleteAccount from './pages/User/DeleteAccount';
@@ -51,7 +51,7 @@ function App() {
           <Route path="/CreateAdoptPage" element={<CreateAdoptPage />} />
           <Route path="/CreateReviewPage" element={<CreateReviewPage />} />
           <Route path="/Tag" element={<Tag />} />
-          <Route path="/ShelterMyPage" element={<ShelterMyPage />} />
+          <Route path="/OtherMyPage" element={<OtherMyPage />} />
           <Route path="/ShelterInfoPage" element={<ShelterInfoPage />} />
           <Route path="/SettingPage" element={<SettingPage />} />
           <Route path="/FollowingPage" element={<FollowingPage />} />

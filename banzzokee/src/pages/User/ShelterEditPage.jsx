@@ -1,5 +1,5 @@
 import styles from './ShelterEditPage.module.css';
-import BackHeader from '../../BackHeader';
+import BackHeader from '../../components/common/header/BackHeader';
 import cx from 'clsx';
 export default function ShelterEditPage() {
   const photo = <img src="../../../public/User.png"></img>;
