@@ -1,8 +1,8 @@
-import Button from '../../components/Button';
+import Button from '../../components/common/button/Button';
 import styles from './SettingPage.module.css';
 import { Link } from 'react-router-dom';
 
-import BackHeader from '../../BackHeader';
+import BackHeader from '../../components/common/header/BackHeader';
 
 export default function MyPage() {
   return (

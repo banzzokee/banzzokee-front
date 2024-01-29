@@ -1,8 +1,8 @@
 import styles from './FollowingPage.module.css';
 
-import Header from '../../Header';
-import Nav from '../../Nav';
-import Button from '../../components/Button';
+import Header from '../../components/common/header/Header';
+import Nav from '../../components/common/nav/Nav';
+import Button from '../../components/common/button/Button';
 export default function FollowingPage() {
   const defaultPhoto = <img style={{ width: '20px', height: 'auto' }} src="../../../public/User.png"></img>;
   return (

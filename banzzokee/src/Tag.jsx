@@ -7,7 +7,9 @@ export default function Tag() {
       <div className={styles.tag_box}>
         <div className={styles.tag_item}>
           <label>견종</label>
-          <button>말티즈</button>
+          <div className={styles.searchBreed}>
+            <input type="text" placeholder="견종을 검색하세요" />
+          </div>
         </div>
         <div className={styles.tag_item}>
           <label>사이즈</label>
@@ -33,9 +35,14 @@ export default function Tag() {
         </div>
         <div className={styles.tag_item}>
           <label>나이</label>
+          <input></input>
         </div>
         <div className={styles.tag_item}>
-          <label>유기견 등록 날짜</label>
+          <div className={styles.date}>
+            <span>유기견</span>
+            <span>등록날짜</span>
+          </div>
+          <input></input>
         </div>
       </div>
     </div>

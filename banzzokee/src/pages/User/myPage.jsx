@@ -1,10 +1,10 @@
 import styles from './MyPage.module.css';
-import Button from '/src/components/Button';
+import Button from '../../components/common/button/Button';
 import { Link } from 'react-router-dom';
 // import BadgeIcon from '/src/components/BadgeIcon';
 // import BasicProfileIcon from '../../../public/BasicProfileIcon';
 import { useState } from 'react';
-import Nav from '../../Nav';
+import Nav from '../../components/common/nav/Nav';
 
 export default function MyPage() {
   const [button1Color, setButton1Color] = useState('#bebebe');

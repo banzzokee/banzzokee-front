@@ -1,7 +1,7 @@
 import styles from './ViewArticlePage.module.css';
 import { Link } from 'react-router-dom';
-import BackHeader from '../../BackHeader';
-import Nav from '../../Nav';
+import BackHeader from '../../components/common/header/BackHeader';
+import Nav from '../../components/common/nav/Nav';
 
 export default function ViewArticlePage() {
   return (

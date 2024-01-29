@@ -1,6 +1,6 @@
 // import { Link } from 'react-router-dom';
 import styles from './BackHeader.module.css';
-import Back from './Back';
+import Back from '../back/Back';
 
 export default function BackHeader({ style }) {
   // const settingIcon = <img src="../../../public/Setting.svg"></img>;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from './Register.module.css'
 import { Link } from "react-router-dom";
-import Back from "../../Back";
+import Back from "../../components/common/back/Back";
 
 export default function Register() {
   const [email, setEmail] = useState("");

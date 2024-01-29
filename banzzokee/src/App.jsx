@@ -1,17 +1,17 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import React from 'react';
+// import React from 'react';
 import './App.css';
 import MainPage from './pages/Home/MainPage';
-import Nav from './Nav';
-import Header from './Header';
-import ChatListPage from './pages/Chat/chatListPage';
-import ViewArticlePage from './pages/Article/ViewArticlePage';
-import LoginPage from './pages/User/LoginPage';
+import Nav from './components/common/nav/Nav';
+import Header from './components/common/header/Header';
+import ChatListPage from './pages/chat/chatListPage';
+import ViewArticlePage from './pages/article/ViewArticlePage';
+import LoginPage from './pages/login/LoginPage';
 import MyPage from './pages/User/MyPage';
-import CreateAdoptPage from './pages/Article/CreateAdoptPage';
-import Notification from './pages/Home/Notification';
-import Register from './pages/User/Register';
-import Back from './Back';
+import CreateAdoptPage from './pages/article/CreateAdoptPage';
+import Notification from './pages/home/Notification';
+import Register from './pages/register/Register';
+import Back from './components/common/back/Back';
 import Tag from './Tag';
 import MapPage from './pages/Map/MapPage';
 import ShelterMyPage from './pages/Article/ShelterMyPage';
@@ -30,7 +30,6 @@ import ShelterRegisterPage from './pages/User/ShelterRegisterPage';
 import MyPageEdit from './pages/User/MyPageEdit';
 
 // import GoogleRegister from './GoogleRegister';
-// import Filter from './Filter';
 
 function App() {
   return (
@@ -68,7 +67,6 @@ function App() {
           <Route path="/MyPageEdit" element={<MyPageEdit />} />
 
           {/* <Route path='/Login' element={<Login />} /> */}
-          {/* <Route path='/Filter' element={<Filter />} /> */}
         </Routes>
       </BrowserRouter>
     </>

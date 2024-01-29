@@ -1,7 +1,6 @@
 import styles from './MapPage.module.css';
-
-import Header from '../../Header';
-import Nav from '../../Nav';
+import Header from '../../components/common/header/Header';
+import Nav from '../../components/common/nav/Nav';
 
 export default function MapPage() {
   return (
