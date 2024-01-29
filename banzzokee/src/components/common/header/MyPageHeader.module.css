@@ -1,0 +1,14 @@
+.myPageHeader {
+  background-color: #e1e1e1;
+  width: 375px;
+  height: 44px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding: 10px;
+  border-bottom: 1px solid #dfdfdf;
+}
+.settingIcon {
+  margin-top: 10px;
+}

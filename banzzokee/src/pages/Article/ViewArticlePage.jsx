@@ -10,15 +10,17 @@ export default function ViewArticlePage() {
       <div className={styles.container}>
         <div className={styles.article}>
           <div className={styles.articleHeader}>
-            <div className={styles.headerLeft}>
-              <div className={styles.userImage}></div>
-              <div className={styles.nameAndDate}>
-                <Link to="/ShelterMyPage">
+            <Link to="/OtherMyPage">
+              <div className={styles.headerLeft}>
+                <div className={styles.userImage}>
+                  <img src="../../../public/User.png" alt="" style={{ width: '14px', height: '14px' }} />
+                </div>
+                <div className={styles.nameAndDate}>
                   <div className={styles.name}>user_123</div>
-                </Link>
-                <div className={styles.date}>2023-01-03</div>
+                  <div className={styles.date}>2023-01-03</div>
+                </div>
               </div>
-            </div>
+            </Link>
             <Link className="chat" to="/Message">
               <div className={styles.messageButton}>
                 메세지
@@ -37,7 +39,7 @@ export default function ViewArticlePage() {
           <div className={styles.articleTexts}>
             <div className={styles.titleAndSave}>
               <div className={styles.title}>제목은 이곳에 들어갑니다</div>
-              <img src="../../../public/save.svg" alt="저장하기" />
+              <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px' }} />
             </div>
 
             <div className={styles.tags}>

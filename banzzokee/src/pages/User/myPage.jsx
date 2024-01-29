@@ -2,7 +2,7 @@ import styles from './MyPage.module.css';
 import Button from '../../components/common/button/Button';
 import { Link } from 'react-router-dom';
 // import BadgeIcon from '/src/components/BadgeIcon';
-// import BasicProfileIcon from '../../../public/BasicProfileIcon';
+import MyPageHeader from '../../components/common/header/MyPageHeader';
 import { useState } from 'react';
 import Nav from '../../components/common/nav/Nav';
 
@@ -25,20 +25,13 @@ export default function MyPage() {
   return (
     <>
       {/* <BackHeader style={{ back: { display: 'none' }, all: { backgroundColor: 'gray' } }}></BackHeader> */}
-      <div className={styles.myPageHeader}>
-        <div className={styles.settingIcon}>
-          <Link to="/settingPage">
-            <img src="../../../public/Setting.svg" />
-          </Link>
-        </div>
-      </div>
+      <MyPageHeader></MyPageHeader>
       <div className={styles.container}>
         <div className={styles.userInfo}>
           <div className={styles.profilePhoto}>{photo}</div>
           {/* <BadgeIcon className={styles.badgeIcon}></BadgeIcon> */}
           <div className={styles.profileHeader}>
             <Link
-              className={styles.button}
               to={{
                 pathname: '/ShelterInfoPage',
                 data: { name: '서울보호소', body: '주소: 서울시 ㅇㅇ구 ㅇㅇ길' },
@@ -57,28 +50,28 @@ export default function MyPage() {
               </Button>
             </Link>
             <span className={styles.userID}>User_ID</span>
-            <Button
-              className={styles.profileEditButton}
-              style={{
-                position: 'absolute',
-                right: '0',
-              }}
-              type="submit"
-              size="small"
-            >
-              프로필 수정
-            </Button>
+            <Link to="/MyPageEdit">
+              <Button
+                className={styles.profileEditButton}
+                style={{
+                  position: 'absolute',
+                  right: '0',
+                }}
+                type="submit"
+                size="small"
+              >
+                프로필 수정
+              </Button>
+            </Link>
           </div>
           <p>500자 미만으로 작성해 주세 작성해 주세요.500자 미만으로 작성해 주세요500자 미만으로 작성해 주세요</p>
           <div className={styles.buttons}>
-            <Button type="submit" size="big">
-              <Link to="/CreateAdoptPage" className={styles.createAdopt}>
-                게시물 작성
-              </Link>
-            </Button>
-            <Button type="submit" size="big">
-              <Link to="/FollowingPage">팔로잉 보호소</Link>
-            </Button>
+            <Link to="/CreateAdoptPage" className={styles.createAdopt}>
+              <div className={styles.button}>게시물 작성</div>
+            </Link>
+            <Link to="/FollowingPage">
+              <div className={styles.button}>팔로잉 보호소</div>
+            </Link>
           </div>
         </div>
         <div className={styles.viewArticles}>

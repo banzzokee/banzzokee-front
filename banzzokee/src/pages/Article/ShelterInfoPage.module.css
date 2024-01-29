@@ -15,6 +15,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
+}
+.edit {
+  margin-top: 10px;
 }
 .shelterInfo {
   text-align: left;

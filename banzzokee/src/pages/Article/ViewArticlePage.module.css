@@ -24,6 +24,10 @@
   height: 30px;
   background-color: #bebebe;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 .name {
   font-weight: bold;
@@ -34,7 +38,7 @@
   color: #818181;
 }
 .messageButton {
-  /* width: 85px; */
+  /* width: 0x; */
   height: 30px;
   padding: 0 15px;
   border-radius: 50px;
@@ -48,7 +52,7 @@
 
 .messageIcon {
   width: 20px;
-  height: 20px;
+  height: 16px;
   padding-left: 5px;
 }
 .articlePhotos {
