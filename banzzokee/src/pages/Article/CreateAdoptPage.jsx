@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import Back from '../../Back';
+import Back from '../../components/common/back/Back';
 import styles from './CreateAdoptPage.module.css'
 import Tag from '../../Tag';
 
 export default function CreateAdoptPage() {
   const [subject, setSubject] = useState();
   const [content, setContent] = useState();
+
   return (
     <div className={styles.create_Page}>
       <Back />
@@ -18,11 +19,11 @@ export default function CreateAdoptPage() {
             <p>사진</p>
             <p>(최대 8장)</p>
           </label>
-          <input type='file' className={styles.img_upload}></input>
+          <input type="file" multiple accept="image/*" className={styles.img_upload}></input>
         </div>
         <div className={styles.inputGroup}>
           <label>제목</label>
-          <input type='text' id='title' className={styles.input} placeholder='50자 이내로 작성해주세요.' value={subject}></input>
+          <input type='text' id='title' className={styles.input} placeholder='50자 이내로 작성해주세요.' value={subject} maxlength='50'></input>
         </div>
         <div className={styles.inputGroup}>
           <Tag />
@@ -30,14 +31,14 @@ export default function CreateAdoptPage() {
         <div className={styles.inputGroup}>
           <label>상태</label>
           <div className={styles.stateBox}>
-            <button className={styles.ongoing}>분양중</button>
-            <button className={styles.booking}>예약중</button>
-            <button className={styles.completion}>분양완료</button>
+            <button type='button' className={styles.ongoing}>분양중</button>
+            <button type='button' className={styles.booking}>예약중</button>
+            <button type='button' className={styles.completion}>분양완료</button>
           </div>
         </div>
         <div className={styles.inputGroup}>
-          <label>본문</label>
-          <textarea id='content' placeholder='500자 이내로 작성해주세요.'></textarea>
+          <label className={styles.textTitle}>본문</label>
+          <textarea id='content' placeholder='500자 이내로 작성해주세요.' maxlength='500'></textarea>
         </div>
         <button className={styles.button}>게시글 등록</button>
       </form>

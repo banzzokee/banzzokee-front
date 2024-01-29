@@ -1,7 +1,7 @@
-import Button from '../../components/Button';
+import Button from '../../components/common/button/Button';
 import styles from './DeleteAccount.module.css';
 
-import BackHeader from '../../BackHeader';
+import BackHeader from '../../components/common/header/BackHeader';
 
 export default function MyPage() {
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Back from "../../Back";
+import Back from "../../components/common/back/Back";
 import styles from './GoogleRegister.module.css'
 
 export default function GoogleRegister() {

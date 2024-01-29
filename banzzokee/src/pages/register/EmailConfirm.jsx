@@ -1,5 +1,5 @@
 import styles from './EmailConfirm.module.css'
-import Back from '../../Back'
+import Back from '../../components/common/back/Back'
 
 export default function EmailConfirm () {
   return(
@@ -8,7 +8,7 @@ export default function EmailConfirm () {
         <Back />
       </div>
       <div className={styles.container}>
-        <p>이메일 인증하기</p>
+        <p className={styles.bold}>이메일 인증하기</p>
         <p>아래의 이메일 주소로 인증 메일이 발송되었습니다.</p>
         <div className={styles.body}>
           <p>banzzokee@naver.com</p>

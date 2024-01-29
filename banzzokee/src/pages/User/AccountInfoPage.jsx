@@ -1,5 +1,5 @@
 import styles from './AccountInfoPage.module.css';
-import BackHeader from '../../BackHeader';
+import BackHeader from '../../components/common/header/BackHeader';
 export default function AccountInfoPage() {
   return (
     <>

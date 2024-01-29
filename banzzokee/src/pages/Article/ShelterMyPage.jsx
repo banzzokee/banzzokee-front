@@ -1,7 +1,7 @@
 import styles from './ShelterMyPage.module.css';
-import BackHeader from '../../BackHeader';
-import Nav from '../../Nav';
-import Button from '../../components/Button';
+import BackHeader from '../../components/common/header/BackHeader';
+import Nav from '../../components/common/nav/Nav';
+import Button from '../../components/common/button/Button';
 import { Link } from 'react-router-dom';
 
 export default function ShelterMyPage() {
