@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
 import './App.css';
-import MainPage from './pages/home/MainPage';
+import MainPage from './pages/Home/MainPage';
 import Nav from './components/common/nav/Nav';
 import Header from './components/common/header/Header';
 import ChatListPage from './pages/chat/chatListPage';
@@ -24,9 +24,9 @@ import GoogleRegister from './pages/register/GoogleRegister';
 import CreateReviewPage from './pages/article/CreateReviewPage';
 import Message from './pages/chat/Message';
 import DeleteAccount from './pages/user/DeleteAccount';
+// import Filter from './pages/home/Filter';
 
 // import GoogleRegister from './GoogleRegister';
-// import Filter from './Filter';
 
 function App() {
   return (
@@ -58,9 +58,9 @@ function App() {
           <Route path="/DeleteAccount" element={<DeleteAccount />} />
           <Route path='/GoogleRegister' element={<GoogleRegister />} />
           <Route path='/CreateReviewPage' element={<CreateReviewPage />} />
+          {/* <Route path='/Filter' element={<Filter />} /> */}
   
           {/* <Route path='/Login' element={<Login />} /> */}
-          {/* <Route path='/Filter' element={<Filter />} /> */}
         </Routes>
       </BrowserRouter>
     </>
