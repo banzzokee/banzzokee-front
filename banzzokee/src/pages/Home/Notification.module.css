@@ -39,7 +39,7 @@ ul {
   padding: 0;
 }
 
-li{
+li {
   list-style: none;
   width: 330px;
   height: 120px;
@@ -52,7 +52,7 @@ li:last-child {
   margin-bottom: 30px;
 }
 
-.button{
+.button {
   border: none;
   width: 209px;
   height: 52px;

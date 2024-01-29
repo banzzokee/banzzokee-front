@@ -31,6 +31,7 @@
 
 .inputGroup {
   display: flex;
+  align-items: center;
   border: 1px solid #dadada;
   height: 65px;
 }
@@ -49,19 +50,26 @@ label {
 
 input {
   border: 1px solid #9C9A9A;
-  border-radius: 5px;
+  border-radius: 2px;
   height: 35px;
   margin-right: 10px;
   margin-top: 5px;
 }
 
 .emailconfirm_Button, .confirmButton {
-  height: 20px;
-  margin-top: 15px;
+  width: 80px;
+  height: 34px;
+  padding: 0;
+  margin-top: -13px;
+  margin-left: 10px;
+  border-radius: 2px;
+  background-color: #FAFAFA;
+  border: 1px solid #9C9A9A;
 }
 
 .registerButton {
   border: none;
+  border-radius: 3px;
   height: 50px;
   color: #FFFFFF;
   font-size: 18px;

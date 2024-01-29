@@ -11,19 +11,19 @@ export default function CreateReviewPage() {
       <h2 className={styles.adopt_Title}>입양 후기 게시글</h2>
       <form className={styles.container}>
         <div className={styles.inputGroup}>
-          <label>
-            <p>사진</p>
-            <p>(최대 8장)</p>
+          <label className={styles.picLabel}>
+            <span>사진</span>
+            <span>(최대 8장)</span>
           </label>
           <input type='file' className={styles.img_upload}></input>
         </div>
         <div className={styles.inputGroup}>
           <label>제목</label>
-          <input type='text' id='title' className={styles.input} placeholder='50자 이내로 작성해주세요.' value={subject}></input>
+          <input type='text' id='title' className={styles.input} placeholder='50자 이내로 작성해주세요.' value={subject} maxlength='50'></input>
         </div>
         <div className={styles.inputGroup}>
           <label>본문</label>
-          <textarea id='content' placeholder='500자 이내로 작성해주세요.'></textarea>
+          <textarea id='content' placeholder='500자 이내로 작성해주세요.' maxlength='500'></textarea>
         </div>
         <button className={styles.button}>게시글 등록</button>
       </form>
