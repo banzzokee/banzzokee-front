@@ -3,7 +3,7 @@ import styles from './DeleteAccount.module.css';
 
 import BackHeader from '../../BackHeader';
 
-export default function MyPage() {
+export default function DeleteAccount() {
   return (
     <>
       <BackHeader style={{ backgroundColor: '#e1e1e1' }}></BackHeader>

@@ -1,7 +1,8 @@
 import styles from './ShelterInfoPage.module.css';
 import BackHeader from '../../BackHeader';
 import Nav from '../../Nav';
-
+import Button from '../../components/Button';
+import { Link } from 'react-router-dom';
 export default function ShelterInfoPage() {
   const photo = <img src="../../../public/User.png"></img>;
   return (
@@ -9,7 +10,11 @@ export default function ShelterInfoPage() {
       <BackHeader></BackHeader>
       <div className={styles.container}>
         <div className={styles.picture}>{photo}</div>
-        <div className={styles.shelterName}>user_123</div>
+
+        <Link to="/ShelterEditPage">
+          <Button>보호소 수정</Button>
+        </Link>
+
         <div className={styles.shelterInfo}>
           <p>
             보호소 이름: <span>서울 보호소</span>
