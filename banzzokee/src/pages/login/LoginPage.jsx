@@ -1,11 +1,13 @@
+import BackHeader from '../../components/common/header/BackHeader';
 import styles from './LoginPage.module.css';
 import { Link } from 'react-router-dom';
 
 export default function LoginPage() {
   return (
     <>
+      <BackHeader/>
       <div className={styles.container}>
-        <img className={styles.logo} src="../../../public/Logo.png"></img>
+        <img className={styles.logo} src="../../../public/Logo.svg"></img>
         <form className={styles.login} action="">
           <div className={styles.loginInput}>
             <input className={styles.input} type="text" placeholder="이메일" />

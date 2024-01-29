@@ -1,47 +1,49 @@
 import { useState } from 'react'
-import Back from '../../components/common/back/Back';
 import styles from './CreateAdoptPage.module.css'
 import Tag from '../../Tag';
+import BackHeader from '../../components/common/header/BackHeader';
 
 export default function CreateAdoptPage() {
   const [subject, setSubject] = useState();
   const [content, setContent] = useState();
 
   return (
-    <div className={styles.create_Page}>
-      <Back />
-      <h2 className={styles.adopt_Title}>분양 구하기 게시글</h2>
+    <div className={styles.CreateAdoptPage}>
+      <BackHeader style={{backgroundColor:"#FFFFFF", border:"none"}} />
+      <div className={styles.create_Page}>
+        <h2 className={styles.adopt_Title}>분양 구하기 게시글</h2>
 
-      {/* 스크롤 시작되는 부분 */}
-      <form style={{ overflowY: 'scroll', maxHeight: '800px' }} className={styles.container}>
-        <div className={styles.inputGroup}>
-          <label>
-            <p>사진</p>
-            <p>(최대 8장)</p>
-          </label>
-          <input type="file" multiple accept="image/*" className={styles.img_upload}></input>
-        </div>
-        <div className={styles.inputGroup}>
-          <label>제목</label>
-          <input type='text' id='title' className={styles.input} placeholder='50자 이내로 작성해주세요.' value={subject} maxlength='50'></input>
-        </div>
-        <div className={styles.inputGroup}>
-          <Tag />
-        </div>
-        <div className={styles.inputGroup}>
-          <label>상태</label>
-          <div className={styles.stateBox}>
-            <button type='button' className={styles.ongoing}>분양중</button>
-            <button type='button' className={styles.booking}>예약중</button>
-            <button type='button' className={styles.completion}>분양완료</button>
+        {/* 스크롤 시작되는 부분 */}
+        <form style={{ overflowY: 'scroll', maxHeight: '800px' }} className={styles.container}>
+          <div className={styles.inputGroup}>
+            <label>
+              <p>사진</p>
+              <p>(최대 8장)</p>
+            </label>
+            <input type="file" multiple accept="image/*" className={styles.img_upload}></input>
           </div>
-        </div>
-        <div className={styles.inputGroup}>
-          <label className={styles.textTitle}>본문</label>
-          <textarea id='content' placeholder='500자 이내로 작성해주세요.' maxlength='500'></textarea>
-        </div>
-        <button className={styles.button}>게시글 등록</button>
-      </form>
+          <div className={styles.inputGroup}>
+            <label>제목</label>
+            <input type='text' id='title' className={styles.input} placeholder='50자 이내로 작성해주세요.' value={subject} maxlength='50'></input>
+          </div>
+          <div className={styles.inputGroup}>
+            <Tag />
+          </div>
+          <div className={styles.inputGroup}>
+            <label>상태</label>
+            <div className={styles.stateBox}>
+              <button type='button' className={styles.ongoing}>분양중</button>
+              <button type='button' className={styles.booking}>예약중</button>
+              <button type='button' className={styles.completion}>분양완료</button>
+            </div>
+          </div>
+          <div className={styles.inputGroup}>
+            <label className={styles.textTitle}>본문</label>
+            <textarea id='content' placeholder='500자 이내로 작성해주세요.' maxlength='500'></textarea>
+          </div>
+          <button className={styles.button}>게시글 등록</button>
+        </form>
+      </div>
     </div>
   )
 }

@@ -16,8 +16,8 @@ export default function Nav() {
       <Link className="Review" to="/ViewArticlePage">
         <img src="/Review.png" alt="후기" className={styles.Review} />
       </Link>
-      <Link className="MyPage" to="/MyPage">
-        <img src="/User.png" alt="마이페이지" className={styles.MyPage} />
+      <Link className="LoginPage" to="/LoginPage">
+        <img src="/User.png" alt="로그인페이지" className={styles.LoginPage} />
       </Link>
     </div>
   );
