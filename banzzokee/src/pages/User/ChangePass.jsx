@@ -11,11 +11,11 @@ export default function ChangePass() {
         <p className={styles.title}>비밀번호 변경</p>
         <form action="">
           <p>현재 비밀번호</p>
-          <input type="password"></input>
+          <input className={styles.input} type="password"></input>
           <p>새로운 비밀번호</p>
-          <input type="password"></input>
+          <input className={styles.input} type="password"></input>
           <p>새로운 비밀번호 확인</p>
-          <input type="password"></input>
+          <input className={styles.input} type="password"></input>
           <Button style={{ width: '100%', height: '50px', marginTop: '20px' }}>비밀번호 변경</Button>
         </form>
       </div>

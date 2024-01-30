@@ -1,7 +1,7 @@
 import styles from './ChatListPage.module.css';
 import { Link } from 'react-router-dom';
 import ChatHeader from '../../components/common/header/ChatHeader.jsx';
-import Nav from '../../components/common/nav/Nav';
+import Nav from '../../components/common/nav/Nav.jsx';
 
 export default function ChatListPage() {
   return (
