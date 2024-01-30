@@ -19,22 +19,14 @@ export default function ShelterEditPage() {
               </div>
             </div>
             <div className={styles.shelterInfo}>
-              <p>
-                보호소 이름:
-                <input className={styles.input} type="text" placeholder="이전 등록값" />
-              </p>
-              <p>
-                보호소 소개:
-                <input className={styles.input} type="password" placeholder="이전 등록값" />
-              </p>
-              <p>
-                연락처:
-                <input className={styles.input} type="password" placeholder="이전 등록값" />
-              </p>
-              <p>
-                주소:
-                <input className={styles.input} type="password" placeholder="이전 등록값" />
-              </p>
+              <p>보호소 이름:</p>
+              <input className={styles.input} type="text" placeholder="이전 등록값" />
+              <p>보호소 소개:</p>
+              <input className={styles.input} type="password" placeholder="이전 등록값" />
+              <p>연락처:</p>
+              <input className={styles.input} type="password" placeholder="이전 등록값" />
+              <p>주소:</p>
+              <input className={styles.input} type="password" placeholder="이전 등록값" />
             </div>
           </div>
           <div className={styles.button} onClick={'dothis'}>
