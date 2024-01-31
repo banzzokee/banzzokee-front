@@ -3,7 +3,10 @@
     {
       "email": "heejun@gmail.com",
       "password": "heejun",
-      "id": "1"
+      "id": "1",
+      "nickname": "user_123",
+      "profile_img_url": "../../../public/myPhoto.jpg",
+      "introduce": "안녕하세요. 저는 ㅇㅇ에사는 ㅇㅇ입니다. 소형 강아지 입양 희망합니다."
     }
   ]
 }
