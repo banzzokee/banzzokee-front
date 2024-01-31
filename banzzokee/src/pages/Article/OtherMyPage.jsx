@@ -3,9 +3,16 @@ import BackHeader from '../../components/common/header/BackHeader';
 import Nav from '../../components/common/nav/Nav';
 import Button from '../../components/common/button/Button';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function OtherMyPage() {
+  const [follow, setFollow] = useState(false);
+  function onClick() {
+    setFollow(!follow);
+  }
+
   const photo = <img src="../../../public/User.png"></img>;
+
   return (
     <>
       <BackHeader style={{ backgroundColor: '#e1e1e1' }}></BackHeader>
@@ -26,7 +33,9 @@ export default function OtherMyPage() {
           </div>
           <p>500자 미만으로 자기소개.500자 미만으로 자기소개500자 미만으로 자기소개.500자 미만으로 자기소개500자 미만으로 자기소개</p>
           <div>
-            <Button style={{ width: '100%', color: 'white', fontSize: '20px' }}>팔로우</Button>
+            <button style={{ width: '100%', color: 'white', backgroundColor: follow ? '#bebebe' : '#add8e6', fontSize: '20px' }} onClick={onClick}>
+              {follow ? '팔로잉' : '팔로우'}
+            </button>
           </div>
         </div>
         <div className={styles.articleContainer}>

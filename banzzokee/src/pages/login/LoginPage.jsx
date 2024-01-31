@@ -2,24 +2,13 @@ import BackHeader from '../../components/common/header/BackHeader';
 import styles from './LoginPage.module.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 import axios from 'axios';
 export default function LoginPage() {
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
   const [inputValue, setInputValue] = useState({
     email: '',
     password: '',
   });
-  // const onChange = (e) => {
-  //   const {
-  //     target: { name, value },
-  //   } = e;
-  //   if (name === 'email') {
-  //     setEmail(value);
-  //   } else if (name === 'password') {
-  //     setPassword(value);
-  //   }
-  // };
   const onChange = (e) => {
     const { name, value } = e.target;
     setInputValue({
@@ -27,32 +16,43 @@ export default function LoginPage() {
       [name]: value,
     });
   };
+
+  const [cookies, setCookie, removeCookie] = useCookies();
+
   const onSubmit = async (e) => {
     e.preventDefault();
+    console.log('click login');
     try {
-      console.log('login form submitted!');
+      const { data } = await axios.post('http://localhost:8000/login', inputValue);
+      setCookie('accessToken', data['accessToken'], { path: '/' });
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
+  document.location.href = '/MyPage';
+
   const getData = async () => {
     try {
       const response = await axios.get('http://localhost:3001/users');
+      sessionStorage.setItem('userInfo', JSON.stringify(response.data[0]));
       console.log(response.data);
+      document.location.href = '/MyPage';
     } catch (error) {
       console.error(error);
     }
     // return response
   };
-  const putData = async () => {
-    try {
-      const { data } = await axios.post('http://localhost:3001/users', inputValue);
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
-    // return response
-  };
+
+  // const putData = async () => {
+  //   try {
+  //     const { data } = await axios.post('http://localhost:3001/users', inputValue);
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  //   // return response
+  // };
+
   return (
     <>
       <BackHeader />
@@ -63,7 +63,7 @@ export default function LoginPage() {
             <input className={styles.input} type="email" placeholder="이메일" name="email" onChange={onChange} />
             <input className={styles.input} type="password" placeholder="비밀번호" name="password" onChange={onChange} />
           </div>
-          <button className={styles.loginButton} type="submit" onClick={putData}>
+          <button className={styles.loginButton} type="submit" onClick={onSubmit}>
             로그인
           </button>
           <div className={styles.text}>
@@ -86,14 +86,3 @@ export default function LoginPage() {
     </>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
