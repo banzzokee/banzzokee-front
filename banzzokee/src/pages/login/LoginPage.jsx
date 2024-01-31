@@ -23,7 +23,7 @@ export default function LoginPage() {
     e.preventDefault();
     console.log('click login');
     try {
-      const { data } = await axios.post('http://localhost:8000/login', inputValue);
+      const { data } = await axios.post('http://localhost:3001/login', inputValue);
       setCookie('accessToken', data['accessToken'], { path: '/' });
     } catch (error) {
       console.log(error);
