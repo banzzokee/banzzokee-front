@@ -16,7 +16,10 @@
     "clsx": "^2.1.0",
     "concurrently": "^8.2.2",
     "json-server": "^1.0.0-alpha.23",
+    "json-server-auth": "^2.1.0",
+    "jsonwebtoken": "^9.0.2",
     "react": "^18.2.0",
+    "react-cookie": "^7.0.2",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.3",
     "vite-plugin-pwa": "^0.17.4"
