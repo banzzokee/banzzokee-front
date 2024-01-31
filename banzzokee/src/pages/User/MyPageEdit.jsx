@@ -20,14 +20,10 @@ export default function MyPageEdit() {
               </div>
             </div>
             <div className={styles.shelterInfo}>
-              <p>
-                닉네임:
-                <input className={styles.input} type="text" placeholder="이전 등록값" />
-              </p>
-              <p>
-                자기 소개:
-                <input className={styles.input} type="password" placeholder="이전 등록값" />
-              </p>
+              <p>닉네임:</p>
+              <input className={styles.input} type="text" placeholder="이전 등록값" />
+              <p>자기 소개:</p>
+              <input className={styles.input} type="password" placeholder="이전 등록값" />
             </div>
           </div>
           <div className={styles.button} onClick={'dothis'}>
