@@ -7,7 +7,7 @@ export default function Nav() {
       <Link className="Chat" to="/ChatListPage">
         <img src="/Chatting.png" alt="채팅" className={styles.Chatting} />
       </Link>
-      <Link className="Map" to="/MyPage">
+      <Link className="Map" to="/MapPage">
         <img src="/Map.png" alt="지도" className={styles.Map} />
       </Link>
       <Link className="Home" to="/">

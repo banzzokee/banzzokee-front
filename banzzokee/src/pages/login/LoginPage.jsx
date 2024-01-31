@@ -49,11 +49,13 @@ export default function LoginPage() {
       })
       .catch();
   };
+
   const getData = async () => {
     try {
       const response = await axios.get('http://localhost:3001/users');
       sessionStorage.setItem('userInfo', JSON.stringify(response.data[0]));
       console.log(response.data);
+      document.location.href = '/MyPage';
     } catch (error) {
       console.error(error);
     }

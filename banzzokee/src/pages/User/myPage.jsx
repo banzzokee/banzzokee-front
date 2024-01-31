@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import MyPageHeader from '../../components/common/header/MyPageHeader';
 import { useState } from 'react';
 import Nav from '../../components/common/nav/Nav';
-import axios from 'axios';
+// import axios from 'axios';
 
 export default function MyPage() {
   const [button1Color, setButton1Color] = useState('#bebebe');
@@ -34,7 +34,7 @@ export default function MyPage() {
           <div className={styles.profilePhoto}>{photo}</div>
           {/* <BadgeIcon className={styles.badgeIcon}></BadgeIcon> */}
           <div className={styles.profileHeader}>
-            <Link to="/ShelterInfoPage">
+            <Link to={{ pathname: '/ShelterInfoPage', state: 'hi' }}>
               <Button
                 className={styles.viewShelterButton}
                 style={{
