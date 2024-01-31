@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import MyPageHeader from '../../components/common/header/MyPageHeader';
 import { useState } from 'react';
 import Nav from '../../components/common/nav/Nav';
+// import axios from 'axios';
 
 export default function MyPage() {
   const [button1Color, setButton1Color] = useState('#bebebe');
@@ -20,8 +21,10 @@ export default function MyPage() {
       setButton2Color('white');
     }
   };
+  const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
 
-  const photo = <img src="../../../public/User.png"></img>;
+  // const photoURL =
+  const photo = <img src={userInfo.profile_img_url}></img>;
   return (
     <>
       {/* <BackHeader style={{ back: { display: 'none' }, all: { backgroundColor: 'gray' } }}></BackHeader> */}
@@ -31,12 +34,7 @@ export default function MyPage() {
           <div className={styles.profilePhoto}>{photo}</div>
           {/* <BadgeIcon className={styles.badgeIcon}></BadgeIcon> */}
           <div className={styles.profileHeader}>
-            <Link
-              to={{
-                pathname: '/ShelterInfoPage',
-                data: { name: '서울보호소', body: '주소: 서울시 ㅇㅇ구 ㅇㅇ길' },
-              }}
-            >
+            <Link to={{ pathname: '/ShelterInfoPage', state: 'hi' }}>
               <Button
                 className={styles.viewShelterButton}
                 style={{
@@ -49,7 +47,7 @@ export default function MyPage() {
                 보호소 조회
               </Button>
             </Link>
-            <span className={styles.userID}>User_ID</span>
+            <span className={styles.userID}>{userInfo.nickname}</span>
             <Link to="/MyPageEdit">
               <Button
                 className={styles.profileEditButton}
@@ -64,7 +62,7 @@ export default function MyPage() {
               </Button>
             </Link>
           </div>
-          <p>500자 미만으로 작성해 주세 작성해 주세요.500자 미만으로 작성해 주세요500자 미만으로 작성해 주세요</p>
+          <p>{userInfo.introduce}</p>
           <div className={styles.buttons}>
             <Link to="/CreateAdoptPage" className={styles.createAdopt}>
               <div className={styles.button}>게시물 작성</div>

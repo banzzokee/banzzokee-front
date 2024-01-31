@@ -20,7 +20,7 @@ export default function Register() {
     nickname: null,
   });
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies()
 
   // const [nicknameCheckResult, setNicknameCheckResult] = useState(null);
@@ -87,7 +87,7 @@ export default function Register() {
       );
 
       setCookie('accessToken', data['accessToken'], { path: '/' })
-      // navigate("/LoginPage");
+      navigate("/LoginPage");
       console.log(data);
     } catch (error) {
       setErrors({ ...errors, email: "이미 존재하는 이메일입니다." });
