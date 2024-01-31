@@ -23,17 +23,17 @@ export default function LoginPage() {
     e.preventDefault();
     console.log('click login');
     try {
-      const { data } = await axios.post('http://localhost:3001/login', inputValue);
+      const { data } = await axios.post('http://localhost:3001/register', inputValue);
       setCookie('accessToken', data['accessToken'], { path: '/' });
+      document.location.href = '/MyPage';
     } catch (error) {
       console.log(error);
     }
   };
-  document.location.href = '/MyPage';
 
   const getData = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/users');
+      const response = await axios.get('http://localhost:3001/register');
       sessionStorage.setItem('userInfo', JSON.stringify(response.data[0]));
       console.log(response.data);
       document.location.href = '/MyPage';

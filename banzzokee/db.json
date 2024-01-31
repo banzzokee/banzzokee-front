@@ -1,5 +1,5 @@
 {
-  "users": [
+  "register": [
     {
       "email": "heejun@gmail.com",
       "password": "heejun",
@@ -9,12 +9,32 @@
       "introduce": "안녕하세요. 소형견 입양 희망합니다."
     },
     {
-      "email": "heejun@gmail.com",
-      "password": "heejun",
-      "id": "2",
-      "nickname": "user-1111",
-      "profile_img_url": "../../../public/myPhoto.jpg",
-      "introduce": "안녕하세요. 소형견 입양 희망합니다."
+      "id": "49c2",
+      "email": "1@123.com",
+      "password": "111111aA@",
+      "passwordconfirm": "111111aA@",
+      "nickname": "123"
+    },
+    {
+      "id": "b618",
+      "email": "test@naver.com",
+      "password": "111111aA@",
+      "passwordconfirm": "111111aA@",
+      "nickname": "12"
+    },
+    {
+      "id": "002e",
+      "email": "test3@naver.com",
+      "password": "111111aA@",
+      "passwordconfirm": "111111aA@",
+      "nickname": "1"
+    },
+    {
+      "id": "fa9f",
+      "email": "tests4@naver.com",
+      "password": "111111aA@",
+      "passwordconfirm": "111111aA@",
+      "nickname": "1"
     },
     {
       "email": "heejun@gmail.com",
@@ -23,6 +43,18 @@
       "nickname": "user-1111",
       "profile_img_url": "../../../public/myPhoto.jpg",
       "introduce": "안녕하세요. 소형견 입양 희망합니다."
+    },
+    {
+      "id": "417e",
+      "email": "test12@naver.com",
+      "password": "111111aA@",
+      "passwordconfirm": "111111aA@",
+      "nickname": "12"
+    },
+    {
+      "id": "3c93",
+      "email": "test12@naver.com",
+      "password": "111111aA@"
     }
   ]
 }
