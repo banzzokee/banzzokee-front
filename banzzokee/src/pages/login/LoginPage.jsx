@@ -20,51 +20,45 @@ export default function LoginPage() {
 
   const [cookies, setCookie, removeCookie] = useCookies();
 
-  const onSubmit = async (e) => {
+  const onLogin = async (e) => {
     e.preventDefault();
-    console.log('click login');
+
     try {
-      const { data } = await axios.post('http://localhost:3001/register', inputValue);
+      console.log('trying to connect to server');
+      const { data } = await axios.post('http://localhost:3001/login', inputValue);
+
       setCookie('accessToken', data['accessToken'], { path: '/' });
+      console.log(data['accessToken']);
       document.location.href = '/MyPage';
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getData = async () => {
+  const getData = async (e) => {
+    e.preventDefault();
+
     try {
-      const response = await axios.get('http://localhost:3001/register');
+      const response = await axios.get('http://localhost:3001/users');
       sessionStorage.setItem('userInfo', JSON.stringify(response.data[0]));
       console.log(response.data);
-      document.location.href = '/MyPage';
+      // document.location.href = '/MyPage';
     } catch (error) {
       console.error(error);
     }
-    // return response
   };
-
-  // const putData = async () => {
-  //   try {
-  //     const { data } = await axios.post('http://localhost:3001/users', inputValue);
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  //   // return response
-  // };
 
   return (
     <>
       <BackHeader />
       <div className={styles.container}>
         <img className={styles.logo} src="../../../public/Logo.svg"></img>
-        <form className={styles.login} action="" onSubmit={onSubmit}>
+        <form className={styles.login} action="" onSubmit={onLogin}>
           <div className={styles.loginInput}>
             <input className={styles.input} type="email" placeholder="이메일" name="email" onChange={onChange} />
             <input className={styles.input} type="password" placeholder="비밀번호" name="password" onChange={onChange} />
           </div>
-          <button className={styles.loginButton} type="submit" onClick={onSubmit}>
+          <button className={styles.loginButton} type="submit">
             로그인
           </button>
           <div className={styles.text}>

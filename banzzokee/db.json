@@ -2,9 +2,9 @@
   "users": [
     {
       "email": "heejun@gmail.com",
-      "password": "heejun",
+      "password": "$2a$10$JczW6aFaNy8mNaGJz7fI6u8rQ3h3BNmgt7M0kIWe.w5eZ2MXS7NVu",
       "id": "1",
-      "nickname": "user-1111",
+      "nickname": "user_1234",
       "profile_img_url": "../../../public/myPhoto.jpg",
       "introduce": "안녕하세요. 소형견 입양 희망합니다."
     },
@@ -16,11 +16,21 @@
       "nickname": "1234"
     },
     {
-      "email": "test3@naver.com",
-      "password": "$2a$10$yLs2fQiHIOsA2HTltWyRf.VOMCU46p1mreSinDUxmjHW9D7KGFygK",
-      "passwordconfirm": "111111aA@",
-      "nickname": "123",
-      "id": "fK9Y-pk"
+      "email": "a@a.com",
+      "password": "$2a$10$KT6nvqPk6c0bnPefhOXYf.MZG1nWuG9oVOE7hVxOl2Phw8N0bfq1G",
+      "id": "5ENt8jZ"
+    },
+    {
+      "email": "ab@a.com",
+      "password": "$2a$10$5YQvJD9Dlig.BGYIPxGApOzLwlY52uHj0jSEU9OlHTjhvDEhMZ.UG",
+      "id": "zsRTuvK"
+    },
+    {
+      "email": "a@aa.com",
+      "password": "$2a$10$iauw2QJMwapRRaEDamE9SO90c0NFn2AFH2GaigbiY1VIUtct/iTAO",
+      "passwordconfirm": "aaaaaaaaaa1!",
+      "nickname": "abab",
+      "id": "APmgnc1"
     }
   ],
 
