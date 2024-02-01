@@ -9,11 +9,11 @@
       "introduce": "안녕하세요. 소형견 입양 희망합니다."
     },
     {
-      "id": "49c2",
-      "email": "1@123.com",
+      "id": "c522",
+      "email": "testtest@naver.com",
       "password": "111111aA@",
       "passwordconfirm": "111111aA@",
-      "nickname": "123"
+      "nickname": "1234"
     },
     {
       "email": "a@a.com",
@@ -32,5 +32,9 @@
       "nickname": "abab",
       "id": "APmgnc1"
     }
+  ],
+
+  "adoption": [
+    
   ]
 }

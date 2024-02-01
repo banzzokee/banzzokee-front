@@ -28,6 +28,7 @@ import ChangePass from './pages/user/ChangePass';
 import ShelterEditPage from './pages/user/ShelterEditPage';
 import ShelterRegisterPage from './pages/user/ShelterRegisterPage';
 import MyPageEdit from './pages/user/MyPageEdit';
+import GoogleLoginButton from './pages/register/GoogleLoginButton';
 
 // import GoogleRegister from './GoogleRegister';
 
@@ -65,8 +66,7 @@ function App() {
           <Route path="/ShelterEditPage" element={<ShelterEditPage />} />
           <Route path="/ShelterRegisterPage" element={<ShelterRegisterPage />} />
           <Route path="/MyPageEdit" element={<MyPageEdit />} />
-
-          {/* <Route path='/Login' element={<Login />} /> */}
+          <Route path="/GoogleLoginButton" element={<GoogleLoginButton />} />
         </Routes>
       </BrowserRouter>
     </>
