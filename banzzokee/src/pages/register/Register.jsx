@@ -35,7 +35,7 @@ export default function Register() {
 
   const doEmailVerification = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await axios.post('http://localhost:3001/sendVerify', { email: inputValue.email });
       if (response.data.success) {
@@ -50,10 +50,7 @@ export default function Register() {
 
   const checkNickname = async () => {
     try {
-      const nicknameCheckResponse = await axios.post(
-        'http://localhost:3001/checkNickname',
-        { nickname: inputValue.nickname }
-      );
+      const nicknameCheckResponse = await axios.post('http://localhost:3001/checkNickname', { nickname: inputValue.nickname });
 
       setNicknameCheckResult(nicknameCheckResponse.data);
 
@@ -95,16 +92,11 @@ export default function Register() {
         setErrors({ ...errors, passwordconfirm: null });
       }
 
-      
+      await checkNickname();
+      const { data } = await axios.post('http://localhost:3001/register', inputValue);
 
-      // await checkNickname();
-      const { data } = await axios.post(
-        'http://localhost:3001/register', 
-        inputValue
-        );
-
-      setCookie('accessToken', data['accessToken'], { path: '/' })
-      navigate("/LoginPage");
+      setCookie('accessToken', data['accessToken'], { path: '/' });
+      navigate('/LoginPage');
       console.log(data);
     } catch (error) {
       setErrors({ ...errors, email: '이미 존재하는 이메일입니다.' });
@@ -127,7 +119,9 @@ export default function Register() {
               <input type="text" name="email" onChange={onChange} className={styles.input} />
               <div className={styles.errorMessage}>{errors.email}</div>
             </div>
-            <button type="button" id="emailconfirmButton" onClick={doEmailVerification} className={styles.emailconfirm_Button}>인증하기</button>
+            <button type="button" id="emailconfirmButton" onClick={doEmailVerification} className={styles.emailconfirm_Button}>
+              인증하기
+            </button>
           </div>
           <div className={styles.inputGroup}>
             <label>비밀번호</label>

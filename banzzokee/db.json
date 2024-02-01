@@ -29,12 +29,16 @@
       "email": "a@aa.com",
       "password": "$2a$10$iauw2QJMwapRRaEDamE9SO90c0NFn2AFH2GaigbiY1VIUtct/iTAO",
       "passwordconfirm": "aaaaaaaaaa1!",
-      "nickname": "abab",
+      "profile_img_url": "../../../public/myPhoto.jpg",
+      "introduce": "안녕하세요. 소형견 입양 희망합니다.",
+      "nickname": "ababc",
       "id": "APmgnc1"
+    },
+    {
+      "email": "ab@ab.com",
+      "password": "$2a$10$LeoZD9GGOn8T0zLd/HSFs.8miNxfF3PvbvE8B8fRpmADA8nsODHA.",
+      "id": "OxjS6F0"
     }
   ],
-
-  "adoption": [
-    
-  ]
+  "adoption": []
 }

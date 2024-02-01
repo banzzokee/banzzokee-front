@@ -4,6 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 export default function MyPageEdit() {
   const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   let photo = <img src={userInfo.profile_img_url}></img>;
   let nickname = userInfo.nickname;
   let introduce = userInfo.introduce;
@@ -19,11 +20,30 @@ export default function MyPageEdit() {
     });
   };
   const onSubmit = async (e) => {
-    console.log('submitted');
     e.preventDefault();
-    console.log('new', newInfo);
-    axios.put(`http://localhost:3001/users/${userInfo.id}`, newInfo);
+
+    console.log(accessToken);
+    // axios.post(`http://localhost:3001/users/${userInfo.id}`, newInfo);
+    // await axios.put(
+    //   `http://localhost:3001/users/${userInfo.id}`,
+    //   {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       Authorization: `Bearer ${accessToken}`,
+    //     },
+    //   },
+    //   newInfo
+    // );
+    await axios.put(
+      `http://localhost:3001/users/${userInfo.id}`,
+      {
+        email: 'ab@ab.com',
+        password: 'ababababab1!',
+      },
+      newInfo
+    );
     sessionStorage.setItem('userInfo', JSON.stringify(newInfo));
+    // axios.put(`http://localhost:3001/users/${userInfo.id}`, newInfo);
     document.location.href = '/MyPage';
   };
   return (
