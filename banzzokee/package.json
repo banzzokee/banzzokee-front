@@ -8,11 +8,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-<<<<<<< HEAD
-    "server": "npx json-server db.json --middlewares ./node_modules/json-server-auth --port 3001 -r routes.json",
-=======
     "server": "npx json-server db.json --middlewares ./node_modules/json-server-auth --port 3001",
->>>>>>> 130a278d38b3ae4b19964ea224858a9a6d05e0e4
     "react-vite": "vite dev"
   },
   "dependencies": {

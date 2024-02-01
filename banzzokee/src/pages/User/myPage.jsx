@@ -31,7 +31,6 @@ export default function MyPage() {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log('hi', data);
 
   const photo = <img src={userInfo.profile_img_url}></img>;
   return (
