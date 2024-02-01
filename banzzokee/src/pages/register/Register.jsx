@@ -33,6 +33,21 @@ export default function Register() {
     });
   };
 
+  const doEmailVerification = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const response = await axios.post('http://localhost:3001/sendVerify', { email: inputValue.email });
+      if (response.data.success) {
+        alert('이메일 인증 메일이 전송되었습니다.');
+      } else {
+        alert('이메일 인증 메일 전송에 실패했습니다. 나중에 다시 시도해주세요.');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // const checkNickname = async () => {
   //   try {
   //     const nicknameCheckResponse = await axios.post(
@@ -63,6 +78,8 @@ export default function Register() {
         setErrors({ ...errors, email: null });
       }
 
+      await doEmailVerification();
+
       const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z\d]).{8,}$/;
       if (!passwordRegex.test(inputValue.password)) {
         setErrors({ ...errors, password: "비밀번호는 숫자, 영어 대소문자, 특수기호를 모두 사용하고 8자 이상이어야 합니다." });
@@ -78,13 +95,13 @@ export default function Register() {
         setErrors({ ...errors, passwordconfirm: null });
       }
 
-      // await checkNickname();
-     
+      
 
+      // await checkNickname();
       const { data } = await axios.post(
-        'http://localhost:3001/register',
-        inputValue,
-      );
+        'http://localhost:3001/register', 
+        inputValue
+        );
 
       setCookie('accessToken', data['accessToken'], { path: '/' })
       navigate("/LoginPage");
@@ -112,7 +129,7 @@ export default function Register() {
                 {errors.email}
               </div>
             </div>
-            <button type="submit" id="emailconfirmButton" className={styles.emailconfirm_Button}>인증하기</button>
+            <button type="button" id="emailconfirmButton" onClick={doEmailVerification} className={styles.emailconfirm_Button}>인증하기</button>
           </div>
           <div className={styles.inputGroup}>
             <label>비밀번호</label>

@@ -29,7 +29,7 @@
   height: 50px;
   width: 100%;
   border-radius: 0;
-  background-color: gray;
+  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,3 +66,5 @@
   color: gray;
   margin-top: 10px;
 }
+
+

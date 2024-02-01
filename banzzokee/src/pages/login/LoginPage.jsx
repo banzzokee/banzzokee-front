@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
+import GoogleLoginButton from '../register/GoogleLoginButton';
 export default function LoginPage() {
   const [inputValue, setInputValue] = useState({
     email: '',
@@ -79,8 +80,9 @@ export default function LoginPage() {
           <div className={styles.line}></div>
         </div>
         <div className={styles.loginButton} onClick={getData} style={{ fontSize: '16px' }}>
-          <img className={styles.googleLogo} src="../../../public/google.svg" alt="로고" />
-          Google 계정으로 로그인
+          <GoogleLoginButton style={{backgroundColor:"black"}}/>
+          {/* <img className={styles.googleLogo} src="../../../public/google.svg" alt="로고" />
+          Google 계정으로 로그인 */}
         </div>
       </div>
     </>
