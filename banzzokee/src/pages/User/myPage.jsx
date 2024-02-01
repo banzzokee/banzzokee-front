@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 import MyPageHeader from '../../components/common/header/MyPageHeader';
 import { useState } from 'react';
 import Nav from '../../components/common/nav/Nav';
-// import axios from 'axios';
+import { useCookies } from 'react-cookie';
+
+import axios from 'axios';
 
 export default function MyPage() {
   const [button1Color, setButton1Color] = useState('#bebebe');
@@ -22,8 +24,15 @@ export default function MyPage() {
     }
   };
   const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+  const [cookies, setCookie, removeCookie] = useCookies();
+  const token = cookies.accessToken;
+  const { data } = axios.get('http://localhost:3001/users', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  console.log('hi', data);
 
-  // const photoURL =
   const photo = <img src={userInfo.profile_img_url}></img>;
   return (
     <>

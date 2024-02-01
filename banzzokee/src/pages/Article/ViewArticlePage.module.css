@@ -58,14 +58,9 @@
 .articlePhotos {
   width: 375px;
   height: 375px;
-  background-color: lightblue;
   position: relative;
   overflow-x: scroll;
   overflow: hidden;
-}
-
-::-webkit-scrollbar {
-  display: none;
 }
 
 .imgContainer {

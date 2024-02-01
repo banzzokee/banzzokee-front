@@ -1,10 +1,13 @@
-import Button from '../../components/common/button/Button';
 import styles from './SettingPage.module.css';
 import { Link } from 'react-router-dom';
 
 import BackHeader from '../../components/common/header/BackHeader';
 
 export default function MyPage() {
+  const logout = () => {
+    sessionStorage.removeItem('userInfo');
+    document.location.href = '/';
+  };
   return (
     <>
       <BackHeader style={{ backgroundColor: '#e1e1e1' }}></BackHeader>
@@ -66,9 +69,9 @@ export default function MyPage() {
             <p className={styles.option}>비밀번호 변경</p>
           </Link>
         </div>
-        <div className={styles.logOut}>
-          <Button style={{ width: '100%' }}>로그아웃</Button>
-        </div>
+        <button className={styles.logout} onClick={logout}>
+          로그아웃
+        </button>
       </div>
     </>
   );

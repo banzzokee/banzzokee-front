@@ -50,6 +50,8 @@ p {
 .option {
   margin-top: 10px;
 }
-.logOut {
+.logout {
   margin-top: 20px;
+  background-color: #bebebe;
+  width: 100%;
 }
