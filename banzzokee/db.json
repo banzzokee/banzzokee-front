@@ -35,10 +35,34 @@
       "id": "APmgnc1"
     },
     {
+      "email": "aabb@aabb.com",
+      "password": "$2a$10$X/zLJPO1F8ttzlrtDwlUP.jCDn3hO5sL.bLPyKvWTkCbU97YEx0Ym",
+      "id": "cIdTIn5"
+    },
+    {
       "email": "ab@ab.com",
-      "password": "$2a$10$LeoZD9GGOn8T0zLd/HSFs.8miNxfF3PvbvE8B8fRpmADA8nsODHA.",
-      "id": "OxjS6F0"
+      "password": "$2a$10$.rDqj5iyg4drqsR531CSAeBKBF7UogKIkzMmRvQdR1vwSxA81Nr..",
+      "passwordconfirm": "ababababab1!",
+      "nickname": "ababababab",
+      "id": "3Y8GKEd"
+    },
+    {
+      "email": "abc@abc.com",
+      "password": "$2a$10$FEbEwwCF827meJBwRt6NM.1Ccwvw3F8iui10dg4cOEz6q16U7OHUq",
+      "passwordconfirm": "ababababab1!",
+      "nickname": "abc",
+      "id": "2rwCeob"
     }
   ],
-  "adoption": []
+  "adoption": [
+    {
+      "title": "입양해요",
+      "content": "4살 리트리버 입양희망 연락주세요",
+      "imageUrls": "../../../public/dog.webp",
+      "breed": "리트리버",
+      "size": "대형",
+      "registeredAt": "2024-01-01",
+      "id": "%7D"
+    }
+  ]
 }

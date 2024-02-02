@@ -75,7 +75,7 @@ export default function Register() {
         setErrors({ ...errors, email: null });
       }
 
-      await doEmailVerification();
+      // await doEmailVerification();
 
       const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z\d]).{8,}$/;
       if (!passwordRegex.test(inputValue.password)) {
@@ -92,7 +92,7 @@ export default function Register() {
         setErrors({ ...errors, passwordconfirm: null });
       }
 
-      await checkNickname();
+      // await checkNickname();
       const { data } = await axios.post('http://localhost:3001/register', inputValue);
 
       setCookie('accessToken', data['accessToken'], { path: '/' });

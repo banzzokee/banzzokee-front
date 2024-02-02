@@ -23,7 +23,7 @@ export default function MyPageEdit() {
     e.preventDefault();
 
     console.log(accessToken);
-    // axios.post(`http://localhost:3001/users/${userInfo.id}`, newInfo);
+
     // await axios.put(
     //   `http://localhost:3001/users/${userInfo.id}`,
     //   {
@@ -34,17 +34,18 @@ export default function MyPageEdit() {
     //   },
     //   newInfo
     // );
+    console.log(userInfo);
     await axios.put(
       `http://localhost:3001/users/${userInfo.id}`,
       {
-        email: 'ab@ab.com',
-        password: 'ababababab1!',
+        email: `${userInfo.email}`,
+        password: `${userInfo.password}`,
       },
       newInfo
     );
     sessionStorage.setItem('userInfo', JSON.stringify(newInfo));
     // axios.put(`http://localhost:3001/users/${userInfo.id}`, newInfo);
-    document.location.href = '/MyPage';
+    // document.location.href = '/MyPage';
   };
   return (
     <>

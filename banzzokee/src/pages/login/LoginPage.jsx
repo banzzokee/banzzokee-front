@@ -5,7 +5,7 @@ import { useState } from 'react';
 // import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import GoogleLoginButton from '../register/GoogleLoginButton';
-import MyPage from '../User/MyPage';
+import MyPage from '../user/MyPage';
 export default function LoginPage() {
   const [inputValue, setInputValue] = useState({
     email: '',
@@ -26,13 +26,13 @@ export default function LoginPage() {
 
     try {
       const { data } = await axios.post('http://localhost:3001/login', inputValue);
-
       // setCookie('accessToken', data['accessToken'], { path: '/' });
       sessionStorage.setItem('userInfo', JSON.stringify(data.user));
       sessionStorage.setItem('accessToken', JSON.stringify(data.accessToken));
       document.location.href = '/MyPage';
     } catch (error) {
       console.log(error);
+      alert('로그인 실패 아이디 또는 비밀번호를 재 확인하세요');
     }
   };
   if (sessionStorage.getItem('accessToken') == null) {

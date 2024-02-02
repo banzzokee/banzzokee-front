@@ -2,8 +2,21 @@ import styles from './ViewArticlePage.module.css';
 import { Link } from 'react-router-dom';
 import BackHeader from '../../components/common/header/BackHeader';
 import Nav from '../../components/common/nav/Nav';
+import axios from 'axios';
 
 export default function ViewArticlePage() {
+  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
+  // setCookie('accessToken', data['accessToken'], { path: '/' });
+  // sessionStorage.setItem('userInfo', JSON.stringify(data.user));
+  // sessionStorage.setItem('accessToken', JSON.stringify(data.accessToken));
+
+  const { data } = axios.get(`http://localhost:3001/adoption/}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
   return (
     <>
       <BackHeader></BackHeader>

@@ -20,3 +20,9 @@
 p {
   font-weight: normal;
 }
+.button {
+  width: 100%;
+  background-color: red;
+  margin-top: 20px;
+  color: white;
+}
