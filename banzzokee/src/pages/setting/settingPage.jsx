@@ -6,6 +6,7 @@ import BackHeader from '../../components/common/header/BackHeader';
 export default function MyPage() {
   const logout = () => {
     sessionStorage.removeItem('userInfo');
+    sessionStorage.removeItem('accessToken');
     document.location.href = '/';
   };
   return (

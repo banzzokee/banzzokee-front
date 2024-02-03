@@ -9,58 +9,63 @@
       "introduce": "안녕하세요. 소형견 입양 희망합니다."
     },
     {
-      "id": "c522",
-      "email": "testtest@naver.com",
-      "password": "111111aA@",
-      "passwordconfirm": "111111aA@",
-      "nickname": "1234"
+      "email": "aabb@aabb.com",
+      "password": "$2a$10$X/zLJPO1F8ttzlrtDwlUP.jCDn3hO5sL.bLPyKvWTkCbU97YEx0Ym",
+      "id": "cIdTIn5"
     },
     {
-      "email": "a@a.com",
-      "password": "$2a$10$KT6nvqPk6c0bnPefhOXYf.MZG1nWuG9oVOE7hVxOl2Phw8N0bfq1G",
-      "id": "5ENt8jZ"
+      "email": "ab@ab.com",
+      "password": "$2a$10$.rDqj5iyg4drqsR531CSAeBKBF7UogKIkzMmRvQdR1vwSxA81Nr..",
+      "passwordconfirm": "ababababab1!",
+      "nickname": "ababababab",
+      "id": "3Y8GKEd"
     },
     {
-      "email": "ab@a.com",
-      "password": "$2a$10$5YQvJD9Dlig.BGYIPxGApOzLwlY52uHj0jSEU9OlHTjhvDEhMZ.UG",
-      "id": "zsRTuvK"
-    },
-    {
-      "email": "a@aa.com",
-      "password": "$2a$10$iauw2QJMwapRRaEDamE9SO90c0NFn2AFH2GaigbiY1VIUtct/iTAO",
-      "passwordconfirm": "aaaaaaaaaa1!",
-      "nickname": "abab",
-      "id": "APmgnc1"
+      "email": "abc@abc.com",
+      "password": "$2a$10$FEbEwwCF827meJBwRt6NM.1Ccwvw3F8iui10dg4cOEz6q16U7OHUq",
+      "passwordconfirm": "ababababab1!",
+      "nickname": "abc",
+      "id": "2rwCeob",
+      "shelter": {
+        "shelterId": "Long",
+        "shelterImgUrl": "String",
+        "name": "String",
+        "description": "String",
+        "tel": "String",
+        "address": "String",
+        "registeredAt": "date"
+      }
     }
   ],
   "adoption": [
     {
-      "title": "..",
-      "content": "..",
-      "id": 1
+      "title": "첫게시물",
+      "nickname": "user_1234",
+      "content": "1살 리트리버 입양희망 연락주세요",
+      "imageUrls": "../../../public/dog.webp",
+      "breed": "1리트리버",
+      "size": "1대형",
+      "registeredAt": "2024-01-01",
+      "id": "1",
+      "createdAt": "2024-02-01",
+      "neutering": true,
+      "gender": "male",
+      "age": 3,
+      "healthChecked": true
     },
     {
-      "title": "제목",
-      "content": "본문",
-      "id": 2
-    },
-    {
-      "title": "1",
-      "content": "2",
-      "id": 3
-    },
-    {
-      "title": "제목입니다4",
-      "content": "내용입니다4",
-      "id": 4
-    },
-    {
-      "title": "333",
-      "content": "3333",
-      "id": 5
+      "title": "둘째게시물",
+      "nickname": "user_123",
+      "content": "2살 리트리버 입양희망 연락주세요",
+      "imageUrls": "../../../public/dog.webp",
+      "breed": "2리트리버",
+      "size": "2대형",
+      "registeredAt": "2024-01-01",
+      "id": "2",
+      "createdAt": "2024-02-01"
     }
   ],
-  "review": [
-    
-  ]
+  "shelter": [],
+  "review": [],
+  "chats": []
 }
