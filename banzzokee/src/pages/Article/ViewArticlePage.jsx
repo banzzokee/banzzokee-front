@@ -1,5 +1,5 @@
 import styles from './ViewArticlePage.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import BackHeader from '../../components/common/header/BackHeader';
 import Nav from '../../components/common/nav/Nav';
 import axios from 'axios';

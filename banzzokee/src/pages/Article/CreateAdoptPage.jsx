@@ -2,10 +2,38 @@ import { useState } from 'react'
 import styles from './CreateAdoptPage.module.css'
 import Tag from '../../Tag';
 import BackHeader from '../../components/common/header/BackHeader';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function CreateAdoptPage() {
-  const [subject, setSubject] = useState();
-  const [content, setContent] = useState();
+  const navigate = useNavigate();
+  const [adoption, setAdoption] = useState({
+    // image:'',
+    title: '',
+    content: '',
+  })
+
+  const { title, content } = adoption;
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setAdoption({
+      ...adoption,
+      [name]: value,
+    });
+  };
+
+  const postAdoption = async (e) => {
+    e.preventDefault();
+    await axios.post('http://localhost:3001/adoption', 
+    adoption).then((res) => {
+      alert('등록되었습니다.');
+      // navigate('/Article/:idx');
+      navigate('/');
+    });
+  };
+
+
 
   return (
     <div className={styles.CreateAdoptPage}>
@@ -20,11 +48,11 @@ export default function CreateAdoptPage() {
               <p>사진</p>
               <p>(최대 8장)</p>
             </label>
-            <input type="file" multiple accept="image/*" className={styles.img_upload}></input>
+            <input type="file" multiple accept="image/*" name="image" className={styles.img_upload}></input>
           </div>
           <div className={styles.inputGroup}>
             <label>제목</label>
-            <input type='text' id='title' className={styles.input} placeholder='50자 이내로 작성해주세요.' value={subject} maxlength='50'></input>
+            <input type='text' name='title' value={adoption.title} onChange={onChange} className={styles.input} placeholder='50자 이내로 작성해주세요.' maxLength='50'></input>
           </div>
           <div className={styles.inputGroup}>
             <Tag />
@@ -39,9 +67,9 @@ export default function CreateAdoptPage() {
           </div>
           <div className={styles.inputGroup}>
             <label className={styles.textTitle}>본문</label>
-            <textarea id='content' placeholder='500자 이내로 작성해주세요.' maxlength='500'></textarea>
+            <textarea name='content' value={adoption.content} onChange={onChange} placeholder='500자 이내로 작성해주세요.' maxLength='500'></textarea>
           </div>
-          <button className={styles.button}>게시글 등록</button>
+          <button onClick={postAdoption} className={styles.button}>게시글 등록</button>
         </form>
       </div>
     </div>

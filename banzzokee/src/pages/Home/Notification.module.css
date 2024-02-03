@@ -33,13 +33,13 @@
   margin-top: 5px;
 }
 
-ul {
+.notification_Page ul {
   display: flex;
   flex-direction: column;
   padding: 0;
 }
 
-li {
+.notification_Page li {
   list-style: none;
   width: 330px;
   height: 120px;

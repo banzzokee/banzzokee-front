@@ -1,9 +1,12 @@
-import { Link } from 'react-router-dom';
+import React from 'react';
 import Header from '../../components/common/header/Header';
 import styles from './MainPage.module.css';
 import Nav from '../../components/common/nav/Nav';
+import ArticleList from '../../components/ArticleList';
+
 
 export default function MainPage() {
+
   return (
     <>
       <Header />
@@ -17,6 +20,7 @@ export default function MainPage() {
           </button>
           </div>
         </div>
+        <ArticleList/>
       </div>
       <Nav />
     </>
