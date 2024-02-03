@@ -34,7 +34,8 @@ export default function MyPageEdit() {
     //   },
     //   newInfo
     // );
-    console.log(userInfo);
+    console.log('userinfo:', userInfo);
+    console.log('newinfo:', newInfo);
     await axios.put(
       `http://localhost:3001/users/${userInfo.id}`,
       {
@@ -43,6 +44,7 @@ export default function MyPageEdit() {
       },
       newInfo
     );
+
     sessionStorage.setItem('userInfo', JSON.stringify(newInfo));
     // axios.put(`http://localhost:3001/users/${userInfo.id}`, newInfo);
     // document.location.href = '/MyPage';

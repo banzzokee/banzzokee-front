@@ -51,18 +51,47 @@
       "password": "$2a$10$FEbEwwCF827meJBwRt6NM.1Ccwvw3F8iui10dg4cOEz6q16U7OHUq",
       "passwordconfirm": "ababababab1!",
       "nickname": "abc",
-      "id": "2rwCeob"
+      "id": "2rwCeob",
+      "shelter": {
+        "shelterId": "Long",
+        "shelterImgUrl": "String",
+        "name": "String",
+        "description": "String",
+        "tel": "String",
+        "address": "String",
+        "registeredAt": "date"
+      }
     }
   ],
   "adoption": [
     {
-      "title": "입양해요",
-      "content": "4살 리트리버 입양희망 연락주세요",
+      "title": "첫게시물",
+      "nickname": "user_1234",
+      "content": "1살 리트리버 입양희망 연락주세요",
       "imageUrls": "../../../public/dog.webp",
-      "breed": "리트리버",
-      "size": "대형",
+      "breed": "1리트리버",
+      "size": "1대형",
       "registeredAt": "2024-01-01",
-      "id": "%7D"
+      "id": "1",
+      "createdAt": "2024-02-01",
+      "neutering": true,
+      "gender": "male",
+      "age": 3,
+      "healthChecked": true
+    },
+    {
+      "title": "둘째게시물",
+      "nickname": "user_123",
+      "content": "2살 리트리버 입양희망 연락주세요",
+      "imageUrls": "../../../public/dog.webp",
+      "breed": "2리트리버",
+      "size": "2대형",
+      "registeredAt": "2024-01-01",
+      "id": "2",
+      "createdAt": "2024-02-01"
     }
-  ]
+  ],
+  "shelter": [],
+  "review": [],
+  "chats": []
 }
