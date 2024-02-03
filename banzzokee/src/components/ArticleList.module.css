@@ -1,0 +1,13 @@
+.listBox ul {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.listBox li {
+  list-style: none;
+  /* width: 330px; */
+  height: 120px;
+  background-color: #E4E3E3;
+  margin: 2px 0px;
+}

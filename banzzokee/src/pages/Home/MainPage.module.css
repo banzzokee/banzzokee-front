@@ -4,6 +4,7 @@
   height: 645px;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
 }
 
 .mainPage_Header {

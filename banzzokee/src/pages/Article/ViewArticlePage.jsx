@@ -1,9 +1,27 @@
 import styles from './ViewArticlePage.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import BackHeader from '../../components/common/header/BackHeader';
 import Nav from '../../components/common/nav/Nav';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function ViewArticlePage() {
+  const { id } = useParams();
+  const [adoption, setAdoption] = useState({});
+  
+  const getAdoption = async () => {
+    try {
+      const resp = await axios.get(`http://localhost:3001/adoption/${id}`);
+      setAdoption(resp.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  useEffect(() => {
+    getAdoption();
+  }, [id]);
+
   return (
     <>
       <BackHeader></BackHeader>
@@ -27,6 +45,9 @@ export default function ViewArticlePage() {
                 <img className={styles.messageIcon} src="../../../public/Message.png" />
               </div>
             </Link>
+            <button>
+              <img src='../../../public/edit.svg'></img>
+            </button>
           </div>
 
           <div className={styles.articlePhotos}>
@@ -38,7 +59,7 @@ export default function ViewArticlePage() {
           </div>
           <div className={styles.articleTexts}>
             <div className={styles.titleAndSave}>
-              <div className={styles.title}>제목은 이곳에 들어갑니다</div>
+              <div className={styles.title}>{adoption.title}</div>
               <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px' }} />
             </div>
 
@@ -53,7 +74,7 @@ export default function ViewArticlePage() {
               <div className={styles.tag}>태그2</div>
               <div className={styles.tag}>태그2</div>
             </div>
-            <div className={styles.body}>내용은 500자로 제한됩니다.내용은 500자로 제한됩니다.내용은 500자로 제한됩니다.내용은 500자로 제한됩니다.내용은 500자로 제한됩니다.</div>
+            <div className={styles.body}>{adoption.content}</div>
           </div>
         </div>
       </div>
