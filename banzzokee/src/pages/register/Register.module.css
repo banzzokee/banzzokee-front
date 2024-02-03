@@ -10,6 +10,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 70px;
+  margin-top: 30px;
 }
 
 .container {
@@ -32,7 +33,13 @@
   display: flex;
   align-items: center;
   border: 1px solid #dadada;
-  height: 65px;
+  height: auto;
+  /* height: 65px; */
+}
+
+.inputGroup div {
+  display: flex;
+  flex-direction: column;
 }
 
 .emailConfirm {
@@ -51,8 +58,8 @@ label {
   border: 1px solid #9C9A9A;
   border-radius: 2px;
   height: 35px;
-  margin-right: 10px;
-  margin-top: 5px;
+  width: 240px;
+  margin: 5px 10px 10px 15px;
 }
 
 .emailconfirm_Button, .confirmButton {
@@ -73,10 +80,11 @@ label {
   color: #FFFFFF;
   font-size: 18px;
   margin-top: 40px;
-  background-color: #9C9A9A;
+  background-color: black;
 }
 
 .errorMessage {
   color: #ff0000;
   font-size: 12px;
+  margin-bottom: 5px;
 }

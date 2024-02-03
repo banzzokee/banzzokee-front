@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
-export default function Register() {
+export default function Registerr() {
   const [inputValue, setInputValue] = useState({
     email: '',
     password: '',
@@ -23,7 +23,7 @@ export default function Register() {
   const navigate = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies();
 
-  const [nicknameCheckResult, setNicknameCheckResult] = useState(null);
+  // const [nicknameCheckResult, setNicknameCheckResult] = useState(null);
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -33,39 +33,39 @@ export default function Register() {
     });
   };
 
-  const doEmailVerification = async (e) => {
-    e.preventDefault();
+  // const doEmailVerification = async (e) => {
+  //   e.preventDefault();
   
-    try {
-      const response = await axios.post('http://localhost:3001/sendVerify', { email: inputValue.email });
-      if (response.data.success) {
-        alert('이메일 인증 메일이 전송되었습니다.');
-      } else {
-        alert('이메일 인증 메일 전송에 실패했습니다. 나중에 다시 시도해주세요.');
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //   try {
+  //     const response = await axios.post('http://localhost:3001/sendVerify', { email: inputValue.email });
+  //     if (response.data.success) {
+  //       alert('이메일 인증 메일이 전송되었습니다.');
+  //     } else {
+  //       alert('이메일 인증 메일 전송에 실패했습니다. 나중에 다시 시도해주세요.');
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
-  const checkNickname = async () => {
-    try {
-      const nicknameCheckResponse = await axios.post(
-        'http://localhost:3001/checkNickname',
-        { nickname: inputValue.nickname }
-      );
+  // const checkNickname = async () => {
+  //   try {
+  //     const nicknameCheckResponse = await axios.post(
+  //       'http://localhost:3001/checkNickname',
+  //       { nickname: inputValue.nickname }
+  //     );
 
-      setNicknameCheckResult(nicknameCheckResponse.data);
+  //     setNicknameCheckResult(nicknameCheckResponse.data);
 
-      if (nicknameCheckResponse.data.available === false) {
-        setErrors({ ...errors, nickname: '이미 사용 중인 닉네임입니다.' });
-      } else {
-        setErrors({ ...errors, nickname: null });
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     if (nicknameCheckResponse.data.available === false) {
+  //       setErrors({ ...errors, nickname: '이미 사용 중인 닉네임입니다.' });
+  //     } else {
+  //       setErrors({ ...errors, nickname: null });
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   const doSignUp = async (e) => {
     e.preventDefault();
@@ -78,7 +78,7 @@ export default function Register() {
         setErrors({ ...errors, email: null });
       }
 
-      await doEmailVerification();
+      // await doEmailVerification();
 
       const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z\d]).{8,}$/;
       if (!passwordRegex.test(inputValue.password)) {
@@ -107,7 +107,7 @@ export default function Register() {
       navigate("/LoginPage");
       console.log(data);
     } catch (error) {
-      setErrors({ ...errors, email: '이미 존재하는 이메일입니다.' });
+      setErrors({ ...errors, error: '이미 존재하는 이메일입니다.' });
       console.error(error);
     }
   };
@@ -122,37 +122,38 @@ export default function Register() {
             <h4 className={styles.info}>기본정보</h4>
           </div>
           <div className={styles.inputGroup}>
-            <label>이메일</label>
             <div>
+              <label>이메일</label>
               <input type="text" name="email" onChange={onChange} className={styles.input} />
               <div className={styles.errorMessage}>{errors.email}</div>
             </div>
-            <button type="button" id="emailconfirmButton" onClick={doEmailVerification} className={styles.emailconfirm_Button}>인증하기</button>
+            <button type="button" id="emailconfirmButton"  className={styles.emailconfirm_Button}>인증하기</button>
           </div>
           <div className={styles.inputGroup}>
-            <label>비밀번호</label>
             <div>
+              <label>비밀번호</label>
               <input type="password" name="password" onChange={onChange} className={styles.input} />
               <div className={styles.errorMessage}>{errors.password}</div>
             </div>
           </div>
           <div className={styles.inputGroup}>
-            <label>비밀번호 확인</label>
             <div>
+              <label>비밀번호 확인</label>
               <input type="password" name="passwordconfirm" onChange={onChange} className={styles.input} />
               <div className={styles.errorMessage}>{errors.passwordconfirm}</div>
             </div>
           </div>
           <div className={styles.inputGroup}>
-            <label>닉네임</label>
             <div>
+              <label>닉네임</label>
               <input type="text" name="nickname" onChange={onChange} className={styles.input} />
-              <button type="button" id="confirmButton" className={styles.confirmButton}>
-                중복확인
-              </button>
               <div className={styles.errorMessage}>{errors.nickname}</div>
             </div>
+            <button type="button" id="confirmButton" className={styles.confirmButton}>
+              중복확인
+            </button>
           </div>
+          <div className={styles.errorMessage}>{errors.error}</div>
           <button type="submit" id="registerButton" className={styles.registerButton}>
             가입하기
           </button>

@@ -16,7 +16,7 @@ import Tag from './Tag';
 import MapPage from './pages/map/MapPage';
 import OtherMyPage from './pages/article/OtherMyPage';
 import ShelterInfoPage from './pages/article/ShelterInfoPage';
-import SettingPage from './pages/setting/SettingPage';
+import SettingPage from './pages/setting/SettingPage'
 import FollowingPage from './pages/user/FollowingPage';
 import AccountInfoPage from './pages/user/AccountInfoPage';
 import EmailConfirm from './pages/register/EmailConfirm';
@@ -29,6 +29,8 @@ import ShelterEditPage from './pages/user/ShelterEditPage';
 import ShelterRegisterPage from './pages/user/ShelterRegisterPage';
 import MyPageEdit from './pages/user/MyPageEdit';
 import GoogleLoginButton from './pages/register/GoogleLoginButton';
+import ArticleList from './components/ArticleList';
+
 
 // import GoogleRegister from './GoogleRegister';
 
@@ -67,6 +69,9 @@ function App() {
           <Route path="/ShelterRegisterPage" element={<ShelterRegisterPage />} />
           <Route path="/MyPageEdit" element={<MyPageEdit />} />
           <Route path="/GoogleLoginButton" element={<GoogleLoginButton />} />
+          <Route path="/ArticleList" element={<ArticleList />} />
+          <Route path="/ArticleList/:idx" element={<ViewArticlePage />} />
+          
         </Routes>
       </BrowserRouter>
     </>
