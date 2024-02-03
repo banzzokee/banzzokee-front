@@ -3,19 +3,20 @@ import { Link, useParams } from 'react-router-dom';
 import BackHeader from '../../components/common/header/BackHeader';
 import Nav from '../../components/common/nav/Nav';
 import axios from 'axios';
-import { useEffect } from 'react';
-
+import { useEffect, useState } from 'react';
 export default function ViewArticlePage() {
   // const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   // setCookie('accessToken', data['accessToken'], { path: '/' });
-
+  const [adoption, setAdoption] = useState({});
   // sessionStorage.setItem('accessToken', JSON.stringify(data.accessToken));
-
+  const { adoptionId } = useParams();
   useEffect(() => {
     const getArticle = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/adoption/1`);
-        sessionStorage.setItem('articleInfo', JSON.stringify(response.data));
+        console.log(adoptionId);
+        const response = await axios.get(`http://localhost:3001/adoption/${adoptionId}`);
+        setAdoption(response.data);
+        // sessionStorage.setItem('articleInfo', JSON.stringify(response.data));
         // const response = axios.get(`http://localhost:3001/adoption/}`, {
         //   headers: {
         //     'Content-Type': 'application/json',
@@ -27,8 +28,8 @@ export default function ViewArticlePage() {
       }
     };
     getArticle();
-  }, []);
-  const adoption = JSON.parse(sessionStorage.getItem('articleInfo'));
+  }, [adoptionId]);
+  // const adoption = JSON.parse(sessionStorage.getItem('articleInfo'));
   const tags = [adoption.breed, adoption.size, adoption.neutering ? '중성화' : '중성화안됨', adoption.gender, `${adoption.age}살`, adoption.healthChecked ? '건강검진' : '검진x', `보호소 등록: ${adoption.registeredAt}`];
   // console.log(adoption);
 
