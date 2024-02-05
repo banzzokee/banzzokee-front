@@ -1,13 +1,15 @@
 import styles from './ShelterRegisterPage.module.css';
 import BackHeader from '../../components/common/header/BackHeader';
 import axios from 'axios';
-import { useState, React } from 'react';
+import { useState, useEffect, React } from 'react';
+import { useNavigate } from 'react-router-dom';
 export default function ShelterRegisterPage() {
   const photo = <img src="../../../public/User.png"></img>;
   const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
-  const [newInfo, setNewInfo] = useState(userInfo);
-  const [shelterInfo, setShelterInfo] = useState({});
+  const navigate = useNavigate();
 
+  const [shelterInfo, setShelterInfo] = useState({});
+  const [newInfo, setNewInfo] = useState(userInfo);
   const onChange = (e) => {
     const { name, value } = e.target;
     setShelterInfo({
@@ -15,13 +17,20 @@ export default function ShelterRegisterPage() {
       [name]: value,
     });
   };
-  const onSubmit = async (e) => {
-    e.preventDefault();
+
+  useEffect(() => {
     setNewInfo({
       ...newInfo,
       ['shelter']: shelterInfo,
     });
-    await axios.put(`http://localhost:3001/users/2rwCeob`, newInfo);
+  }, [shelterInfo]);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    console.log('db: ', newInfo);
+    await axios.put(`http://localhost:3001/users/${userInfo.id}`, newInfo);
+    sessionStorage.setItem('userInfo', JSON.stringify(newInfo));
+    navigate('/SettingPage');
   };
 
   return (
@@ -41,18 +50,18 @@ export default function ShelterRegisterPage() {
             </div>
             <div className={styles.shelterInfo}>
               <p>보호소 이름:</p>
-              <input className={styles.input} type="text" name="name" onChange={onChange} placeholder="" />
+              <input className={styles.input} type="text" name="name" onInput={onChange} placeholder="" />
               <p>보호소 소개:</p>
-              <input className={styles.input} type="text" name="description" onChange={onChange} placeholder="" />
-              <p>연락처:</p>
-              <input className={styles.input} type="text" name="tel" onChange={onChange} placeholder="000-000-0000" />
+              <input className={styles.input} type="text" name="description" onInput={onChange} placeholder="" />
+              <p>연락처: (예시:000-000-0000)</p>
+              <input className={styles.input} type="text" name="tel" onInput={onChange} placeholder="" />
               <p>주소:</p>
-              <input className={styles.input} type="text" name="address" onChange={onChange} placeholder="" />
+              <input className={styles.input} type="text" name="address" onInput={onChange} placeholder="" />
             </div>
           </div>
-          <div className={styles.button} onClick={onSubmit}>
+          <button className={styles.button} type="submit">
             보호소 등록 요청
-          </div>
+          </button>
         </form>
       </div>
     </>

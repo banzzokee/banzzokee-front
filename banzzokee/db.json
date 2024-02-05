@@ -32,7 +32,13 @@
       "profile_img_url": "../../../public/myPhoto.jpg",
       "introduce": "안녕하세요. 소형견 입양 희망합니다.",
       "nickname": "ababc",
-      "id": "APmgnc1"
+      "id": "APmgnc1",
+      "shelter": {
+        "name": "",
+        "description": "",
+        "tel": "",
+        "address": ""
+      }
     },
     {
       "email": "aabb@aabb.com",
@@ -44,7 +50,13 @@
       "password": "$2a$10$.rDqj5iyg4drqsR531CSAeBKBF7UogKIkzMmRvQdR1vwSxA81Nr..",
       "passwordconfirm": "ababababab1!",
       "nickname": "ababababab",
-      "id": "3Y8GKEd"
+      "id": "3Y8GKEd",
+      "shelter": {
+        "name": "a",
+        "description": "b",
+        "tel": "a",
+        "address": "b"
+      }
     },
     {
       "email": "abc@abc.com",

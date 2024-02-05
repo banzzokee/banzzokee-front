@@ -25,7 +25,7 @@ export default function MyPage() {
   useEffect(() => {
     const getArticle = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/users/22`);
+        const response = await axios.get(`http://localhost:3001/users/APmgnc1`);
         const data = response.data;
         sessionStorage.setItem('userInfo', JSON.stringify(data));
         setUserInfo(data);
