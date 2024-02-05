@@ -16,7 +16,7 @@ import Tag from './Tag';
 import MapPage from './pages/map/MapPage';
 import OtherMyPage from './pages/article/OtherMyPage';
 import ShelterInfoPage from './pages/article/ShelterInfoPage';
-import SettingPage from './pages/setting/SettingPage'
+import SettingPage from './pages/setting/SettingPage';
 import FollowingPage from './pages/user/FollowingPage';
 import AccountInfoPage from './pages/user/AccountInfoPage';
 import EmailConfirm from './pages/register/EmailConfirm';
@@ -31,7 +31,6 @@ import MyPageEdit from './pages/user/MyPageEdit';
 import GoogleLoginButton from './pages/register/GoogleLoginButton';
 import ArticleList from './components/ArticleList';
 
-
 // import GoogleRegister from './GoogleRegister';
 
 function App() {
@@ -44,7 +43,7 @@ function App() {
           <Route path="/Nav" element={<Nav />} />
           <Route path="/MyPage" element={<MyPage />} />
           <Route path="/ChatListPage" element={<ChatListPage />} />
-          <Route path="/ViewArticlePage" element={<ViewArticlePage />} />
+          <Route path="/ViewArticlePage/:id" element={<ViewArticlePage />} />
           <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/MapPage" element={<MapPage />} />
           <Route path="/CreateAdoptPage" element={<CreateAdoptPage />} />
@@ -71,7 +70,6 @@ function App() {
           <Route path="/GoogleLoginButton" element={<GoogleLoginButton />} />
           <Route path="/ArticleList" element={<ArticleList />} />
           <Route path="/ArticleList/:idx" element={<ViewArticlePage />} />
-          
         </Routes>
       </BrowserRouter>
     </>

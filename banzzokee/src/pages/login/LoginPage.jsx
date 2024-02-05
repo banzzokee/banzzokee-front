@@ -5,7 +5,7 @@ import { useState } from 'react';
 // import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import GoogleLoginButton from '../register/GoogleLoginButton';
-import MyPage from '../User/MyPage';
+import MyPage from '../user/MyPage';
 export default function LoginPage() {
   const [inputValue, setInputValue] = useState({
     email: '',

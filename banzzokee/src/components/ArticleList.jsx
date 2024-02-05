@@ -26,7 +26,9 @@ export default function ArticleList() {
         {articleList &&
           articleList.map((adoption) => (
             <li key={adoption.id}>
-              <Link to={`/ArticleList/${adoption.id}`}>{adoption.title}</Link>
+              <Link to={`/ArticleList/${adoption.id}`} key={adoption.id}>
+                {adoption.title}
+              </Link>
             </li>
           ))}
       </ul>

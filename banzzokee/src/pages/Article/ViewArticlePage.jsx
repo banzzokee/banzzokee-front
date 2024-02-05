@@ -13,16 +13,9 @@ export default function ViewArticlePage() {
   useEffect(() => {
     const getArticle = async () => {
       try {
-        console.log(adoptionId);
-        const response = await axios.get(`http://localhost:3001/adoption/${adoptionId}`);
+        const response = await axios.get(`http://localhost:3001/adoption/1`);
         setAdoption(response.data);
-        // sessionStorage.setItem('articleInfo', JSON.stringify(response.data));
-        // const response = axios.get(`http://localhost:3001/adoption/}`, {
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //     Authorization: `Bearer ${accessToken}`,
-        //   },
-        // });
+        console.log(adoption);
       } catch (error) {
         console.error(error);
       }
@@ -31,7 +24,6 @@ export default function ViewArticlePage() {
   }, [adoptionId]);
   // const adoption = JSON.parse(sessionStorage.getItem('articleInfo'));
   const tags = [adoption.breed, adoption.size, adoption.neutering ? '중성화' : '중성화안됨', adoption.gender, `${adoption.age}살`, adoption.healthChecked ? '건강검진' : '검진x', `보호소 등록: ${adoption.registeredAt}`];
-  // console.log(adoption);
 
   return (
     <>

@@ -96,7 +96,7 @@ export default function Registerr() {
       }
 
       // await checkNickname();
-      const { data } = await axios.post('http://localhost:3001/register', inputValue);
+      const { data } = await axios.post('http://localhost:3001/users', inputValue);
 
       setCookie('accessToken', data['accessToken'], { path: '/' });
       navigate('/LoginPage');
