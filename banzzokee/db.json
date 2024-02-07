@@ -31,7 +31,7 @@
       "passwordconfirm": "aaaaaaaaaa1!",
       "profile_img_url": "../../../public/myPhoto.jpg",
       "introduce": "안녕하세요. 소형견 입양 희망합니다.",
-      "nickname": "ababc",
+      "nickname": "행복보호소장",
       "id": "APmgnc1",
       "shelter": {
         "name": "",
@@ -127,5 +127,46 @@
   ],
   "shelter": [],
   "review": [],
-  "chats": []
+  "chats": [
+    {
+      "user": {
+        "userId": 1,
+        "profileImgUrl": "https://one.png",
+        "nickname": "심신안정유저"
+      },
+      "message": "안녕하세요. 입양하고 싶어요!",
+      "messageType": "TEXT",
+      "createdAt": "2024-01-18T18:01:17.692302"
+    },
+    {
+      "user": {
+        "userId": 2,
+        "profileImgUrl": "https://two.png",
+        "nickname": "행복보호소장"
+      },
+      "message": "네 안녕하세요. 강아지 너무 귀엽죠?",
+      "messageType": "TEXT",
+      "createdAt": "2024-01-18T18:01:17.692302"
+    },
+    {
+      "user": {
+        "userId": 2,
+        "profileImgUrl": "https://two.png",
+        "nickname": "행복보호소장"
+      },
+      "message": "https://dog-picture.com",
+      "messageType": "PHOTO",
+      "createdAt": "2024-01-18T18:01:17.692302"
+    },
+    {
+      "user": {
+        "userId": 1,
+        "profileImgUrl": "https://one.png",
+        "nickname": "심신안정유저"
+      },
+      "message": "상대방이 나갔습니다.",
+      "messageType": "EXIT",
+      "createdAt": "2024-01-18T18:01:17.692302"
+    }
+  ]
 }

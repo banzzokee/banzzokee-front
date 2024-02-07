@@ -10,7 +10,7 @@ import Nav from '../../components/common/nav/Nav';
 export default function MyPage() {
   const [button1Color, setButton1Color] = useState('#bebebe');
   const [button2Color, setButton2Color] = useState('white');
-  const [userInfo, setUserInfo] = useState(JSON.parse(sessionStorage.getItem('userInfo')));
+  const [userInfo, setUserInfo] = useState({});
 
   const handleButtonClick = (buttonNumber) => {
     // Swap colors when either button is clicked
@@ -23,7 +23,7 @@ export default function MyPage() {
     }
   };
   useEffect(() => {
-    const getArticle = async () => {
+    const getData = async () => {
       try {
         const response = await axios.get(`http://localhost:3001/users/APmgnc1`);
         const data = response.data;
@@ -33,7 +33,7 @@ export default function MyPage() {
         console.error(error);
       }
     };
-    getArticle();
+    getData();
   }, []);
   console.log('userinfo', userInfo);
   return (
