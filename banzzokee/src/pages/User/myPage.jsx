@@ -3,15 +3,14 @@ import Button from '../../components/common/button/Button';
 import { Link } from 'react-router-dom';
 // import BadgeIcon from '/src/components/BadgeIcon';
 import MyPageHeader from '../../components/common/header/MyPageHeader';
-import { useState } from 'react';
-import Nav from '../../components/common/nav/Nav';
-import { useCookies } from 'react-cookie';
-
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Nav from '../../components/common/nav/Nav';
 
 export default function MyPage() {
   const [button1Color, setButton1Color] = useState('#bebebe');
   const [button2Color, setButton2Color] = useState('white');
+  const [userInfo, setUserInfo] = useState({});
 
   const handleButtonClick = (buttonNumber) => {
     // Swap colors when either button is clicked
@@ -23,24 +22,27 @@ export default function MyPage() {
       setButton2Color('white');
     }
   };
-  const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
-  const [cookies, setCookie, removeCookie] = useCookies();
-  const token = cookies.accessToken;
-  const { data } = axios.get('http://localhost:3001/users', {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  const photo = <img src={userInfo.profile_img_url}></img>;
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/users/APmgnc1`);
+        const data = response.data;
+        sessionStorage.setItem('userInfo', JSON.stringify(data));
+        setUserInfo(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getData();
+  }, []);
+  console.log('userinfo', userInfo);
   return (
     <>
-      {/* <BackHeader style={{ back: { display: 'none' }, all: { backgroundColor: 'gray' } }}></BackHeader> */}
       <MyPageHeader></MyPageHeader>
       <div className={styles.container}>
         <div className={styles.userInfo}>
-          <div className={styles.profilePhoto}>{photo}</div>
-          {/* <BadgeIcon className={styles.badgeIcon}></BadgeIcon> */}
+          <div className={styles.profilePhoto}>{userInfo.profileImgUrl}</div>
+
           <div className={styles.profileHeader}>
             <Link to={{ pathname: '/ShelterInfoPage', state: 'hi' }}>
               <Button

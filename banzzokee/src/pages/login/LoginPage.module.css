@@ -1,7 +1,7 @@
 .container {
   /* background-color: gainsboro; */
   width: 375px;
-  height: 724px;
+  height: 645px;
   padding: 40px;
 }
 .logo {
@@ -66,5 +66,3 @@
   color: gray;
   margin-top: 10px;
 }
-
-

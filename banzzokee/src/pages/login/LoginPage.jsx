@@ -2,9 +2,11 @@ import BackHeader from '../../components/common/header/BackHeader';
 import styles from './LoginPage.module.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { useCookies } from 'react-cookie';
+// import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import GoogleLoginButton from '../register/GoogleLoginButton';
+import MyPage from '../user/MyPage';
+import Nav from '../../components/common/nav/Nav';
 export default function LoginPage() {
   const [inputValue, setInputValue] = useState({
     email: '',
@@ -18,67 +20,62 @@ export default function LoginPage() {
     });
   };
 
-  const [cookies, setCookie, removeCookie] = useCookies();
+  // const [cookies, setCookie, removeCookie] = useCookies();
 
   const onLogin = async (e) => {
     e.preventDefault();
 
     try {
-      console.log('trying to connect to server');
       const { data } = await axios.post('http://localhost:3001/login', inputValue);
-
-      setCookie('accessToken', data['accessToken'], { path: '/' });
-      console.log(data['accessToken']);
+      // setCookie('accessToken', data['accessToken'], { path: '/' });
+      sessionStorage.setItem('userInfo', JSON.stringify(data.user));
+      sessionStorage.setItem('accessToken', JSON.stringify(data.accessToken));
       document.location.href = '/MyPage';
     } catch (error) {
       console.log(error);
+      alert('로그인 실패 아이디 또는 비밀번호를 재 확인하세요');
     }
   };
-
-  const getData = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.get('http://localhost:3001/users');
-      sessionStorage.setItem('userInfo', JSON.stringify(response.data[0]));
-      console.log(response.data);
-      // document.location.href = '/MyPage';
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  return (
-    <>
-      <BackHeader />
-      <div className={styles.container}>
-        <img className={styles.logo} src="../../../public/Logo.svg"></img>
-        <form className={styles.login} action="" onSubmit={onLogin}>
-          <div className={styles.loginInput}>
-            <input className={styles.input} type="email" placeholder="이메일" name="email" onChange={onChange} />
-            <input className={styles.input} type="password" placeholder="비밀번호" name="password" onChange={onChange} />
+  if (sessionStorage.getItem('accessToken') == null) {
+    return (
+      <>
+        <BackHeader />
+        <div className={styles.container}>
+          <img className={styles.logo} src="../../../public/Logo.svg"></img>
+          <form className={styles.login} action="" onSubmit={onLogin}>
+            <div className={styles.loginInput}>
+              <input className={styles.input} type="email" placeholder="이메일" name="email" onChange={onChange} />
+              <input className={styles.input} type="password" placeholder="비밀번호" name="password" onChange={onChange} />
+            </div>
+            <button className={styles.loginButton} type="submit">
+              로그인
+            </button>
+            <div className={styles.text}>
+              아직 회원이 아니신가요?
+              <Link to="/Register">
+                <span>회원가입</span>
+              </Link>
+            </div>
+          </form>
+          <div className={styles.orLines}>
+            <div className={styles.line}></div>
+            <div>or</div>
+            <div className={styles.line}></div>
           </div>
-          <button className={styles.loginButton} type="submit">
-            로그인
-          </button>
-          <div className={styles.text}>
-            아직 회원이 아니신가요?
-            <Link to="/Register">
-              <span>회원가입</span>
-            </Link>
-          </div>
-        </form>
-        <div className={styles.orLines}>
-          <div className={styles.line}></div>
-          <div>or</div>
-          <div className={styles.line}></div>
-        </div>
-        <div className={styles.loginButton} onClick={getData} style={{ fontSize: '16px' }}>
-          <GoogleLoginButton style={{backgroundColor:"black"}}/>
-          {/* <img className={styles.googleLogo} src="../../../public/google.svg" alt="로고" />
+          <div className={styles.loginButton} style={{ fontSize: '16px' }}>
+            <GoogleLoginButton style={{ backgroundColor: 'black' }} />
+            {/* <img className={styles.googleLogo} src="../../../public/google.svg" alt="로고" />
           Google 계정으로 로그인 */}
+          </div>
         </div>
-      </div>
-    </>
-  );
+        <Nav></Nav>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <MyPage></MyPage>
+      </>
+    );
+  }
 }

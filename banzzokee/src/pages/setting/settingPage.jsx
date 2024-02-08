@@ -6,6 +6,7 @@ import BackHeader from '../../components/common/header/BackHeader';
 export default function MyPage() {
   const logout = () => {
     sessionStorage.removeItem('userInfo');
+    sessionStorage.removeItem('accessToken');
     document.location.href = '/';
   };
   return (
@@ -54,7 +55,7 @@ export default function MyPage() {
             <p className={styles.option}>보호소 등록 요청</p>
           </Link>
           <Link to="/ShelterEditPage">
-            <p className={styles.option}>보호소 정보 수정</p>
+            <p className={styles.option}>보호소 정보 수정/삭제</p>
           </Link>
         </div>
         <div className={styles.eachSetting}>

@@ -35,7 +35,7 @@ export default function Registerr() {
 
   // const doEmailVerification = async (e) => {
   //   e.preventDefault();
-  
+
   //   try {
   //     const response = await axios.post('http://localhost:3001/sendVerify', { email: inputValue.email });
   //     if (response.data.success) {
@@ -95,16 +95,11 @@ export default function Registerr() {
         setErrors({ ...errors, passwordconfirm: null });
       }
 
-      
-
       // await checkNickname();
-      const { data } = await axios.post(
-        'http://localhost:3001/register', 
-        inputValue
-        );
+      const { data } = await axios.post('http://localhost:3001/users', inputValue);
 
-      setCookie('accessToken', data['accessToken'], { path: '/' })
-      navigate("/LoginPage");
+      setCookie('accessToken', data['accessToken'], { path: '/' });
+      navigate('/LoginPage');
       console.log(data);
     } catch (error) {
       setErrors({ ...errors, error: '이미 존재하는 이메일입니다.' });
@@ -127,7 +122,9 @@ export default function Registerr() {
               <input type="text" name="email" onChange={onChange} className={styles.input} />
               <div className={styles.errorMessage}>{errors.email}</div>
             </div>
-            <button type="button" id="emailconfirmButton"  className={styles.emailconfirm_Button}>인증하기</button>
+            <button type="button" id="emailconfirmButton" className={styles.emailconfirm_Button}>
+              인증하기
+            </button>
           </div>
           <div className={styles.inputGroup}>
             <div>
