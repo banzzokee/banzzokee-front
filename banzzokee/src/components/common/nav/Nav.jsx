@@ -13,7 +13,7 @@ export default function Nav() {
       <Link className="Home" to="/">
         <img src="/Home.png" alt="홈" className={styles.Home} />
       </Link>
-      <Link className="Review" to="/ViewArticlePage">
+      <Link className="Review" to="/ReviewPage">
         <img src="/Review.png" alt="후기" className={styles.Review} />
       </Link>
       <Link className="LoginPage" to="/LoginPage">

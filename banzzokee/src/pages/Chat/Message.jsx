@@ -2,7 +2,7 @@ import styles from './Message.module.css';
 import Back from '../../components/common/back/Back';
 import MessageContainer from './MessageContainer';
 import InputField from './InputField';
-import socket from './server';
+// import socket from './server';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 

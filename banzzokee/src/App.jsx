@@ -30,6 +30,7 @@ import ShelterRegisterPage from './pages/user/ShelterRegisterPage';
 import MyPageEdit from './pages/user/MyPageEdit';
 import GoogleLoginButton from './pages/register/GoogleLoginButton';
 import ArticleList from './components/ArticleList';
+import ReviewPage from './pages/review/ReviewPage';
 
 // import GoogleRegister from './GoogleRegister';
 
@@ -70,6 +71,7 @@ function App() {
           <Route path="/GoogleLoginButton" element={<GoogleLoginButton />} />
           <Route path="/ArticleList" element={<ArticleList />} />
           <Route path="/ArticleList/:idx" element={<ViewArticlePage />} />
+          <Route path="/ReviewPage" element={<ReviewPage />} />
         </Routes>
       </BrowserRouter>
     </>
