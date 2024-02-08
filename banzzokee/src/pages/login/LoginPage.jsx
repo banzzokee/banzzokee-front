@@ -5,7 +5,8 @@ import { useState } from 'react';
 // import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import GoogleLoginButton from '../register/GoogleLoginButton';
-import MyPage from '../User/MyPage';
+import MyPage from '../user/MyPage';
+import Nav from '../../components/common/nav/Nav';
 export default function LoginPage() {
   const [inputValue, setInputValue] = useState({
     email: '',
@@ -67,6 +68,7 @@ export default function LoginPage() {
           Google 계정으로 로그인 */}
           </div>
         </div>
+        <Nav></Nav>
       </>
     );
   } else {

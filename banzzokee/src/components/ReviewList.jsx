@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styles from './ArticleList.module.css';
 
-export default function ArticleList() {
+export default function ReviewList() {
   const [articleList, setArticleList] = useState([]);
 
   const getArticleList = async () => {
@@ -26,7 +26,7 @@ export default function ArticleList() {
         {articleList &&
           articleList.map((adoption) => (
             <li key={adoption.id}>
-              <Link to={`/ArticleList/${adoption.id}`} key={adoption.id}>
+              <Link to={`/ReviewList/${adoption.id}`} key={adoption.id}>
                 {adoption.title}
               </Link>
             </li>

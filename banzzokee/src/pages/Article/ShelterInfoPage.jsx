@@ -5,7 +5,7 @@ import BackHeader from '../../components/common/header/BackHeader';
 import Nav from '../../components/common/nav/Nav';
 
 export default function ShelterInfoPage() {
-  const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+  const userInfo = JSON.parse(sessionStorage.getItem('articleInfo'));
   const photo = <img src={userInfo.profile_img_url}></img>;
 
   return (

@@ -24,26 +24,17 @@ export default function MyPageEdit() {
 
     console.log(accessToken);
 
+    await axios.put(`http://localhost:3001/users/${userInfo.id}`, newInfo);
+    console.log('userinfo:', userInfo);
+    console.log('newinfo:', newInfo);
     // await axios.put(
     //   `http://localhost:3001/users/${userInfo.id}`,
     //   {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       Authorization: `Bearer ${accessToken}`,
-    //     },
+    //     email: `${userInfo.email}`,
+    //     password: `${userInfo.password}`,
     //   },
     //   newInfo
     // );
-    console.log('userinfo:', userInfo);
-    console.log('newinfo:', newInfo);
-    await axios.put(
-      `http://localhost:3001/users/${userInfo.id}`,
-      {
-        email: `${userInfo.email}`,
-        password: `${userInfo.password}`,
-      },
-      newInfo
-    );
 
     sessionStorage.setItem('userInfo', JSON.stringify(newInfo));
     // axios.put(`http://localhost:3001/users/${userInfo.id}`, newInfo);
