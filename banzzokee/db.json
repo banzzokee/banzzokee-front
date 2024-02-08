@@ -29,144 +29,44 @@
       "email": "a@aa.com",
       "password": "$2a$10$iauw2QJMwapRRaEDamE9SO90c0NFn2AFH2GaigbiY1VIUtct/iTAO",
       "passwordconfirm": "aaaaaaaaaa1!",
-      "profile_img_url": "../../../public/myPhoto.jpg",
-      "introduce": "안녕하세요. 소형견 입양 희망합니다.",
-      "nickname": "행복보호소장",
-      "id": "APmgnc1",
-      "shelter": {
-        "name": "",
-        "description": "",
-        "tel": "",
-        "address": ""
-      }
-    },
-    {
-      "email": "aabb@aabb.com",
-      "password": "$2a$10$X/zLJPO1F8ttzlrtDwlUP.jCDn3hO5sL.bLPyKvWTkCbU97YEx0Ym",
-      "id": "cIdTIn5"
-    },
-    {
-      "email": "ab@ab.com",
-      "password": "$2a$10$.rDqj5iyg4drqsR531CSAeBKBF7UogKIkzMmRvQdR1vwSxA81Nr..",
-      "passwordconfirm": "ababababab1!",
-      "nickname": "ababababab",
-      "id": "3Y8GKEd",
-      "shelter": {
-        "name": "a",
-        "description": "b",
-        "tel": "a",
-        "address": "b"
-      }
-    },
-    {
-      "email": "abc@abc.com",
-      "passwordconfirm": "ababababab1!",
-      "nickname": "abc",
-      "id": "2rwCeob",
-      "shelter": {
-        "name": "a",
-        "description": "a",
-        "tel": "a",
-        "address": "a"
-      }
-    },
-    {
-      "id": 22,
-      "email": "test@naver.com",
-      "password": "123123123!",
-      "profileImgUrl": "../../.../public/user.png",
-      "nickname": "user_123123123",
-      "introduce": "서울 입양 희만하는분 연락주세요!",
-      "role": "USER",
-      "shelter": {
-        "shelterId": 1,
-        "shelterImgUrl": "https://shelter.image.com",
-        "name": "shelter name",
-        "description": "shelter description",
-        "tel": "010-0000-0000",
-        "address": "서울시 강남구 대치동 123-23",
-        "registeredAt": "2024-01-18"
-      },
-      "joinedAt": "2024-01-18"
-    },
-    {
-      "email": "aaa@aaa.com",
-      "password": "aaaaaaaaaa1!",
-      "passwordconfirm": "aaaaaaaaaa1!",
-      "nickname": "aaaaaaaaaa1!",
-      "id": "GiT40ch"
+      "nickname": "abab",
+      "id": "APmgnc1"
     }
   ],
   "adoption": [
     {
-      "title": "첫게시물",
-      "nickname": "user_1234",
-      "content": "1살 리트리버 입양희망 연락주세요",
-      "imageUrls": "../../../public/dog.webp",
-      "breed": "1리트리버",
-      "size": "1대형",
-      "registeredAt": "2024-01-01",
-      "id": "1",
-      "createdAt": "2024-02-01",
-      "neutering": true,
-      "gender": "male",
-      "age": 3,
-      "healthChecked": true
+      "id": 5,
+      "title": "수정합니다33",
+      "content": "수정합니다33",
+      "tags": {
+        "breeds": "셰퍼드",
+        "size": "중형",
+        "healthChecked": "검진 완료",
+        "gender": "여",
+        "neutering": "예",
+        "age": "year 나이",
+        "registeredAt": "2023-04-05"
+      },
+      "status": "분양완료",
+      "image": {
+        "0": {}
+      }
     },
     {
-      "title": "둘째게시물",
-      "nickname": "user_123",
-      "content": "2살 리트리버 입양희망 연락주세요",
-      "imageUrls": "../../../public/dog.webp",
-      "breed": "2리트리버",
-      "size": "2대형",
-      "registeredAt": "2024-01-01",
-      "id": "2",
-      "createdAt": "2024-02-01"
-    }
-  ],
-  "shelter": [],
-  "review": [],
-  "chats": [
-    {
-      "user": {
-        "userId": 1,
-        "profileImgUrl": "https://one.png",
-        "nickname": "심신안정유저"
+      "imageUrls": [],
+      "title": "3333",
+      "tags": {
+        "breeds": "푸들",
+        "size": "소형",
+        "healthChecked": "검진 미완료",
+        "gender": "남",
+        "neutering": "아니오",
+        "age": "3",
+        "registeredAt": "2023-04-05"
       },
-      "message": "안녕하세요. 입양하고 싶어요!",
-      "messageType": "TEXT",
-      "createdAt": "2024-01-18T18:01:17.692302"
-    },
-    {
-      "user": {
-        "userId": 2,
-        "profileImgUrl": "https://two.png",
-        "nickname": "행복보호소장"
-      },
-      "message": "네 안녕하세요. 강아지 너무 귀엽죠?",
-      "messageType": "TEXT",
-      "createdAt": "2024-01-18T18:01:17.692302"
-    },
-    {
-      "user": {
-        "userId": 2,
-        "profileImgUrl": "https://two.png",
-        "nickname": "행복보호소장"
-      },
-      "message": "https://dog-picture.com",
-      "messageType": "PHOTO",
-      "createdAt": "2024-01-18T18:01:17.692302"
-    },
-    {
-      "user": {
-        "userId": 1,
-        "profileImgUrl": "https://one.png",
-        "nickname": "심신안정유저"
-      },
-      "message": "상대방이 나갔습니다.",
-      "messageType": "EXIT",
-      "createdAt": "2024-01-18T18:01:17.692302"
+      "status": "분양완료",
+      "content": "333",
+      "id": 6
     }
   ]
 }

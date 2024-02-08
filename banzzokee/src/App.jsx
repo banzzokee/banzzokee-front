@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import React from 'react';
 import './App.css';
-import MainPage from './pages/home/MainPage';
+import MainPage from './pages/Home/MainPage';
 import Nav from './components/common/nav/Nav';
 import Header from './components/common/header/Header';
 import ChatListPage from './pages/chat/chatListPage';
@@ -30,6 +30,7 @@ import ShelterRegisterPage from './pages/user/ShelterRegisterPage';
 import MyPageEdit from './pages/user/MyPageEdit';
 import GoogleLoginButton from './pages/register/GoogleLoginButton';
 import ArticleList from './components/ArticleList';
+import AdoptEdit from './pages/article/AdoptEdit'
 import ReviewPage from './pages/review/ReviewPage';
 
 // import GoogleRegister from './GoogleRegister';
@@ -70,6 +71,8 @@ function App() {
           <Route path="/MyPageEdit" element={<MyPageEdit />} />
           <Route path="/GoogleLoginButton" element={<GoogleLoginButton />} />
           <Route path="/ArticleList" element={<ArticleList />} />
+          <Route path="/ArticleList/:id" element={<ViewArticlePage />} />
+          <Route path="/update/:id" element={<AdoptEdit />} />
           <Route path="/ArticleList/:idx" element={<ViewArticlePage />} />
           <Route path="/ReviewPage" element={<ReviewPage />} />
         </Routes>
