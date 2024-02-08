@@ -1,5 +1,5 @@
 import styles from './ViewArticlePage.module.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import BackHeader from '../../components/common/header/BackHeader';
 import Nav from '../../components/common/nav/Nav';
 import { useEffect, useState } from 'react';
@@ -8,6 +8,25 @@ import axios from 'axios';
 export default function ViewArticlePage() {
   const { id } = useParams();
   const [adoption, setAdoption] = useState({});
+  const navigate = useNavigate();
+
+  const openEdit = () => {
+    const editBox = document.getElementById('edit');
+    editBox.style.display = editBox.style.display === 'none' ? 'block' : 'none';
+  };
+
+  const handleEdit = () => {
+    navigate(`/update/${id}`);
+  }
+
+  const handleDelete = async () => {
+    if (window.confirm('게시글을 삭제하시겠습니까?')) {
+      await axios.delete(`http://localhost:3001/adoption/${id}`).then((res) => {
+        alert('삭제되었습니다.');
+        navigate('/');
+      })
+    }
+  }
   
   const getAdoption = async () => {
     try {
@@ -45,9 +64,19 @@ export default function ViewArticlePage() {
                 <img className={styles.messageIcon} src="../../../public/Message.png" />
               </div>
             </Link>
-            <button>
-              <img src='../../../public/edit.svg'></img>
-            </button>
+            <button style={{padding:0}} onClick={openEdit}>
+              <img src='../../../public/edit.svg' style={{ transform: 'rotate(90deg)' }} />
+            </button >
+            <div id='edit' className={styles.edit}>
+              <button onClick={handleEdit}>
+                <img src='../../../public/Pencil.svg' />
+                수정
+              </button>
+              <button onClick={handleDelete}>
+                <img src='../../../public/Delete.svg'/>
+                삭제
+              </button>
+            </div>
           </div>
 
           <div className={styles.articlePhotos}>
@@ -55,8 +84,8 @@ export default function ViewArticlePage() {
               <img src="../../../public/dog.webp" alt="" />
             </div>
 
-            <div className={styles.status}>분양중</div>
-          </div>
+            <div className={styles.status}>{adoption.status}</div>
+          </div>  
           <div className={styles.articleTexts}>
             <div className={styles.titleAndSave}>
               <div className={styles.title}>{adoption.title}</div>
@@ -65,14 +94,19 @@ export default function ViewArticlePage() {
 
             <div className={styles.tags}>
               {/* 나중에 리스트로 받아서 map 으로 뿌려준다 */}
-              <div className={styles.tag}>태그1</div>
-              <div className={styles.tag}>태그2</div>
-              <div className={styles.tag}>태그2222</div>
-              <div className={styles.tag}>태그2</div>
-              <div className={styles.tag}>태그2</div>
-              <div className={styles.tag}>태그2</div>
-              <div className={styles.tag}>태그2</div>
-              <div className={styles.tag}>태그2</div>
+              {adoption && adoption.tags && (
+                <>
+                  <div className={styles.tag}>{adoption.tags.breeds}</div>
+                  <div className={styles.tag}>{adoption.tags.size}</div>
+                  <div className={styles.tag}>{adoption.tags.healthChecked}</div>
+                  <div className={styles.tag}>{adoption.tags.gender}</div>
+                  <div className={styles.tag}>{adoption.tags.neutering}</div>
+                  <div className={styles.tag}>{adoption.tags.age}</div>
+                  <div className={styles.tag}>
+                    유기견등록일{adoption.tags.registeredAt}
+                    </div>
+                </>
+              )}
             </div>
             <div className={styles.body}>{adoption.content}</div>
           </div>
