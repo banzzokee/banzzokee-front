@@ -42,12 +42,9 @@ export default function Registerr() {
         method: 'post',
         maxBodyLength: Infinity,
         url: 'https://server.banzzokee.homes/api/auth/send-verify',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: {},
         data: inputdata,
       };
-      // 'Access-Control-Allow-Origin': 'http://localhost:5173',
       const response = await axios.request(config);
       if (response.data.success) {
         alert('이메일 인증 메일이 전송되었습니다.');
@@ -180,3 +177,16 @@ export default function Registerr() {
     </>
   );
 }
+
+// "dev": "concurrently \"npm run server\" \"npm run react-vite\"",
+// "build": "vite build",
+// "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+// "preview": "vite preview",
+// "server": "npx json-server db.json --port 3001 -r routes.json",
+// "react-vite": "vite dev"
+
+// 'Content-Type': 'application/json',
+// 'Access-Control-Allow-Origin': '*',
+// 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+// 'Access-Control-Allow-Credentials': 'true',
+// 'Access-Control-Allow-Headers': 'content-type',

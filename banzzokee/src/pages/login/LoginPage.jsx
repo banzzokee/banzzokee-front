@@ -26,12 +26,20 @@ export default function LoginPage() {
     e.preventDefault();
 
     try {
-      // const { data } = await axios.post('http://localhost:3001/login', inputValue);
-      const { data } = await axios.get('http://localhost:3001/users/APmgnc1');
+      const inputdata = { email: `${inputValue.email}`, password: `${inputValue.password}` };
+      const config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'https://server.banzzokee.homes/api/auth/sign-in',
+        headers: { 'Content-Type': `application/json` },
+        data: inputdata,
+      };
+      const response = await axios.request(config);
+      console.log(response);
       // setCookie('accessToken', data['accessToken'], { path: '/' });
-      sessionStorage.setItem('userInfo', JSON.stringify(data.user));
-      sessionStorage.setItem('accessToken', JSON.stringify(data.accessToken));
-      document.location.href = '/MyPage';
+      // sessionStorage.setItem('userInfo', JSON.stringify(data.user));
+      // sessionStorage.setItem('accessToken', JSON.stringify(data.accessToken));
+      // document.location.href = '/MyPage';
     } catch (error) {
       console.log(error);
       alert('로그인 실패 아이디 또는 비밀번호를 재 확인하세요');
