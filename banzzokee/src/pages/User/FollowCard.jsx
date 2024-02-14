@@ -6,31 +6,26 @@ import { useState } from 'react';
 
 const FollowCard = ({ follower, list, setList }) => {
   const [follow, setFollow] = useState(true);
+  const [updatedList, setUpdatedList] = useState(list);
+  const newList = updatedList.filter((user) => user.userId !== follower.userId);
 
   const onClick = async (event) => {
     event.preventDefault();
     if (!follow) {
-      const newFollower = { userid: follower.userId, nickname: follower.nickname };
-      setList([...list, newFollower]);
-      console.log(list);
       try {
-        console.log(list);
-        axios.patch(`http://localhost:3001/users/APmgnc1/`, { followers: list });
+        axios.patch(`http://localhost:3001/users/APmgnc1`, { followers: list });
       } catch (error) {
         console.error('Error:', error);
       }
+      setFollow(!follow);
     } else {
-      const updatedList = list.filter((user) => user.userId !== follower.userId);
-      console.log('update', updatedList);
-      setList(updatedList);
-
       try {
-        axios.patch(`http://localhost:3001/users/APmgnc1`, { followers: updatedList });
+        axios.patch(`http://localhost:3001/users/APmgnc1`, { followers: newList });
       } catch (error) {
         console.error('Error:', error);
       }
+      setFollow(!follow);
     }
-    setFollow(!follow);
   };
   return (
     <>
@@ -42,11 +37,10 @@ const FollowCard = ({ follower, list, setList }) => {
             <div></div>
           </div>
         </Link>
-        <div>
-          <button className={styles.followButton} style={{ backgroundColor: follow ? '#bebebe' : '#add8e6' }} onClick={onClick}>
-            {follow ? '팔로잉' : '팔로우'}
-          </button>
-        </div>
+
+        <button className={styles.followButton} style={{ backgroundColor: follow ? '#bebebe' : '#add8e6' }} onClick={onClick}>
+          {follow ? '팔로잉' : '팔로우'}
+        </button>
       </div>
     </>
   );

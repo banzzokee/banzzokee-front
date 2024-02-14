@@ -9,27 +9,30 @@ import axios from 'axios';
 import FollowCard from './FollowCard';
 
 export default function FollowingPage() {
-  const defaultPhoto = <img style={{ width: '20px', height: 'auto' }} src="../../../public/User.png"></img>;
   const [list, setList] = useState([]);
 
-  const getList = async (e) => {
-    // e.preventDefault();
+  const getList = async () => {
     try {
       const { data } = await axios.get(`http://localhost:3001/users/APmgnc1/`);
       setList(data.followers);
+      console.log('list set');
     } catch (error) {
       console.error('Error:', error);
     }
   };
   useEffect(() => {
     getList();
-  }, []);
+  }, [setList]);
 
   return (
     <>
       <BackHeader style={{ backgroundColor: '#e1e1e1' }}></BackHeader>
       <div className={styles.container}>
-        <div className={styles.listBox}>{list && list.map((follower) => <FollowCard key={follower.id} follower={follower} list={list} setList={setList} />)}</div>
+        <div className={styles.listBox}>
+          {list.map((follower) => (
+            <FollowCard key={follower.id} follower={follower} list={list} setList={setList} />
+          ))}
+        </div>
       </div>
 
       <Nav></Nav>

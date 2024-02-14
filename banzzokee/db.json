@@ -37,11 +37,11 @@
         },
         {
           "userId": "2",
-          "nickname": "user_1"
+          "nickname": "user_2"
         },
         {
-          "userId": "3",
-          "nickname": "user_1"
+          "userid": "3",
+          "nickname": "user_3"
         }
       ],
       "followees": {
@@ -138,7 +138,7 @@
     },
     {
       "imageUrls": [],
-      "title": "aabb",
+      "title": "bbbb",
       "tags": {
         "breeds": "푸들",
         "size": "초소형",
@@ -165,11 +165,11 @@
       },
       "status": "분양중",
       "content": "안녕",
-      "id": "vIztRk2"
+      "id": "vIztRk3"
     },
     {
       "imageUrls": [],
-      "title": "aabb",
+      "title": "cccc",
       "tags": {
         "breeds": "푸들",
         "size": "초소형",
@@ -196,7 +196,7 @@
       },
       "status": "분양중",
       "content": "안녕",
-      "id": "vIztRk2"
+      "id": "vIztRk24"
     }
   ],
   "shelter": [],

@@ -37,16 +37,17 @@ export default function Registerr() {
     e.preventDefault();
 
     try {
-      const inputValue = { email: `${inputValue.email}` };
+      const inputdata = { email: `${inputValue.email}` };
       const config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'https://server.banzzokee.com/api/auth/sign-up',
+        url: 'https://server.banzzokee.homes/api/auth/send-verify',
         headers: {
           'Content-Type': 'application/json',
         },
-        data: inputValue,
+        data: inputdata,
       };
+      // 'Access-Control-Allow-Origin': 'http://localhost:5173',
       const response = await axios.request(config);
       if (response.data.success) {
         alert('이메일 인증 메일이 전송되었습니다.');
