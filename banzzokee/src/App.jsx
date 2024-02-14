@@ -33,6 +33,7 @@ import ArticleList from './components/ArticleList';
 import AdoptEdit from './pages/article/AdoptEdit';
 import ReviewPage from './pages/review/ReviewPage';
 import Filter from './pages/home/Filter';
+import ReviewList from './components/ReviewList';
 
 // import GoogleRegister from './GoogleRegister';
 
@@ -77,6 +78,7 @@ function App() {
           {/* <Route path="/ArticleList/:idx" element={<ViewArticlePage />} /> */}
           <Route path="/ReviewPage" element={<ReviewPage />} />
           <Route path="/Filter" element={<Filter />} />
+          <Route path="/ReviewList" element={<ReviewList />} />
         </Routes>
       </BrowserRouter>
     </>
