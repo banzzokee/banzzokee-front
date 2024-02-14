@@ -26,7 +26,8 @@ export default function LoginPage() {
     e.preventDefault();
 
     try {
-      const { data } = await axios.post('http://localhost:3001/login', inputValue);
+      // const { data } = await axios.post('http://localhost:3001/login', inputValue);
+      const { data } = await axios.get('http://localhost:3001/users/APmgnc1');
       // setCookie('accessToken', data['accessToken'], { path: '/' });
       sessionStorage.setItem('userInfo', JSON.stringify(data.user));
       sessionStorage.setItem('accessToken', JSON.stringify(data.accessToken));
@@ -36,7 +37,7 @@ export default function LoginPage() {
       alert('로그인 실패 아이디 또는 비밀번호를 재 확인하세요');
     }
   };
-  if (sessionStorage.getItem('accessToken') == null) {
+  if (sessionStorage.getItem('userInfo') == null) {
     return (
       <>
         <BackHeader />
@@ -64,8 +65,6 @@ export default function LoginPage() {
           </div>
           <div className={styles.loginButton} style={{ fontSize: '16px' }}>
             <GoogleLoginButton style={{ backgroundColor: 'black' }} />
-            {/* <img className={styles.googleLogo} src="../../../public/google.svg" alt="로고" />
-          Google 계정으로 로그인 */}
           </div>
         </div>
         <Nav></Nav>

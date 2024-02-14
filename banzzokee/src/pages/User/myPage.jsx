@@ -22,19 +22,20 @@ export default function MyPage() {
       setButton2Color('white');
     }
   };
+  const getData = async () => {
+    try {
+      const { data } = await axios.get(`http://localhost:3001/users/APmgnc1`);
+      console.log(data);
+      sessionStorage.setItem('userInfo', JSON.stringify(data));
+      setUserInfo(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3001/users/APmgnc1`);
-        const data = response.data;
-        sessionStorage.setItem('userInfo', JSON.stringify(data));
-        setUserInfo(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     getData();
   }, []);
+
   console.log('userinfo', userInfo);
   return (
     <>
@@ -57,7 +58,7 @@ export default function MyPage() {
                 보호소 조회
               </Button>
             </Link>
-            <span className={styles.userID}>{userInfo.nickname}</span>
+            <p className={styles.userID}>{userInfo.nickname}</p>
             <Link to="/MyPageEdit">
               <Button
                 className={styles.profileEditButton}
@@ -72,7 +73,7 @@ export default function MyPage() {
               </Button>
             </Link>
           </div>
-          <p>{userInfo.introduce}</p>
+          <p className={styles.introduce}>{userInfo.introduce}</p>
           <div className={styles.buttons}>
             <Link to="/CreateAdoptPage" className={styles.createAdopt}>
               <div className={styles.button}>게시물 작성</div>

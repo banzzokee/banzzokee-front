@@ -16,34 +16,41 @@
       "nickname": "1234"
     },
     {
-      "email": "a@a.com",
-      "password": "$2a$10$KT6nvqPk6c0bnPefhOXYf.MZG1nWuG9oVOE7hVxOl2Phw8N0bfq1G",
-      "id": "5ENt8jZ"
-    },
-    {
-      "email": "ab@a.com",
-      "password": "$2a$10$5YQvJD9Dlig.BGYIPxGApOzLwlY52uHj0jSEU9OlHTjhvDEhMZ.UG",
-      "id": "zsRTuvK"
-    },
-    {
       "email": "a@aa.com",
       "password": "$2a$10$iauw2QJMwapRRaEDamE9SO90c0NFn2AFH2GaigbiY1VIUtct/iTAO",
       "passwordconfirm": "aaaaaaaaaa1!",
       "profile_img_url": "../../../public/myPhoto.jpg",
-      "introduce": "안녕하세요. 소형견 입양 희망합니다.",
+      "introduce": "안녕하세요. 소형견 입양 희망합니다.!d",
       "nickname": "행복보호소장",
+      "userId": "APmgnc1",
       "id": "APmgnc1",
       "shelter": {
-        "name": "",
-        "description": "",
-        "tel": "",
-        "address": ""
-      }
-    },
-    {
-      "email": "aabb@aabb.com",
-      "password": "$2a$10$X/zLJPO1F8ttzlrtDwlUP.jCDn3hO5sL.bLPyKvWTkCbU97YEx0Ym",
-      "id": "cIdTIn5"
+        "name": "a보호소",
+        "description": "유기견센터입니다.",
+        "tel": "010-101-0101",
+        "address": "서울"
+      },
+      "followers": [
+        {
+          "userId": "1",
+          "nickname": "user_1"
+        },
+        {
+          "userId": "2",
+          "nickname": "user_1"
+        },
+        {
+          "userId": "3",
+          "nickname": "user_1"
+        }
+      ],
+      "followees": {
+        "userId": "3Y8GKEd",
+        "nickname": "ababababab"
+      },
+      "originPassword": "a",
+      "newPassword": "aa",
+      "confirmPassword": "aa"
     },
     {
       "email": "ab@ab.com",
@@ -99,35 +106,35 @@
   ],
   "adoption": [
     {
-      "title": "첫게시물",
-      "nickname": "user_1234",
-      "content": "1살 리트리버 입양희망 연락주세요",
-      "imageUrls": "../../../public/dog.webp",
-      "breed": "1리트리버",
-      "size": "1대형",
-      "registeredAt": "2024-01-01",
-      "id": "1",
-      "createdAt": "2024-02-01",
-      "neutering": true,
-      "gender": "male",
-      "age": 3,
-      "healthChecked": true
-    },
-    {
-      "title": "둘째게시물",
-      "nickname": "user_123",
-      "content": "2살 리트리버 입양희망 연락주세요",
-      "imageUrls": "../../../public/dog.webp",
-      "breed": "2리트리버",
-      "size": "2대형",
-      "registeredAt": "2024-01-01",
-      "id": "2",
-      "createdAt": "2024-02-01"
-    },
-    {
-      "title": "a",
-      "content": "a",
-      "id": "Yi2QHDv"
+      "imageUrls": [],
+      "title": "aabb",
+      "tags": {
+        "breeds": "푸들",
+        "size": "초소형",
+        "healthChecked": "검진 완료",
+        "gender": "남",
+        "neutering": "예",
+        "age": "3",
+        "registeredAt": "2022",
+        "user": {
+          "email": "a@aa.com",
+          "password": "$2a$10$iauw2QJMwapRRaEDamE9SO90c0NFn2AFH2GaigbiY1VIUtct/iTAO",
+          "passwordconfirm": "aaaaaaaaaa1!",
+          "profile_img_url": "../../../public/myPhoto.jpg",
+          "introduce": "안녕하세요. 소형견 입양 희망합니다.",
+          "nickname": "행복보호소장",
+          "userId": "APmgnc1",
+          "shelter": {
+            "name": "d센터",
+            "description": "유기견센터입니다.",
+            "tel": "010-101-0101",
+            "address": "서울"
+          }
+        }
+      },
+      "status": "분양중",
+      "content": "안녕",
+      "id": "vIztRk2"
     }
   ],
   "shelter": [],

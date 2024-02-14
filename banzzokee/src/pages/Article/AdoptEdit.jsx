@@ -1,14 +1,15 @@
-import { useState } from 'react'
-import styles from './CreateAdoptPage.module.css'
+import axios from "axios";
+import React,{ useEffect, useState } from "react"
+import styles from './AdoptEdit.module.css'
 import Tag from '../../Tag';
-import BackHeader from '../../components/common/header/BackHeader';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import BackHeader from "../../components/common/header/BackHeader";
+import { useNavigate, useParams } from "react-router-dom"
 
-export default function CreateAdoptPage() {
+export default function ArticleUpdate() {
   const navigate = useNavigate();
-  
+  const { id } = useParams();
   const [adoption, setAdoption] = useState({
+    id: 0,
     imageUrls: [],
     title: '',
     tags: {
@@ -21,8 +22,8 @@ export default function CreateAdoptPage() {
       registeredAt:'',
     },
     status:'',
-    content: ''
-  })
+    content: '',
+  });
 
   const [isActive, setIsActive] = useState({
     ongoing: false,
@@ -36,23 +37,10 @@ export default function CreateAdoptPage() {
     const { name, value } = e.target;
 
     if (name === 'image') {
-      const adoption = new FormData();
-      for (let i = 0; i < e.target.files.length; i++) {
-        adoption.append('image', e.target.files[i]);
-      }
-  
-      axios.post('http://localhost:3001/adoption', adoption)
-        .then((res) => {
-          const newImageUrls = res.data.imageUrls || []; // 기본적으로 빈 배열로 초기화
-
-          setAdoption(prevAdoption => ({
-            ...prevAdoption,
-            imageUrls: [...prevAdoption.imageUrls, ...newImageUrls],
-          }));
-        })
-        .catch((error) => {
-          console.error('Error uploading image:', error);
-        }); 
+      setAdoption({
+        ...adoption,
+        [name]: e.target.files,
+      });
     } else if (name.includes('tag_')) {
       const tagButton = name.replace('tag_', '');
       setAdoption({
@@ -76,16 +64,6 @@ export default function CreateAdoptPage() {
         [name]: value,
       });
     }
-  }; 
-
-  const postAdoption = async (e) => {
-    e.preventDefault();
-
-    await axios.post('http://localhost:3001/adoption', adoption).then((res) => {
-      alert('등록되었습니다.');
-      // navigate('/Article/:idx');
-      navigate('/');
-    });
   };
 
   const handleStatus = (status) => {
@@ -100,6 +78,27 @@ export default function CreateAdoptPage() {
       completion: status === '분양완료',
     });
   };
+
+  useEffect(() => {
+    const getAdoption = async () => {
+      try {
+        const resp = await axios.get(`http://localhost:3001/adoption/${id}`);
+        setAdoption(resp.data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    getAdoption();
+  }, [id]);
+
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    await axios.put(`http://localhost:3001/adoption/${id}`, adoption).then((res) => {
+      alert('수정되었습니다.');
+      navigate(`/ArticleList/${id}`)
+    })
+  }
 
   return (
     <div className={styles.CreateAdoptPage}>
@@ -135,7 +134,7 @@ export default function CreateAdoptPage() {
             <label className={styles.textTitle}>본문</label>
             <textarea name='content' value={adoption.content} onChange={onChange} placeholder='500자 이내로 작성해주세요.' maxLength='500'></textarea>
           </div>
-          <button onClick={postAdoption} className={styles.button}>게시글 등록</button>
+          <button onClick={handleEdit} className={styles.button}>게시글 수정</button>
         </form>
       </div>
     </div>

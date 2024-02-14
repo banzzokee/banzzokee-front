@@ -2,7 +2,9 @@ import styles from './MyPageEdit.module.css';
 import BackHeader from '../../components/common/header/BackHeader';
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 export default function MyPageEdit() {
+  const navigate = useNavigate();
   const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   let photo = <img src={userInfo.profile_img_url}></img>;
@@ -21,24 +23,15 @@ export default function MyPageEdit() {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-
     console.log(accessToken);
 
-    await axios.put(`http://localhost:3001/users/${userInfo.id}`, newInfo);
+    await axios.put(`http://localhost:3001/users/${userInfo.id}`, newInfo).then(() => {
+      alert('수정완료');
+      navigate('/MyPage');
+    });
     console.log('userinfo:', userInfo);
     console.log('newinfo:', newInfo);
-    // await axios.put(
-    //   `http://localhost:3001/users/${userInfo.id}`,
-    //   {
-    //     email: `${userInfo.email}`,
-    //     password: `${userInfo.password}`,
-    //   },
-    //   newInfo
-    // );
-
     sessionStorage.setItem('userInfo', JSON.stringify(newInfo));
-    // axios.put(`http://localhost:3001/users/${userInfo.id}`, newInfo);
-    // document.location.href = '/MyPage';
   };
   return (
     <>
@@ -57,9 +50,9 @@ export default function MyPageEdit() {
             </div>
             <div className={styles.shelterInfo}>
               <p>닉네임:</p>
-              <input className={styles.input} type="text" name="nickname" placeholder={nickname} onChange={onChange} />
+              <input className={styles.input} type="text" name="nickname" value={newInfo.nickname} onChange={onChange} />
               <p>자기 소개:</p>
-              <textarea className={styles.textarea} type="password" name="introduce" placeholder={introduce} onChange={onChange} />
+              <textarea className={styles.textarea} type="password" name="introduce" value={newInfo.introduce} onChange={onChange} />
             </div>
           </div>
           <button className={styles.button} type="submit">

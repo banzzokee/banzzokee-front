@@ -33,20 +33,30 @@ export default function Registerr() {
     });
   };
 
-  // const doEmailVerification = async (e) => {
-  //   e.preventDefault();
+  const doEmailVerification = async (e) => {
+    e.preventDefault();
 
-  //   try {
-  //     const response = await axios.post('http://localhost:3001/sendVerify', { email: inputValue.email });
-  //     if (response.data.success) {
-  //       alert('이메일 인증 메일이 전송되었습니다.');
-  //     } else {
-  //       alert('이메일 인증 메일 전송에 실패했습니다. 나중에 다시 시도해주세요.');
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+    try {
+      const inputValue = { email: `${inputValue.email}` };
+      const config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'https://server.banzzokee.com/api/auth/sign-up',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data: inputValue,
+      };
+      const response = await axios.request(config);
+      if (response.data.success) {
+        alert('이메일 인증 메일이 전송되었습니다.');
+      } else {
+        alert('이메일 인증 메일 전송에 실패했습니다. 나중에 다시 시도해주세요.');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // const checkNickname = async () => {
   //   try {
@@ -97,6 +107,16 @@ export default function Registerr() {
 
       // await checkNickname();
       const { data } = await axios.post('http://localhost:3001/users', inputValue);
+      // const config = {
+      //   method: 'post',
+      //   maxBodyLength: Infinity,
+      //   url: 'https://server.banzzokee.com/api/auth/sign-up',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   data: inputValue,
+      // };
+      // const { data } = await axios.request(config);
 
       setCookie('accessToken', data['accessToken'], { path: '/' });
       navigate('/LoginPage');
@@ -122,7 +142,7 @@ export default function Registerr() {
               <input type="text" name="email" onChange={onChange} className={styles.input} />
               <div className={styles.errorMessage}>{errors.email}</div>
             </div>
-            <button type="button" id="emailconfirmButton" className={styles.emailconfirm_Button}>
+            <button type="button" id="emailconfirmButton" onClick={doEmailVerification} className={styles.emailconfirm_Button}>
               인증하기
             </button>
           </div>
