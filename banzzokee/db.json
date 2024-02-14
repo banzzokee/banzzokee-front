@@ -135,6 +135,68 @@
       "status": "분양중",
       "content": "안녕",
       "id": "vIztRk2"
+    },
+    {
+      "imageUrls": [],
+      "title": "aabb",
+      "tags": {
+        "breeds": "푸들",
+        "size": "초소형",
+        "healthChecked": "검진 완료",
+        "gender": "남",
+        "neutering": "예",
+        "age": "3",
+        "registeredAt": "2022",
+        "user": {
+          "email": "a@aa.com",
+          "password": "$2a$10$iauw2QJMwapRRaEDamE9SO90c0NFn2AFH2GaigbiY1VIUtct/iTAO",
+          "passwordconfirm": "aaaaaaaaaa1!",
+          "profile_img_url": "../../../public/myPhoto.jpg",
+          "introduce": "안녕하세요. 소형견 입양 희망합니다.",
+          "nickname": "행복보호소장",
+          "userId": "APmgnc1",
+          "shelter": {
+            "name": "d센터",
+            "description": "유기견센터입니다.",
+            "tel": "010-101-0101",
+            "address": "서울"
+          }
+        }
+      },
+      "status": "분양중",
+      "content": "안녕",
+      "id": "vIztRk2"
+    },
+    {
+      "imageUrls": [],
+      "title": "aabb",
+      "tags": {
+        "breeds": "푸들",
+        "size": "초소형",
+        "healthChecked": "검진 완료",
+        "gender": "남",
+        "neutering": "예",
+        "age": "3",
+        "registeredAt": "2022",
+        "user": {
+          "email": "a@aa.com",
+          "password": "$2a$10$iauw2QJMwapRRaEDamE9SO90c0NFn2AFH2GaigbiY1VIUtct/iTAO",
+          "passwordconfirm": "aaaaaaaaaa1!",
+          "profile_img_url": "../../../public/myPhoto.jpg",
+          "introduce": "안녕하세요. 소형견 입양 희망합니다.",
+          "nickname": "행복보호소장",
+          "userId": "APmgnc1",
+          "shelter": {
+            "name": "d센터",
+            "description": "유기견센터입니다.",
+            "tel": "010-101-0101",
+            "address": "서울"
+          }
+        }
+      },
+      "status": "분양중",
+      "content": "안녕",
+      "id": "vIztRk2"
     }
   ],
   "shelter": [],

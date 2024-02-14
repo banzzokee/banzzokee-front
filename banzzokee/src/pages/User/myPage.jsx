@@ -6,20 +6,24 @@ import MyPageHeader from '../../components/common/header/MyPageHeader';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Nav from '../../components/common/nav/Nav';
+import ReviewList from '../../components/ReviewList';
 
 export default function MyPage() {
-  const [button1Color, setButton1Color] = useState('#bebebe');
-  const [button2Color, setButton2Color] = useState('white');
+  const [buttonLColor, setButtonLColor] = useState('white');
+  const [buttonRColor, setButtonRColor] = useState('#bebebe');
+  const [selectButton, setSelectButton] = useState('L');
   const [userInfo, setUserInfo] = useState({});
 
-  const handleButtonClick = (buttonNumber) => {
+  const handleButtonClick = (buttonSelect) => {
     // Swap colors when either button is clicked
-    if (buttonNumber === 1) {
-      setButton1Color('white');
-      setButton2Color('#bebebe');
+    if (buttonSelect === 'L') {
+      setButtonLColor('white');
+      setButtonRColor('#bebebe');
+      setSelectButton('L');
     } else {
-      setButton1Color('#bebebe');
-      setButton2Color('white');
+      setButtonLColor('#bebebe');
+      setButtonRColor('white');
+      setSelectButton('R');
     }
   };
   const getData = async () => {
@@ -85,14 +89,17 @@ export default function MyPage() {
         </div>
         <div className={styles.viewArticles}>
           <div className={styles.chooseCategory}>
-            <div style={{ backgroundColor: button1Color }} onClick={() => handleButtonClick(1)} className={styles.category}>
+            <div style={{ backgroundColor: buttonLColor }} onClick={() => handleButtonClick('L')} className={styles.category}>
               관심 게시물
             </div>
-            <div style={{ backgroundColor: button2Color }} onClick={() => handleButtonClick(2)} className={styles.category}>
+            <div style={{ backgroundColor: buttonRColor }} onClick={() => handleButtonClick('R')} className={styles.category}>
               내가 쓴 게시물
             </div>
           </div>
-          <div className={styles.articleList}></div>
+          <div className={styles.articleList}>
+            {selectButton == 'L' && <ReviewList />}
+            {selectButton == 'R' && <ReviewList />}
+          </div>
         </div>
       </div>
       <Nav></Nav>
