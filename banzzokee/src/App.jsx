@@ -30,9 +30,10 @@ import ShelterRegisterPage from './pages/user/ShelterRegisterPage';
 import MyPageEdit from './pages/user/MyPageEdit';
 import GoogleLoginButton from './pages/register/GoogleLoginButton';
 import ArticleList from './components/ArticleList';
-import AdoptEdit from './pages/article/AdoptEdit'
+import AdoptEdit from './pages/article/AdoptEdit';
 import ReviewPage from './pages/review/ReviewPage';
 import Filter from './pages/home/Filter';
+import ReviewList from './components/ReviewList';
 
 // import GoogleRegister from './GoogleRegister';
 
@@ -56,7 +57,7 @@ function App() {
           <Route path="/CreateAdoptPage" element={<CreateAdoptPage />} />
           <Route path="/CreateReviewPage" element={<CreateReviewPage />} />
           <Route path="/Tag" element={<Tag />} />
-          <Route path="/OtherMyPage" element={<OtherMyPage />} />
+          <Route path="/OtherMyPage/:id" element={<OtherMyPage />} />
           <Route path="/ShelterInfoPage" element={<ShelterInfoPage />} />
           <Route path="/SettingPage" element={<SettingPage />} />
           <Route path="/FollowingPage" element={<FollowingPage />} />
@@ -74,9 +75,10 @@ function App() {
           <Route path="/ArticleList" element={<ArticleList />} />
           <Route path="/ArticleList/:id" element={<ViewArticlePage />} />
           <Route path="/update/:id" element={<AdoptEdit />} />
-          <Route path="/ArticleList/:idx" element={<ViewArticlePage />} />
+          {/* <Route path="/ArticleList/:idx" element={<ViewArticlePage />} /> */}
           <Route path="/ReviewPage" element={<ReviewPage />} />
           <Route path="/Filter" element={<Filter />} />
+          <Route path="/ReviewList" element={<ReviewList />} />
         </Routes>
       </BrowserRouter>
     </>

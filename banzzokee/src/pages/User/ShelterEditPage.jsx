@@ -27,12 +27,17 @@ export default function ShelterEditPage() {
     });
   }, [shelterInfo]);
 
-  const onSubmit = async () => {
-    console.log('db: ', newInfo);
+  const onSubmit = async (e) => {
+    setNewInfo({
+      ...newInfo,
+      ['shelter']: shelterInfo,
+    });
+    e.preventDefault();
     await axios.put(`http://localhost:3001/users/${userInfo.id}`, newInfo);
     sessionStorage.setItem('userInfo', JSON.stringify(newInfo));
-    // navigate('/SettingPage');
-    document.location.href = '/SettingPage';
+    alert('수정완료.');
+    navigate('/SettingPage');
+    // document.location.href = '/SettingPage';
   };
 
   const onDelete = () => {
@@ -56,8 +61,8 @@ export default function ShelterEditPage() {
     console.log('newINfo', newInfo);
     await axios.put(`http://localhost:3001/users/${userInfo.id}`, newInfo);
     sessionStorage.setItem('userInfo', JSON.stringify(newInfo));
-    // document.location.href = '/SettingPage';
-    // navigate('/SettingPage');
+    alert('수정완료.');
+    navigate('/SettingPage');
   };
 
   return (
@@ -77,13 +82,13 @@ export default function ShelterEditPage() {
             </div>
             <div className={styles.shelterInfo}>
               <p>보호소 이름:</p>
-              <input className={styles.input} type="text" name="name" onInput={onChange} placeholder={shelterInfo.name} />
+              <input className={styles.input} type="text" name="name" onInput={onChange} value={shelterInfo.name} />
               <p>보호소 소개:</p>
-              <input className={styles.input} type="text" name="description" onInput={onChange} placeholder={shelterInfo.description} />
+              <input className={styles.input} type="text" name="description" onInput={onChange} value={shelterInfo.description} />
               <p>연락처:</p>
-              <input className={styles.input} type="text" name="tel" onInput={onChange} placeholder={shelterInfo.tel} />
+              <input className={styles.input} type="text" name="tel" onInput={onChange} value={shelterInfo.tel} />
               <p>주소:</p>
-              <input className={styles.input} type="text" name="address" onInput={onChange} placeholder={shelterInfo.address} />
+              <input className={styles.input} type="text" name="address" onInput={onChange} value={shelterInfo.address} />
             </div>
           </div>
           <button className={styles.button} type="submit">

@@ -6,7 +6,7 @@ import Nav from '../../components/common/nav/Nav';
 
 export default function ShelterInfoPage() {
   const userInfo = JSON.parse(sessionStorage.getItem('articleInfo'));
-  const photo = <img src={userInfo.profile_img_url}></img>;
+  const photo = <img></img>;
 
   return (
     <>
