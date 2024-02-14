@@ -11,12 +11,12 @@ export default function ReviewPage() {
       <div className={styles.wrap}>
         <div className={styles.mainPage_Header}>
           <div className={styles.datesort}>최신순 / 오래된순</div>
-          <div>
+          {/* <div>
             <button className={styles.filter}>
               필터
               <img src="/Filter.png" alt="필터" className={styles.filter_Img} />
             </button>
-          </div>
+          </div> */}
         </div>
         <ArticleList />
       </div>

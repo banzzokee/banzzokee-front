@@ -32,6 +32,7 @@ import GoogleLoginButton from './pages/register/GoogleLoginButton';
 import ArticleList from './components/ArticleList';
 import AdoptEdit from './pages/article/AdoptEdit';
 import ReviewPage from './pages/review/ReviewPage';
+import Filter from './pages/home/Filter';
 
 // import GoogleRegister from './GoogleRegister';
 
@@ -75,6 +76,7 @@ function App() {
           <Route path="/update/:id" element={<AdoptEdit />} />
           {/* <Route path="/ArticleList/:idx" element={<ViewArticlePage />} /> */}
           <Route path="/ReviewPage" element={<ReviewPage />} />
+          <Route path="/Filter" element={<Filter />} />
         </Routes>
       </BrowserRouter>
     </>
