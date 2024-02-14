@@ -8,6 +8,74 @@
   list-style: none;
   /* width: 330px; */
   height: 120px;
-  background-color: #E4E3E3;
-  margin: 2px 0px;
+  border: 1px solid #E4E3E3;display: flex;
+  margin: 0;
+  /* text-decoration: none; */
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  /* text-decoration: none; */
+  color: inherit;
+}
+
+/* .link:hover {
+  text-decoration: none;
+} */
+
+.image {
+  /* background-color: rgb(80, 77, 82); */
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  margin: 10px;
+  position: relative;
+}
+
+.image img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+}
+
+.status {
+  background-color: #ffee55;
+  padding: 0 15px;
+  border-radius: 50px;
+  height: 25px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 70px;
+  left: 10px;
+  font-size: 14px;
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userInfo {
+  display: flex;
+}
+
+.title {
+  text-align: left;
+  margin: 10px;
+}
+
+.tags {
+  display: flex;
+  gap: 5px;
+}
+
+.tag {
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  background-color: greenyellow;
 }
