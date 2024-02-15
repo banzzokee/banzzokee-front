@@ -185,6 +185,13 @@ export default function Registerr() {
 // "server": "npx json-server db.json --port 3001 -r routes.json",
 // "react-vite": "vite dev"
 
+// "dev": "npm run react-vite",
+// "build": "vite build",
+// "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+// "preview": "vite preview",
+// "server": "npx json-server db.json --port 3001 -r routes.json",
+// "react-vite": "vite dev"
+
 // 'Content-Type': 'application/json',
 // 'Access-Control-Allow-Origin': '*',
 // 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',

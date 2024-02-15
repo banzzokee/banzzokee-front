@@ -7,9 +7,7 @@ export default function MyPageEdit() {
   const navigate = useNavigate();
   const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
-  let photo = <img src={userInfo.profile_img_url}></img>;
-  let nickname = userInfo.nickname;
-  let introduce = userInfo.introduce;
+
   // const [newNickname, setNewNickname] = useState(nickname);
   // const [newIntroduce, setNewIntroduce] = useState(introduce);
   const [newInfo, setNewInfo] = useState(userInfo);
@@ -21,17 +19,52 @@ export default function MyPageEdit() {
       [name]: value,
     });
   };
+
+  const [profileImage, setProfileImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    const selectedImage = e.target.files[0];
+    if (selectedImage) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setProfileImage(reader.result);
+      };
+      reader.readAsDataURL(selectedImage);
+      setNewInfo({
+        ...newInfo,
+        ['profileImageUrl']: profileImage,
+      });
+      console.log(newInfo);
+    }
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(accessToken);
 
-    await axios.put(`http://localhost:3001/users/${userInfo.id}`, newInfo).then(() => {
-      alert('수정완료');
-      navigate('/MyPage');
-    });
-    console.log('userinfo:', userInfo);
+    // await axios.put(`http://localhost:3001/users/${userInfo.id}`, newInfo).then(() => {
+    //   alert('수정완료');
+    //   navigate('/MyPage');
+    // });
     console.log('newinfo:', newInfo);
-    sessionStorage.setItem('userInfo', JSON.stringify(newInfo));
+    let data = new FormData();
+    data.append('request', newInfo, { contentType: 'application/json' });
+    try {
+      const config = {
+        method: 'patch',
+        maxBodyLength: Infinity,
+        url: 'https://server.banzzokee.homes/api/users/me',
+        headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${accessToken}` },
+        data: data,
+      };
+      await axios.request(config).then((response) => {
+        alert('수정완료');
+        navigate('/MyPage');
+        console.log(response);
+        sessionStorage.setItem('userInfo', JSON.stringify(newInfo));
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <>
@@ -40,9 +73,11 @@ export default function MyPageEdit() {
         <form className={styles.edit} onSubmit={onSubmit}>
           <div className={styles.editInput}>
             <div className={styles.pictures}>
-              <div className={styles.picture}>{photo}</div>
+              <div className={styles.picture} id="profileImg">
+                {profileImage && <img src={profileImage} />}
+              </div>
               <div className={styles.add}>
-                <input className={styles.addPhoto} type="file" name="" id="fileInput"></input>
+                <input className={styles.addPhoto} type="file" name="profileImgUrl" id="fileInput" accept="image/*" onChange={handleImageChange}></input>
                 <label className={styles.addIcon} htmlFor="fileInput">
                   <img src="../../../public/addPhoto.svg" alt="" />
                 </label>
@@ -50,9 +85,11 @@ export default function MyPageEdit() {
             </div>
             <div className={styles.shelterInfo}>
               <p>닉네임:</p>
-              <input className={styles.input} type="text" name="nickname" value={newInfo.nickname} onChange={onChange} />
+              <input className={styles.input} type="text" name="nickname" onChange={onChange} />
+              {/* value={newInfo.nickname} 추가해야됨*/}
               <p>자기 소개:</p>
-              <textarea className={styles.textarea} type="password" name="introduce" value={newInfo.introduce} onChange={onChange} />
+              <textarea className={styles.textarea} type="text" name="introduce" onChange={onChange} />
+              {/* value={newInfo.introduce} */}
             </div>
           </div>
           <button className={styles.button} type="submit">

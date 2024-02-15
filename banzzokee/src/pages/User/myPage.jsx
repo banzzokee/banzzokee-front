@@ -13,6 +13,7 @@ export default function MyPage() {
   const [buttonRColor, setButtonRColor] = useState('#bebebe');
   const [selectButton, setSelectButton] = useState('L');
   const [userInfo, setUserInfo] = useState({});
+  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
 
   const handleButtonClick = (buttonSelect) => {
     // Swap colors when either button is clicked
@@ -28,10 +29,16 @@ export default function MyPage() {
   };
   const getData = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/users/APmgnc1`);
-      console.log(data);
-      sessionStorage.setItem('userInfo', JSON.stringify(data));
-      setUserInfo(data);
+      const config = {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: 'https://server.banzzokee.homes/api/users',
+        headers: { 'Content-Type': `application/json`, Authorization: `Bearer ${accessToken}` },
+      };
+      const response = await axios.request(config);
+      console.log('response', response);
+      sessionStorage.setItem('userInfo', JSON.stringify(response.data));
+      setUserInfo(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -40,7 +47,6 @@ export default function MyPage() {
     getData();
   }, []);
 
-  console.log('userinfo', userInfo);
   return (
     <>
       <MyPageHeader></MyPageHeader>
@@ -97,8 +103,8 @@ export default function MyPage() {
             </div>
           </div>
           <div className={styles.articleList}>
-            {selectButton == 'L' && <ReviewList />}
-            {selectButton == 'R' && <ReviewList />}
+            {/* {selectButton == 'L' && <ReviewList />} */}
+            {/* {selectButton == 'R' && <ReviewList />} */}
           </div>
         </div>
       </div>
