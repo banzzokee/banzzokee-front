@@ -39,7 +39,7 @@ import ReviewList from './components/ReviewList';
 
 function App() {
   return (
-    <>
+    <div id="mobileView">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainPage />} />
@@ -75,13 +75,13 @@ function App() {
           <Route path="/ArticleList" element={<ArticleList />} />
           <Route path="/ArticleList/:id" element={<ViewArticlePage />} />
           <Route path="/update/:id" element={<AdoptEdit />} />
-          {/* <Route path="/ArticleList/:idx" element={<ViewArticlePage />} /> */}
+          <Route path="/ViewArticlePage" element={<ViewArticlePage />} />
           <Route path="/ReviewPage" element={<ReviewPage />} />
           <Route path="/Filter" element={<Filter />} />
           <Route path="/ReviewList" element={<ReviewList />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

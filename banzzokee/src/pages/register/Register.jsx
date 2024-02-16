@@ -3,7 +3,6 @@ import styles from './Register.module.css';
 import BackHeader from '../../components/common/header/BackHeader';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 
 export default function Registerr() {
   const [inputValue, setInputValue] = useState({
@@ -20,10 +19,32 @@ export default function Registerr() {
     nickname: null,
   });
 
+  const [verify, setVerify] = useState({});
   const navigate = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies();
 
   // const [nicknameCheckResult, setNicknameCheckResult] = useState(null);
+
+  const submitVerification = async (e) => {
+    setVerify({
+      email: `${inputValue.email}`,
+      code: `${verify}`,
+    });
+    e.preventDefault();
+    try {
+      const config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: `https://server.banzzokee.homes/api/auth/verify`,
+        data: verify,
+      };
+      await axios.request(config).then((response) => {
+        alert('인증완료');
+        console.log(response);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +54,7 @@ export default function Registerr() {
     });
   };
 
-  const doEmailVerification = async (e) => {
+  const sendEmailVerification = async (e) => {
     e.preventDefault();
 
     try {
@@ -56,71 +77,24 @@ export default function Registerr() {
     }
   };
 
-  // const checkNickname = async () => {
-  //   try {
-  //     const nicknameCheckResponse = await axios.post(
-  //       'http://localhost:3001/checkNickname',
-  //       { nickname: inputValue.nickname }
-  //     );
-
-  //     setNicknameCheckResult(nicknameCheckResponse.data);
-
-  //     if (nicknameCheckResponse.data.available === false) {
-  //       setErrors({ ...errors, nickname: '이미 사용 중인 닉네임입니다.' });
-  //     } else {
-  //       setErrors({ ...errors, nickname: null });
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   const doSignUp = async (e) => {
     e.preventDefault();
+
+    console.log('inputValue:', inputValue);
     try {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(inputValue.email)) {
-        setErrors({ ...errors, email: '올바른 이메일 형식이 아닙니다.' });
-        return;
-      } else {
-        setErrors({ ...errors, email: null });
-      }
+      console.log('inputValue:signup', inputValue);
+      const config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'https://server.banzzokee.homes/api/auth/sign-up',
+        headers: { 'Content-Type': 'application/json' },
+        data: inputValue,
+      };
+      await axios.request(config);
 
-      // await doEmailVerification();
-
-      const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z\d]).{8,}$/;
-      if (!passwordRegex.test(inputValue.password)) {
-        setErrors({ ...errors, password: '비밀번호는 숫자, 영어 대소문자, 특수기호를 모두 사용하고 8자 이상이어야 합니다.' });
-        return;
-      } else {
-        setErrors({ ...errors, password: null });
-      }
-
-      if (inputValue.password !== inputValue.passwordconfirm) {
-        setErrors({ ...errors, passwordconfirm: '비밀번호가 일치하지 않습니다.' });
-        return;
-      } else {
-        setErrors({ ...errors, passwordconfirm: null });
-      }
-
-      // await checkNickname();
-      const { data } = await axios.post('http://localhost:3001/users', inputValue);
-      // const config = {
-      //   method: 'post',
-      //   maxBodyLength: Infinity,
-      //   url: 'https://server.banzzokee.com/api/auth/sign-up',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   data: inputValue,
-      // };
-      // const { data } = await axios.request(config);
-
-      setCookie('accessToken', data['accessToken'], { path: '/' });
       navigate('/LoginPage');
-      console.log(data);
     } catch (error) {
-      setErrors({ ...errors, error: '이미 존재하는 이메일입니다.' });
+      setErrors({ ...errors, error: '이미 존재하는 이메일입니다dd.' });
       console.error(error);
     }
   };
@@ -131,16 +105,26 @@ export default function Registerr() {
       <div className={styles.register_Page}>
         <h2 className={styles.registerTitle}>회원가입</h2>
         <form className={styles.container} onSubmit={doSignUp}>
-          <div className={styles.infoContainer}>
+          {/* <div className={styles.infoContainer}>
             <h4 className={styles.info}>기본정보</h4>
-          </div>
+          </div> */}
           <div className={styles.inputGroup}>
             <div>
               <label>이메일</label>
               <input type="text" name="email" onChange={onChange} className={styles.input} />
               <div className={styles.errorMessage}>{errors.email}</div>
             </div>
-            <button type="button" id="emailconfirmButton" onClick={doEmailVerification} className={styles.emailconfirm_Button}>
+            <button type="button" id="emailconfirmButton" onClick={sendEmailVerification} className={styles.emailconfirm_Button}>
+              인증요청
+            </button>
+          </div>
+          <div className={styles.inputGroup}>
+            <div>
+              <label>인증코드</label>
+              <input type="text" name="code" onChange={onChange} className={styles.input} />
+              <div className={styles.errorMessage}>{errors.email}</div>
+            </div>
+            <button type="button" id="emailconfirmButton" onClick={submitVerification} className={styles.emailconfirm_Button}>
               인증하기
             </button>
           </div>
@@ -154,7 +138,7 @@ export default function Registerr() {
           <div className={styles.inputGroup}>
             <div>
               <label>비밀번호 확인</label>
-              <input type="password" name="passwordconfirm" onChange={onChange} className={styles.input} />
+              <input type="password" name="confirmPassword" onChange={onChange} className={styles.input} />
               <div className={styles.errorMessage}>{errors.passwordconfirm}</div>
             </div>
           </div>
@@ -164,9 +148,9 @@ export default function Registerr() {
               <input type="text" name="nickname" onChange={onChange} className={styles.input} />
               <div className={styles.errorMessage}>{errors.nickname}</div>
             </div>
-            <button type="button" id="confirmButton" className={styles.confirmButton}>
+            {/* <button type="button" id="confirmButton" className={styles.confirmButton}>
               중복확인
-            </button>
+            </button> */}
           </div>
           <div className={styles.errorMessage}>{errors.error}</div>
           <button type="submit" id="registerButton" className={styles.registerButton}>

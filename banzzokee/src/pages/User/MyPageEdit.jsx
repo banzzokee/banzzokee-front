@@ -21,20 +21,17 @@ export default function MyPageEdit() {
   };
 
   const [profileImage, setProfileImage] = useState(null);
+  const [submitImage, setSubmitImage] = useState(null);
 
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
+    setSubmitImage(selectedImage);
     if (selectedImage) {
       const reader = new FileReader();
       reader.onload = () => {
         setProfileImage(reader.result);
       };
       reader.readAsDataURL(selectedImage);
-      setNewInfo({
-        ...newInfo,
-        ['profileImageUrl']: profileImage,
-      });
-      console.log(newInfo);
     }
   };
 
@@ -45,16 +42,18 @@ export default function MyPageEdit() {
     //   alert('수정완료');
     //   navigate('/MyPage');
     // });
-    console.log('newinfo:', newInfo);
-    let data = new FormData();
-    data.append('request', newInfo, { contentType: 'application/json' });
+
+    let sendData = new FormData();
+    sendData.append('profileUrl', submitImage);
+    sendData.append('nickname', newInfo.nickname);
+    sendData.append('introduce', newInfo.introduce);
+    console.log(sendData);
     try {
       const config = {
         method: 'patch',
-        maxBodyLength: Infinity,
         url: 'https://server.banzzokee.homes/api/users/me',
         headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${accessToken}` },
-        data: data,
+        data: sendData,
       };
       await axios.request(config).then((response) => {
         alert('수정완료');

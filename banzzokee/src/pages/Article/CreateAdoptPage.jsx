@@ -81,7 +81,7 @@ export default function CreateAdoptPage() {
 
   const postAdoption = async (e) => {
     e.preventDefault();
-
+    console.log(adoption);
     await axios.post('http://localhost:3001/adoption', adoption).then((res) => {
       alert('등록되었습니다.');
       // navigate('/Article/:idx');

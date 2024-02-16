@@ -4,13 +4,24 @@ import { Link } from 'react-router-dom';
 import styles from './ArticleList.module.css';
 
 export default function ArticleList() {
+  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const [articleList, setArticleList] = useState([]);
 
   const getArticleList = async () => {
     try {
-      const resp = await axios.get('http://localhost:3001/adoption');
-      setArticleList(resp.data);
-      console.log(resp.data);
+      // const resp = await axios.get('http://localhost:3001/adoption');
+
+      // setArticleList(resp.data);
+      // console.log(resp.data);
+      const config = {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: 'https://server.banzzokee.homes/api/adoptions',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer {${accessToken}}` },
+      };
+      await axios.request(config).then((response) => {
+        console.log(response);
+      });
     } catch (error) {
       console.error('Error:', error);
     }
@@ -37,7 +48,7 @@ export default function ArticleList() {
                       <img src="../../../public/User.png" alt="" style={{ width: '14px', height: '14px' }} />
                       <div className={styles.name}>user_123</div>
                     </div>
-                      <div className={styles.date}>2023-01-03</div>
+                    <div className={styles.date}>2023-01-03</div>
                   </div>
                   <div className={styles.title}>{adoption.title}</div>
                   <div className={styles.tags}>

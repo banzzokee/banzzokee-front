@@ -7,7 +7,7 @@ import axios from 'axios';
 
 export default function ViewArticlePage() {
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
-  const { id } = useParams();
+  // const { id } = useParams();
   const [adoption, setAdoption] = useState({});
   const navigate = useNavigate();
 
@@ -33,16 +33,12 @@ export default function ViewArticlePage() {
     try {
       const config = {
         method: 'get',
-        maxBodyLength: Infinity,
-        url: `https://server.banzzokee.homes/api/adoptions/`,
+        url: `https://server.banzzokee.homes/api/adoptions/2`,
         headers: { 'Content-Type': `application/json`, Authorization: `Bearer ${accessToken}` },
       };
       const response = await axios.request(config);
       console.log(response);
       setAdoption(response.data);
-
-      // const resp = await axios.get(`http://localhost:3001/adoptions/${id}`);
-      // setAdoption(resp.data);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -50,7 +46,7 @@ export default function ViewArticlePage() {
 
   useEffect(() => {
     getAdoption();
-  }, [id]);
+  }, []);
 
   return (
     <>
@@ -91,9 +87,7 @@ export default function ViewArticlePage() {
           </div>
 
           <div className={styles.articlePhotos}>
-            <div className={styles.imgContainer}>
-              <img src="../../../public/dog.webp" alt="" />
-            </div>
+            <div className={styles.imgContainer}>{/* <img src="../../../public/dog.webp" alt="" /> */}</div>
 
             <div className={styles.status}>{adoption.status}</div>
           </div>
