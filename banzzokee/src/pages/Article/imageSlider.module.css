@@ -1,0 +1,8 @@
+.imageContainer {
+  width: 100%;
+  height: 10%;
+}
+
+.sliderButton {
+  z-index: -1;
+}

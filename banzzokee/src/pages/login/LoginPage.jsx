@@ -7,7 +7,9 @@ import axios from 'axios';
 import GoogleLoginButton from '../register/GoogleLoginButton';
 import MyPage from '../user/MyPage';
 import Nav from '../../components/common/nav/Nav';
+import { useNavigate } from 'react-router-dom';
 export default function LoginPage() {
+  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     email: '',
     password: '',
@@ -36,16 +38,15 @@ export default function LoginPage() {
       };
       const response = await axios.request(config);
       console.log(response);
-      // setCookie('accessToken', data['accessToken'], { path: '/' });
-      // sessionStorage.setItem('userInfo', JSON.stringify(data.user));
-      // sessionStorage.setItem('accessToken', JSON.stringify(data.accessToken));
-      // document.location.href = '/MyPage';
+
+      sessionStorage.setItem('accessToken', JSON.stringify(response.data.accessToken));
+      navigate('/MyPage');
     } catch (error) {
       console.log(error);
       alert('로그인 실패 아이디 또는 비밀번호를 재 확인하세요');
     }
   };
-  if (sessionStorage.getItem('userInfo') == null) {
+  if (sessionStorage.getItem('accessToken') == null) {
     return (
       <>
         <BackHeader />

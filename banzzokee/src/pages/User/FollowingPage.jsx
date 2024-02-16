@@ -22,7 +22,7 @@ export default function FollowingPage() {
   };
   useEffect(() => {
     getList();
-  }, [setList]);
+  }, []);
 
   return (
     <>
@@ -30,7 +30,7 @@ export default function FollowingPage() {
       <div className={styles.container}>
         <div className={styles.listBox}>
           {list.map((follower) => (
-            <FollowCard key={follower.id} follower={follower} list={list} setList={setList} />
+            <FollowCard key={follower.id} follower={follower} list={list} />
           ))}
         </div>
       </div>

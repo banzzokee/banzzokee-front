@@ -8,7 +8,8 @@
   list-style: none;
   /* width: 330px; */
   height: 120px;
-  border: 1px solid #E4E3E3;display: flex;
+  border: 1px solid #e4e3e3;
+  display: flex;
   margin: 0;
   /* text-decoration: none; */
 }
@@ -24,29 +25,36 @@
   text-decoration: none;
 } */
 
-.image {
+.imageContainer {
   /* background-color: rgb(80, 77, 82); */
   width: 100px;
   height: 100px;
   border-radius: 10px;
   margin: 10px;
   position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 
-.image img {
-  width: 100px;
-  height: 100px;
-  border-radius: 10px;
+.imageContainer img {
+  width: auto;
+  height: 100%;
 }
-
+.infoBox {
+  flex: 1;
+  /* flex:1 이 옆에 다른 컨텐츠가 많아 공간 차지 많이해도 본 컨텐츠가 찌부되는걸 방지해줌 */
+  margin-right: 10px;
+}
 .status {
   background-color: #ffee55;
   padding: 0 15px;
   border-radius: 50px;
   height: 25px;
   position: absolute;
-  display: flex;
-  align-items: center;
+  z-index: 10;
+  /* display: flex; */
+  /* align-items: center; */
   top: 70px;
   left: 10px;
   font-size: 14px;
@@ -57,13 +65,13 @@
   justify-content: space-between;
 }
 
-.userInfo {
-  display: flex;
+.date {
+  right: 0;
 }
 
 .title {
   text-align: left;
-  margin: 10px;
+  /* margin: 10px; */
 }
 
 .tags {
