@@ -20,31 +20,10 @@ export default function Registerr() {
   });
 
   const [verify, setVerify] = useState({});
+  const [code, setCode] = useState(0);
   const navigate = useNavigate();
 
   // const [nicknameCheckResult, setNicknameCheckResult] = useState(null);
-
-  const submitVerification = async (e) => {
-    setVerify({
-      email: `${inputValue.email}`,
-      code: `${verify}`,
-    });
-    e.preventDefault();
-    try {
-      const config = {
-        method: 'post',
-        maxBodyLength: Infinity,
-        url: `https://server.banzzokee.homes/api/auth/verify`,
-        data: verify,
-      };
-      await axios.request(config).then((response) => {
-        alert('인증완료');
-        console.log(response);
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -52,6 +31,11 @@ export default function Registerr() {
       ...inputValue,
       [name]: value,
     });
+  };
+
+  const onChangeVerify = (e) => {
+    const { name, value } = e.target;
+    setCode(value);
   };
 
   const sendEmailVerification = async (e) => {
@@ -67,7 +51,8 @@ export default function Registerr() {
         data: inputdata,
       };
       const response = await axios.request(config);
-      if (response.data.success) {
+      console.log(response);
+      if (response.status == 200) {
         alert('이메일 인증 메일이 전송되었습니다.');
       } else {
         alert('이메일 인증 메일 전송에 실패했습니다. 나중에 다시 시도해주세요.');
@@ -76,7 +61,33 @@ export default function Registerr() {
       console.error(error);
     }
   };
+  const submitVerification = async (e) => {
+    setVerify({
+      email: inputValue.email,
+      code: code,
+    });
+    console.log('verify', verify);
+    e.preventDefault();
+    try {
+      const config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: `https://server.banzzokee.homes/api/auth/verify`,
+        headers: { 'Content-Type': `application/json` },
+        data: verify,
+      };
+      const response = await axios.request(config);
+      if (response.status == 200) {
+        alert('인증완료');
+      } else {
+        alert('인증실패');
+      }
 
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const doSignUp = async (e) => {
     e.preventDefault();
 
@@ -121,7 +132,7 @@ export default function Registerr() {
           <div className={styles.inputGroup}>
             <div>
               <label>인증코드</label>
-              <input type="text" name="code" onChange={onChange} className={styles.input} />
+              <input type="text" name="code" onChange={onChangeVerify} className={styles.input} />
               <div className={styles.errorMessage}>{errors.email}</div>
             </div>
             <button type="button" id="emailconfirmButton" onClick={submitVerification} className={styles.emailconfirm_Button}>

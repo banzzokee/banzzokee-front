@@ -168,7 +168,7 @@
       "id": "vIztRk3"
     },
     {
-      "imageUrls": [],
+      "imageUrls": ["../../../public/dog.webp", "../../../public/myPhoto.jpg"],
       "title": "cccc",
       "tags": {
         "breeds": "푸들",

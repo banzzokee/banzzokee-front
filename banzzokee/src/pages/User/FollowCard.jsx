@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 
-const FollowCard = ({ follower, list, setList }) => {
+const FollowCard = ({ follower, list }) => {
   const [follow, setFollow] = useState(true);
   const [updatedList, setUpdatedList] = useState(list);
   const newList = updatedList.filter((user) => user.userId !== follower.userId);

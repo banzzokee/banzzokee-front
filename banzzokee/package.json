@@ -5,7 +5,7 @@
   "type": "module",
   "proxy": "http://localhost:5173/",
   "scripts": {
-    "dev": "npm run react-vite",
+    "dev": "concurrently \"npm run server\" \"npm run react-vite\"",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",

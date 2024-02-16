@@ -4,10 +4,11 @@ import BackHeader from '../../components/common/header/BackHeader';
 import Nav from '../../components/common/nav/Nav';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import ImageSlider from './imageSlider';
 
 export default function ViewArticlePage() {
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
-  // const { id } = useParams();
+  const { id } = useParams();
   const [adoption, setAdoption] = useState({});
   const navigate = useNavigate();
 
@@ -33,11 +34,11 @@ export default function ViewArticlePage() {
     try {
       const config = {
         method: 'get',
-        url: `https://server.banzzokee.homes/api/adoptions/2`,
+        url: `https://server.banzzokee.homes/api/adoptions/${id}`,
         headers: { 'Content-Type': `application/json`, Authorization: `Bearer ${accessToken}` },
       };
       const response = await axios.request(config);
-      console.log(response);
+      console.log('ViewArticlePage response', response);
       setAdoption(response.data);
     } catch (error) {
       console.error('Error:', error);
@@ -87,13 +88,16 @@ export default function ViewArticlePage() {
           </div>
 
           <div className={styles.articlePhotos}>
-            <div className={styles.imgContainer}>{/* <img src="../../../public/dog.webp" alt="" /> */}</div>
+            <div className={styles.imgContainer}>
+              {/* <img src={adoption.imageUrls[1]} alt="" /> */}
+              {/* <ImageSlider images={adoption.imageUrls} /> */}
+            </div>
 
-            <div className={styles.status}>{adoption.status}</div>
+            <div className={styles.status}>{/* {adoption.status} */}</div>
           </div>
           <div className={styles.articleTexts}>
             <div className={styles.titleAndSave}>
-              <div className={styles.title}>{adoption.title}</div>
+              <div className={styles.title}>{/* {adoption.title} */}</div>
               <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px' }} />
             </div>
 
@@ -111,7 +115,7 @@ export default function ViewArticlePage() {
                 </>
               )}
             </div>
-            <div className={styles.body}>{adoption.content}</div>
+            <div className={styles.body}>{/* {adoption.content} */}</div>
           </div>
         </div>
       </div>

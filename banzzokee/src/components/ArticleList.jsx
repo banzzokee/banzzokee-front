@@ -15,13 +15,12 @@ export default function ArticleList() {
       // console.log(resp.data);
       const config = {
         method: 'get',
-        maxBodyLength: Infinity,
-        url: 'https://server.banzzokee.homes/api/adoptions',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer {${accessToken}}` },
+        url: `https://server.banzzokee.homes/api/adoptions?page=0&size=10&direction=desc`,
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
       };
-      await axios.request(config).then((response) => {
-        console.log(response);
-      });
+      const response = await axios.request(config);
+      console.log(response.data.content);
+      setArticleList(response.data.content);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -37,26 +36,25 @@ export default function ArticleList() {
         {articleList &&
           articleList.map((adoption) => (
             <li key={adoption.id}>
-              <Link to={`/ArticleList/${adoption.id}`} key={adoption.id} className={styles.link}>
-                <div className={styles.image}>
+              <Link to={`/ArticleList/${adoption.adoptionId}`} key={adoption.id} className={styles.link}>
+                <div className={styles.imageContainer}>
                   <img src="../../../public/dog.webp" alt="" />
                   <div className={styles.status}>{adoption.status}</div>
                 </div>
-                <div>
+                <div className={styles.infoBox}>
                   <div className={styles.user}>
-                    <div className={styles.userInfo}>
-                      <img src="../../../public/User.png" alt="" style={{ width: '14px', height: '14px' }} />
-                      <div className={styles.name}>user_123</div>
-                    </div>
+                    {/* <img src="../../../public/User.png" alt="" style={{ width: '14px', height: '14px' }} /> */}
+                    {/* 여기에는 게시글 작성자 프로필까지 들어가면 너무 정보가 많을것 같아 빼는게 좋을것 같아요!*/}
+                    <div className={styles.name}>{adoption.userNickname}</div>
                     <div className={styles.date}>2023-01-03</div>
                   </div>
                   <div className={styles.title}>{adoption.title}</div>
-                  <div className={styles.tags}>
+                  {/* <div className={styles.tags}>
                     <div className={styles.tag}>{adoption.tags.breeds}</div>
                     <div className={styles.tag}>{adoption.tags.size}</div>
                     <div className={styles.tag}>{adoption.tags.healthChecked}</div>
                     <div className={styles.tag}>{adoption.tags.gender}</div>
-                  </div>
+                  </div> */}
                 </div>
               </Link>
             </li>

@@ -37,7 +37,7 @@ export default function MyPage() {
       };
       const response = await axios.request(config);
       console.log('response', response);
-      sessionStorage.setItem('userInfo', JSON.stringify(response.data));
+      // sessionStorage.setItem('userInfo', JSON.stringify(response.data));
       setUserInfo(response.data);
     } catch (error) {
       console.error(error);
