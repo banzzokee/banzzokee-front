@@ -50,6 +50,15 @@
   background-color: #d9d9d9;
 }
 
+.numberVerify {
+  display: flex;
+}
+
+.numberVerify input {
+  height: 25px;
+  border: 1px solid #9C9A9A;
+}
+
 label {
   width: 100px;
   margin: 10px;

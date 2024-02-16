@@ -44,7 +44,7 @@ export default function CreateAdoptPage() {
       axios
         .post('http://localhost:3001/adoption', adoption)
         .then((res) => {
-          const newImageUrls = res.data.imageUrls || []; // 기본적으로 빈 배열로 초기화
+          const newImageUrls = res.data.imageUrls || [];
 
           setAdoption((prevAdoption) => ({
             ...prevAdoption,
@@ -84,7 +84,6 @@ export default function CreateAdoptPage() {
     console.log(adoption);
     await axios.post('http://localhost:3001/adoption', adoption).then((res) => {
       alert('등록되었습니다.');
-      // navigate('/Article/:idx');
       navigate('/');
     });
   };
