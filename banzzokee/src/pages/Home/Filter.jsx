@@ -72,9 +72,9 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
     <div className={styles.filterPage}>
       <div className={styles.filterHeader}>
         필터
-        <button onClick={toggleMenu}>
+        {/* <button onClick={toggleMenu}>
           <img src='../../../public/X.svg' alt="Close" />
-        </button>
+        </button> */}
       </div>
       <form style={{ overflowY: 'scroll', maxHeight: '570px' }} className={styles.container}>
         {Object.entries(filterOptions).map(([filterType, options]) => (
