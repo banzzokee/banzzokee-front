@@ -11,7 +11,6 @@
   align-items: center;
   padding: 0px 10px;
   position: relative;
-  /* background-color: lightcoral; */
 }
 
 .edit {
@@ -26,8 +25,13 @@
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  /* background-color: lightcoral; */
   align-items: center;
+  /* position: absolute;
+  left: 0;
+  top: 0; */
+}
+.headerRight {
+  display: flex;
 }
 .userImage {
   width: 30px;
@@ -42,16 +46,20 @@
 .name {
   font-weight: bold;
   color: black;
+  text-align: left;
 }
 .date {
   font-size: 12px;
   color: #818181;
+  width: 180px;
+  height: 20px;
+  /* background-color: #818181; */
+  overflow: hidden;
 }
 .messageButton {
-  /* width: 0x; */
+  width: 100x;
   height: 30px;
   padding: 0 15px;
-  margin-left: 100px;
   border-radius: 50px;
   display: flex;
   justify-content: center;
