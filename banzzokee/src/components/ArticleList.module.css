@@ -63,15 +63,18 @@
 .user {
   display: flex;
   justify-content: space-between;
+  /* width: 100%; */
+  background-color: lightblue;
+  position: relative;
 }
 
 .date {
+  position: absolute;
   right: 0;
 }
 
 .title {
   text-align: left;
-  /* margin: 10px; */
 }
 
 .tags {

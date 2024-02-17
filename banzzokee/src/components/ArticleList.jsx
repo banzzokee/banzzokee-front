@@ -35,15 +35,13 @@ export default function ArticleList() {
         {articleList &&
           articleList.map((adoption) => (
             <li key={adoption.id}>
-              <Link to={`/ArticleList/${adoption.adoptionId}`} key={adoption.id} className={styles.link}>
+              <Link to={`/ArticleList/${adoption.adoptionId}`} key={adoption.adoptionId} className={styles.link}>
                 <div className={styles.imageContainer}>
                   <img src="../../../public/dog.webp" alt="" />
                   <div className={styles.status}>{adoption.status}</div>
                 </div>
                 <div className={styles.infoBox}>
                   <div className={styles.user}>
-                    {/* <img src="../../../public/User.png" alt="" style={{ width: '14px', height: '14px' }} /> */}
-                    {/* 여기에는 게시글 작성자 프로필까지 들어가면 너무 정보가 많을것 같아 빼는게 좋을것 같아요!*/}
                     <div className={styles.name}>{adoption.userNickname}</div>
                     <div className={styles.date}>2023-01-03</div>
                   </div>

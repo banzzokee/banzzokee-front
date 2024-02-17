@@ -100,29 +100,29 @@ export default function ViewArticlePage() {
               <ImageSlider images={adoption.imageUrls} />
             </div>
 
-            <div className={styles.status}>{/* {adoption.status} */}</div>
+            <div className={styles.status}>{adoption.status}</div>
           </div>
           <div className={styles.articleTexts}>
             <div className={styles.titleAndSave}>
-              <div className={styles.title}>{/* {adoption.title} */}</div>
+              <div className={styles.title}>{adoption.title}</div>
               <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px' }} />
             </div>
 
             <div className={styles.tags}>
               {/* 나중에 리스트로 받아서 map 으로 뿌려준다 */}
-              {adoption && adoption.tags && (
+              {adoption && (
                 <>
-                  <div className={styles.tag}>{adoption.tags.breeds}</div>
-                  <div className={styles.tag}>{adoption.tags.size}</div>
-                  <div className={styles.tag}>{adoption.tags.healthChecked}</div>
-                  <div className={styles.tag}>{adoption.tags.gender}</div>
-                  <div className={styles.tag}>{adoption.tags.neutering}</div>
-                  <div className={styles.tag}>{adoption.tags.age}</div>
-                  <div className={styles.tag}>유기견등록일{adoption.tags.registeredAt}</div>
+                  <div className={styles.tag}>{adoption.breed}</div>
+                  <div className={styles.tag}>{adoption.size}</div>
+                  <div className={styles.tag}>{adoption.healthChecked}</div>
+                  <div className={styles.tag}>{adoption.gender}</div>
+                  <div className={styles.tag}>{adoption.neutering}</div>
+                  <div className={styles.tag}>{adoption.age}</div>
+                  <div className={styles.tag}>유기견등록일 {adoption.registeredAt}</div>
                 </>
               )}
             </div>
-            <div className={styles.body}>{/* {adoption.content} */}</div>
+            <div className={styles.body}>{adoption.content}</div>
           </div>
         </div>
       </div>
