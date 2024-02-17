@@ -171,9 +171,9 @@ export default function Register() {
       <div className={styles.register_Page}>
         <h2 className={styles.registerTitle}>회원가입</h2>
         <form className={styles.container} onSubmit={doSignUp}>
-          <div className={styles.infoContainer}>
+          {/* <div className={styles.infoContainer}>
             <h4 className={styles.info}>기본정보</h4>
-          </div>
+          </div> */}
           <div className={styles.inputGroup}>
             <div>
               <label>이메일</label>

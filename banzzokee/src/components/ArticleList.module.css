@@ -19,6 +19,8 @@
   align-items: center;
   /* text-decoration: none; */
   color: inherit;
+  width: 100%;
+  height: 100%;
 }
 
 /* .link:hover {
@@ -35,6 +37,7 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
+  /* z-index: -1; */
 }
 
 .imageContainer img {
@@ -45,6 +48,9 @@
   flex: 1;
   /* flex:1 이 옆에 다른 컨텐츠가 많아 공간 차지 많이해도 본 컨텐츠가 찌부되는걸 방지해줌 */
   margin-right: 10px;
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
 }
 .status {
   background-color: #ffee55;
@@ -52,41 +58,51 @@
   border-radius: 50px;
   height: 25px;
   position: absolute;
-  z-index: 10;
+  z-index: 1;
   /* display: flex; */
   /* align-items: center; */
   top: 70px;
   left: 10px;
   font-size: 14px;
 }
-
+.name {
+  font-weight: bold;
+}
 .user {
   display: flex;
   justify-content: space-between;
-  /* width: 100%; */
-  background-color: lightblue;
+  width: 100%;
   position: relative;
+  font-size: 14px;
 }
 
 .date {
-  position: absolute;
-  right: 0;
+  color: gray;
 }
 
 .title {
   text-align: left;
+  font-size: 14px;
+  overflow: hidden;
+  /* white-space: nowrap; */
+  width: 100%;
+  height: 3em;
+  text-overflow: ellipsis;
+  margin: 0;
+  padding: 0;
 }
 
 .tags {
   display: flex;
   gap: 5px;
+  font-size: 14px;
 }
 
 .tag {
-  height: 30px;
+  height: 25px;
   padding: 0 10px;
   border-radius: 50px;
   display: flex;
   align-items: center;
-  background-color: greenyellow;
+  background-color: rgb(201, 244, 135);
 }

@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 export default function MyPageEdit() {
   const navigate = useNavigate();
-  const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+  // const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
 
   // const [newNickname, setNewNickname] = useState(nickname);

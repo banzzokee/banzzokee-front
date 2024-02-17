@@ -168,7 +168,7 @@
       "id": "vIztRk3"
     },
     {
-      "imageUrls": ["../../../public/dog.webp", "../../../public/myPhoto.jpg", "../../../public/dog.webp"],
+      "imageUrls": [],
       "title": "cccc",
       "tags": {
         "breeds": "푸들",
@@ -229,6 +229,31 @@
       "status": "분양완료",
       "content": "2323232",
       "id": "LR9UwMy"
+    },
+    {
+      "imageUrls": [],
+      "title": "111",
+      "tags": {
+        "breeds": "",
+        "size": "",
+        "healthChecked": "",
+        "gender": "",
+        "neutering": "",
+        "age": "",
+        "registeredAt": ""
+      },
+      "status": "",
+      "content": "",
+      "id": "KEvMT_r"
+    },
+    {
+      "id": "5WREZhN"
+    },
+    {
+      "id": "cz6ByTt"
+    },
+    {
+      "id": "RnAqGQT"
     }
   ],
   "shelter": [],
