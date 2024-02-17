@@ -32,10 +32,13 @@ export default function ViewArticlePage() {
 
   const getAdoption = async () => {
     try {
+      // const config = {
+      //   method: 'get',
+      //   url: `https://server.banzzokee.homes/api/adoptions/${id}`,
+      // };
       const config = {
         method: 'get',
-        url: `https://server.banzzokee.homes/api/adoptions/${id}`,
-        headers: { 'Content-Type': `application/json`, Authorization: `Bearer ${accessToken}` },
+        url: `http://localhost:3001/adoption/vIztRk24`,
       };
       const response = await axios.request(config);
       console.log('ViewArticlePage response', response);
@@ -90,7 +93,7 @@ export default function ViewArticlePage() {
           <div className={styles.articlePhotos}>
             <div className={styles.imgContainer}>
               {/* <img src={adoption.imageUrls[1]} alt="" /> */}
-              {/* <ImageSlider images={adoption.imageUrls} /> */}
+              <ImageSlider images={adoption.imageUrls} />
             </div>
 
             <div className={styles.status}>{/* {adoption.status} */}</div>

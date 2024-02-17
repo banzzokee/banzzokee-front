@@ -9,7 +9,7 @@ import axios from 'axios';
 export default function Message() {
   const [message, setMessage] = useState();
   const [messageList, setMessageList] = useState();
-  const { nickname } = JSON.parse(sessionStorage.getItem('userInfo'));
+  // const { nickname } = JSON.parse(sessionStorage.getItem('userInfo'));
   // useEffect(() => {
   //   socket.on("message", (message) => {
   //     console.log("res",message)

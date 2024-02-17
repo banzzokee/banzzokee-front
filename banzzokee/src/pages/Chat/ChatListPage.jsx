@@ -4,6 +4,19 @@ import ChatHeader from '../../components/common/header/ChatHeader.jsx';
 import Nav from '../../components/common/nav/Nav.jsx';
 
 export default function ChatListPage() {
+  const userInfo = JSON.parse(sessionStorage.getItem('accessToken'));
+  if (!userInfo) {
+    alert('로그인 후 이용 가능한 서비스 입니다.');
+    return (
+      <>
+        <ChatHeader></ChatHeader>
+        <div className={styles.container}>
+          <p>로그인을 해주세요</p>
+        </div>
+        <Nav></Nav>
+      </>
+    );
+  }
   return (
     <>
       <ChatHeader></ChatHeader>
