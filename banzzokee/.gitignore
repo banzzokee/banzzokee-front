@@ -25,3 +25,6 @@ dist-ssr
 .env
 
 .Firebase.jsx
+.GoogleLoginButton.jsx
+.package.json
+.db.json
