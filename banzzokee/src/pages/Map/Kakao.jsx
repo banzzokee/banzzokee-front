@@ -1,7 +1,6 @@
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
 const Kakao = () => {
-  console.log(import.meta.env.REACT_APP_KAKAO_MAP_KEY);
   return (
     <div>
       <Map

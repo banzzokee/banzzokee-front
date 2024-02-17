@@ -9,7 +9,6 @@ import ImageSlider from './imageSlider';
 export default function ViewArticlePage() {
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const { id } = useParams();
-  const [adoption, setAdoption] = useState({});
   const navigate = useNavigate();
 
   const openEdit = () => {
@@ -30,16 +29,21 @@ export default function ViewArticlePage() {
     }
   };
 
+  const [adoption, setAdoption] = useState({});
   const getAdoption = async () => {
     try {
       const config = {
         method: 'get',
         url: `https://server.banzzokee.homes/api/adoptions/${id}`,
-        headers: { 'Content-Type': `application/json`, Authorization: `Bearer ${accessToken}` },
       };
+      // const config = {
+      //   method: 'get',
+      //   url: `http://localhost:3001/adoption/vIztRk24`,
+      // };
       const response = await axios.request(config);
       console.log('ViewArticlePage response', response);
       setAdoption(response.data);
+      console.log('adoption', adoption);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -55,42 +59,45 @@ export default function ViewArticlePage() {
       <div className={styles.container}>
         <div className={styles.article}>
           <div className={styles.articleHeader}>
-            <Link to="/OtherMyPage">
+            <Link to={`/OtherMyPage/${adoption.id}`}>
               <div className={styles.headerLeft}>
                 <div className={styles.userImage}>
                   <img src="../../../public/User.png" alt="" style={{ width: '14px', height: '14px' }} />
                 </div>
                 <div className={styles.nameAndDate}>
-                  <div className={styles.name}>user_123</div>
-                  <div className={styles.date}>2023-01-03</div>
+                  <div className={styles.name}>{/* {adoption.user.nickname} */}</div>
+
+                  <div className={styles.date}>{adoption.createdAt}</div>
                 </div>
               </div>
             </Link>
-            <Link className="chat" to="/Message">
-              <div className={styles.messageButton}>
-                메세지
-                <img className={styles.messageIcon} src="../../../public/Message.png" />
+            <div className={styles.headerRight}>
+              <Link className="chat" to="/Message">
+                <div className={styles.messageButton}>
+                  메세지
+                  <img className={styles.messageIcon} src="../../../public/Message.png" />
+                </div>
+              </Link>
+              <button style={{ padding: 0, backgroundColor: 'white' }} onClick={openEdit}>
+                <img src="../../../public/edit.svg" style={{ transform: 'rotate(90deg)' }} />
+              </button>
+              <div id="edit" className={styles.edit}>
+                <button onClick={handleEdit}>
+                  <img src="../../../public/Pencil.svg" />
+                  수정
+                </button>
+                <button onClick={handleDelete}>
+                  <img src="../../../public/Delete.svg" />
+                  삭제
+                </button>
               </div>
-            </Link>
-            <button style={{ padding: 0 }} onClick={openEdit}>
-              <img src="../../../public/edit.svg" style={{ transform: 'rotate(90deg)' }} />
-            </button>
-            <div id="edit" className={styles.edit}>
-              <button onClick={handleEdit}>
-                <img src="../../../public/Pencil.svg" />
-                수정
-              </button>
-              <button onClick={handleDelete}>
-                <img src="../../../public/Delete.svg" />
-                삭제
-              </button>
             </div>
           </div>
 
           <div className={styles.articlePhotos}>
             <div className={styles.imgContainer}>
               {/* <img src={adoption.imageUrls[1]} alt="" /> */}
-              {/* <ImageSlider images={adoption.imageUrls} /> */}
+              <ImageSlider images={adoption.imageUrls} />
             </div>
 
             <div className={styles.status}>{/* {adoption.status} */}</div>

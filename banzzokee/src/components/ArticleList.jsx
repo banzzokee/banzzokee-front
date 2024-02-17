@@ -16,7 +16,6 @@ export default function ArticleList() {
       const config = {
         method: 'get',
         url: `https://server.banzzokee.homes/api/adoptions?page=0&size=10&direction=desc`,
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
       };
       const response = await axios.request(config);
       console.log(response.data.content);
@@ -62,4 +61,4 @@ export default function ArticleList() {
       </ul>
     </div>
   );
-}  
+}

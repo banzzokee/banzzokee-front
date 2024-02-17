@@ -5,7 +5,7 @@ export default function ChatHeader() {
   return (
     <div className={styles.Header}>
       <img src="../../../public/Map.png" alt="" />
-      <p>지도</p>
+      <p>내 주변 보호소</p>
     </div>
   );
 }
