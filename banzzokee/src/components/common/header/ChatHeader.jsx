@@ -5,7 +5,7 @@ export default function ChatHeader() {
   return (
     <div className={styles.Header}>
       <img src="../../../public/Chatting.png" alt="" />
-      <p>채팅</p>
+      <p>메세지</p>
     </div>
   );
 }

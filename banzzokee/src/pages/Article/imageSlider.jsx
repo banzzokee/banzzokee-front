@@ -15,17 +15,23 @@ function ImageSlider({ images }) {
   }
   return (
     <div className={styles.imageContainer}>
-      {currentImageIndex > 0 && (
-        <button className={styles.sliderButton} onClick={goToPreviousImage}>
-          &lt;
-        </button>
-      )}
       <img src={images[currentImageIndex]} alt={`Image ${currentImageIndex + 1}`} />
-      {currentImageIndex < images.length - 1 && (
-        <button className={styles.sliderButton} onClick={goToNextImage}>
-          &gt;
-        </button>
-      )}
+      <div className={styles.buttons}>
+        {currentImageIndex > 0 && (
+          <>
+            <div className={styles.buttonAreaL} onClick={goToPreviousImage}>
+              <div className={styles.buttonL}>&lt;</div>
+            </div>
+          </>
+        )}
+        {currentImageIndex < images.length - 1 && (
+          <>
+            <div className={styles.buttonAreaR} onClick={goToNextImage}>
+              <div className={styles.buttonR}>&gt;</div>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }
