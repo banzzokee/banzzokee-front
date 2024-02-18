@@ -82,11 +82,6 @@ export default function TagsAll({ adoption }) {
       return <></>;
     }
   };
-
-  // <div className={styles.tag}>{adoption.neutering}</div>
-  // <div className={styles.tag}>{adoption.age}</div>
-  // <div className={styles.tag}>유기견등록일 {adoption.registeredAt}</div> */
-
   return (
     <>
       {breed({ adoption })}
