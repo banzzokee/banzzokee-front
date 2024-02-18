@@ -43,7 +43,7 @@ export default function ViewArticlePage() {
       const response = await axios.request(config);
       // console.log('ViewArticlePage response', response);
       setAdoption(response.data);
-      // console.log('adoption', adoption);
+      console.log('adoption', adoption);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -56,13 +56,19 @@ export default function ViewArticlePage() {
   if (adoption.user && adoption.user.nickname) {
     adoptionNickname = adoption.user.nickname;
   }
+  const toOtherMyPage = () => {
+    if (adoption.user && adoption.user.userId) {
+      const dataSend = adoption.user;
+      navigate(`/OtherMyPage/${adoption.user.userId}`, { state: dataSend });
+    }
+  };
   return (
     <>
       <BackHeader></BackHeader>
       <div className={styles.container}>
         <div className={styles.article}>
           <div className={styles.articleHeader}>
-            <Link to={`/OtherMyPage/${adoption.id}`}>
+            <div onClick={toOtherMyPage}>
               <div className={styles.headerLeft}>
                 <div className={styles.userImage}>
                   <img src="../../../public/User.png" alt="" style={{ width: '14px', height: '14px' }} />
@@ -73,7 +79,7 @@ export default function ViewArticlePage() {
                   <div className={styles.date}>{adoption.createdAt}</div>
                 </div>
               </div>
-            </Link>
+            </div>
             <div className={styles.headerRight}>
               <Link className="chat" to="/Message">
                 <div className={styles.messageButton}>
