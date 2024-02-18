@@ -5,7 +5,7 @@ import Nav from '../../components/common/nav/Nav';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ImageSlider from './imageSlider';
-
+import TagsAll from '../../components/TagsAll';
 export default function ViewArticlePage() {
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const { id } = useParams();
@@ -41,9 +41,9 @@ export default function ViewArticlePage() {
       //   url: `http://localhost:3001/adoption/vIztRk24`,
       // };
       const response = await axios.request(config);
-      console.log('ViewArticlePage response', response);
+      // console.log('ViewArticlePage response', response);
       setAdoption(response.data);
-      console.log('adoption', adoption);
+      // console.log('adoption', adoption);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -52,7 +52,10 @@ export default function ViewArticlePage() {
   useEffect(() => {
     getAdoption();
   }, []);
-
+  let adoptionNickname = '';
+  if (adoption.user && adoption.user.nickname) {
+    adoptionNickname = adoption.user.nickname;
+  }
   return (
     <>
       <BackHeader></BackHeader>
@@ -65,7 +68,7 @@ export default function ViewArticlePage() {
                   <img src="../../../public/User.png" alt="" style={{ width: '14px', height: '14px' }} />
                 </div>
                 <div className={styles.nameAndDate}>
-                  <div className={styles.name}>{/* {adoption.user.nickname} */}</div>
+                  <div className={styles.name}>{adoptionNickname}</div>
 
                   <div className={styles.date}>{adoption.createdAt}</div>
                 </div>
@@ -112,13 +115,7 @@ export default function ViewArticlePage() {
               {/* 나중에 리스트로 받아서 map 으로 뿌려준다 */}
               {adoption && (
                 <>
-                  <div className={styles.tag}>{adoption.breed}</div>
-                  <div className={styles.tag}>{adoption.size}</div>
-                  <div className={styles.tag}>{adoption.healthChecked}</div>
-                  <div className={styles.tag}>{adoption.gender}</div>
-                  <div className={styles.tag}>{adoption.neutering}</div>
-                  <div className={styles.tag}>{adoption.age}</div>
-                  <div className={styles.tag}>유기견등록일 {adoption.registeredAt}</div>
+                  <TagsAll adoption={adoption}></TagsAll>
                 </>
               )}
             </div>
