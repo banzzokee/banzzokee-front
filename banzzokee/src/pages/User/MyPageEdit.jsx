@@ -5,12 +5,12 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 export default function MyPageEdit() {
   const navigate = useNavigate();
-  const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+  // const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
 
   // const [newNickname, setNewNickname] = useState(nickname);
   // const [newIntroduce, setNewIntroduce] = useState(introduce);
-  const [newInfo, setNewInfo] = useState(userInfo);
+  const [newInfo, setNewInfo] = useState();
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -44,10 +44,10 @@ export default function MyPageEdit() {
     // });
 
     let sendData = new FormData();
+    console.log('sendData', sendData);
     sendData.append('profileUrl', submitImage);
     sendData.append('nickname', newInfo.nickname);
     sendData.append('introduce', newInfo.introduce);
-    console.log(sendData);
     try {
       const config = {
         method: 'patch',
