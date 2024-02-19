@@ -40,6 +40,7 @@ export default function OtherMyPage() {
         const config = {
           method: 'post',
           url: `https://server.banzzokee.homes/api/users/1/unfollow`,
+          headers: { Authorization: `Bearer ${accessToken}` },
         };
         const response = await axios.request(config);
         console.log(response);
