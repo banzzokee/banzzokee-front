@@ -4,14 +4,26 @@ import Nav from '../../components/common/nav/Nav';
 import Button from '../../components/common/button/Button';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-
+import { useLocation } from 'react-router-dom';
 export default function OtherMyPage() {
   const [follow, setFollow] = useState(false);
+  const { state } = useLocation();
+  console.log(state);
   function onClick() {
     setFollow(!follow);
   }
-
-  const photo = <img src="../../../public/User.png"></img>;
+  let photo = <img src="../../../public/User.png"></img>;
+  if (state.profileImgUrl) {
+    photo = <img src={state.profileImgUrl} />;
+  }
+  let nickname = '';
+  if (state.nickname) {
+    nickname = state.nickname;
+  }
+  let introduce = '';
+  if (state.introduce) {
+    introduce = state.introduce;
+  }
 
   return (
     <>
@@ -29,9 +41,9 @@ export default function OtherMyPage() {
             >
               <Button>보호소 조회</Button>
             </Link>
-            <div className={styles.shelterName}>user_123</div>
+            <div className={styles.shelterName}>{nickname}</div>
           </div>
-          <p>500자 미만으로 자기소개.500자 미만으로 자기소개500자 미만으로 자기소개.500자 미만으로 자기소개500자 미만으로 자기소개</p>
+          <p className={styles.introduce}>{introduce}</p>
           <div>
             <button style={{ width: '100%', color: 'white', backgroundColor: follow ? '#bebebe' : '#add8e6', fontSize: '20px' }} onClick={onClick}>
               {follow ? '팔로잉' : '팔로우'}

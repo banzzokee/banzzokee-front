@@ -5,7 +5,7 @@ import Nav from '../../components/common/nav/Nav';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ImageSlider from './imageSlider';
-
+import TagsAll from '../../components/TagsAll';
 export default function ViewArticlePage() {
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const { id } = useParams();
@@ -41,7 +41,7 @@ export default function ViewArticlePage() {
       //   url: `http://localhost:3001/adoption/vIztRk24`,
       // };
       const response = await axios.request(config);
-      console.log('ViewArticlePage response', response);
+      // console.log('ViewArticlePage response', response);
       setAdoption(response.data);
       console.log('adoption', adoption);
     } catch (error) {
@@ -52,25 +52,34 @@ export default function ViewArticlePage() {
   useEffect(() => {
     getAdoption();
   }, []);
-
+  let adoptionNickname = '';
+  if (adoption.user && adoption.user.nickname) {
+    adoptionNickname = adoption.user.nickname;
+  }
+  const toOtherMyPage = () => {
+    if (adoption.user && adoption.user.userId) {
+      const dataSend = adoption.user;
+      navigate(`/OtherMyPage/${adoption.user.userId}`, { state: dataSend });
+    }
+  };
   return (
     <>
       <BackHeader></BackHeader>
       <div className={styles.container}>
         <div className={styles.article}>
           <div className={styles.articleHeader}>
-            <Link to={`/OtherMyPage/${adoption.id}`}>
+            <div onClick={toOtherMyPage}>
               <div className={styles.headerLeft}>
                 <div className={styles.userImage}>
                   <img src="../../../public/User.png" alt="" style={{ width: '14px', height: '14px' }} />
                 </div>
                 <div className={styles.nameAndDate}>
-                  <div className={styles.name}>{/* {adoption.user.nickname} */}</div>
+                  <div className={styles.name}>{adoptionNickname}</div>
 
                   <div className={styles.date}>{adoption.createdAt}</div>
                 </div>
               </div>
-            </Link>
+            </div>
             <div className={styles.headerRight}>
               <Link className="chat" to="/Message">
                 <div className={styles.messageButton}>
@@ -100,29 +109,23 @@ export default function ViewArticlePage() {
               <ImageSlider images={adoption.imageUrls} />
             </div>
 
-            <div className={styles.status}>{/* {adoption.status} */}</div>
+            <div className={styles.status}>{adoption.status}</div>
           </div>
           <div className={styles.articleTexts}>
             <div className={styles.titleAndSave}>
-              <div className={styles.title}>{/* {adoption.title} */}</div>
+              <div className={styles.title}>{adoption.title}</div>
               <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px' }} />
             </div>
 
             <div className={styles.tags}>
               {/* 나중에 리스트로 받아서 map 으로 뿌려준다 */}
-              {adoption && adoption.tags && (
+              {adoption && (
                 <>
-                  <div className={styles.tag}>{adoption.tags.breeds}</div>
-                  <div className={styles.tag}>{adoption.tags.size}</div>
-                  <div className={styles.tag}>{adoption.tags.healthChecked}</div>
-                  <div className={styles.tag}>{adoption.tags.gender}</div>
-                  <div className={styles.tag}>{adoption.tags.neutering}</div>
-                  <div className={styles.tag}>{adoption.tags.age}</div>
-                  <div className={styles.tag}>유기견등록일{adoption.tags.registeredAt}</div>
+                  <TagsAll adoption={adoption}></TagsAll>
                 </>
               )}
             </div>
-            <div className={styles.body}>{/* {adoption.content} */}</div>
+            <div className={styles.body}>{adoption.content}</div>
           </div>
         </div>
       </div>

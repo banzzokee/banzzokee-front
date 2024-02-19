@@ -7,7 +7,7 @@ import axios from 'axios';
 
 export default function CreateAdoptPage() {
   const navigate = useNavigate();
-
+  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const [adoption, setAdoption] = useState({
     imageUrls: [],
     title: '',
@@ -82,9 +82,20 @@ export default function CreateAdoptPage() {
   const postAdoption = async (e) => {
     e.preventDefault();
     console.log(adoption);
-    await axios.post('http://localhost:3001/adoption', adoption).then((res) => {
-      alert('등록되었습니다.');
-      navigate('/');
+    // await axios.post('http://localhost:3001/adoption', adoption).then((res) => {
+    //   alert('등록되었습니다.');
+    //   navigate('/');
+    // });
+    const config = {
+      method: 'post',
+      url: 'https://server.banzzokee.homes/api/users/me',
+      headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${accessToken}` },
+      data: adoption,
+    };
+    await axios.request(config).then((response) => {
+      alert('게시완료');
+      navigate('/MyPage');
+      console.log(response);
     });
   };
 
