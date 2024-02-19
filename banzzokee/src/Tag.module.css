@@ -19,9 +19,9 @@
   display: flex;
 }
 
-.tag_item input {
+/* .tag_item input {
   width: 105px;
-}
+} */
 
 .tag_item button {
   border: none;
@@ -29,6 +29,28 @@
   background-color: #F6F6F6;
   padding: 10px 10px;
   margin-right: 10px;
+}
+
+.breedSelected {
+  border: none;
+  border-radius: 15px;
+  background-color: #B7E017;
+  padding: 10px 10px;
+  height: 30px;
+  width: auto;
+}
+
+.inputBreed {
+  height: 30px;
+}
+
+.inputAge {
+  width: 40px;
+}
+
+.inputDate {
+  height: 40px;
+  width: 100px;
 }
 
 .date {

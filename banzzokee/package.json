@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": "http://localhost:5175/",
+  "proxy": "http://localhost:5176/",
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run react-vite\"",
     "build": "vite build",
