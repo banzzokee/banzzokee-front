@@ -3,15 +3,51 @@ import BackHeader from '../../components/common/header/BackHeader';
 import Nav from '../../components/common/nav/Nav';
 import Button from '../../components/common/button/Button';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 export default function OtherMyPage() {
   const [follow, setFollow] = useState(false);
   const { state } = useLocation();
-  console.log(state);
+  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
+  const myInfo = JSON.parse(sessionStorage.getItem('myInfo'));
+
   function onClick() {
     setFollow(!follow);
+    if (accessToken) {
+      addFollow();
+    } else {
+      alert('로그인후 이용 가능한 서비스 입니다.');
+    }
   }
+  const addFollow = async () => {
+    console.log('other', state);
+    console.log('myInfo', myInfo);
+    if (!follow) {
+      try {
+        const config = {
+          method: 'post',
+          url: `https://server.banzzokee.homes/api/users/1/follow`,
+          headers: { Authorization: `Bearer ${accessToken}` },
+        };
+        const response = await axios.request(config);
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      try {
+        const config = {
+          method: 'post',
+          url: `https://server.banzzokee.homes/api/users/1/unfollow`,
+        };
+        const response = await axios.request(config);
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
   let photo = <img src="../../../public/User.png"></img>;
   if (state.profileImgUrl) {
     photo = <img src={state.profileImgUrl} />;

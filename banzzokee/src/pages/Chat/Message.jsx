@@ -9,13 +9,13 @@ import axios from 'axios';
 export default function Message() {
   const [message, setMessage] = useState();
   const [messageList, setMessageList] = useState();
-  // const { nickname } = JSON.parse(sessionStorage.getItem('userInfo'));
-  // useEffect(() => {
-  //   socket.on("message", (message) => {
-  //     console.log("res",message)
-  //     setMessageList((prevState) => prevState.concat(message))
-  //   })
-  // },[])
+  const { nickname } = JSON.parse(sessionStorage.getItem('userInfo')) ? JSON.parse(sessionStorage.getItem('userInfo')) : 'unknown';
+  useEffect(() => {
+    // socket.on('message', (message) => {
+    //   console.log('res', message);
+    //   setMessageList((prevState) => prevState.concat(message));
+    // });
+  }, []);
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -29,8 +29,8 @@ export default function Message() {
         const response = await axios.get(`http://localhost:3001/chats`);
         const data = response.data;
         setMessageList(data);
-        console.log(messageList);
-        console.log(nickname);
+        // console.log(messageList);
+        // console.log(nickname);
       } catch (error) {
         console.error(error);
       }

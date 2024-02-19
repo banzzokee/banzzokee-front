@@ -33,11 +33,11 @@ export default function MyPage() {
         method: 'get',
         maxBodyLength: Infinity,
         url: 'https://server.banzzokee.homes/api/users',
-        headers: { 'Content-Type': `application/json`, Authorization: `Bearer ${accessToken}` },
+        headers: { Authorization: `Bearer ${accessToken}` },
       };
       const response = await axios.request(config);
       console.log('response', response);
-      sessionStorage.setItem('userInfo', JSON.stringify(response.data));
+      sessionStorage.setItem('myInfo', JSON.stringify(response.data));
       setUserInfo(response.data);
     } catch (error) {
       console.error(error);

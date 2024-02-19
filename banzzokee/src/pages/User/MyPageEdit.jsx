@@ -44,7 +44,6 @@ export default function MyPageEdit() {
     // });
 
     let sendData = new FormData();
-    console.log('sendData', sendData);
     sendData.append('profileUrl', submitImage);
     sendData.append('nickname', newInfo.nickname);
     sendData.append('introduce', newInfo.introduce);
