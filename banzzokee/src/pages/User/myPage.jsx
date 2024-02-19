@@ -1,6 +1,6 @@
 import styles from './MyPage.module.css';
 import Button from '../../components/common/button/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import BadgeIcon from '/src/components/BadgeIcon';
 import MyPageHeader from '../../components/common/header/MyPageHeader';
 import { useState, useEffect } from 'react';
@@ -14,6 +14,7 @@ export default function MyPage() {
   const [selectButton, setSelectButton] = useState('L');
   const [userInfo, setUserInfo] = useState({});
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
+  const [profileImg, setProfileImage] = useState(null);
 
   const handleButtonClick = (buttonSelect) => {
     // Swap colors when either button is clicked
@@ -32,30 +33,36 @@ export default function MyPage() {
       const config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: 'https://server.banzzokee.homes/api/users',
-        headers: { 'Content-Type': `application/json`, Authorization: `Bearer ${accessToken}` },
+        url: 'https://server.banzzokee.homes/api/users/me',
+        headers: { Authorization: `Bearer ${accessToken}` },
       };
       const response = await axios.request(config);
-      console.log('response', response);
-      sessionStorage.setItem('userInfo', JSON.stringify(response.data));
+      sessionStorage.setItem('myInfo', JSON.stringify(response.data));
       setUserInfo(response.data);
     } catch (error) {
       console.error(error);
     }
   };
+  console.log('userInfo', userInfo);
   useEffect(() => {
     getData();
   }, []);
 
+  const navigate = useNavigate();
+  const toMyPageEdit = () => {
+    navigate(`/MyPageEdit/`, { state: userInfo });
+  };
   return (
     <>
       <MyPageHeader></MyPageHeader>
       <div className={styles.container}>
         <div className={styles.userInfo}>
-          <div className={styles.profilePhoto}>{userInfo.profileImgUrl}</div>
+          <div className={styles.profilePhoto}>
+            <img src={userInfo.profileImgUrl}></img>
+          </div>
 
           <div className={styles.profileHeader}>
-            <Link to={{ pathname: '/ShelterInfoPage', state: 'hi' }}>
+            <Link to={{ pathname: '/ShelterInfoPage' }}>
               <Button
                 className={styles.viewShelterButton}
                 style={{
@@ -69,7 +76,7 @@ export default function MyPage() {
               </Button>
             </Link>
             <p className={styles.userID}>{userInfo.nickname}</p>
-            <Link to="/MyPageEdit">
+            <div onClick={toMyPageEdit}>
               <Button
                 className={styles.profileEditButton}
                 style={{
@@ -81,7 +88,7 @@ export default function MyPage() {
               >
                 프로필 수정
               </Button>
-            </Link>
+            </div>
           </div>
           <p className={styles.introduce}>{userInfo.introduce}</p>
           <div className={styles.buttons}>
