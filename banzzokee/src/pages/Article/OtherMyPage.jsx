@@ -11,7 +11,7 @@ export default function OtherMyPage() {
   const { state } = useLocation();
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const myInfo = JSON.parse(sessionStorage.getItem('myInfo'));
-
+  // adding feature to git branch bookmark
   function onClick() {
     setFollow(!follow);
     if (accessToken) {
