@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Register.module.css';
 import BackHeader from '../../components/common/header/BackHeader';
 import axios from 'axios';
@@ -59,6 +59,29 @@ export default function Register() {
     }
   };
 
+  const [count, setCount] = useState(180);
+
+  const Timer = ({ count }) => {
+    useEffect(() => {
+      const id = setInterval(() => {
+        setCount((count) => count - 1);
+      }, 1000);
+  
+      if (count === 0) {
+        clearInterval(id);
+      }
+      return () => clearInterval(id);
+    }, [count]);
+
+    return null;
+  };
+  
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  };
+  
   const onChange = (e) => {
     const { name, value } = e.target;
     setInputValue({
@@ -171,29 +194,35 @@ export default function Register() {
       <div className={styles.register_Page}>
         <h2 className={styles.registerTitle}>회원가입</h2>
         <form className={styles.container} onSubmit={doSignUp}>
-          {/* <div className={styles.infoContainer}>
-            <h4 className={styles.info}>기본정보</h4>
-          </div> */}
-          <div className={styles.inputGroup}>
-            <div>
-              <label>이메일</label>
-              <input type="text" name="email" onChange={onChange} className={styles.input} />
-              {mailnumber ? (
+          <div className={styles.emailBox}>
+            <div className={styles.emailconfirmBox}>
+              <div>
+                <label>이메일</label>
+                <input type="text" name="email" onChange={onChange} className={styles.input} />
+                <div className={styles.errorMessage}>{errors.email}</div>
+              </div>
+              <button type="button" id="emailconfirmButton" onClick={doEmailVerification} className={styles.emailconfirmButton}>
+                인증하기
+              </button>
+            </div>
+            {mailnumber ? (
+              <div>
                 <p style={{ marginTop: 10, marginLeft: 20, width: 200 }} className={styles.numberVerify}>
-                  <input placeholder="인증번호 입력" name="user-emailcheck" type="text" value={number} onChange={onChangeNumber} />
-                  {/* <br /> */}
-                  <button type="button" onClick={onCheckNumber} disabled={authDone} style={{ marginLeft: 20 }} className={styles.emailconfirm_Button}>
-                    확인
-                  </button>
+                  <div className={styles.verifyContainer}>
+                    <input placeholder="인증번호 입력" name="user-emailcheck" type="text" value={number} onChange={onChangeNumber} />
+                    {/* <br /> */}
+                    {/* <span>{formatTime(remainTime)}</span> */}
+                    <button type="button" onClick={onCheckNumber} disabled={authDone} style={{ marginLeft: 20 }} className={styles.verifyButton}>
+                      확인
+                    </button>
+                  </div>
+                  <span className="timerText" >{formatTime(count)}</span>
                   {authDone && <div style={{ color: 'blue' }}>인증 완료되었습니다.</div>}
                   {authError && <div style={{ color: 'red' }}>인증번호가 일치하지 않습니다.</div>}
                 </p>
+                <Timer count={count} />
+              </div>
               ) : null}
-              <div className={styles.errorMessage}>{errors.email}</div>
-            </div>
-            <button type="button" id="emailconfirmButton" onClick={doEmailVerification} className={styles.emailconfirm_Button}>
-              인증하기
-            </button>
           </div>
           <div className={styles.inputGroup}>
             <div>
@@ -219,7 +248,7 @@ export default function Register() {
               중복확인
             </button> */}
           </div>
-          <div className={styles.errorMessage}>{errors.error}</div>
+          <div className={styles.errorMessage}>{errors.error}</div>            
           <button type="submit" id="registerButton" className={styles.registerButton}>
             가입하기
           </button>
@@ -228,22 +257,3 @@ export default function Register() {
     </>
   );
 }
-
-// 'Content-Type': 'application/json',
-// 'Access-Control-Allow-Origin': '*',
-// 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-// 'Access-Control-Allow-Credentials': 'true',
-// 'Access-Control-Allow-Headers': 'content-type',
-
-// "dev": "npm run react-vite",
-// "build": "vite build",
-// "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-// "preview": "vite preview",
-// "server": "npx json-server db.json --port 3001 -r routes.json",
-// "react-vite": "vite dev"
-
-// 'Content-Type': 'application/json',
-// 'Access-Control-Allow-Origin': '*',
-// 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-// 'Access-Control-Allow-Credentials': 'true',
-// 'Access-Control-Allow-Headers': 'content-type',
