@@ -59,6 +59,43 @@ export default function Tag({ onChange }) {
     onChange({ target: { name: 'tag_age', value: ageValue } });
   };
 
+  //유기견등록날짜
+  const [date, setDate] = useState('');
+  const format = 'YYYY-MM-DD';
+
+  const getSeparator = () => {
+    const regex = /[^0-9a-zA-Z]+/;
+    const match = format.match(regex);
+
+    if (match) {
+      const symbol = match[0];
+      const indexes = [];
+
+      for (let i = 0; i < format.length; i++) {
+        if (format[i] === symbol) {
+          indexes.push(i);
+        }
+      }
+
+      return { symbol, indexes };
+    }
+    return { symbol: undefined, indexes: [] };
+  };
+
+  const separator = getSeparator();
+  
+  const handleChangeDate = (e) => {
+    let currentDate = e.target.value;
+    currentDate = currentDate.replace(/[^0-9]/g, '');
+    if (currentDate.length >= 6) {
+      currentDate = `${currentDate.slice(0, 4)}-${currentDate.slice(4, 6)}-${currentDate.slice(6, 8)}`;
+    } else if (currentDate.length >= 4) {
+      currentDate = `${currentDate.slice(0, 4)}-${currentDate.slice(4)}`;
+    }
+
+    setDate(currentDate);
+  };
+
   return (
     <div className={styles.tag_container}>
       <label className={styles.label}>태그</label>
@@ -72,6 +109,7 @@ export default function Tag({ onChange }) {
                 placeholder="견종을 검색하세요"
                 value={searchQuery}
                 onChange={handleSearchChange}
+                className={styles.inputBreed}
               />
               <div className={styles.breedList}>
                 {searchQuery &&
@@ -87,10 +125,10 @@ export default function Tag({ onChange }) {
         </div>
         <div className={styles.tag_item}>
           <label>사이즈</label>
-          <button type="button" name='size' onClick={() => handleTagClick('size', '초소형')} style={isActive.size === '초소' ? { ...selectStyle } : {}}>초소</button>
-          <button type="button" name='size' onClick={() => handleTagClick('size', '소형')} style={isActive.size === '소' ? { ...selectStyle } : {}}>소</button>
-          <button type="button" name='size' onClick={() => handleTagClick('size', '중형')} style={isActive.size === '중' ? { ...selectStyle } : {}}>중</button>
-          <button type="button" name='size' onClick={() => handleTagClick('size', '대형')} style={isActive.size === '대' ? { ...selectStyle } : {}}>대</button>
+          <button type="button" name='size' onClick={() => handleTagClick('size', '초소')} style={isActive.size === '초소' ? { ...selectStyle } : {}}>초소</button>
+          <button type="button" name='size' onClick={() => handleTagClick('size', '소')} style={isActive.size === '소' ? { ...selectStyle } : {}}>소</button>
+          <button type="button" name='size' onClick={() => handleTagClick('size', '중')} style={isActive.size === '중' ? { ...selectStyle } : {}}>중</button>
+          <button type="button" name='size' onClick={() => handleTagClick('size', '대')} style={isActive.size === '대' ? { ...selectStyle } : {}}>대</button>
         </div>
         <div className={styles.tag_item}>
           <label>건강검진</label>
@@ -123,7 +161,7 @@ export default function Tag({ onChange }) {
             <span>유기견</span>
             <span>등록날짜</span>
           </div>
-          <input name='tag_registeredAt' onChange={onChange}></input>
+          <input type='text' value={date} name='tag_registeredAt' onChange={handleChangeDate} placeholder='YYYY-MM-DD' className={styles.inputDate}></input>
         </div>
       </div>
     </div>

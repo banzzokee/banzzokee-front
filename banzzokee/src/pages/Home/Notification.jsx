@@ -7,8 +7,6 @@ export default function() {
     <>
       <BackHeader />
       <div className={styles.notification_Page}>
-        <div className={styles.back}>
-        </div>
         <div className={styles.notification_Header}>
           <div className={styles.notification_Logo}>
             <img src="/Notification.png" alt="Notification" className={styles.notification_Img} />

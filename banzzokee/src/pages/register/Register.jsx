@@ -36,12 +36,13 @@ export default function Register() {
     e.preventDefault();
     try {
       const verifyData = { email: `${inputValue.email}`, code: `${number}` };
+      console.log(verifyData);
       const config = {
         method: 'post',
         maxBodyLength: Infinity,
         url: 'https://server.banzzokee.homes/api/auth/verify',
         headers: {},
-        data: number,
+        data: verifyData,
       };
 
       const response = await axios.request(config);
@@ -66,7 +67,7 @@ export default function Register() {
       const id = setInterval(() => {
         setCount((count) => count - 1);
       }, 1000);
-  
+
       if (count === 0) {
         clearInterval(id);
       }
@@ -75,13 +76,13 @@ export default function Register() {
 
     return null;
   };
-  
+
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
-  
+
   const onChange = (e) => {
     const { name, value } = e.target;
     setInputValue({
@@ -115,32 +116,32 @@ export default function Register() {
     }
   };
 
-  const checkNickname = async (e) => {
-    e.preventDefault();
+  // const checkNickname = async (e) => {
+  //   e.preventDefault();
 
-    try {
-      const inputdata = { nickname: `${inputValue.nickname}` };
-      const config = {
-        maxBodyLength: Infinity,
-        url: `https://server.banzzokee.homes/api/auth/nickname-check?nickname=${inputdata.nickname}`,
-        headers: {},
-        data: inputdata,
-      };
-      const response = await axios.request(config);
+  //   try {
+  //     const inputdata = { nickname: `${inputValue.nickname}` };
+  //     const config = {
+  //       maxBodyLength: Infinity,
+  //       url: `https://server.banzzokee.homes/api/auth/nickname-check?nickname=${inputdata.nickname}`,
+  //       headers: {},
+  //       data: inputdata,
+  //     };
+  //     const response = await axios.request(config);
 
-      if (response.data) {
-        if (response.data === true) {
-          alert('사용 가능한 닉네임입니다.');
-        } else {
-          alert('이미 사용 중인 닉네임입니다.');
-        }
-      } else {
-        alert('닉네임 확인에 실패했습니다. 나중에 다시 시도해주세요.');
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     if (response.data) {
+  //       if (response.data === true) {
+  //         alert('사용 가능한 닉네임입니다.');
+  //       } else {
+  //         alert('이미 사용 중인 닉네임입니다.');
+  //       }
+  //     } else {
+  //       alert('닉네임 확인에 실패했습니다. 나중에 다시 시도해주세요.');
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   const doSignUp = async (e) => {
     e.preventDefault();
@@ -168,11 +169,12 @@ export default function Register() {
         setErrors({ ...errors, passwordconfirm: null });
       }
 
-      const inputdata = { email: `${inputValue.email}`, password: `${inputValue.password}`, passwordconfirm: `${inputValue.passwordconfirm}` };
+      const inputdata = { email: `${inputValue.email}`, password: `${inputValue.password}`, confirmPassword: `${inputValue.passwordconfirm}`, nickname: `${inputValue.nickname}` };
+      console.log('inputdata', inputdata);
       const config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'https://server.banzzokee.homes/api/auth/sign-in',
+        url: 'https://server.banzzokee.homes/api/auth/sign-up',
         headers: {},
         data: inputdata,
       };
@@ -216,13 +218,13 @@ export default function Register() {
                       확인
                     </button>
                   </div>
-                  <span className="timerText" >{formatTime(count)}</span>
+                  <span className="timerText">{formatTime(count)}</span>
                   {authDone && <div style={{ color: 'blue' }}>인증 완료되었습니다.</div>}
                   {authError && <div style={{ color: 'red' }}>인증번호가 일치하지 않습니다.</div>}
                 </p>
                 <Timer count={count} />
               </div>
-              ) : null}
+            ) : null}
           </div>
           <div className={styles.inputGroup}>
             <div>
@@ -248,7 +250,7 @@ export default function Register() {
               중복확인
             </button> */}
           </div>
-          <div className={styles.errorMessage}>{errors.error}</div>            
+          <div className={styles.errorMessage}>{errors.error}</div>
           <button type="submit" id="registerButton" className={styles.registerButton}>
             가입하기
           </button>
