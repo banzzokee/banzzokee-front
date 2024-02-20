@@ -17,7 +17,7 @@ export default function ViewArticlePage() {
       try {
         const config = {
           method: 'post',
-          url: `https://server.banzzokee.homes/api/5/follow`,
+          url: `https://server.banzzokee.homes/api/${id}/follow`,
           headers: { Authorization: `Bearer ${accessToken}` },
         };
         const response = await axios.request(config);
@@ -29,7 +29,7 @@ export default function ViewArticlePage() {
       try {
         const config = {
           method: 'post',
-          url: `https://server.banzzokee.homes/api/5/follow`,
+          url: `https://server.banzzokee.homes/api/${id}/follow`,
           headers: { Authorization: `Bearer ${accessToken}` },
         };
         const response = await axios.request(config);
@@ -71,7 +71,7 @@ export default function ViewArticlePage() {
       const response = await axios.request(config);
       // console.log('ViewArticlePage response', response);
       setAdoption(response.data);
-      console.log('adoption', adoption);
+      console.log('response.data', response.data);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -137,7 +137,7 @@ export default function ViewArticlePage() {
               <ImageSlider images={adoption.imageUrls} />
             </div>
 
-            <div className={styles.status}>{adoption.status}</div>
+            {adoption.status ? <div className={styles.status}>{adoption.status.value}</div> : <div className={styles.status}>loading</div>}
           </div>
           <div className={styles.articleTexts}>
             <div className={styles.titleAndSave}>

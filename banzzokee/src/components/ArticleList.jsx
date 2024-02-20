@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styles from './ArticleList.module.css';
 import Tags from './tags';
+
 export default function ArticleList({sortBy}) {
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const [articleList, setArticleList] = useState([]);
@@ -24,32 +25,6 @@ export default function ArticleList({sortBy}) {
       console.error('Error:', error);
     }
   };
-  const healthChecked = (adoption) => {
-    if (!adoption.healthChecked == true) {
-      return (
-        <div className={styles.tag}>
-          <img style={{ width: '14px', height: '14px', margin: '0', padding: '0' }} src="../../public/Medical.png"></img>
-        </div>
-      );
-    } else {
-      return <></>;
-    }
-  };
-  const gender = (adoption) => {
-    if (adoption.gender == '수컷') {
-      return (
-        <div className={styles.tag}>
-          <img style={{ width: '14px', height: '14px', margin: '0', padding: '0' }} src="../../public/Male.svg"></img>
-        </div>
-      );
-    } else {
-      return (
-        <div className={styles.tag}>
-          <img style={{ width: '14px', height: '14px', margin: '0', padding: '0' }} src="../../public/Female.svg"></img>
-        </div>
-      );
-    }
-  };
   useEffect(() => {
     getArticleList({ sortBy });
   }, [sortBy]);
@@ -62,8 +37,9 @@ export default function ArticleList({sortBy}) {
             <li key={adoption.id}>
               <Link to={`/ArticleList/${adoption.adoptionId}`} key={adoption.adoptionId} className={styles.link}>
                 <div className={styles.imageContainer}>
-                  <img src="../../../public/dog.webp" alt="" />
-                  <div className={styles.status}>{adoption.status}</div>
+                  {adoption.imageUrls ? <img src={adoption.imageUrls[0]}></img> : <img src="../../../public/dog.webp" alt="" />}
+
+                  {adoption.status ? <div className={styles.status}>{adoption.status.value}</div> : <div className={styles.status}>loading</div>}
                 </div>
                 <div className={styles.infoBox}>
                   <div className={styles.user}>
@@ -72,8 +48,8 @@ export default function ArticleList({sortBy}) {
                   </div>
                   <div className={styles.title}>{adoption.title}</div>
                   <div className={styles.tags}>
-                    <div className={styles.tag}>{adoption.breed}</div>
-                    <div className={styles.tag}>{adoption.size}</div>
+                    {/* <div className={styles.tag}>{adoption.breed}</div> */}
+                    {/* <div className={styles.tag}>{adoption.size}</div> */}
                     {/* <div className={styles.tag}>{adoption.healthChecked}</div> */}
                     {/* {healthChecked(adoption.healthChecked)} */}
                     {/* {gender(adoption.healthChecked)} */}
