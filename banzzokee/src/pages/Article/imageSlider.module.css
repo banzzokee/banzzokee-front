@@ -35,6 +35,7 @@
   left: 0;
   margin: 0;
   height: 50px;
+  font-size: 20px;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -46,20 +47,21 @@
   width: 40px;
   transition: background-color 0.2s ease;
 }
-.buttonAreaR:hover {
-  background-color: rgba(250, 250, 250, 0.1);
-  height: 100%;
-  width: 40px;
-  transition: background-color 0.2s ease;
-}
 
 .buttonR {
   position: absolute;
   right: 0;
   margin: 0;
   height: 50px;
+  font-size: 20px;
   border-radius: 20px;
   display: flex;
   align-items: center;
   padding: 0px 5px 0px 10px;
+}
+.buttonAreaR:hover {
+  background-color: rgba(250, 250, 250, 0.1);
+  height: 100%;
+  width: 40px;
+  transition: background-color 0.2s ease;
 }

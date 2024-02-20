@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../components/common/header/Header';
 import styles from './ReviewPage.module.css';
 import Nav from '../../components/common/nav/Nav';
-import ArticleList from '../../components/ArticleList';
+import ReviewList from '../../components/ReviewList';
 
 export default function ReviewPage() {
   return (
@@ -18,7 +18,7 @@ export default function ReviewPage() {
             </button>
           </div> */}
         </div>
-        <ArticleList />
+        <ReviewList />
       </div>
       <Nav />
     </>

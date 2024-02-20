@@ -52,6 +52,10 @@ export default function MyPage() {
   const toMyPageEdit = () => {
     navigate(`/MyPageEdit/`, { state: userInfo });
   };
+  const toShelterInfoPage = () => {
+    navigate(`/ShelterInfoPage/`, { state: userInfo.shelter });
+  };
+
   return (
     <>
       <MyPageHeader></MyPageHeader>
@@ -62,7 +66,7 @@ export default function MyPage() {
           </div>
 
           <div className={styles.profileHeader}>
-            <Link to={{ pathname: '/ShelterInfoPage' }}>
+            <div onClick={toShelterInfoPage}>
               <Button
                 className={styles.viewShelterButton}
                 style={{
@@ -74,7 +78,7 @@ export default function MyPage() {
               >
                 보호소 조회
               </Button>
-            </Link>
+            </div>
             <p className={styles.userID}>{userInfo.nickname}</p>
             <div onClick={toMyPageEdit}>
               <Button
