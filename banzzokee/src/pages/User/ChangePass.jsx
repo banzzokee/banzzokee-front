@@ -7,7 +7,7 @@ import BackHeader from '../../components/common/header/BackHeader';
 
 export default function ChangePass() {
   const navigate = useNavigate();
-  const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+  // const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
   const [passwordError, setPasswordError] = useState('');
   const [newInfo, setNewInfo] = useState({});
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
