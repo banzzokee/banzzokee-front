@@ -21,7 +21,7 @@ export default function MyPageEdit() {
       [name]: value,
     });
   };
-  console.log(state);
+  console.log('state', state);
 
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];

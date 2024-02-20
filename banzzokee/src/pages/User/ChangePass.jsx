@@ -10,7 +10,7 @@ export default function ChangePass() {
   const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
   const [passwordError, setPasswordError] = useState('');
   const [newInfo, setNewInfo] = useState({});
-
+  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const onChange = (e) => {
     const { name, value } = e.target;
     setNewInfo({
@@ -23,15 +23,34 @@ export default function ChangePass() {
     if (newInfo.newPassword !== newInfo.confirmPassword) {
       setPasswordError('새로운 비밀번호와 비밀번호 확인이 일치하지 않습니다');
     } else {
-      await axios.patch(`http://localhost:3001/users/${userInfo.id}`, newInfo).then((res) => {
-        if ('error' in res) {
-          alert('현재 비밀번호가 일치하지 않습니다.');
-        } else {
-          alert('수정완료');
-        }
-        sessionStorage.setItem('userInfo', JSON.stringify(newInfo));
-        navigate('/MyPage');
-      });
+      try {
+        console.log('newInfo', newInfo);
+        const config = {
+          method: 'patch',
+          url: 'https://server.banzzokee.homes/api/users/me/change-password',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+          data: JSON.stringify(newInfo),
+        };
+        await axios.request(config).then((response) => {
+          alert('변경완료');
+          navigate('/MyPage');
+        });
+      } catch (error) {
+        console.error(error);
+      }
+
+      // await axios.patch(`http://localhost:3001/users/${userInfo.id}`, newInfo).then((res) => {
+      //   if ('error' in res) {
+      //     alert('현재 비밀번호가 일치하지 않습니다.');
+      //   } else {
+      //     alert('수정완료');
+      //   }
+      //   sessionStorage.setItem('userInfo', JSON.stringify(newInfo));
+      //   navigate('/MyPage');
+      // });
     }
   };
 
