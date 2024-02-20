@@ -1,9 +1,57 @@
 import styles from './Notification.module.css';
-// import Back from '../../components/common/back/Back';
 import BackHeader from '../../components/common/header/BackHeader';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-export default function() {
-  return(
+export default function Notification() {
+  const [notifications, setNotifications] = useState([]);
+  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
+
+  useEffect(() => {
+    getNotifications();
+  }, []);
+
+  const getNotifications = async () => {
+    try {
+      const notificationsResponse = await axios.get('https://server.banzzokee.homes/api/notifications?page=0&size=10&checked=false', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      setNotifications(notificationsResponse.data);
+    } catch (error) {
+      console.error('Error', error);
+    }
+  };
+
+  const markNotificationAsRead = async (notificationId) => {
+    try {
+      await axios.patch(`https://server.banzzokee.homes/api/notifications/${notificationId}/check`, null, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      getNotifications();
+    } catch (error) {
+      console.error('Error', error);
+    }
+  };
+
+  const markAllNotificationsAsRead = async () => {
+    try {
+      await axios.patch('https://server.banzzokee.homes/api/notifications/all-check', null, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      getNotifications();
+    } catch (error) {
+      console.error('Error', error);
+    }
+  };
+
+  return (
     <>
       <BackHeader />
       <div className={styles.notification_Page}>
@@ -14,13 +62,19 @@ export default function() {
           </div>
         </div>
         <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
+          {notifications.map((notification) => (
+            <li key={notification.id}>
+              <div className={styles.deleteIcon} onClick={() => markNotificationAsRead(notification.id)}>
+                <img src="../../../public/X.svg" alt="" style={{ width: '14px', height: '14px' }} />
+              </div>
+              <div>{notification.message}</div>
+            </li>
+          ))}
         </ul>
-        <button className={styles.button}>전체 확인</button>
+        <button className={styles.button} onClick={markAllNotificationsAsRead}>
+          전체 확인
+        </button>
       </div>
-    </> 
-  )
+    </>
+  );
 }

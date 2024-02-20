@@ -62,7 +62,10 @@ export default function ArticleList({sortBy}) {
             <li key={adoption.id}>
               <Link to={`/ArticleList/${adoption.adoptionId}`} key={adoption.adoptionId} className={styles.link}>
                 <div className={styles.imageContainer}>
-                  <img src="../../../public/dog.webp" alt="" />
+                  <div className={styles.img}>
+                    <img src={adoption.imageUrls[0]}></img>
+                  </div>
+                  {/* <img src="../../../public/dog.webp" alt="" /> */}
                   <div className={styles.status}>{adoption.status}</div>
                 </div>
                 <div className={styles.infoBox}>

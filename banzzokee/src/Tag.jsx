@@ -94,6 +94,8 @@ export default function Tag({ onChange }) {
     }
 
     setDate(currentDate);
+    console.log(date)
+    console.log(currentDate)
   };
 
   return (
@@ -125,25 +127,25 @@ export default function Tag({ onChange }) {
         </div>
         <div className={styles.tag_item}>
           <label>사이즈</label>
-          <button type="button" name='size' onClick={() => handleTagClick('size', '초소')} style={isActive.size === '초소' ? { ...selectStyle } : {}}>초소</button>
-          <button type="button" name='size' onClick={() => handleTagClick('size', '소')} style={isActive.size === '소' ? { ...selectStyle } : {}}>소</button>
-          <button type="button" name='size' onClick={() => handleTagClick('size', '중')} style={isActive.size === '중' ? { ...selectStyle } : {}}>중</button>
-          <button type="button" name='size' onClick={() => handleTagClick('size', '대')} style={isActive.size === '대' ? { ...selectStyle } : {}}>대</button>
+          <button type="button" name='size' onClick={() => handleTagClick('size', '초소형')} style={isActive.size === '초소형' ? { ...selectStyle } : {}}>초소</button>
+          <button type="button" name='size' onClick={() => handleTagClick('size', '소형')} style={isActive.size === '소형' ? { ...selectStyle } : {}}>소</button>
+          <button type="button" name='size' onClick={() => handleTagClick('size', '중형')} style={isActive.size === '중형' ? { ...selectStyle } : {}}>중</button>
+          <button type="button" name='size' onClick={() => handleTagClick('size', '대형')} style={isActive.size === '대형' ? { ...selectStyle } : {}}>대</button>
         </div>
         <div className={styles.tag_item}>
           <label>건강검진</label>
-          <button type="button" name='healthChecked' onClick={() => handleTagClick('healthChecked', '검진 완료')} style={isActive.healthChecked === '검진 완료' ? { ...selectStyle } : {}}>검진 완료</button>
-          <button type="button" name='healthChecked' onClick={() => handleTagClick('healthChecked', '검진 미완료')} style={isActive.healthChecked === '검진 미완료' ? { ...selectStyle } : {}}>검진 미완료</button>
+          <button type="button" name='healthChecked' onClick={() => handleTagClick('healthChecked', true)} style={isActive.healthChecked === true ? { ...selectStyle } : {}}>검진 완료</button>
+          <button type="button" name='healthChecked' onClick={() => handleTagClick('healthChecked', false)} style={isActive.healthChecked === false ? { ...selectStyle } : {}}>검진 미완료</button>
         </div>
         <div className={styles.tag_item}>
           <label>성별</label>
-          <button type="button" name='gender' onClick={() => handleTagClick('gender', '남')} style={isActive.gender === '남' ? { ...selectStyle } : {}}><img src='../../../public/Male.svg' alt="Male" /></button>
-          <button type="button" name='gender' onClick={() => handleTagClick('gender', '여')} style={isActive.gender === '여' ? { ...selectStyle } : {}}><img src='../../../public/Female.svg' alt="Female" /></button>
+          <button type="button" name='gender' onClick={() => handleTagClick('gender', '수컷')} style={isActive.gender === '수컷' ? { ...selectStyle } : {}}><img src='../../../public/Male.svg' alt="Male" /></button>
+          <button type="button" name='gender' onClick={() => handleTagClick('gender', '암컷')} style={isActive.gender === '암컷' ? { ...selectStyle } : {}}><img src='../../../public/Female.svg' alt="Female" /></button>
         </div>
         <div className={styles.tag_item}> 
           <label>중성화</label>
-          <button type="button" name='neutering' onClick={() => handleTagClick('neutering', '예')} style={isActive.neutering === '예' ? { ...selectStyle } : {}}>예</button>
-          <button type="button" name='neutering' onClick={() => handleTagClick('neutering', '아니오')} style={isActive.neutering === '아니오' ? { ...selectStyle } : {}}>아니오</button>
+          <button type="button" name='neutering' onClick={() => handleTagClick('neutering', true)} style={isActive.neutering === true ? { ...selectStyle } : {}}>예</button>
+          <button type="button" name='neutering' onClick={() => handleTagClick('neutering', false)} style={isActive.neutering === false ? { ...selectStyle } : {}}>아니오</button>
         </div>
         <div className={styles.tag_item}>
           <label>나이</label>

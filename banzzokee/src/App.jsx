@@ -34,10 +34,48 @@ import AdoptEdit from './pages/article/AdoptEdit';
 import ReviewPage from './pages/review/ReviewPage';
 import Filter from './pages/home/Filter';
 import ReviewList from './components/ReviewList';
+// import { getMessaging } from 'firebase/firebase-messaging';
+// import { getMessaging } from './firebase/firebase-messaging';
 
 // import GoogleRegister from './GoogleRegister';
 
 function App() {
+    // useEffect(() => {
+    //   getMessaging
+    //     .getToken()
+    //     .then((currentToken) => {
+    //       if (currentToken) {
+    //         sendTokenToServer(currentToken);
+    //       } else {
+    //         console.log('No Instance ID token available.');
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       console.log('Error ', err);
+    //     });
+
+    //   getMessaging.onTokenRefresh(() => {
+    //     getMessaging
+    //       .getToken()
+    //       .then((refreshedToken) => {
+    //         console.log('Token refreshed. ', refreshedToken);
+    //         sendTokenToServer(refreshedToken);
+    //       })
+    //       .catch((err) => {
+    //         console.log('Unable to retrieve refreshed token. ', err);
+    //       });
+    //   });
+
+    //   getMessaging.onMessage((payload) => {
+    //     console.log('Message received. ', payload);
+    //   });
+    // }, []);
+
+    // const sendTokenToServer = (token) => {
+    //   console.log('FCM Token:', token);
+    // };
+
+
   return (
     <div id="mobileView">
       <BrowserRouter>
