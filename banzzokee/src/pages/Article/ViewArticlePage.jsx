@@ -17,7 +17,7 @@ export default function ViewArticlePage() {
       try {
         const config = {
           method: 'post',
-          url: `https://server.banzzokee.homes/api/5/follow`,
+          url: `https://server.banzzokee.homes/api/${id}/follow`,
           headers: { Authorization: `Bearer ${accessToken}` },
         };
         const response = await axios.request(config);
@@ -29,7 +29,7 @@ export default function ViewArticlePage() {
       try {
         const config = {
           method: 'post',
-          url: `https://server.banzzokee.homes/api/5/follow`,
+          url: `https://server.banzzokee.homes/api/${id}/follow`,
           headers: { Authorization: `Bearer ${accessToken}` },
         };
         const response = await axios.request(config);

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import styles from './ArticleList.module.css';
 import Tags from './tags';
 export default function ArticleList() {
-  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const [articleList, setArticleList] = useState([]);
 
   const getArticleList = async () => {
@@ -24,35 +23,35 @@ export default function ArticleList() {
       console.error('Error:', error);
     }
   };
-  const healthChecked = (adoption) => {
-    if (!adoption.healthChecked == true) {
-      return (
-        <div className={styles.tag}>
-          <img style={{ width: '14px', height: '14px', margin: '0', padding: '0' }} src="../../public/Medical.png"></img>
-        </div>
-      );
-    } else {
-      return <></>;
-    }
-  };
-  const gender = (adoption) => {
-    if (adoption.gender == '수컷') {
-      return (
-        <div className={styles.tag}>
-          <img style={{ width: '14px', height: '14px', margin: '0', padding: '0' }} src="../../public/Male.svg"></img>
-        </div>
-      );
-    } else {
-      return (
-        <div className={styles.tag}>
-          <img style={{ width: '14px', height: '14px', margin: '0', padding: '0' }} src="../../public/Female.svg"></img>
-        </div>
-      );
-    }
-  };
   useEffect(() => {
     getArticleList();
   }, []);
+  // const healthChecked = (adoption) => {
+  //   if (!adoption.healthChecked == true) {
+  //     return (
+  //       <div className={styles.tag}>
+  //         <img style={{ width: '14px', height: '14px', margin: '0', padding: '0' }} src="../../public/Medical.png"></img>
+  //       </div>
+  //     );
+  //   } else {
+  //     return <></>;
+  //   }
+  // };
+  // const gender = (adoption) => {
+  //   if (adoption.gender == '수컷') {
+  //     return (
+  //       <div className={styles.tag}>
+  //         <img style={{ width: '14px', height: '14px', margin: '0', padding: '0' }} src="../../public/Male.svg"></img>
+  //       </div>
+  //     );
+  //   } else {
+  //     return (
+  //       <div className={styles.tag}>
+  //         <img style={{ width: '14px', height: '14px', margin: '0', padding: '0' }} src="../../public/Female.svg"></img>
+  //       </div>
+  //     );
+  //   }
+  // };
 
   return (
     <div className={styles.listBox}>
@@ -63,17 +62,17 @@ export default function ArticleList() {
               <Link to={`/ArticleList/${adoption.adoptionId}`} key={adoption.adoptionId} className={styles.link}>
                 <div className={styles.imageContainer}>
                   <img src="../../../public/dog.webp" alt="" />
-                  <div className={styles.status}>{adoption.status}</div>
+                  {/* <div className={styles.status}>{adoption.status}</div> */}
                 </div>
                 <div className={styles.infoBox}>
                   <div className={styles.user}>
                     <div className={styles.name}>{adoption.userNickname}</div>
-                    <div className={styles.date}>2023-01-03</div>
+                    <div className={styles.date}>{adoption.createdAt}</div>
                   </div>
                   <div className={styles.title}>{adoption.title}</div>
                   <div className={styles.tags}>
-                    <div className={styles.tag}>{adoption.breed}</div>
-                    <div className={styles.tag}>{adoption.size}</div>
+                    {/* <div className={styles.tag}>{adoption.breed}</div> */}
+                    {/* <div className={styles.tag}>{adoption.size}</div> */}
                     {/* <div className={styles.tag}>{adoption.healthChecked}</div> */}
                     {/* {healthChecked(adoption.healthChecked)} */}
                     {/* {gender(adoption.healthChecked)} */}
