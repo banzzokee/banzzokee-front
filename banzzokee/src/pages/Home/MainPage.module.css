@@ -21,6 +21,11 @@
   color: #000000;
 }
 
+.sortButton {
+  padding: 0;
+  background-color: #FFFFFF;
+}
+
 .filter {
   width: 80px;
   height: 28px;
