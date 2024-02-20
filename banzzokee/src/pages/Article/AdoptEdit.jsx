@@ -82,10 +82,16 @@ export default function ArticleUpdate() {
   useEffect(() => {
     const getAdoption = async () => {
       try {
-        const resp = await axios.get(`http://localhost:3001/adoption/${id}`);
-        setAdoption(resp.data);
+        const config = {
+          method: 'get',
+          url: `https://server.banzzokee.homes/api/adoptions/${id}`,
+        };
+  
+        const response = await axios.request(config);
+        setAdoption(response.data);
+        console.log('adoption', adoption);
       } catch (error) {
-        console.error("Error:", error);
+        console.error('Error:', error);
       }
     };
 
