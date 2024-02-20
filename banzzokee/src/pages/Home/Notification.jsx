@@ -27,7 +27,7 @@ export default function Notification() {
 
   const markNotificationAsRead = async (notificationId) => {
     try {
-      await axios.patch(`https://server.banzzokee.homes/api/notifications/${notificationId}/check`, null, {
+      await axios.post(`https://server.banzzokee.homes/api/notifications/${notificationId}/check`, null, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -40,7 +40,7 @@ export default function Notification() {
 
   const markAllNotificationsAsRead = async () => {
     try {
-      await axios.patch('https://server.banzzokee.homes/api/notifications/all-check', null, {
+      await axios.post('https://server.banzzokee.homes/api/notifications/all-check', null, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
