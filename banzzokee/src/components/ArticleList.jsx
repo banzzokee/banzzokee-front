@@ -26,32 +26,6 @@ export default function ArticleList() {
   useEffect(() => {
     getArticleList();
   }, []);
-  // const healthChecked = (adoption) => {
-  //   if (!adoption.healthChecked == true) {
-  //     return (
-  //       <div className={styles.tag}>
-  //         <img style={{ width: '14px', height: '14px', margin: '0', padding: '0' }} src="../../public/Medical.png"></img>
-  //       </div>
-  //     );
-  //   } else {
-  //     return <></>;
-  //   }
-  // };
-  // const gender = (adoption) => {
-  //   if (adoption.gender == '수컷') {
-  //     return (
-  //       <div className={styles.tag}>
-  //         <img style={{ width: '14px', height: '14px', margin: '0', padding: '0' }} src="../../public/Male.svg"></img>
-  //       </div>
-  //     );
-  //   } else {
-  //     return (
-  //       <div className={styles.tag}>
-  //         <img style={{ width: '14px', height: '14px', margin: '0', padding: '0' }} src="../../public/Female.svg"></img>
-  //       </div>
-  //     );
-  //   }
-  // };
 
   return (
     <div className={styles.listBox}>
@@ -61,8 +35,9 @@ export default function ArticleList() {
             <li key={adoption.id}>
               <Link to={`/ArticleList/${adoption.adoptionId}`} key={adoption.adoptionId} className={styles.link}>
                 <div className={styles.imageContainer}>
-                  <img src="../../../public/dog.webp" alt="" />
-                  {/* <div className={styles.status}>{adoption.status}</div> */}
+                  {adoption.imageUrls ? <img src={adoption.imageUrls[0]}></img> : <img src="../../../public/dog.webp" alt="" />}
+
+                  {adoption.status ? <div className={styles.status}>{adoption.status.value}</div> : <div className={styles.status}>loading</div>}
                 </div>
                 <div className={styles.infoBox}>
                   <div className={styles.user}>
