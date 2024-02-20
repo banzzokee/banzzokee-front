@@ -1,6 +1,5 @@
 import styles from './ArticleList.module.css';
 export default function Tags({ adoption }) {
-  console.log('tags entered');
   const healthChecked = ({ adoption }) => {
     if (adoption.healthChecked == true) {
       return (

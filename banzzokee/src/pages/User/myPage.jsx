@@ -7,6 +7,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Nav from '../../components/common/nav/Nav';
 import ReviewList from '../../components/ReviewList';
+import MyArticleList from '../../components/myArticleList';
+import BookmarkList from '../../components/BookmarkList';
 
 export default function MyPage() {
   const [buttonLColor, setButtonLColor] = useState('white');
@@ -114,8 +116,8 @@ export default function MyPage() {
             </div>
           </div>
           <div className={styles.articleList}>
-            {/* {selectButton == 'L' && <ReviewList />} */}
-            {/* {selectButton == 'R' && <ReviewList />} */}
+            {selectButton == 'L' && <BookmarkList />}
+            {selectButton == 'R' && <MyArticleList userId={userInfo.userId} />}
           </div>
         </div>
       </div>

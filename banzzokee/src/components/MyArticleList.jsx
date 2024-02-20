@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import styles from './ArticleList.module.css';
 import Tags from './tags';
 
-export default function ArticleList({ sortBy }) {
-  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
+export default function MyArticleList({ userId }) {
+  // const myInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+  console.log(userId);
   const [articleList, setArticleList] = useState([]);
 
   const getArticleList = async () => {
@@ -16,7 +17,7 @@ export default function ArticleList({ sortBy }) {
       // console.log(resp.data);
       const config = {
         method: 'get',
-        url: `https://server.banzzokee.homes/api/adoptions?page=0&size=10&direction=${sortBy}`,
+        url: `https://server.banzzokee.homes/api/adoptions?page=0&size=10&direction=desc&userId=${userId}`,
       };
       const response = await axios.request(config);
       console.log(response.data.content);
@@ -26,8 +27,8 @@ export default function ArticleList({ sortBy }) {
     }
   };
   useEffect(() => {
-    getArticleList({ sortBy });
-  }, [sortBy]);
+    getArticleList();
+  }, []);
 
   return (
     <div className={styles.listBox}>
