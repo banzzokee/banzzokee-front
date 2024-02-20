@@ -24,7 +24,7 @@ dist-ssr
 *.sw?
 .env
 
-.Firebase.jsx
+.Firebase.js
 .GoogleLoginButton.jsx
 .package.json
 .db.json
