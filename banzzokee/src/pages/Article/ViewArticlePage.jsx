@@ -71,7 +71,7 @@ export default function ViewArticlePage() {
       const response = await axios.request(config);
       // console.log('ViewArticlePage response', response);
       setAdoption(response.data);
-      console.log('response.data', response.data);
+      console.log('viewArticle response.data', response.data);
     } catch (error) {
       console.error('Error:', error);
     }
