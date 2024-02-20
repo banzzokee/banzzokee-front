@@ -18,7 +18,7 @@ export default function ArticleList() {
         url: `https://server.banzzokee.homes/api/adoptions?page=0&size=10&direction=desc`,
       };
       const response = await axios.request(config);
-      // console.log(response.data.content);
+      console.log(response.data.content);
       setArticleList(response.data.content);
     } catch (error) {
       console.error('Error:', error);

@@ -20,48 +20,53 @@ export default function CreateAdoptPage() {
       age: '',
       registeredAt: '',
     },
-    status: '',
     content: '',
   });
+  // const [isActive, setIsActive] = useState({
+  //   ongoing: false,
+  //   booking: false,
+  //   completion: false,
+  // });
 
-  const [isActive, setIsActive] = useState({
-    ongoing: false,
-    booking: false,
-    completion: false,
-  });
+  const { title, content, tags, imageUrls } = adoption;
+  const formData = new FormData();
 
-  const { title, content, tags, status, imageUrls } = adoption;
-
-  const onChange = (e) => {
-    const { name, value } = e.target;
-
-  if (name === 'image') {
-    const formData = new FormData();
-    
+  const [submitImage, setSubmitImage] = useState(null);
+  const onFileChange = (e) => {
+    console.log('images!!');
+    setSubmitImage(e.target.files[0]);
     for (let i = 0; i < e.target.files.length; i++) {
       formData.append('images', e.target.files[i]);
     }
+  };
+  const onChange = (e) => {
+    const { name, value } = e.target;
 
-    // if (name === 'image') {
-    //   const adoption = new FormData();
-    //   for (let i = 0; i < e.target.files.length; i++) {
-    //     adoption.append('image', e.target.files[i]);
-    //   }
+    if (name === 'image') {
+      for (let i = 0; i < e.target.files.length; i++) {
+        formData.append('images', e.target.files[i]);
+      }
 
-    //   axios
-    //     .post('http://localhost:3001/adoption', adoption)
-    //     .then((res) => {
-    //       const newImageUrls = res.data.imageUrls || [];
+      // if (name === 'image') {
+      //   const adoption = new FormData();
+      //   for (let i = 0; i < e.target.files.length; i++) {
+      //     adoption.append('image', e.target.files[i]);
+      //   }
 
-    //       setAdoption((prevAdoption) => ({
-    //         ...prevAdoption,
-    //         imageUrls: [...prevAdoption.imageUrls, ...newImageUrls],
-    //       }));
-    //     })
-    //     .catch((error) => {
-    //       console.error('Error uploading image:', error);
-    //     });
-    // } 
+      //   axios
+      //     .post('http://localhost:3001/adoption', adoption)
+      //     .then((res) => {
+      //       const newImageUrls = res.data.imageUrls || [];
+
+      //       setAdoption((prevAdoption) => ({
+      //         ...prevAdoption,
+      //         imageUrls: [...prevAdoption.imageUrls, ...newImageUrls],
+      //       }));
+      //     })
+      //     .catch((error) => {
+      //       console.error('Error uploading image:', error);
+      //     });
+      // }
     } else if (name.includes('tag_')) {
       const tagButton = name.replace('tag_', '');
       setAdoption({
@@ -89,33 +94,42 @@ export default function CreateAdoptPage() {
 
   const postAdoption = async (e) => {
     e.preventDefault();
+    console.log('adoption', adoption);
+    // const data = new FormData();
+    formData.append('images', submitImage);
+    formData.append(
+      'request',
+      new Blob(
+        [
+          JSON.stringify({
+            title: adoption.title,
+            content: adoption.content,
+            breed: '푸들',
+            size: '대형',
+            neutering: true,
+            gender: '수컷',
+            age: 2,
+            healthChecked: true,
+            registeredAt: '2090-09-09',
+          }),
+        ],
+        { type: 'application/json' }
+      )
+    );
 
-    const data = new FormData();
-
-    data.append('request', JSON.stringify({
-      title: adoption.title,
-      content: adoption.content,
-      breed: adoption.tags.breeds,
-      size: adoption.tags.size,
-      neutering: adoption.tags.neutering,
-      gender: adoption.tags.gender,
-      age: adoption.tags.age,
-      healthChecked: adoption.tags.healthChecked,
-      registeredAt: adoption.tags.registeredAt,
-    }));
-
-    adoption.imageUrls.forEach((imageUrl, index) => {
-      data.append(`images[${index}]`, imageUrl);
-    });
+    // adoption.imageUrls.forEach((imageUrl, index) => {
+    //   data.append(`images[${index}]`, imageUrl);
+    // });
 
     const config = {
       method: 'post',
       url: 'https://server.banzzokee.homes/api/adoptions',
       headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${accessToken}` },
-      data: data,
+      data: formData,
     };
 
     try {
+      console.log('data', formData);
       const response = await axios.request(config);
       alert('게시 완료');
       navigate('/MyPage');
@@ -151,7 +165,7 @@ export default function CreateAdoptPage() {
               <p>사진</p>
               <p>(최대 8장)</p>
             </label>
-            <input type="file" multiple accept="image/*" name="image" className={styles.img_upload} onChange={onChange}></input>
+            <input type="file" multiple accept="image/*" name="image" className={styles.img_upload} onChange={onFileChange}></input>
           </div>
           <div className={styles.inputGroup}>
             <label>제목</label>

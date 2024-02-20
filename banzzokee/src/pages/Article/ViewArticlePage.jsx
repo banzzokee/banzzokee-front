@@ -7,10 +7,38 @@ import axios from 'axios';
 import ImageSlider from './imageSlider';
 import TagsAll from '../../components/TagsAll';
 export default function ViewArticlePage() {
-  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const { id } = useParams();
+  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const navigate = useNavigate();
+  const [bookmark, setBookmark] = useState(false);
 
+  const addBookmark = async () => {
+    if (!bookmark) {
+      try {
+        const config = {
+          method: 'post',
+          url: `https://server.banzzokee.homes/api/5/follow`,
+          headers: { Authorization: `Bearer ${accessToken}` },
+        };
+        const response = await axios.request(config);
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      try {
+        const config = {
+          method: 'post',
+          url: `https://server.banzzokee.homes/api/5/follow`,
+          headers: { Authorization: `Bearer ${accessToken}` },
+        };
+        const response = await axios.request(config);
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
   const openEdit = () => {
     const editBox = document.getElementById('edit');
     editBox.style.display = editBox.style.display === 'none' ? 'block' : 'none';
