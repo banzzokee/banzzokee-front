@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styles from './ArticleList.module.css';
 import Tags from './tags';
-export default function ArticleList() {
+export default function ArticleList({sortBy}) {
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const [articleList, setArticleList] = useState([]);
 
@@ -15,7 +15,7 @@ export default function ArticleList() {
       // console.log(resp.data);
       const config = {
         method: 'get',
-        url: `https://server.banzzokee.homes/api/adoptions?page=0&size=10&direction=desc`,
+        url:`https://server.banzzokee.homes/api/adoptions?page=0&size=10&direction=${sortBy}`,
       };
       const response = await axios.request(config);
       console.log(response.data.content);
@@ -51,8 +51,8 @@ export default function ArticleList() {
     }
   };
   useEffect(() => {
-    getArticleList();
-  }, []);
+    getArticleList({ sortBy });
+  }, [sortBy]);
 
   return (
     <div className={styles.listBox}>
@@ -68,7 +68,7 @@ export default function ArticleList() {
                 <div className={styles.infoBox}>
                   <div className={styles.user}>
                     <div className={styles.name}>{adoption.userNickname}</div>
-                    <div className={styles.date}>2023-01-03</div>
+                    <div className={styles.date}>{adoption.createdAt}</div>
                   </div>
                   <div className={styles.title}>{adoption.title}</div>
                   <div className={styles.tags}>
