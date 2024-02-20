@@ -6,6 +6,8 @@ import ArticleList from '../../components/ArticleList';
 import Filter from './Filter';
 
 export default function MainPage() {
+
+  const [sortBy, setSortBy] = useState('desc');
   const [isFilterOpen, setFilterOpen] = useState(false);
   const [appliedFilters, setAppliedFilters] = useState({
     status: [],
@@ -16,6 +18,9 @@ export default function MainPage() {
     age: [],
     breed: [],
   });
+  const sortOrder = (order) => {
+    setSortBy(order);
+  };
 
   const handleFilter = () => {
     setFilterOpen(!isFilterOpen);
@@ -42,7 +47,11 @@ export default function MainPage() {
       <Header />
       <div className={styles.wrap}>
         <div className={styles.mainPage_Header}>
-          <div className={styles.datesort}>최신순 / 오래된순</div>
+          <div>
+            <button onClick={() => sortOrder('desc')} className={styles.sortButton} >최신순</button>
+            <span>/</span>
+            <button onClick={() => sortOrder('asc')} className={styles.sortButton} >오래된순</button>
+          </div>
           <div>
             <button className={styles.filter} onClick={handleFilter}>
               필터
@@ -51,7 +60,7 @@ export default function MainPage() {
           </div>
         </div>
         {isFilterOpen && <Filter onApplyFilter={applyFilter} onResetFilters={resetFilters} />}
-        <ArticleList appliedFilters={appliedFilters} />
+        <ArticleList appliedFilters={appliedFilters} sortBy={sortBy} />
       </div>
       <Nav />
     </>

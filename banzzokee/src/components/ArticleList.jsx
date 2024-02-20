@@ -3,7 +3,9 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styles from './ArticleList.module.css';
 import Tags from './tags';
-export default function ArticleList() {
+
+export default function ArticleList({sortBy}) {
+  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const [articleList, setArticleList] = useState([]);
 
   const getArticleList = async () => {
@@ -14,7 +16,7 @@ export default function ArticleList() {
       // console.log(resp.data);
       const config = {
         method: 'get',
-        url: `https://server.banzzokee.homes/api/adoptions?page=0&size=10&direction=desc`,
+        url:`https://server.banzzokee.homes/api/adoptions?page=0&size=10&direction=${sortBy}`,
       };
       const response = await axios.request(config);
       console.log(response.data.content);
@@ -24,8 +26,8 @@ export default function ArticleList() {
     }
   };
   useEffect(() => {
-    getArticleList();
-  }, []);
+    getArticleList({ sortBy });
+  }, [sortBy]);
 
   return (
     <div className={styles.listBox}>
