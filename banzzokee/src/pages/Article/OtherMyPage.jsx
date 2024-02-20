@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import MyArticleList from '../../components/myArticleList';
 export default function OtherMyPage() {
   const { state } = useLocation();
 
@@ -113,18 +114,7 @@ export default function OtherMyPage() {
         <div className={styles.articleContainer}>
           <div className={styles.articleHeader}>작성 게시물</div>
           <div className={styles.articleList}>
-            <Link>
-              <div className={styles.article}>article</div>
-            </Link>
-            <Link>
-              <div className={styles.article}>article</div>
-            </Link>
-            <Link>
-              <div className={styles.article}>article</div>
-            </Link>
-            <Link>
-              <div className={styles.article}>article</div>
-            </Link>
+            <MyArticleList userId={state.userId}></MyArticleList>
           </div>
         </div>
       </div>

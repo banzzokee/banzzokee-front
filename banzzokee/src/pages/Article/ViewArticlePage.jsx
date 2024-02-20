@@ -10,52 +10,7 @@ export default function ViewArticlePage() {
   const { id } = useParams();
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const navigate = useNavigate();
-  const [bookmark, setBookmark] = useState(false);
-
-  const addBookmark = async () => {
-    if (!bookmark) {
-      try {
-        const config = {
-          method: 'post',
-          url: `https://server.banzzokee.homes/api/${id}/follow`,
-          headers: { Authorization: `Bearer ${accessToken}` },
-        };
-        const response = await axios.request(config);
-        console.log(response);
-      } catch (error) {
-        console.error(error);
-      }
-    } else {
-      try {
-        const config = {
-          method: 'post',
-          url: `https://server.banzzokee.homes/api/${id}/follow`,
-          headers: { Authorization: `Bearer ${accessToken}` },
-        };
-        const response = await axios.request(config);
-        console.log(response);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  };
-  const openEdit = () => {
-    const editBox = document.getElementById('edit');
-    editBox.style.display = editBox.style.display === 'none' ? 'block' : 'none';
-  };
-
-  const handleEdit = () => {
-    navigate(`/update/${id}`);
-  };
-
-  const handleDelete = async () => {
-    if (window.confirm('게시글을 삭제하시겠습니까?')) {
-      await axios.delete(`http://localhost:3001/adoption/${id}`).then((res) => {
-        alert('삭제되었습니다.');
-        navigate('/');
-      });
-    }
-  };
+  const [bookmark, setBookmark] = useState();
 
   const [adoption, setAdoption] = useState({});
   const getAdoption = async () => {
@@ -80,6 +35,78 @@ export default function ViewArticlePage() {
   useEffect(() => {
     getAdoption();
   }, []);
+
+  function onClickBookmark() {
+    console.log('onclickBook', adoption.bookmarked);
+    if (accessToken) {
+      addBookmark();
+    } else {
+      alert('로그인후 이용 가능한 서비스 입니다.');
+    }
+    setBookmark(!bookmark);
+  }
+  const checkBookmark = async () => {
+    if (accessToken != null) {
+      setBookmark(adoption.bookmarked);
+    }
+  };
+  useEffect(() => {
+    checkBookmark();
+  }, [adoption, bookmark]);
+
+  const addBookmark = async () => {
+    if (!bookmark) {
+      try {
+        const config = {
+          method: 'post',
+          url: `https://server.banzzokee.homes/api/bookmarks`,
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+          data: { adoptionId: id },
+        };
+        const response = await axios.request(config);
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      try {
+        const config = {
+          method: 'post',
+          url: `https://server.banzzokee.homes/api/bookmarks/${id}`,
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+        };
+        const response = await axios.request(config);
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+  const openEdit = () => {
+    const editBox = document.getElementById('edit');
+    editBox.style.display = editBox.style.display === 'none' ? 'block' : 'none';
+  };
+
+  const handleEdit = () => {
+    navigate(`/update/${id}`);
+  };
+
+  const handleDelete = async () => {
+    if (window.confirm('게시글을 삭제하시겠습니까?')) {
+      await axios.delete(`http://localhost:3001/adoption/${id}`).then((res) => {
+        alert('삭제되었습니다.');
+        navigate('/');
+      });
+    }
+  };
+
   let adoptionNickname = '';
   if (adoption.user && adoption.user.nickname) {
     adoptionNickname = adoption.user.nickname;
@@ -142,11 +169,10 @@ export default function ViewArticlePage() {
           <div className={styles.articleTexts}>
             <div className={styles.titleAndSave}>
               <div className={styles.title}>{adoption.title}</div>
-              <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px' }} />
+              <div onClick={onClickBookmark}>{bookmark ? <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px', backgroundColor: 'gray' }} /> : <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px' }} />}</div>
             </div>
 
             <div className={styles.tags}>
-              {/* 나중에 리스트로 받아서 map 으로 뿌려준다 */}
               {adoption && (
                 <>
                   <TagsAll adoption={adoption}></TagsAll>
