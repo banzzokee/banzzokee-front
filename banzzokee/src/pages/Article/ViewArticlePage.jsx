@@ -137,7 +137,7 @@ export default function ViewArticlePage() {
               <ImageSlider images={adoption.imageUrls} />
             </div>
 
-            <div className={styles.status}>{adoption.status}</div>
+            {adoption.status ? <div className={styles.status}>{adoption.status.value}</div> : <div className={styles.status}>loading</div>}
           </div>
           <div className={styles.articleTexts}>
             <div className={styles.titleAndSave}>
