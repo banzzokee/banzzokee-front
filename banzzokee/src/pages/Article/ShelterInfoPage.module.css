@@ -4,8 +4,11 @@
   margin: 0 auto;
   padding: 10px;
   background-color: white;
+  background-color: #e1e1e1;
 }
-
+.title {
+  font-weight: bold;
+}
 .picture {
   width: 100px;
   height: 100px;

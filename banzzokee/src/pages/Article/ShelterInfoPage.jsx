@@ -27,8 +27,8 @@ export default function ShelterInfoPage() {
     shelterImgUrl = state.shelterImgUrl;
   }
   let shelterName = '';
-  if (state && state.shelterName) {
-    shelterName = state.shelterName;
+  if (state && state.name) {
+    shelterName = state.name;
   }
   let description = '';
   if (state && state.description) {
@@ -60,11 +60,21 @@ export default function ShelterInfoPage() {
         </Link>
 
         <div className={styles.shelterInfo}>
-          <p>보호소 이름: {shelterName}</p>
-          <p>보호소 소개: {description}</p>
-          <p>연락처: {tel}</p>
-          <p>주소: {address}</p>
-          <p>반쪽이 보호소 등록일: {registeredAt}</p>
+          <p>
+            <span className={styles.title}>보호소 이름:</span> {shelterName}
+          </p>
+          <p>
+            <span className={styles.title}>보호소 소개:</span> {description}
+          </p>
+          <p>
+            <span className={styles.title}>연락처:</span> {tel}
+          </p>
+          <p>
+            <span className={styles.title}>주소:</span> {address}
+          </p>
+          <p>
+            <span className={styles.title}>반쪽이 보호소 등록일:</span> {registeredAt}
+          </p>
         </div>
       </div>
       <Nav></Nav>
