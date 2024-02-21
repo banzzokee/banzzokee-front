@@ -15,18 +15,27 @@ export default function ViewArticlePage() {
   const [adoption, setAdoption] = useState({});
   const getAdoption = async () => {
     try {
-      const config = {
-        method: 'get',
-        url: `https://server.banzzokee.homes/api/adoptions/${id}`,
-      };
       // const config = {
       //   method: 'get',
       //   url: `http://localhost:3001/adoption/vIztRk24`,
       // };
-      const response = await axios.request(config);
+      // const response = await axios.request(config);
       // console.log('ViewArticlePage response', response);
+      const config = {
+        method: 'get',
+        url: `https://server.banzzokee.homes/api/adoptions/${id}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+
+      const response = await axios.request(config);
       setAdoption(response.data);
       console.log('viewArticle response.data', response.data);
+      setBookmark(response.data.bookmarked);
+      console.log(bookmark);
+      // setBookmark(JSON.parse(sessionStorage.getItem('bookmark')));
     } catch (error) {
       console.error('Error:', error);
     }
@@ -34,7 +43,8 @@ export default function ViewArticlePage() {
 
   useEffect(() => {
     getAdoption();
-  }, []);
+    console.log('getAdoption run');
+  }, [id]);
 
   function onClickBookmark() {
     console.log('onclickBook', adoption.bookmarked);
@@ -45,17 +55,17 @@ export default function ViewArticlePage() {
     }
     setBookmark(!bookmark);
   }
+
   const checkBookmark = async () => {
-    if (accessToken != null) {
-      setBookmark(adoption.bookmarked);
-    }
+    console.log('check bookmark', bookmark);
   };
   useEffect(() => {
     checkBookmark();
-  }, [adoption, bookmark]);
+  }, [adoption]);
 
   const addBookmark = async () => {
     checkBookmark();
+    console.log('addbookmark or delete', bookmark);
     if (!bookmark) {
       try {
         console.log('try add bookmark');
@@ -70,6 +80,7 @@ export default function ViewArticlePage() {
         };
         const response = await axios.request(config);
         console.log('북마크 저장클릭', response);
+        sessionStorage.setItem('bookmark', JSON.stringify(bookmark));
       } catch (error) {
         console.error(error);
       }
@@ -85,11 +96,13 @@ export default function ViewArticlePage() {
         };
         const response = await axios.request(config);
         console.log(response);
+        // sessionStorage.setItem('bookmark', JSON.stringify(bookmark));
+        console.log('delete', bookmark);
       } catch (error) {
         console.error(error);
       }
     }
-    setBookmark(!bookmark);
+    // setBookmark(!bookmark);
   };
 
   const openEdit = () => {
