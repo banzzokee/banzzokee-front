@@ -11,15 +11,12 @@ export default function BookmarkList() {
 
   const getArticleList = async () => {
     try {
-      // const resp = await axios.get('http://localhost:3001/adoption');
-
-      // setArticleList(resp.data);
-      // console.log(resp.data);
       const config = {
         method: 'get',
-        url: `https://server.banzzokee.homes/api/bookmarks/adoptions?page=0&size=10&direction=desc`,
+        url: `https://server.banzzokee.homes/api/bookmarks/adoptions`,
         headers: { Authorization: `Bearer ${accessToken}` },
       };
+      // url: `https://server.banzzokee.homes/api/bookmarks/adoptions?page=0&size=10&direction=desc`,
       const response = await axios.request(config);
       console.log(response.data.content);
       setArticleList(response.data.content);

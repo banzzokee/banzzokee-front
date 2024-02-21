@@ -55,8 +55,10 @@ export default function ViewArticlePage() {
   }, [adoption, bookmark]);
 
   const addBookmark = async () => {
+    checkBookmark();
     if (!bookmark) {
       try {
+        console.log('try add bookmark');
         const config = {
           method: 'post',
           url: `https://server.banzzokee.homes/api/bookmarks`,
@@ -67,14 +69,14 @@ export default function ViewArticlePage() {
           data: { adoptionId: id },
         };
         const response = await axios.request(config);
-        console.log(response);
+        console.log('북마크 저장클릭', response);
       } catch (error) {
         console.error(error);
       }
     } else {
       try {
         const config = {
-          method: 'post',
+          method: 'delete',
           url: `https://server.banzzokee.homes/api/bookmarks/${id}`,
           headers: {
             'Content-Type': 'application/json',
@@ -87,6 +89,7 @@ export default function ViewArticlePage() {
         console.error(error);
       }
     }
+    setBookmark(!bookmark);
   };
 
   const openEdit = () => {

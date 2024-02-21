@@ -11,10 +11,6 @@ export default function MyArticleList({ userId }) {
 
   const getArticleList = async () => {
     try {
-      // const resp = await axios.get('http://localhost:3001/adoption');
-
-      // setArticleList(resp.data);
-      // console.log(resp.data);
       const config = {
         method: 'get',
         url: `https://server.banzzokee.homes/api/adoptions?page=0&size=10&direction=desc&userId=${userId}`,
