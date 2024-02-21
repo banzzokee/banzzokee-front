@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 // import { useCookies } from 'react-cookie';
 import axios from 'axios';
-import GoogleLoginButton from '../register/GoogleLoginButton';
-import MyPage from '../user/MyPage';
+// import GoogleLoginButton from '../register/GoogleLoginButton';
+import MyPage from '../user/myPage';
 import Nav from '../../components/common/nav/Nav';
 import { useNavigate } from 'react-router-dom';
+import Button from '../../components/common/button/Button';
 export default function LoginPage() {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
@@ -46,6 +47,15 @@ export default function LoginPage() {
       alert('로그인 실패 아이디 또는 비밀번호를 재 확인하세요');
     }
   };
+
+  const onGoogleLogin = () => {
+    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?
+    client_id=679888049936-k5otspaavapavud961if59cjnstpb7rb.apps.googleusercontent.com
+    &redirect_uri=http://localhost:8080/login/oauth2/code/google
+    &response_type=code
+    &scope=profile%20email`;
+  }
+
   if (sessionStorage.getItem('accessToken') == null) {
     return (
       <>
@@ -73,7 +83,8 @@ export default function LoginPage() {
             <div className={styles.line}></div>
           </div>
           <div className={styles.loginButton} style={{ fontSize: '16px' }}>
-            <GoogleLoginButton style={{ backgroundColor: 'black' }} />
+            <Button onClick={onGoogleLogin}></Button>
+            {/* <GoogleLoginButton style={{ backgroundColor: 'black' }} /> */}
           </div>
         </div>
         <Nav></Nav>
