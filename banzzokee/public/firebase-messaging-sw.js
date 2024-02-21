@@ -15,8 +15,8 @@
 
 // firebase.initializeApp(config);
 
-import { initializeApp } from 'firebase/compat/app';
-import { getMessaging } from 'firebase/compat/messaging';
+import { initializeApp } from '@firebase/app-compat';
+import { getMessaging } from '@firebase/messaging-compat';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBnucp4FYPJDz9Dg8qr5abHbTdMGC4Nem4",

@@ -1,5 +1,6 @@
-import { getMessaging, getToken, onTokenRefresh } from "firebase/compat/messaging";
-import { initializeApp } from "firebase/compat/app";
+// import { getToken, deleteToken, onMessage } from '@firebase/messaging';
+import { getMessaging, getToken, onTokenRefresh } from "@firebase/messaging-compat";
+import { initializeApp } from "@firebase/app-compat";
 import { useEffect } from "react";
 import axios from "axios";
 // import React from 'react';
