@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styles from './ArticleList.module.css';
-
+import Tags from './tags';
 export default function ReviewList() {
   const [articleList, setArticleList] = useState([]);
   const [reviewList, setReviewList] = useState([]);
@@ -24,7 +24,7 @@ export default function ReviewList() {
     }
   };
   function doFilter(list) {
-    const filtered = list.filter((obj) => obj.status === '분양완료');
+    const filtered = list.filter((obj) => obj.status.value === '분양완료');
     setReviewList(filtered);
     console.log('reviewList', reviewList);
   }
@@ -40,8 +40,22 @@ export default function ReviewList() {
         {reviewList &&
           reviewList.map((adoption) => (
             <li key={adoption.id}>
-              <Link to={`/ReviewList/${adoption.id}`} key={adoption.id}>
-                {adoption.title}
+              <Link to={`/ReviewList/${adoption.adoptionId}`} key={adoption.adoptionId} className={styles.link}>
+                <div className={styles.imageContainer}>
+                  {adoption.imageUrls ? <img src={adoption.imageUrls[0]}></img> : <img src="../../../public/dog.webp" alt="" />}
+
+                  {adoption.status ? <div className={styles.status}>{adoption.status.value}</div> : <div className={styles.status}>loading</div>}
+                </div>
+                <div className={styles.infoBox}>
+                  <div className={styles.user}>
+                    <div className={styles.name}>{adoption.userNickname.substring(0, 15)}</div>
+                    <div className={styles.date}>{adoption.createdAt.substring(0, 10)}</div>
+                  </div>
+                  <div className={styles.title}>{adoption.title}</div>
+                  <div className={styles.tags}>
+                    <Tags adoption={adoption}></Tags>
+                  </div>
+                </div>
               </Link>
             </li>
           ))}
