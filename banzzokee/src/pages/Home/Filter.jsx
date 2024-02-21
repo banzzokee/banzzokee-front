@@ -5,10 +5,12 @@ const filterOptions = {
   상태: ['분양중', '예약중', '분양완료'],
   사이즈: ['초소형', '소형', '중형', '대형'],
   건강검진: ['검진 완료', '검진 미완료'],
+  성별: ['검진 완료', '검진 미완료'],
+  중성화: ['중성화'],
  
 };
 
-export default function Filter({ onApplyFilter, onResetFilters }) {
+export default function Filter({ onResetFilters }) {
   const [selectedFilters, setSelectedFilters] = useState({
     status: [],
     size: [],
@@ -39,17 +41,17 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
     };
   }, [isOpen]);
 
-  const handleFilter = (filterType, filterValue) => {
-    const currentSelectedFilters = selectedFilters[filterType];
-    const updatedSelectedFilters = currentSelectedFilters.includes(filterValue)
-      ? currentSelectedFilters.filter(value => value !== filterValue)
-      : [...currentSelectedFilters, filterValue];
+  // const handleFilter = (filterType, filterValue) => {
+  //   const currentSelectedFilters = selectedFilters[filterType];
+  //   const updatedSelectedFilters = currentSelectedFilters.includes(filterValue)
+  //     ? currentSelectedFilters.filter(value => value !== filterValue)
+  //     : [...currentSelectedFilters, filterValue];
 
-    setSelectedFilters(prevState => ({
-      ...prevState,
-      [filterType]: updatedSelectedFilters,
-    }));
-  };
+  //   setSelectedFilters(prevState => ({
+  //     ...prevState,
+  //     [filterType]: updatedSelectedFilters,
+  //   }));
+  // };
 
   const resetFilters = () => {
     setSelectedFilters({
@@ -64,9 +66,9 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
     onResetFilters();
   };
 
-  const applyFilters = () => {
-    onApplyFilter(selectedFilters);
-  };
+  // const applyFilters = () => {
+  //   onApplyFilter(selectedFilters);
+  // };
 
   return (
     <div className={styles.filterPage}>
@@ -100,7 +102,7 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
         <button onClick={resetFilters} className={styles.reset}>
           초기화
         </button>
-        <button onClick={applyFilters} className={styles.apply}>
+        <button  className={styles.apply}>
           적용하기
         </button>
       </div>
