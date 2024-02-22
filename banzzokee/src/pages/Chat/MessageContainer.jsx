@@ -3,6 +3,7 @@ import styles from './MessageContainer.module.css';
 
 const MessageContainer = ({ messageList, user }) => {
   console.log(messageList);
+
   if (messageList !== undefined) {
     return (
       <div>

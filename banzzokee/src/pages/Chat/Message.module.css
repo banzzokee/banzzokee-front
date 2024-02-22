@@ -22,7 +22,7 @@
   background-color: lightblue;
 }
 .messageInput {
-  height: 79px;
+  /* height: 79px; */
   background-color: #fafafa;
   display: flex;
   align-items: center;
