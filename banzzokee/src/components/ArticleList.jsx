@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './ArticleList.module.css';
 import Tags from './tags';
 
-export default function ArticleList({sortBy}) {
+export default function ArticleList({ sortBy }) {
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const [articleList, setArticleList] = useState([]);
 
@@ -16,7 +16,7 @@ export default function ArticleList({sortBy}) {
       // console.log(resp.data);
       const config = {
         method: 'get',
-        url:`https://server.banzzokee.homes/api/adoptions?page=0&size=10&direction=${sortBy}`,
+        url: `https://server.banzzokee.homes/api/adoptions?page=0&size=10&direction=${sortBy}`,
       };
       const response = await axios.request(config);
       console.log(response.data.content);
@@ -43,18 +43,12 @@ export default function ArticleList({sortBy}) {
                 </div>
                 <div className={styles.infoBox}>
                   <div className={styles.user}>
-                    <div className={styles.name}>{adoption.userNickname}</div>
-                    <div className={styles.date}>{adoption.createdAt}</div>
+                    <div className={styles.name}>{adoption.userNickname.substring(0, 15)}</div>
+                    <div className={styles.date}>{adoption.createdAt.substring(0, 10)}</div>
                   </div>
                   <div className={styles.title}>{adoption.title}</div>
                   <div className={styles.tags}>
-                    {/* <div className={styles.tag}>{adoption.breed}</div> */}
-                    {/* <div className={styles.tag}>{adoption.size}</div> */}
-                    {/* <div className={styles.tag}>{adoption.healthChecked}</div> */}
-                    {/* {healthChecked(adoption.healthChecked)} */}
-                    {/* {gender(adoption.healthChecked)} */}
                     <Tags adoption={adoption}></Tags>
-                    {/* <div className={styles.tag}>{adoption.gender}</div> */}
                   </div>
                 </div>
               </Link>

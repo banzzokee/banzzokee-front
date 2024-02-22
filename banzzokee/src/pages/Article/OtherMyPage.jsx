@@ -4,14 +4,17 @@ import Nav from '../../components/common/nav/Nav';
 import Button from '../../components/common/button/Button';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import MyArticleList from '../../components/myArticleList';
 export default function OtherMyPage() {
-  const [follow, setFollow] = useState(false);
   const { state } = useLocation();
+
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const myInfo = JSON.parse(sessionStorage.getItem('myInfo'));
   // adding feature to git branch bookmark
+  const [follow, setFollow] = useState();
+
   function onClick() {
     setFollow(!follow);
     if (accessToken) {
@@ -20,6 +23,27 @@ export default function OtherMyPage() {
       alert('로그인후 이용 가능한 서비스 입니다.');
     }
   }
+  const checkFollow = async () => {
+    if (accessToken != null) {
+      try {
+        const config = {
+          method: 'get',
+          url: `https://server.banzzokee.homes/api/users/${state.userId}`,
+          headers: { Authorization: `Bearer ${accessToken}` },
+        };
+        const response = await axios.request(config);
+        console.log('userId get', response.data);
+        setFollow(response.data.isFollowingUser);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      setFollow(false);
+    }
+  };
+  useEffect(() => {
+    checkFollow();
+  }, []);
   const addFollow = async () => {
     console.log('other', state);
     console.log('myInfo', myInfo);
@@ -90,18 +114,7 @@ export default function OtherMyPage() {
         <div className={styles.articleContainer}>
           <div className={styles.articleHeader}>작성 게시물</div>
           <div className={styles.articleList}>
-            <Link>
-              <div className={styles.article}>article</div>
-            </Link>
-            <Link>
-              <div className={styles.article}>article</div>
-            </Link>
-            <Link>
-              <div className={styles.article}>article</div>
-            </Link>
-            <Link>
-              <div className={styles.article}>article</div>
-            </Link>
+            <MyArticleList userId={state.userId}></MyArticleList>
           </div>
         </div>
       </div>

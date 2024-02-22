@@ -10,35 +10,101 @@ export default function ViewArticlePage() {
   const { id } = useParams();
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const navigate = useNavigate();
-  const [bookmark, setBookmark] = useState(false);
+  const [bookmark, setBookmark] = useState();
+
+  const [adoption, setAdoption] = useState({});
+  const getAdoption = async () => {
+    try {
+      // const config = {
+      //   method: 'get',
+      //   url: `http://localhost:3001/adoption/vIztRk24`,
+      // };
+      // const response = await axios.request(config);
+      // console.log('ViewArticlePage response', response);
+      const config = {
+        method: 'get',
+        url: `https://server.banzzokee.homes/api/adoptions/${id}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+
+      const response = await axios.request(config);
+      setAdoption(response.data);
+      console.log('viewArticle response.data', response.data);
+      setBookmark(response.data.bookmarked);
+      console.log(bookmark);
+      // setBookmark(JSON.parse(sessionStorage.getItem('bookmark')));
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  useEffect(() => {
+    getAdoption();
+    console.log('getAdoption run');
+  }, [id]);
+
+  function onClickBookmark() {
+    console.log('onclickBook', adoption.bookmarked);
+    if (accessToken) {
+      addBookmark();
+    } else {
+      alert('로그인후 이용 가능한 서비스 입니다.');
+    }
+    setBookmark(!bookmark);
+  }
+
+  const checkBookmark = async () => {
+    console.log('check bookmark', bookmark);
+  };
+  useEffect(() => {
+    checkBookmark();
+  }, [adoption]);
 
   const addBookmark = async () => {
+    checkBookmark();
+    console.log('addbookmark or delete', bookmark);
     if (!bookmark) {
       try {
+        console.log('try add bookmark');
         const config = {
           method: 'post',
-          url: `https://server.banzzokee.homes/api/${id}/follow`,
-          headers: { Authorization: `Bearer ${accessToken}` },
+          url: `https://server.banzzokee.homes/api/bookmarks`,
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+          data: { adoptionId: id },
         };
         const response = await axios.request(config);
-        console.log(response);
+        console.log('북마크 저장클릭', response);
+        sessionStorage.setItem('bookmark', JSON.stringify(bookmark));
       } catch (error) {
         console.error(error);
       }
     } else {
       try {
         const config = {
-          method: 'post',
-          url: `https://server.banzzokee.homes/api/${id}/follow`,
-          headers: { Authorization: `Bearer ${accessToken}` },
+          method: 'delete',
+          url: `https://server.banzzokee.homes/api/bookmarks/${id}`,
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
         };
         const response = await axios.request(config);
         console.log(response);
+        // sessionStorage.setItem('bookmark', JSON.stringify(bookmark));
+        console.log('delete', bookmark);
       } catch (error) {
         console.error(error);
       }
     }
+    // setBookmark(!bookmark);
   };
+
   const openEdit = () => {
     const editBox = document.getElementById('edit');
     editBox.style.display = editBox.style.display === 'none' ? 'block' : 'none';
@@ -57,29 +123,6 @@ export default function ViewArticlePage() {
     }
   };
 
-  const [adoption, setAdoption] = useState({});
-  const getAdoption = async () => {
-    try {
-      const config = {
-        method: 'get',
-        url: `https://server.banzzokee.homes/api/adoptions/${id}`,
-      };
-      // const config = {
-      //   method: 'get',
-      //   url: `http://localhost:3001/adoption/vIztRk24`,
-      // };
-      const response = await axios.request(config);
-      // console.log('ViewArticlePage response', response);
-      setAdoption(response.data);
-      console.log('response.data', response.data);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
-  useEffect(() => {
-    getAdoption();
-  }, []);
   let adoptionNickname = '';
   if (adoption.user && adoption.user.nickname) {
     adoptionNickname = adoption.user.nickname;
@@ -142,11 +185,10 @@ export default function ViewArticlePage() {
           <div className={styles.articleTexts}>
             <div className={styles.titleAndSave}>
               <div className={styles.title}>{adoption.title}</div>
-              <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px' }} />
+              <div onClick={onClickBookmark}>{bookmark ? <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px', backgroundColor: 'gray' }} /> : <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px' }} />}</div>
             </div>
 
             <div className={styles.tags}>
-              {/* 나중에 리스트로 받아서 map 으로 뿌려준다 */}
               {adoption && (
                 <>
                   <TagsAll adoption={adoption}></TagsAll>
