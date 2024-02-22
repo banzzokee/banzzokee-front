@@ -37,10 +37,12 @@ export default function Message() {
       const rooms = response.data.content;
       let changeHasroom = true;
       for (let i = 0; i < rooms.length; i++) {
-        console.log('comparing room id', rooms[i]);
+        // console.log('comparing room id', rooms[i]);
+        // console.log('adoptId:', rooms[i].adoption.adoptionId);
+        // console.log('params adoption id:: ', id);
         if (rooms[i].adoption.adoptionId == id) {
           changeHasroom = false;
-          console.log('set hasroom: true, do not create new room');
+          console.log('do not create new room');
           break;
         }
       }
@@ -66,7 +68,7 @@ export default function Message() {
 
   const createRoom = async () => {
     try {
-      console.log('try connecting Chat POST');
+      console.log('createRoom');
       const config = {
         method: 'post',
         url: `https://server.banzzokee.homes/api/rooms/adoptions/${id}`,
@@ -199,8 +201,12 @@ export default function Message() {
               <img src="../../../public/add.svg" alt="" />
             </label>
           </div>
-
-          <input className={styles.typeMessage} type="text" value={message} onChange={(event) => setMessage(event.target.value)}></input>
+          <div className={styles.typeMessage}>
+            <input className={styles.textbox} type="text" value={message} onChange={(event) => setMessage(event.target.value)}></input>
+            <div className={styles.sendButton}>
+              <img src="../../public/message.png"></img>
+            </div>
+          </div>
         </div>
       </form>
       {/* <InputField message={message} setMessage={setMessage} sendMessage={sendMessage}></InputField> */}

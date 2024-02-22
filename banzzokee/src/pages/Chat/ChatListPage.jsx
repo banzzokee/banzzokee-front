@@ -19,8 +19,9 @@ export default function ChatListPage() {
         headers: { Authorization: `Bearer ${accessToken}` },
       };
       const response = await axios.request(config);
-      console.log('ChatLists::', response.data);
+      console.log('ChatLists::', response.data.content);
       setRoomList(response.data.content);
+      // console.log('long::: ', response.data.content[0].adoption.adoptionId);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -47,16 +48,16 @@ export default function ChatListPage() {
       <div className={styles.container}>
         {roomList &&
           roomList.map((room) => (
-            <Link to="/Message" key={room.roomId}>
+            <Link to={`/Message/${room.adoption.adoptionId}`} key={room.roomId}>
               <div className={styles.message}>
                 <div className={styles.userImage}>{/* <img src="/" alt="불러온 이미지" /> */}</div>
                 <div className={styles.userContent}>
                   <div className={styles.userAndTime}>
-                    <div className={styles.userName}>{room.adoption.nickname}</div>
+                    <div className={styles.userName}>{room.user.nickname}</div>
 
                     <div className={styles.sendTime}>1시간 전</div>
                   </div>
-                  <div className={styles.chatBody}> 대해 여쭤봅니다!</div>
+                  <div className={styles.chatBody}>{room.lastMessage}</div>
                 </div>
               </div>
             </Link>
