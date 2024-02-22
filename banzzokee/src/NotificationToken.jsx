@@ -1,10 +1,8 @@
-// import { getToken, deleteToken, onMessage } from '@firebase/messaging';
-import { getMessaging, getToken, onTokenRefresh } from "@firebase/messaging-compat";
-import { initializeApp } from "@firebase/app-compat";
+import 'firebase/compat/messaging';
+import firebase from "firebase/compat/app";
 import { useEffect } from "react";
 import axios from "axios";
-// import React from 'react';
-// import firebase from 'firebase';
+
 
 
 const firebaseConfig = {
@@ -17,117 +15,68 @@ const firebaseConfig = {
   measurementId: "G-YPCP2D21P6"
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
+// Firebase 앱 초기화가 여러 번 실행되지 않도록 확인
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app(); // 이미 초기화된 경우, 해당 인스턴스를 사용
+}
 
-export default function NotificationToken()  {
 
-  useEffect(() => {
-    const messaging = getMessaging();
-
-    getToken(messaging).then((currentToken) => {
-      if (currentToken) {
-        sendTokenToServer(currentToken);
-        // updateUIForPushEnabled(currentToken);
-      } else {
-        console.log('No registration token available. Request permission to generate one.');
+const sendTokenToServer = async (token) => {
+  try {
+    const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
+    const response = await axios.put(
+      'https://server.banzzokee.homes/api/notifications/tokens',
+      { token },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
       }
-    }).catch((err) => {
-      console.log('An error occurred while retrieving token. ', err);
-    });
+    );
 
-    onTokenRefresh(messaging, () => {
-      getToken(messaging).then((refreshedToken) => {
-        console.log('Token refreshed. ', refreshedToken);
-        sendTokenToServer(refreshedToken);
-      }).catch((err) => {
-        console.log('Unable to retrieve refreshed token. ', err);
-      });
-    });
+    console.log('Token sent to server:', response.data);
+  } catch (error) {
+    console.error('Error sending token to server:', error);
+  }
+};
 
+
+export default function NotificationToken() {
+  useEffect(() => {
+    const messaging = firebase.messaging();
+  
+    // 사용자로부터 알림 권한 요청
+    Notification.requestPermission().then((permission) => {
+      if (permission === 'granted') {
+        console.log('Notification 권한 허용.');
+  
+        // 토큰 가져오기 및 서버에 전송
+        messaging.getToken(messaging, { vapidKey: 'BJgALk-acWHVF6O1MSyRXKW-6upKKByfWfp3lLEHpdonzLJtdIxzRdhrnD64rECNHeC9A1dp7mWZTeZpk_WKZ1w' }).then((currentToken) => {
+          if (currentToken) {
+            sendTokenToServer(currentToken);
+          } else {
+            console.log('토큰 사용불가. 토큰 사용을 위해서 권한 요청 필요.');
+          }
+        }).catch((err) => {
+          console.log('토큰 에러. ', err);
+        });
+      }
+    });
+  
+    // 포그라운드 메시지 수신 처리
     messaging.onMessage((payload) => {
       console.log('Message received. ', payload);
+      // 사용자 정의 알림 표시 등의 추가 로직
     });
   }, []);
 
-  const sendTokenToServer = (token) => {
-    const accessToken = sessionStorage.getItem('accessToken');
+  return null; // 혹시 render를 요구하는 linter 경고를 방지하기 위해 null을 반환합니다.
 
-    axios({
-      method: 'put',
-      url: 'https://server.banzzokee.homes/api/notifications/tokens',
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
-      },
-      data: {
-        token: token,
-      },
-    })
-    .then((response) => {
-      console.log('Token sent to server successfully:', response);
-    })
-    .catch((error) => {
-      console.error('Error sending token to server:', error);
-    });
-  };
+}  
 
 
 
-
-
-  // useEffect(() => {
-  //   const messaging = getMessaging();
-
-  //     getToken(messaging)
-  //     .then((currentToken) => {
-  //       if (currentToken) {
-  //         sendTokenToServer(currentToken);
-  //         // updateUIForPushEnabled(currentToken);
-  //       } else {
-  //         console.log('No Instance ID token available.');
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log('Error ', err);
-  //     });
-
-  //   messaging.onTokenRefresh(() => {
-  //       getToken(messaging)
-  //       .then((refreshedToken) => {
-  //         console.log('Token refreshed. ', refreshedToken);
-  //         sendTokenToServer(refreshedToken);
-  //       })
-  //       .catch((err) => {
-  //         console.log('Unable to retrieve refreshed token. ', err);
-  //       });
-  //   });
-
-  //   messaging.onMessage((payload) => {
-  //     console.log('Message received. ', payload);
-  //   });
-  // }, []);
-
-  // const sendTokenToServer = (token) => {
-  //   const accessToken = sessionStorage.getItem('accessToken');
-
-  //   axios({
-  //     method: 'put',
-  //     url: 'https://server.banzzokee.homes/api/api/notifications/tokens',
-  //     headers: {
-  //       'Authorization': `Bearer ${accessToken}`,
-  //       'Content-Type': 'application/json',
-  //     },
-  //     data: {
-  //       token: token,
-  //     },
-  //   })
-  //   .then((response) => {
-  //     console.log('Token sent to server successfully:', response);
-  //   })
-  //   .catch((error) => {
-  //     console.error('Error sending token to server:', error);
-  //   });
-  // };
-
-}
 

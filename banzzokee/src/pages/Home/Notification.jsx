@@ -7,23 +7,30 @@ export default function Notification() {
   const [notifications, setNotifications] = useState([]);
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
 
-  useEffect(() => {
-    getNotifications();
-  }, []);
+  
 
   const getNotifications = async () => {
     try {
-      const notificationsResponse = await axios.get('https://server.banzzokee.homes/api/notifications?page=0&size=10&checked=false', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
+      const config = {
+        method: 'get',
+        url: 'https://server.banzzokee.homes/api/notifications',
+        params: {
+          page: 0,  
+          size: 4,  
+          checked: 'false', 
         },
-      });
-
-      setNotifications(notificationsResponse.data);
+        headers: { Authorization: `Bearer ${accessToken}` },
+      };
+      const response = await axios.request(config);
+      setNotifications(response.data);
     } catch (error) {
-      console.error('Error', error);
+      console.error(error);
     }
   };
+  useEffect(() => {
+      getNotifications();
+    }, []);
+
 
   const markNotificationAsRead = async (notificationId) => {
     try {
