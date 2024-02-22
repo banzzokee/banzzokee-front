@@ -28,7 +28,7 @@ import ChangePass from './pages/user/ChangePass';
 import ShelterEditPage from './pages/user/ShelterEditPage';
 import ShelterRegisterPage from './pages/user/ShelterRegisterPage';
 import MyPageEdit from './pages/user/MyPageEdit';
-import GoogleLoginButton from './pages/register/GoogleLoginButton';
+// import GoogleLoginButton from './pages/register/GoogleLoginButton';
 import ArticleList from './components/ArticleList';
 import AdoptEdit from './pages/article/AdoptEdit';
 import ReviewPage from './pages/review/ReviewPage';
@@ -71,7 +71,7 @@ function App() {
           <Route path="/ShelterEditPage" element={<ShelterEditPage />} />
           <Route path="/ShelterRegisterPage" element={<ShelterRegisterPage />} />
           <Route path="/MyPageEdit" element={<MyPageEdit />} />
-          <Route path="/GoogleLoginButton" element={<GoogleLoginButton />} />
+          {/* <Route path="/GoogleLoginButton" element={<GoogleLoginButton />} /> */}
           <Route path="/ArticleList" element={<ArticleList />} />
           <Route path="/ArticleList/:id" element={<ViewArticlePage />} />
           <Route path="/update/:id" element={<AdoptEdit />} />

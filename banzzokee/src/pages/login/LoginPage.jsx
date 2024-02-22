@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 // import { useCookies } from 'react-cookie';
 import axios from 'axios';
-// import GoogleLoginButton from '../register/GoogleLoginButton';
 import MyPage from '../user/myPage';
 import Nav from '../../components/common/nav/Nav';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/common/button/Button';
+// import GoogleLoginButton from '../register/GoogleLoginButton';
+import LoginCallback from '../register/LoginCallback';
 export default function LoginPage() {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
@@ -48,13 +49,10 @@ export default function LoginPage() {
     }
   };
 
-  const onGoogleLogin = () => {
-    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?
-    client_id=679888049936-k5otspaavapavud961if59cjnstpb7rb.apps.googleusercontent.com
-    &redirect_uri=http://localhost:8080/login/oauth2/code/google
-    &response_type=code
-    &scope=profile%20email`;
-  }
+  const URL_MEMBER_SINGUP = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=679888049936-k5otspaavapavud961if59cjnstpb7rb.apps.googleusercontent.com&redirect_uri=http://localhost:8080/login/oauth2/code/google&response_type=code&scope=profile%20email';
+  const handleGoogleLogin = () => {
+    window.location.href = URL_MEMBER_SINGUP;
+  };
 
   if (sessionStorage.getItem('accessToken') == null) {
     return (
@@ -83,8 +81,11 @@ export default function LoginPage() {
             <div className={styles.line}></div>
           </div>
           <div className={styles.loginButton} style={{ fontSize: '16px' }}>
-            <Button onClick={onGoogleLogin}></Button>
-            {/* <GoogleLoginButton style={{ backgroundColor: 'black' }} /> */}
+            <button
+                className={styles.button__google__login} onClick={handleGoogleLogin}>
+                구글 소셜 로그인
+            </button>
+            <LoginCallback />
           </div>
         </div>
         <Nav></Nav>
