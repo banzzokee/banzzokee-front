@@ -55,6 +55,7 @@
   height: 20px;
   /* background-color: #818181; */
   overflow: hidden;
+  text-align: left;
 }
 .messageButton {
   width: 100x;

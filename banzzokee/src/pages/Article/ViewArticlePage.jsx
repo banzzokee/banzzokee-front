@@ -147,7 +147,7 @@ export default function ViewArticlePage() {
                 <div className={styles.nameAndDate}>
                   <div className={styles.name}>{adoptionNickname}</div>
 
-                  <div className={styles.date}>{adoption.createdAt}</div>
+                  <div className={styles.date}>{String(adoption.createdAt).substring(0, 10)}</div>
                 </div>
               </div>
             </div>
@@ -160,7 +160,15 @@ export default function ViewArticlePage() {
                   </div>
                 </Link>
               ) : (
-                <div></div>
+                <div
+                  className={styles.messageButton}
+                  onClick={() => {
+                    alert('로그인 하셔야 사용하실 수 있는 서비스 입니다.');
+                  }}
+                >
+                  메세지
+                  <img className={styles.messageIcon} src="../../../public/Message.png" />
+                </div>
               )}
 
               <button style={{ padding: 0, backgroundColor: 'white' }} onClick={openEdit}>
