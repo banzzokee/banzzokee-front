@@ -20,6 +20,7 @@ const LoginCallback = () => {
           const { accessToken, userData } = response.data;
           sessionStorage.setItem('accessToken', accessToken);
           console.log('User Data:', userData);
+
           if (userData.isFirstLogin) {
             navigate('/GoogleRegister');
           } else {
@@ -27,8 +28,12 @@ const LoginCallback = () => {
           }
         })
         .catch((error) => {
-          console.error('Error fetching user information:', error);
-          navigate('/LoginPage');
+          if (error.response && error.response.status === 400) {
+            console.error('Social login failed with status code 400');
+          } else {
+            console.error('Error fetching user information:', error);
+            navigate('/LoginPage');
+          }
         });
     }
   }, [navigate]);
