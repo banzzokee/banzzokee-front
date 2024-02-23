@@ -1,0 +1,78 @@
+.container {
+  /* background-color: gainsboro; */
+  width: 375px;
+  height: 724px;
+  padding: 20px;
+}
+
+.picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #d9d9d9;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.picture img {
+  width: 100%;
+  height: 100%;
+}
+.pictures {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.add {
+  position: absolute;
+  right: 40px;
+}
+.addIcon {
+  cursor: pointer;
+  margin: 0;
+}
+.addIcon img {
+  width: 40px;
+  height: 40px;
+}
+.addPhoto {
+  display: none;
+}
+
+.input {
+  height: 40px;
+  border: none;
+  width: 100%;
+  background-color: #d9d9d9;
+  font-size: 16px;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.textarea {
+  height: 120px;
+  border: none;
+  width: 100%;
+  background-color: #d9d9d9;
+  font-size: 16px;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.button {
+  height: 50px;
+  width: 100%;
+  background-color: #9c9c9c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-size: 16px;
+  margin-top: 40px;
+  cursor: pointer;
+  border-radius: 5px;
+}

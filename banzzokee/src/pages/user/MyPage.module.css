@@ -1,0 +1,126 @@
+.container {
+  width: 375px;
+  height: 645px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.userInfo {
+  height: 400px;
+  padding: 0px 30px;
+  font-size: 15px;
+  background-color: #e1e1e1;
+  position: relative;
+}
+
+.settingIcon {
+  position: absolute;
+  right: 20px;
+}
+.profilePhoto {
+  width: 150px;
+  height: 150px;
+  background-color: #bebebe;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.profilePhoto img {
+  width: 100%;
+  height: 100%;
+}
+
+.badgeIcon {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: -10px;
+  top: 0px;
+}
+
+.userID {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 0;
+  min-height: 16px;
+}
+.introduce {
+  min-height: 16px;
+}
+.viewShelterButton {
+  position: relative;
+  left: 0;
+}
+.profileHeader {
+  margin-top: 10px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.buttons {
+  width: 100%;
+  /* display: flex; */
+  /* flex-direction: column; */
+  align-items: center;
+  /* justify-content: center; */
+  height: 100px;
+  gap: 10px;
+}
+
+.button {
+  background-color: #bebebe;
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  color: white;
+  font-size: 16px;
+}
+
+.viewArticles {
+  width: 100%;
+  background-color: lightblue;
+  height: 245px;
+}
+
+.chooseCategory {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.category {
+  height: 50px;
+  cursor: pointer;
+  width: 50%;
+  /* height: 50px; */
+  text-align: center;
+  padding: 10px;
+}
+
+.articleList {
+  height: 195px;
+  overflow: scroll;
+  /* word-wrap: break-word; */
+  background-color: white;
+}
+
+.article {
+  width: 300px;
+
+  font-size: 16px;
+
+  /* height: 100%; */
+  background-color: aquamarine;
+  display: flex;
+  overflow: hidden;
+  /* padding: 10px; */
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
