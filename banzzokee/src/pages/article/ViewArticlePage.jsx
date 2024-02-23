@@ -4,7 +4,7 @@ import BackHeader from '../../components/common/header/BackHeader';
 import Nav from '../../components/common/nav/Nav';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import ImageSlider from './imageSlider';
+import ImageSlider from './ImageSlider';
 import TagsAll from '../../components/TagsAll';
 export default function ViewArticlePage() {
   const { id } = useParams();
@@ -117,13 +117,11 @@ export default function ViewArticlePage() {
   const handleDelete = async () => {
     if (window.confirm('게시글을 삭제하시겠습니까?')) {
       try {
-      const config = {
-        method: 'delete',
-        url: `https://server.banzzokee.homes/api/adoptions/${id}`,
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
-      };
-  
-      
+        const config = {
+          method: 'delete',
+          url: `https://server.banzzokee.homes/api/adoptions/${id}`,
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
+        };
 
         const response = await axios.request(config);
         alert('삭제되었습니다.');
@@ -132,10 +130,8 @@ export default function ViewArticlePage() {
       } catch (error) {
         console.error('Error deleting adoptionarticle:', error);
       }
-
     }
   };
-
 
   let adoptionNickname = '';
   if (adoption.user && adoption.user.nickname) {
