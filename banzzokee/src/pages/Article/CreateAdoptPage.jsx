@@ -18,7 +18,7 @@ export default function CreateAdoptPage() {
       gender: '',
       neutering: '',
       age: '',
-      registeredAt: '1111-11-11',
+      registeredAt: '',
     },
     content: '',
   });
@@ -108,15 +108,15 @@ export default function CreateAdoptPage() {
             size: adoption.tags.size,
             neutering: adoption.tags.neutering,
             gender: adoption.tags.gender,
-            age: adoption.tags.age,
-            healthChecked: adoption.tags.healthChecked,
+            age: 3,
+            healthChecked: true,
             registeredAt: adoption.tags.registeredAt,
           }),
         ],
         { type: 'application/json' }
       )
     );
-
+    console.log('form', formData);
     // adoption.imageUrls.forEach((imageUrl, index) => {
     //   data.append(`images[${index}]`, imageUrl);
     // });

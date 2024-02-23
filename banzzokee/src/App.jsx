@@ -63,7 +63,7 @@ function App() {
           <Route path="/FollowingPage" element={<FollowingPage />} />
           <Route path="/AccountInfoPage" element={<AccountInfoPage />} />
           <Route path="/EmailConfirm" element={<EmailConfirm />} />
-          <Route path="/Message" element={<Message />} />
+          <Route path="/Message/:id" element={<Message />} />
           <Route path="/DeleteAccount" element={<DeleteAccount />} />
           <Route path="/ChangePass" element={<ChangePass />} />
           <Route path="/GoogleRegister" element={<GoogleRegister />} />

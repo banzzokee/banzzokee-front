@@ -10,12 +10,20 @@ import FollowCard from './FollowCard';
 
 export default function FollowingPage() {
   const [list, setList] = useState([]);
-
+  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const getList = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/users/APmgnc1/`);
-      setList(data.followers);
-      console.log('list set');
+      const config = {
+        method: 'get',
+        url: 'https://server.banzzokee.homes/api/users/me/followers',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+      };
+      const response = await axios.request(config);
+      setList(response.data.content);
+      console.log('list set', response);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -28,11 +36,8 @@ export default function FollowingPage() {
     <>
       <BackHeader style={{ backgroundColor: '#e1e1e1' }}></BackHeader>
       <div className={styles.container}>
-        <div className={styles.listBox}>
-          {list.map((follower) => (
-            <FollowCard key={follower.id} follower={follower} list={list} />
-          ))}
-        </div>
+        <div className={styles.followTitle}></div>
+        <div className={styles.listBox}>{list && list.map((follower) => <FollowCard key={follower.id} follower={follower} list={list} />)}</div>
       </div>
 
       <Nav></Nav>

@@ -23,44 +23,28 @@ export default function SettingPage() {
           <div className={styles.eachOnOff}>
             <p className={styles.settingTitle}>채팅 알림</p>
             <div className={styles.onOffBox}>
-              <input
-                type="checkbox"
-                checked={chatNotification}
-                onChange={() => setChatNotification((prev) => !prev)}
-              />
+              <input type="checkbox" checked={chatNotification} onChange={() => setChatNotification((prev) => !prev)} />
               {/* <div className={styles.onOffCircle}></div> */}
             </div>
           </div>
           <div className={styles.eachOnOff}>
             <p className={styles.settingTitle}>관심 게시물 알림</p>
             <div className={styles.onOffBox}>
-            <input
-              type="checkbox"
-              checked={interestPostNotification}
-              onChange={() => setInterestPostNotification((prev) => !prev)}
-            />
+              <input type="checkbox" checked={interestPostNotification} onChange={() => setInterestPostNotification((prev) => !prev)} />
               {/* <div className={styles.onOffCircle}></div> */}
             </div>
           </div>
           <div className={styles.eachOnOff}>
             <p className={styles.settingTitle}>후기 게시물 등록 알림</p>
             <div className={styles.onOffBox}>
-              <input
-                type="checkbox"
-                checked={reviewPostNotification}
-                onChange={() => setReviewPostNotification((prev) => !prev)}
-              />
+              <input type="checkbox" checked={reviewPostNotification} onChange={() => setReviewPostNotification((prev) => !prev)} />
               {/* <div className={styles.onOffCircle}></div> */}
             </div>
           </div>
           <div className={styles.eachOnOff}>
             <p className={styles.settingTitle}>팔로우 보호소 새로운 게시물 등록 알림</p>
             <div className={styles.onOffBox}>
-              <input
-                type="checkbox"
-                checked={followShelterNotification}
-                onChange={() => setFollowShelterNotification((prev) => !prev)}
-              />
+              <input type="checkbox" checked={followShelterNotification} onChange={() => setFollowShelterNotification((prev) => !prev)} />
               {/* <div className={styles.onOffCircle}></div> */}
             </div>
           </div>

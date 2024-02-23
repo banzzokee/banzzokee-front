@@ -161,17 +161,30 @@ export default function ViewArticlePage() {
                 <div className={styles.nameAndDate}>
                   <div className={styles.name}>{adoptionNickname}</div>
 
-                  <div className={styles.date}>{adoption.createdAt}</div>
+                  <div className={styles.date}>{String(adoption.createdAt).substring(0, 10)}</div>
                 </div>
               </div>
             </div>
             <div className={styles.headerRight}>
-              <Link className="chat" to="/Message">
-                <div className={styles.messageButton}>
+              {accessToken ? (
+                <Link className="chat" to={`/Message/${id}`}>
+                  <div className={styles.messageButton}>
+                    메세지
+                    <img className={styles.messageIcon} src="../../../public/Message.png" />
+                  </div>
+                </Link>
+              ) : (
+                <div
+                  className={styles.messageButton}
+                  onClick={() => {
+                    alert('로그인 하셔야 사용하실 수 있는 서비스 입니다.');
+                  }}
+                >
                   메세지
                   <img className={styles.messageIcon} src="../../../public/Message.png" />
                 </div>
-              </Link>
+              )}
+
               <button style={{ padding: 0, backgroundColor: 'white' }} onClick={openEdit}>
                 <img src="../../../public/edit.svg" style={{ transform: 'rotate(90deg)' }} />
               </button>

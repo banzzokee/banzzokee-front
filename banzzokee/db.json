@@ -32,16 +32,8 @@
       },
       "followers": [
         {
-          "userId": "1",
-          "nickname": "user_1"
-        },
-        {
-          "userId": "2",
-          "nickname": "user_2"
-        },
-        {
-          "userid": "3",
-          "nickname": "user_3"
+          "userId": 1,
+          "nickname": "테스트계정"
         }
       ],
       "followees": {
