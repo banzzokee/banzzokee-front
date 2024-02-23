@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom"
 
 export default function ArticleUpdate() {
   const navigate = useNavigate();
+  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const { id } = useParams();
   const [adoption, setAdoption] = useState({
     id: 0,
@@ -32,15 +33,23 @@ export default function ArticleUpdate() {
   });
 
   const { title, content, tags, status, imageUrls } = adoption;
+  const formData = new FormData();
 
+  const [submitImage, setSubmitImage] = useState(null);
+  const onFileChange = (e) => {
+    console.log('images!!');
+    setSubmitImage(e.target.files[0]);
+    for (let i = 0; i < e.target.files.length; i++) {
+      formData.append('images', e.target.files[i]);
+    }
+  };
   const onChange = (e) => {
     const { name, value } = e.target;
 
     if (name === 'image') {
-      setAdoption({
-        ...adoption,
-        [name]: e.target.files,
-      });
+      for (let i = 0; i < e.target.files.length; i++) {
+        formData.append('images', e.target.files[i]);
+      }
     } else if (name.includes('tag_')) {
       const tagButton = name.replace('tag_', '');
       setAdoption({
@@ -82,10 +91,16 @@ export default function ArticleUpdate() {
   useEffect(() => {
     const getAdoption = async () => {
       try {
-        const resp = await axios.get(`http://localhost:3001/adoption/${id}`);
-        setAdoption(resp.data);
+        const config = {
+          method: 'get',
+          url: `https://server.banzzokee.homes/api/adoptions/${id}`,
+        };
+  
+        const response = await axios.request(config);
+        setAdoption(response.data);
+        console.log('adoption', adoption);
       } catch (error) {
-        console.error("Error:", error);
+        console.error('Error:', error);
       }
     };
 
@@ -94,10 +109,42 @@ export default function ArticleUpdate() {
 
   const handleEdit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:3001/adoption/${id}`, adoption).then((res) => {
+    formData.append('images', submitImage);
+    formData.append(
+      'request',
+      new Blob(
+        [
+          JSON.stringify({
+            title: adoption.title,
+            content: adoption.content,
+            breed: adoption.tags.breeds,
+            size: adoption.tags.size,
+            neutering: adoption.tags.neutering,
+            gender: adoption.tags.gender,
+            age: adoption.tags.age,
+            healthChecked: adoption.tags.healthChecked,
+            registeredAt: adoption.tags.registeredAt,
+          }),
+        ],
+        { type: 'application/json' }
+      )
+    );
+    const config = {
+      method: 'put',
+      url: 'https://server.banzzokee.homes/api/adoptions/${id}',
+      headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${accessToken}` },
+      data: formData,
+    };
+
+    try {
+      console.log('data', formData);
+      const response = await axios.request(config);
       alert('수정되었습니다.');
-      navigate(`/ArticleList/${id}`)
-    })
+      navigate(`/ArticleList/${id}`);
+      console.log(response);
+    } catch (error) {
+      console.error('Error posting adoption:', error);
+    } 
   }
 
   return (

@@ -1,4 +1,4 @@
-import styles from './MyPage.module.css';
+import styles from './myPage.module.css';
 import Button from '../../components/common/button/Button';
 import { Link, useNavigate } from 'react-router-dom';
 // import BadgeIcon from '/src/components/BadgeIcon';

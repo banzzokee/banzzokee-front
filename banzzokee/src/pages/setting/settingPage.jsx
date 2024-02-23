@@ -2,8 +2,13 @@ import styles from './SettingPage.module.css';
 import { Link } from 'react-router-dom';
 
 import BackHeader from '../../components/common/header/BackHeader';
+import React, { useState } from 'react';
 
-export default function MyPage() {
+export default function SettingPage() {
+  const [chatNotification, setChatNotification] = useState(true);
+  const [interestPostNotification, setInterestPostNotification] = useState(true);
+  const [reviewPostNotification, setReviewPostNotification] = useState(true);
+  const [followShelterNotification, setFollowShelterNotification] = useState(true);
   const logout = () => {
     sessionStorage.removeItem('userInfo');
     sessionStorage.removeItem('accessToken');
@@ -18,25 +23,45 @@ export default function MyPage() {
           <div className={styles.eachOnOff}>
             <p className={styles.settingTitle}>채팅 알림</p>
             <div className={styles.onOffBox}>
-              <div className={styles.onOffCircle}></div>
+              <input
+                type="checkbox"
+                checked={chatNotification}
+                onChange={() => setChatNotification((prev) => !prev)}
+              />
+              {/* <div className={styles.onOffCircle}></div> */}
             </div>
           </div>
           <div className={styles.eachOnOff}>
             <p className={styles.settingTitle}>관심 게시물 알림</p>
             <div className={styles.onOffBox}>
-              <div className={styles.onOffCircle}></div>
+            <input
+              type="checkbox"
+              checked={interestPostNotification}
+              onChange={() => setInterestPostNotification((prev) => !prev)}
+            />
+              {/* <div className={styles.onOffCircle}></div> */}
             </div>
           </div>
           <div className={styles.eachOnOff}>
             <p className={styles.settingTitle}>후기 게시물 등록 알림</p>
             <div className={styles.onOffBox}>
-              <div className={styles.onOffCircle}></div>
+              <input
+                type="checkbox"
+                checked={reviewPostNotification}
+                onChange={() => setReviewPostNotification((prev) => !prev)}
+              />
+              {/* <div className={styles.onOffCircle}></div> */}
             </div>
           </div>
           <div className={styles.eachOnOff}>
             <p className={styles.settingTitle}>팔로우 보호소 새로운 게시물 등록 알림</p>
             <div className={styles.onOffBox}>
-              <div className={styles.onOffCircle}></div>
+              <input
+                type="checkbox"
+                checked={followShelterNotification}
+                onChange={() => setFollowShelterNotification((prev) => !prev)}
+              />
+              {/* <div className={styles.onOffCircle}></div> */}
             </div>
           </div>
         </div>

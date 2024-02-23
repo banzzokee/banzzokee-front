@@ -116,12 +116,26 @@ export default function ViewArticlePage() {
 
   const handleDelete = async () => {
     if (window.confirm('게시글을 삭제하시겠습니까?')) {
-      await axios.delete(`http://localhost:3001/adoption/${id}`).then((res) => {
+      try {
+      const config = {
+        method: 'delete',
+        url: `https://server.banzzokee.homes/api/adoptions/${id}`,
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
+      };
+  
+      
+
+        const response = await axios.request(config);
         alert('삭제되었습니다.');
         navigate('/');
-      });
+        console.log(response);
+      } catch (error) {
+        console.error('Error deleting adoptionarticle:', error);
+      }
+
     }
   };
+
 
   let adoptionNickname = '';
   if (adoption.user && adoption.user.nickname) {
