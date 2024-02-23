@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import React from 'react';
 import './App.css';
-import MainPage from './pages/Home/MainPage';
+import MainPage from './pages/home/MainPage'
 import Nav from './components/common/nav/Nav';
 import Header from './components/common/header/Header';
-import ChatListPage from './pages/chat/chatListPage';
+import ChatListPage from './pages/chat/ChatListPage';
 import ViewArticlePage from './pages/article/ViewArticlePage';
 import LoginPage from './pages/login/LoginPage';
-import MyPage from './pages/user/MyPage';
+import MyPage from './pages/user/myPage';
 import CreateAdoptPage from './pages/article/CreateAdoptPage';
 import Notification from './pages/home/Notification';
 import Register from './pages/register/Register';
@@ -16,7 +16,7 @@ import Tag from './Tag';
 import MapPage from './pages/map/MapPage';
 import OtherMyPage from './pages/article/OtherMyPage';
 import ShelterInfoPage from './pages/article/ShelterInfoPage';
-import SettingPage from './pages/setting/SettingPage';
+import SettingPage from './pages/setting/settingPage';
 import FollowingPage from './pages/user/FollowingPage';
 import AccountInfoPage from './pages/user/AccountInfoPage';
 import EmailConfirm from './pages/register/EmailConfirm';
@@ -28,14 +28,14 @@ import ChangePass from './pages/user/ChangePass';
 import ShelterEditPage from './pages/user/ShelterEditPage';
 import ShelterRegisterPage from './pages/user/ShelterRegisterPage';
 import MyPageEdit from './pages/user/MyPageEdit';
-import GoogleLoginButton from './pages/register/GoogleLoginButton';
+// import GoogleLoginButton from './pages/register/GoogleLoginButton';
 import ArticleList from './components/ArticleList';
 import AdoptEdit from './pages/article/AdoptEdit';
 import ReviewPage from './pages/review/ReviewPage';
 import Filter from './pages/home/Filter';
 import ReviewList from './components/ReviewList';
+import NotificationToken from './NotificationToken';
 
-// import GoogleRegister from './GoogleRegister';
 
 function App() {
   return (
@@ -71,7 +71,7 @@ function App() {
           <Route path="/ShelterEditPage" element={<ShelterEditPage />} />
           <Route path="/ShelterRegisterPage" element={<ShelterRegisterPage />} />
           <Route path="/MyPageEdit" element={<MyPageEdit />} />
-          <Route path="/GoogleLoginButton" element={<GoogleLoginButton />} />
+          {/* <Route path="/GoogleLoginButton" element={<GoogleLoginButton />} /> */}
           <Route path="/ArticleList" element={<ArticleList />} />
           <Route path="/ArticleList/:id" element={<ViewArticlePage />} />
           <Route path="/update/:id" element={<AdoptEdit />} />
@@ -80,6 +80,7 @@ function App() {
           <Route path="/Filter" element={<Filter />} />
           <Route path="/ReviewList" element={<ReviewList />} />
         </Routes>
+        <NotificationToken />
       </BrowserRouter>
     </div>
   );

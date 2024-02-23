@@ -104,19 +104,19 @@ export default function CreateAdoptPage() {
           JSON.stringify({
             title: adoption.title,
             content: adoption.content,
-            breed: '푸들',
-            size: '대형',
-            neutering: true,
-            gender: '수컷',
-            age: 2,
+            breed: adoption.tags.breeds,
+            size: adoption.tags.size,
+            neutering: adoption.tags.neutering,
+            gender: adoption.tags.gender,
+            age: 3,
             healthChecked: true,
-            registeredAt: '2090-09-09',
+            registeredAt: adoption.tags.registeredAt,
           }),
         ],
         { type: 'application/json' }
       )
     );
-
+    console.log('form', formData);
     // adoption.imageUrls.forEach((imageUrl, index) => {
     //   data.append(`images[${index}]`, imageUrl);
     // });

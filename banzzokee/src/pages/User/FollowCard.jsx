@@ -7,20 +7,36 @@ import { useState } from 'react';
 const FollowCard = ({ follower, list }) => {
   const [follow, setFollow] = useState(true);
   const [updatedList, setUpdatedList] = useState(list);
-  const newList = updatedList.filter((user) => user.userId !== follower.userId);
 
+  //newList is for JSON-SERVER local
+  const newList = updatedList.filter((user) => user.userId !== follower.userId);
+  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const onClick = async (event) => {
     event.preventDefault();
     if (!follow) {
       try {
-        axios.patch(`http://localhost:3001/users/APmgnc1`, { followers: list });
+        // axios.patch(`http://localhost:3001/users/APmgnc1`, { followers: list });
+        const config = {
+          method: 'post',
+          url: `https://server.banzzokee.homes/api/users/1/follow`,
+          headers: { Authorization: `Bearer ${accessToken}` },
+        };
+        const response = await axios.request(config);
+        console.log(response);
       } catch (error) {
         console.error('Error:', error);
       }
       setFollow(!follow);
     } else {
       try {
-        axios.patch(`http://localhost:3001/users/APmgnc1`, { followers: newList });
+        // axios.patch(`http://localhost:3001/users/APmgnc1`, { followers: newList });
+        const config = {
+          method: 'post',
+          url: `https://server.banzzokee.homes/api/users/1/unfollow`,
+          headers: { Authorization: `Bearer ${accessToken}` },
+        };
+        const response = await axios.request(config);
+        console.log(response);
       } catch (error) {
         console.error('Error:', error);
       }
