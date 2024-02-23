@@ -2,6 +2,7 @@
   width: 375px;
   height: 724px;
   padding: 20px;
+  overflow: scroll;
 }
 
 .picture {
@@ -14,6 +15,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.picture img {
+  width: 100%;
+  height: 100%;
 }
 .pictures {
   position: relative;

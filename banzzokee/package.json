@@ -16,6 +16,7 @@
     "@firebase/app-compat": "^0.2.27",
     "@firebase/messaging-compat": "^0.2.6",
     "@react-oauth/google": "^0.12.1",
+    "@stomp/stompjs": "^7.0.0",
     "axios": "^1.6.7",
     "clsx": "^2.1.0",
     "concurrently": "^8.2.2",
@@ -30,6 +31,7 @@
     "react-kakao-maps-sdk": "^1.1.26",
     "react-router-dom": "^6.21.3",
     "socket.io-client": "^4.7.4",
+    "socketjs-client": "^1.0.2",
     "vite-plugin-pwa": "^0.17.4"
   },
   "devDependencies": {

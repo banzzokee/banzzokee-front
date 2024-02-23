@@ -7,6 +7,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Nav from '../../components/common/nav/Nav';
 import ReviewList from '../../components/ReviewList';
+import MyArticleList from '../../components/myArticleList';
+import BookmarkList from '../../components/BookmarkList';
 
 export default function MyPage() {
   const [buttonLColor, setButtonLColor] = useState('white');
@@ -15,6 +17,8 @@ export default function MyPage() {
   const [userInfo, setUserInfo] = useState({});
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const [profileImg, setProfileImage] = useState(null);
+  // const [clickedL, setClickedL] = useState(false);
+  // const [clickedR, setClickedR] = useState(false);
 
   const handleButtonClick = (buttonSelect) => {
     // Swap colors when either button is clicked
@@ -22,10 +26,12 @@ export default function MyPage() {
       setButtonLColor('white');
       setButtonRColor('#bebebe');
       setSelectButton('L');
+      // setClickedL(true);
     } else {
       setButtonLColor('#bebebe');
       setButtonRColor('white');
       setSelectButton('R');
+      // setClickedR(true);
     }
   };
   const getData = async () => {
@@ -114,8 +120,9 @@ export default function MyPage() {
             </div>
           </div>
           <div className={styles.articleList}>
-            {/* {selectButton == 'L' && <ReviewList />} */}
-            {/* {selectButton == 'R' && <ReviewList />} */}
+            {/* 다른 버튼 클릭시 재 랜더링되는게 아니라 display 만 none 으로 바꿔주는 작업을 적용하면 매번 버튼 누를때마다 rereder 깜빡임을 방지 */}
+            {selectButton == 'L' && <BookmarkList />}
+            {selectButton == 'R' && <MyArticleList userId={userInfo.userId} />}
           </div>
         </div>
       </div>
