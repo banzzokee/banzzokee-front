@@ -23,37 +23,34 @@ if (!firebase.apps.length) {
 }
 
 
-const sendTokenToServer = async (token) => {
-  try {
-    const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
-    const response = await axios.put(
-      'https://server.banzzokee.homes/api/notifications/tokens',
-      { token },
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-
-    console.log('Token sent to server:', response.data);
-  } catch (error) {
-    console.error('Error sending token to server:', error);
-  }
-};
-
-
 export default function NotificationToken() {
+  const sendTokenToServer = async (token) => {
+    try {
+      const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
+      const response = await axios.put(
+        'https://server.banzzokee.homes/api/notifications/tokens',
+        { token },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      console.log('Token sent to server:', response.data);
+    } catch (error) {
+      console.error('Error sending token to server:', error);
+    }
+  };
+
   useEffect(() => {
     const messaging = firebase.messaging();
-  
+
     // 사용자로부터 알림 권한 요청
     Notification.requestPermission().then((permission) => {
       if (permission === 'granted') {
         console.log('Notification 권한 허용.');
-  
-        // 토큰 가져오기 및 서버에 전송
         messaging.getToken(messaging, { vapidKey: 'BJgALk-acWHVF6O1MSyRXKW-6upKKByfWfp3lLEHpdonzLJtdIxzRdhrnD64rECNHeC9A1dp7mWZTeZpk_WKZ1w' }).then((currentToken) => {
           if (currentToken) {
             sendTokenToServer(currentToken);
@@ -65,18 +62,16 @@ export default function NotificationToken() {
         });
       }
     });
-  
+
     // 포그라운드 메시지 수신 처리
     messaging.onMessage((payload) => {
       console.log('Message received. ', payload);
       // 사용자 정의 알림 표시 등의 추가 로직
+      const { title, body } = payload.notification;
+      // 사용자 정의 인 앱 알림 표시
+      alert(`사용자 정의 알림: ${title}\n${body}`);
     });
   }, []);
 
-  return null; // 혹시 render를 요구하는 linter 경고를 방지하기 위해 null을 반환합니다.
-
-}  
-
-
-
-
+  return null;
+}
