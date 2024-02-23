@@ -53,6 +53,10 @@ export default function Filter({ onResetFilters }) {
   //   }));
   // };
 
+  const applyFilters = () => {
+    onApplyFilter(selectedFilters);
+  };
+
   const resetFilters = () => {
     setSelectedFilters({
       status: [],
@@ -102,7 +106,7 @@ export default function Filter({ onResetFilters }) {
         <button onClick={resetFilters} className={styles.reset}>
           초기화
         </button>
-        <button  className={styles.apply}>
+        <button onClick={applyFilters}  className={styles.apply}>
           적용하기
         </button>
       </div>
