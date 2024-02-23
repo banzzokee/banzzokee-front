@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import BackHeader from '../../components/common/header/BackHeader';
 
-export default function MyPage() {
+export default function SettingPage() {
   const logout = () => {
     sessionStorage.removeItem('userInfo');
     sessionStorage.removeItem('accessToken');

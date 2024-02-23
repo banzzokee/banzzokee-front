@@ -31,12 +31,16 @@ export default function ChatListPage() {
   }, []);
 
   if (!userInfo) {
-    alert('로그인 후 이용 가능한 서비스 입니다.');
     return (
       <>
         <ChatHeader></ChatHeader>
-        <div className={styles.container}>
-          <p>로그인을 해주세요</p>
+        <div className={styles.noLoginContainer}>
+          <div className={styles.noLogin}>
+            <div className={styles.logoBox}>
+              <img src="/Logo.svg" alt="로고" className={styles.logo} />
+            </div>
+            <p>로그인을 해주세요</p>
+          </div>
         </div>
         <Nav></Nav>
       </>
@@ -50,12 +54,14 @@ export default function ChatListPage() {
           roomList.map((room) => (
             <Link to={`/Message/${room.adoption.adoptionId}`} key={room.roomId}>
               <div className={styles.message}>
-                <div className={styles.userImage}>{/* <img src="/" alt="불러온 이미지" /> */}</div>
+                <div className={styles.userImage}>
+                  <div className={styles.profileImage}>{room.shelter.user.profileImgUrl ? <img src={room.shelter.user.profileImgUrl} className={styles.profileImage} /> : <img src="../../public/user.png" className={styles.defaultProfileImage}></img>}</div>
+                </div>
                 <div className={styles.userContent}>
                   <div className={styles.userAndTime}>
                     <div className={styles.userName}>{room.user.nickname}</div>
 
-                    <div className={styles.sendTime}>1시간 전</div>
+                    <div className={styles.sendTime}>{room.lastMessageCreatedAt.substring(0, 10)}</div>
                   </div>
                   <div className={styles.chatBody}>{room.lastMessage}</div>
                 </div>

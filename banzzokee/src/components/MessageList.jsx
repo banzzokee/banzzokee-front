@@ -5,8 +5,8 @@ import { useEffect } from 'react';
 export default function MessageList({ roomId }) {
   const [messageList, setMessageList] = useState([]);
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
+  const myInfo = JSON.parse(sessionStorage.getItem('myInfo'));
   const getMessageList = async (e) => {
-    console.log('roomID', roomId);
     if (roomId != null) {
       console.log('roomID', roomId);
       try {
@@ -21,7 +21,7 @@ export default function MessageList({ roomId }) {
         };
         const response = await axios.request(config);
         console.log('MessageList data:::::::', response);
-        setMessageList(response.data);
+        setMessageList(response.data.content);
       } catch (error) {
         console.error('Error:', error);
       }
@@ -30,22 +30,29 @@ export default function MessageList({ roomId }) {
   useEffect(() => {
     getMessageList();
   }, [roomId]);
-  return <></>;
+  return (
+    <>
+      <div>
+        {messageList &&
+          messageList.map((message) => (
+            <div key={message.createdAt} className={styles.messageContainer}>
+              {message.messageType === 'NONE' ? (
+                <div className={styles.systemMessageContainer}>
+                  <div className={styles.systemMessage}>{message.message}</div>
+                </div>
+              ) : message.user.nickname === `${myInfo.nickname}` ? (
+                <div className={styles.myMessageContainer}>
+                  <div className={styles.myMessage}>{message.message}</div>
+                </div>
+              ) : (
+                <div className={styles.otherMessageContainer}>
+                  <div className={styles.profileImage}>{message.user.profileImgUrl ? <img src={message.user.profileImgUrl} className={styles.profileImage} /> : <img src="../../public/user.png" className={styles.defaultProfileImage}></img>}</div>
+                  <div className={styles.otherMessage}>{message.message}</div>
+                </div>
+              )}
+            </div>
+          ))}
+      </div>
+    </>
+  );
 }
-
-// <div key={message.id} className={styles.messageContainer}>
-//   {message.messageType === 'EXIT' ? (
-//     <div className={styles.systemMessageContainer}>
-//       <div className={styles.systemMessage}>{message.message}</div>
-//     </div>
-//   ) : message.user.nickname === user ? (
-//     <div className={styles.myMessageContainer}>
-//       <div className={styles.myMessage}>{message.message}</div>
-//     </div>
-//   ) : (
-//     <div className={styles.otherMessageContainer}>
-//       <div className={styles.profileImage}>{/* <img src="../../profile.jpeg" className={styles.profileImage} style={(index === 0 ? { visibility: 'visible' } : messageList[index - 1].user.name === user.name) || messageList[index - 1].user.name === 'system' ? { visibility: 'visible' } : { visibility: 'hidden' }} /> */}</div>
-//       <div className={styles.otherMessage}>{message.message}</div>
-//     </div>
-//   )}
-// </div>

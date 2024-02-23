@@ -150,7 +150,7 @@ export default function Message() {
     console.log('roomInfo', roomInfo);
     console.log('sendmessage', inputMessage);
 
-    setInputMessage('');
+    setMessage('');
   };
 
   // useEffect(() => {
@@ -173,7 +173,7 @@ export default function Message() {
         <div className={styles.back}>
           <Back></Back>
         </div>
-        <p className={styles.name}>user_123</p>
+        <p className={styles.name}>roomInfo</p>
       </div>
 
       <div className={styles.messageContainer}>
