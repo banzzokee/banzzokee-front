@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styles from './ArticleList.module.css';
-import Tags from './tags';
+import Tags from './Tags';
 
 export default function MyArticleList({ userId }) {
   // const myInfo = JSON.parse(sessionStorage.getItem('userInfo'));

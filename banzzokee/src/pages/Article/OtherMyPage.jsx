@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import MyArticleList from '../../components/myArticleList';
+import MyArticleList from '../../components/MyArticleList';
 export default function OtherMyPage() {
   const { state } = useLocation();
 
