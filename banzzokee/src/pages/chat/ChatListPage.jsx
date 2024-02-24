@@ -5,11 +5,12 @@ import axios from 'axios';
 import Nav from '../../components/common/nav/Nav.jsx';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 export default function ChatListPage() {
   const userInfo = JSON.parse(sessionStorage.getItem('accessToken'));
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const [roomList, setRoomList] = useState([]);
-
+  const navigate = useNavigate();
   const checkRooms = async () => {
     try {
       console.log('try enter Chat room');
@@ -29,6 +30,9 @@ export default function ChatListPage() {
   useEffect(() => {
     checkRooms();
   }, []);
+  const onClick = (room) => {
+    navigate(`/Message/${room.adoption.adoptionId}`, { state: room.roomId });
+  };
 
   if (!userInfo) {
     return (
@@ -52,21 +56,21 @@ export default function ChatListPage() {
       <div className={styles.container}>
         {roomList &&
           roomList.map((room) => (
-            <Link to={`/Message/${room.adoption.adoptionId}`} key={room.roomId}>
+            <div onClick={() => onClick(room)} key={room.roomId}>
               <div className={styles.message}>
                 <div className={styles.userImage}>
-                  <div className={styles.profileImage}>{room.shelter.user.profileImgUrl ? <img src={room.shelter.user.profileImgUrl} className={styles.profileImage} /> : <img src="../../public/user.png" className={styles.defaultProfileImage}></img>}</div>
+                  <div className={styles.profileImage}>{room.shelter?.user.profileImgUrl ? <img src={room.shelter.user.profileImgUrl} className={styles.profileImage} /> : <img src="../../public/user.png" className={styles.defaultProfileImage}></img>}</div>
                 </div>
                 <div className={styles.userContent}>
                   <div className={styles.userAndTime}>
-                    <div className={styles.userName}>{room.user.nickname}</div>
+                    {room.user?.nickname ? <div className={styles.userName}>{room.user.nickname}</div> : <></>}
 
-                    <div className={styles.sendTime}>{room.lastMessageCreatedAt.substring(0, 10)}</div>
+                    <div className={styles.sendTime}>{room.lastMessageCreatedAt ? room.lastMessageCreatedAt.substring(0, 10) : 'date'}</div>
                   </div>
                   <div className={styles.chatBody}>{room.lastMessage}</div>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
       </div>
       <Nav></Nav>

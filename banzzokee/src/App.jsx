@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import React from 'react';
+import React from 'react';
 import './App.css';
-import MainPage from './pages/home/MainPage'
+import MainPage from './pages/home/MainPage';
 import Nav from './components/common/nav/Nav';
 import Header from './components/common/header/Header';
 import ChatListPage from './pages/chat/ChatListPage';
@@ -36,7 +36,6 @@ import Filter from './pages/home/Filter';
 import ReviewList from './components/ReviewList';
 import NotificationToken from './NotificationToken';
 import ChangeStatus from './pages/article/ChangeStatus';
-
 
 function App() {
   return (

@@ -10,10 +10,11 @@ import { Client } from '@stomp/stompjs';
 import { useLocation, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import MessageList from '../../components/MessageList';
-
+import { useNavigate } from 'react-router-dom';
 export default function Message() {
+  const navigate = useNavigate();
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
-  const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+  const myInfo = JSON.parse(sessionStorage.getItem('myInfo'));
   const { id } = useParams();
   const [message, setMessage] = useState();
   const [messageList, setMessageList] = useState();
@@ -21,30 +22,50 @@ export default function Message() {
   const [chatMessages, setChatMessages] = useState([]);
   const [hasRoom, setHasRoom] = useState(true);
   const [roomInfo, setRoomInfo] = useState({});
+  const [otherUserId, setOtherUserId] = useState();
   const location = useLocation();
   // const client = useRef({});
+  const { state } = location;
+  let roomId
+  if (state == null) {
+    roomId = state.roomId;
+  
+  }
+  // const path = location.pathname;
 
-  const path = location.pathname;
-
-  const gameId = path.split('/')[2];
+  // const gameId = path.split('/')[2];
   const checkRoom = async () => {
     try {
-      console.log('try enter Chat room');
-      const config = {
-        method: 'get',
-        url: `https://server.banzzokee.homes/api/rooms?page=0&size=10`,
-        headers: { Authorization: `Bearer ${accessToken}` },
-      };
-      const response = await axios.request(config);
-      // console.log('enterChat checkRoom response::', response.data);
-      const rooms = response.data.content;
-      let changeHasroom = true;
+      console.log('checkRoom');
+      let currentPage = 0;
+      let rooms = [];
+      while (true) {
+        const config = {
+          method: 'get',
+          url: `https://server.banzzokee.homes/api/rooms?page=${currentPage}&size=10`,
+          headers: { Authorization: `Bearer ${accessToken}` },
+        };
+        const response = await axios.request(config);
+        // console.log('enterChat checkRoom response::', response.data);
+
+        //모든 개설된 방을 불러와서 비교
+        const roomList = response.data.content;
+        rooms = [...rooms, ...roomList];
+        if (roomList.length === 0) {
+          break;
+        }
+        currentPage++;
+      }
 
       // 채팅방 목록에 현제 게시글에서 연결된 방이 개설된곳이 있는지 확인
+      let changeHasroom = true;
       for (let i = 0; i < rooms.length; i++) {
         if (rooms[i].adoption.adoptionId == id) {
           changeHasroom = false;
           setRoomInfo(rooms[i]);
+          if (roomId == null) {
+            roomId = roomInfo.roomId;
+          }
           console.log('do not create new room');
           break;
         }
@@ -52,6 +73,7 @@ export default function Message() {
       if (changeHasroom) {
         setHasRoom(false);
       }
+      console.log(roomInfo);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -76,10 +98,14 @@ export default function Message() {
       };
       const response = await axios.request(config);
       console.log('createRoom::', response.data);
+      if (roomId == null) {
+        roomId = response.data.roomId;
+      }
       setRoomInfo(response.data);
+      setOtherUserId(response.data.user.userId);
       // const response = await axios.get('http://localhost:3001/adoption');
       // setArticleList(response.data);
-      // console.log(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -96,7 +122,7 @@ export default function Message() {
           connectHeaders: {
             Authorization: `Bearer ${accessToken}`,
           },
-          reconnectDelay: 10000, //자동 재 연결
+          reconnectDelay: 1000, //자동 재 연결
           heartbeatIncoming: 4000,
           heartbeatOutgoing: 4000,
         });
@@ -108,9 +134,10 @@ export default function Message() {
           console.log('WebSocket 연결이 열렸습니다.');
           const subscriptionDestination = `/topic/chats.rooms.${roomInfo.roomId}`;
 
-          stomp.subscribe(subscriptionDestination, (frame) => {
+          stomp.subscribe(subscriptionDestination, (chat) => {
             try {
-              const parsedMessage = JSON.parse(frame.body);
+              console.log('subscribe');
+              const parsedMessage = JSON.parse(chat.body);
 
               console.log('parsedMessage', parsedMessage);
               setMessages((prevMessages) => [...prevMessages, parsedMessage]);
@@ -149,36 +176,97 @@ export default function Message() {
     }
     console.log('roomInfo', roomInfo);
     console.log('sendmessage', inputMessage);
+  };
+  const onLeaveRoom = async () => {
+    try {
+      console.log('deleteRoom');
+      const config = {
+        method: 'delete',
+        url: `https://server.banzzokee.homes/api/rooms/${roomInfo.roomId}`,
+        headers: { Authorization: `Bearer ${accessToken}` },
+      };
+      const response = await axios.request(config);
+      console.log('createRoom::', response.data);
+      setRoomInfo(response.data);
 
-    setMessage('');
+      //unsubscribe
+      console.log('WebSocket 연결을 취소합니다 unsubscribe.');
+
+      const stomp = new Client({
+        brokerURL: 'wss://server.banzzokee.homes/ws-stomp',
+        connectHeaders: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        reconnectDelay: 1000, //자동 재 연결
+        heartbeatIncoming: 4000,
+        heartbeatOutgoing: 4000,
+      });
+
+      stomp.unsubscribe(roomInfo.roomId, {});
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
-  // useEffect(() => {
-  //   const getList = async () => {
-  //     try {
-  //       const response = await axios.get(`http://localhost:3001/chats`);
-  //       const data = response.data;
-  //       setMessageList(data);
-  //       // console.log(messageList);
-  //       // console.log(nickname);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };]
-  //   getList();
-  // }, []);
+  const onclickBack = () => {
+    navigate(`/ChatListPage`);
+  };
+  const handleStatus = () => {
+    navigate(`/ChangeStatus/${roomInfo.adoption.adoptionId}`, { state: otherUserId });
+  };
+  const openEdit = () => {
+    const editBox = document.getElementById('edit');
+    editBox.style.display = editBox.style.display === 'none' ? 'block' : 'none';
+  };
+
   return (
     <>
       <div className={styles.Header}>
-        <div className={styles.back}>
-          <Back></Back>
+        <div onClick={onclickBack} className={styles.back}>
+          {/* <Back></Back> */}
+          <img src="/Arrow.png" alt="Arrow" className={styles.arrow} />
         </div>
-        <p className={styles.name}>roomInfo</p>
+        <div className={styles.headerFeature}>
+          <div className={styles.name}>roomInfo</div>
+          <div className={styles.headerRight}>
+            <button style={{ padding: 0, backgroundColor: 'white' }} onClick={openEdit}>
+              <img src="../../../public/edit.svg" />
+            </button>
+            <div id="edit" className={styles.edit}>
+              <button className={styles.editButton} onClick={handleStatus}>
+                <img src="../../../public/Pencil.svg" />
+                상태 변경
+              </button>
+              <button className={styles.editButton} onClick={() => onLeaveRoom()}>
+                나가기
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className={styles.messageContainer}>
         {/* <MessageContainer messageList={messageList} user={nickname} /> */}
         <MessageList roomId={roomInfo.roomId}></MessageList>
+        {messages &&
+          messages.map((message) => (
+            <div key={message.chatId} className={styles.messageContainer}>
+              {message.messageType === 'EXIT' ? (
+                <div className={styles.systemMessageContainer}>
+                  <div className={styles.systemMessage}>{message.message}</div>
+                </div>
+              ) : message.user?.nickname === `${myInfo.nickname}` ? (
+                <div className={styles.myMessageContainer}>
+                  <div className={styles.myMessage}>{message.message}</div>
+                </div>
+              ) : (
+                <div className={styles.otherMessageContainer}>
+                  <div className={styles.profileImage}>{message.user.profileImgUrl ? <img src={message.user.profileImgUrl} className={styles.profileImage} /> : <img src="../../public/user.png" className={styles.defaultProfileImage}></img>}</div>
+                  <div className={styles.otherMessage}>{message.message}</div>
+                </div>
+              )}
+            </div>
+          ))}
       </div>
 
       <form onSubmit={sendMessage}>
@@ -190,7 +278,14 @@ export default function Message() {
             </label>
           </div>
           <div className={styles.typeMessage}>
-            <input className={styles.textbox} type="text" value={message} onChange={(e) => setInputMessage(e.target.value)}></input>
+            <input
+              className={styles.textbox}
+              type="text"
+              value={inputMessage}
+              onChange={(e) => {
+                setInputMessage(e.target.value);
+              }}
+            ></input>
             <div className={styles.sendButton} onClick={sendMessage}>
               <img src="../../public/message.png"></img>
             </div>
@@ -201,3 +296,19 @@ export default function Message() {
     </>
   );
 }
+
+// local server 호출
+// useEffect(() => {
+//   const getList = async () => {
+//     try {
+//       const response = await axios.get(`http://localhost:3001/chats`);
+//       const data = response.data;
+//       setMessageList(data);
+//       // console.log(messageList);
+//       // console.log(nickname);
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };]
+//   getList();
+// }, []);

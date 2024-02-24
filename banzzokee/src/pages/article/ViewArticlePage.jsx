@@ -114,19 +114,15 @@ export default function ViewArticlePage() {
     navigate(`/update/${id}`);
   };
 
-  const handleStatus = () => {
-    navigate(`/changeStatus/${id}`);
-  };
-
-
   const handleDelete = async () => {
     if (window.confirm('게시글을 삭제하시겠습니까?')) {
       try {
-      const config = {
-        method: 'delete',
-        url: `https://server.banzzokee.homes/api/adoptions/${id}`,
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
-      };
+        const config = {
+          method: 'delete',
+          url: `https://server.banzzokee.homes/api/adoptions/${id}`,
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
+        };
+
         const response = await axios.request(config);
         alert('삭제되었습니다.');
         navigate('/');
@@ -134,10 +130,8 @@ export default function ViewArticlePage() {
       } catch (error) {
         console.error('Error deleting adoptionarticle:', error);
       }
-
     }
   };
-
 
   let adoptionNickname = '';
   if (adoption.user && adoption.user.nickname) {
@@ -147,6 +141,12 @@ export default function ViewArticlePage() {
     if (adoption.user && adoption.user.userId) {
       const dataSend = adoption.user;
       navigate(`/OtherMyPage/${adoption.user.userId}`, { state: dataSend });
+    }
+  };
+  const onclickMessage = () => {
+    if (adoption.user && adoption.user.userId) {
+      const dataSend = adoption.user;
+      navigate(`/Message/${id}`);
     }
   };
   return (
@@ -169,12 +169,12 @@ export default function ViewArticlePage() {
             </div>
             <div className={styles.headerRight}>
               {accessToken ? (
-                <Link className="chat" to={`/Message/${id}`}>
+                <div className="chat" onClick={onclickMessage}>
                   <div className={styles.messageButton}>
                     메세지
                     <img className={styles.messageIcon} src="../../../public/Message.png" />
                   </div>
-                </Link>
+                </div>
               ) : (
                 <div
                   className={styles.messageButton}
@@ -194,10 +194,6 @@ export default function ViewArticlePage() {
                 <button onClick={handleEdit}>
                   <img src="../../../public/Pencil.svg" />
                   수정
-                </button>
-                <button onClick={handleStatus}>
-                  <img src="../../../public/Pencil.svg" />
-                  상태 변경
                 </button>
                 <button onClick={handleDelete}>
                   <img src="../../../public/Delete.svg" />
