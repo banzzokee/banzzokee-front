@@ -22,10 +22,11 @@ export default function Message() {
   const [chatMessages, setChatMessages] = useState([]);
   const [hasRoom, setHasRoom] = useState(true);
   const [roomInfo, setRoomInfo] = useState({});
+  const [otherUserId, setOtherUserId] = useState();
   const location = useLocation();
   // const client = useRef({});
   const { state } = location;
-  let roomId = state;
+  let roomId = state.roomId;
   // const path = location.pathname;
 
   // const gameId = path.split('/')[2];
@@ -68,6 +69,7 @@ export default function Message() {
       if (changeHasroom) {
         setHasRoom(false);
       }
+      console.log(roomInfo);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -96,9 +98,10 @@ export default function Message() {
         roomId = response.data.roomId;
       }
       setRoomInfo(response.data);
+      setOtherUserId(response.data.user.userId);
       // const response = await axios.get('http://localhost:3001/adoption');
       // setArticleList(response.data);
-      // console.log(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -204,6 +207,13 @@ export default function Message() {
   const onclickBack = () => {
     navigate(`/ChatListPage`);
   };
+  const handleStatus = () => {
+    navigate(`/ChangeStatus/${roomInfo.adoption.adoptionId}`, { state: otherUserId });
+  };
+  const openEdit = () => {
+    const editBox = document.getElementById('edit');
+    editBox.style.display = editBox.style.display === 'none' ? 'block' : 'none';
+  };
 
   return (
     <>
@@ -214,8 +224,19 @@ export default function Message() {
         </div>
         <div className={styles.headerFeature}>
           <div className={styles.name}>roomInfo</div>
-          <div className={styles.leaveRoom} onClick={() => onLeaveRoom()}>
-            나가기
+          <div className={styles.headerRight}>
+            <button style={{ padding: 0, backgroundColor: 'white' }} onClick={openEdit}>
+              <img src="../../../public/edit.svg" />
+            </button>
+            <div id="edit" className={styles.edit}>
+              <button className={styles.editButton} onClick={handleStatus}>
+                <img src="../../../public/Pencil.svg" />
+                상태 변경
+              </button>
+              <button className={styles.editButton} onClick={() => onLeaveRoom()}>
+                나가기
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -230,7 +251,7 @@ export default function Message() {
                 <div className={styles.systemMessageContainer}>
                   <div className={styles.systemMessage}>{message.message}</div>
                 </div>
-              ) : message.user.nickname === `${myInfo.nickname}` ? (
+              ) : message.user?.nickname === `${myInfo.nickname}` ? (
                 <div className={styles.myMessageContainer}>
                   <div className={styles.myMessage}>{message.message}</div>
                 </div>

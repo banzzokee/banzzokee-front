@@ -59,11 +59,11 @@ export default function ChatListPage() {
             <div onClick={() => onClick(room)} key={room.roomId}>
               <div className={styles.message}>
                 <div className={styles.userImage}>
-                  <div className={styles.profileImage}>{room.shelter.user.profileImgUrl ? <img src={room.shelter.user.profileImgUrl} className={styles.profileImage} /> : <img src="../../public/user.png" className={styles.defaultProfileImage}></img>}</div>
+                  <div className={styles.profileImage}>{room.shelter?.user.profileImgUrl ? <img src={room.shelter.user.profileImgUrl} className={styles.profileImage} /> : <img src="../../public/user.png" className={styles.defaultProfileImage}></img>}</div>
                 </div>
                 <div className={styles.userContent}>
                   <div className={styles.userAndTime}>
-                    <div className={styles.userName}>{room.user.nickname}</div>
+                    {room.user?.nickname ? <div className={styles.userName}>{room.user.nickname}</div> : <></>}
 
                     <div className={styles.sendTime}>{room.lastMessageCreatedAt ? room.lastMessageCreatedAt.substring(0, 10) : 'date'}</div>
                   </div>
