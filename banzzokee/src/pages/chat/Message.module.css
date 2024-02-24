@@ -104,6 +104,7 @@ input::content {
 .addPhoto {
   display: none;
 }
+<<<<<<< HEAD
 
 .systemMessageContainer {
   display: flex;
@@ -164,3 +165,5 @@ input::content {
   width: 30px;
   height: 30px;
 }
+=======
+>>>>>>> 18ec592b9316c091c32208b3c1b6ea1e389341bf
