@@ -114,6 +114,11 @@ export default function ViewArticlePage() {
     navigate(`/update/${id}`);
   };
 
+  const handleStatus = () => {
+    navigate(`/changeStatus/${id}`);
+  };
+
+
   const handleDelete = async () => {
     if (window.confirm('게시글을 삭제하시겠습니까?')) {
       try {
@@ -122,9 +127,6 @@ export default function ViewArticlePage() {
         url: `https://server.banzzokee.homes/api/adoptions/${id}`,
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${accessToken}` },
       };
-  
-      
-
         const response = await axios.request(config);
         alert('삭제되었습니다.');
         navigate('/');
@@ -192,6 +194,10 @@ export default function ViewArticlePage() {
                 <button onClick={handleEdit}>
                   <img src="../../../public/Pencil.svg" />
                   수정
+                </button>
+                <button onClick={handleStatus}>
+                  <img src="../../../public/Pencil.svg" />
+                  상태 변경
                 </button>
                 <button onClick={handleDelete}>
                   <img src="../../../public/Delete.svg" />
