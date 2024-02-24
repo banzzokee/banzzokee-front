@@ -10,7 +10,7 @@ const filterOptions = {
  
 };
 
-export default function Filter({ onResetFilters }) {
+export default function Filter({ onApplyFilter, onResetFilters }) {
   const [selectedFilters, setSelectedFilters] = useState({
     status: [],
     size: [],
