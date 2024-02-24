@@ -46,27 +46,6 @@ export default function CreateAdoptPage() {
       for (let i = 0; i < e.target.files.length; i++) {
         formData.append('images', e.target.files[i]);
       }
-
-      // if (name === 'image') {
-      //   const adoption = new FormData();
-      //   for (let i = 0; i < e.target.files.length; i++) {
-      //     adoption.append('image', e.target.files[i]);
-      //   }
-
-      //   axios
-      //     .post('http://localhost:3001/adoption', adoption)
-      //     .then((res) => {
-      //       const newImageUrls = res.data.imageUrls || [];
-
-      //       setAdoption((prevAdoption) => ({
-      //         ...prevAdoption,
-      //         imageUrls: [...prevAdoption.imageUrls, ...newImageUrls],
-      //       }));
-      //     })
-      //     .catch((error) => {
-      //       console.error('Error uploading image:', error);
-      //     });
-      // }
     } else if (name.includes('tag_')) {
       const tagButton = name.replace('tag_', '');
       setAdoption({
@@ -95,7 +74,6 @@ export default function CreateAdoptPage() {
   const postAdoption = async (e) => {
     e.preventDefault();
     console.log('adoption', adoption);
-    // const data = new FormData();
     formData.append('images', submitImage);
     formData.append(
       'request',
@@ -117,9 +95,6 @@ export default function CreateAdoptPage() {
       )
     );
     console.log('form', formData);
-    // adoption.imageUrls.forEach((imageUrl, index) => {
-    //   data.append(`images[${index}]`, imageUrl);
-    // });
 
     const config = {
       method: 'post',
