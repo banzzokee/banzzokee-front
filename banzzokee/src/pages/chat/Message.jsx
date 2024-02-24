@@ -24,28 +24,43 @@ export default function Message() {
   const [roomInfo, setRoomInfo] = useState({});
   const location = useLocation();
   // const client = useRef({});
+  const { state } = location;
+  let roomId = state;
+  // const path = location.pathname;
 
-  const path = location.pathname;
-
-  const gameId = path.split('/')[2];
+  // const gameId = path.split('/')[2];
   const checkRoom = async () => {
     try {
-      console.log('try enter Chat room');
-      const config = {
-        method: 'get',
-        url: `https://server.banzzokee.homes/api/rooms?page=0&size=10`,
-        headers: { Authorization: `Bearer ${accessToken}` },
-      };
-      const response = await axios.request(config);
-      // console.log('enterChat checkRoom response::', response.data);
-      const rooms = response.data.content;
-      let changeHasroom = true;
+      console.log('checkRoom');
+      let currentPage = 0;
+      let rooms = [];
+      while (true) {
+        const config = {
+          method: 'get',
+          url: `https://server.banzzokee.homes/api/rooms?page=${currentPage}&size=10`,
+          headers: { Authorization: `Bearer ${accessToken}` },
+        };
+        const response = await axios.request(config);
+        // console.log('enterChat checkRoom response::', response.data);
+
+        //모든 개설된 방을 불러와서 비교
+        const roomList = response.data.content;
+        rooms = [...rooms, ...roomList];
+        if (roomList.length === 0) {
+          break;
+        }
+        currentPage++;
+      }
 
       // 채팅방 목록에 현제 게시글에서 연결된 방이 개설된곳이 있는지 확인
+      let changeHasroom = true;
       for (let i = 0; i < rooms.length; i++) {
         if (rooms[i].adoption.adoptionId == id) {
           changeHasroom = false;
           setRoomInfo(rooms[i]);
+          if (roomId == null) {
+            roomId = roomInfo.roomId;
+          }
           console.log('do not create new room');
           break;
         }
@@ -77,6 +92,9 @@ export default function Message() {
       };
       const response = await axios.request(config);
       console.log('createRoom::', response.data);
+      if (roomId == null) {
+        roomId = response.data.roomId;
+      }
       setRoomInfo(response.data);
       // const response = await axios.get('http://localhost:3001/adoption');
       // setArticleList(response.data);
@@ -97,7 +115,7 @@ export default function Message() {
           connectHeaders: {
             Authorization: `Bearer ${accessToken}`,
           },
-          // reconnectDelay: 10000, //자동 재 연결
+          reconnectDelay: 1000, //자동 재 연결
           heartbeatIncoming: 4000,
           heartbeatOutgoing: 4000,
         });
@@ -109,10 +127,10 @@ export default function Message() {
           console.log('WebSocket 연결이 열렸습니다.');
           const subscriptionDestination = `/topic/chats.rooms.${roomInfo.roomId}`;
 
-          stomp.subscribe(subscriptionDestination, (frame) => {
+          stomp.subscribe(subscriptionDestination, (chat) => {
             try {
               console.log('subscribe');
-              const parsedMessage = JSON.parse(frame.body);
+              const parsedMessage = JSON.parse(chat.body);
 
               console.log('parsedMessage', parsedMessage);
               setMessages((prevMessages) => [...prevMessages, parsedMessage]);
@@ -151,8 +169,6 @@ export default function Message() {
     }
     console.log('roomInfo', roomInfo);
     console.log('sendmessage', inputMessage);
-
-    setMessage('');
   };
   const onLeaveRoom = async () => {
     try {
@@ -174,7 +190,7 @@ export default function Message() {
         connectHeaders: {
           Authorization: `Bearer ${accessToken}`,
         },
-        // reconnectDelay: 10000, //자동 재 연결
+        reconnectDelay: 1000, //자동 재 연결
         heartbeatIncoming: 4000,
         heartbeatOutgoing: 4000,
       });
@@ -186,23 +202,9 @@ export default function Message() {
   };
 
   const onclickBack = () => {
-    console.log('back!!');
     navigate(`/ChatListPage`);
   };
-  // useEffect(() => {
-  //   const getList = async () => {
-  //     try {
-  //       const response = await axios.get(`http://localhost:3001/chats`);
-  //       const data = response.data;
-  //       setMessageList(data);
-  //       // console.log(messageList);
-  //       // console.log(nickname);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };]
-  //   getList();
-  // }, []);
+
   return (
     <>
       <div className={styles.Header}>
@@ -212,7 +214,7 @@ export default function Message() {
         </div>
         <div className={styles.headerFeature}>
           <div className={styles.name}>roomInfo</div>
-          <div className={styles.leaveRoom} onClick={onLeaveRoom}>
+          <div className={styles.leaveRoom} onClick={() => onLeaveRoom()}>
             나가기
           </div>
         </div>
@@ -251,7 +253,14 @@ export default function Message() {
             </label>
           </div>
           <div className={styles.typeMessage}>
-            <input className={styles.textbox} type="text" value={message} onChange={(e) => setInputMessage(e.target.value)}></input>
+            <input
+              className={styles.textbox}
+              type="text"
+              value={inputMessage}
+              onChange={(e) => {
+                setInputMessage(e.target.value);
+              }}
+            ></input>
             <div className={styles.sendButton} onClick={sendMessage}>
               <img src="../../public/message.png"></img>
             </div>
@@ -262,3 +271,19 @@ export default function Message() {
     </>
   );
 }
+
+// local server 호출
+// useEffect(() => {
+//   const getList = async () => {
+//     try {
+//       const response = await axios.get(`http://localhost:3001/chats`);
+//       const data = response.data;
+//       setMessageList(data);
+//       // console.log(messageList);
+//       // console.log(nickname);
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };]
+//   getList();
+// }, []);

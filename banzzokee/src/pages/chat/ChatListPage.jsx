@@ -5,11 +5,12 @@ import axios from 'axios';
 import Nav from '../../components/common/nav/Nav.jsx';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 export default function ChatListPage() {
   const userInfo = JSON.parse(sessionStorage.getItem('accessToken'));
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const [roomList, setRoomList] = useState([]);
-
+  const navigate = useNavigate();
   const checkRooms = async () => {
     try {
       console.log('try enter Chat room');
@@ -29,6 +30,9 @@ export default function ChatListPage() {
   useEffect(() => {
     checkRooms();
   }, []);
+  const onClick = (room) => {
+    navigate(`/Message/${room.adoption.adoptionId}`, { state: room.roomId });
+  };
 
   if (!userInfo) {
     return (
@@ -52,7 +56,7 @@ export default function ChatListPage() {
       <div className={styles.container}>
         {roomList &&
           roomList.map((room) => (
-            <Link to={`/Message/${room.adoption.adoptionId}`} key={room.roomId}>
+            <div onClick={() => onClick(room)} key={room.roomId}>
               <div className={styles.message}>
                 <div className={styles.userImage}>
                   <div className={styles.profileImage}>{room.shelter.user.profileImgUrl ? <img src={room.shelter.user.profileImgUrl} className={styles.profileImage} /> : <img src="../../public/user.png" className={styles.defaultProfileImage}></img>}</div>
@@ -66,7 +70,7 @@ export default function ChatListPage() {
                   <div className={styles.chatBody}>{room.lastMessage}</div>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
       </div>
       <Nav></Nav>
