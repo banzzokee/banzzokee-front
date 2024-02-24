@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 // import { useCookies } from 'react-cookie';
 import axios from 'axios';
-import MyPage from '../user/myPage';
+import MyPage from '../user/MyPage';
 import Nav from '../../components/common/nav/Nav';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/common/button/Button';
@@ -82,9 +82,8 @@ export default function LoginPage() {
             <div className={styles.line}></div>
           </div>
           <div className={styles.loginButton} style={{ fontSize: '16px' }}>
-            <button
-                className={styles.button__google__login} onClick={handleGoogleLogin}>
-                구글 소셜 로그인
+            <button className={styles.button__google__login} onClick={handleGoogleLogin}>
+              구글 소셜 로그인
             </button>
             <LoginCallback />
           </div>

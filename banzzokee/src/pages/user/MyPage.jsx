@@ -1,9 +1,9 @@
-import styles from './myPage.module.css';
+import styles from './MyPage.module.css';
 import Button from '../../components/common/button/Button';
 import { Link, useNavigate } from 'react-router-dom';
 // import BadgeIcon from '/src/components/BadgeIcon';
 import MyPageHeader from '../../components/common/header/MyPageHeader';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useId } from 'react';
 import axios from 'axios';
 import Nav from '../../components/common/nav/Nav';
 import ReviewList from '../../components/ReviewList';
@@ -59,7 +59,7 @@ export default function MyPage() {
     navigate(`/MyPageEdit/`, { state: userInfo });
   };
   const toShelterInfoPage = () => {
-    navigate(`/ShelterInfoPage/`, { state: userInfo.shelter });
+    userInfo.shelter != null ? navigate(`/ShelterInfoPage/`, { state: userInfo.shelter }) : alert('보호소 등록후 사용할 수 있습니다');
   };
 
   return (
@@ -102,9 +102,14 @@ export default function MyPage() {
           </div>
           <p className={styles.introduce}>{userInfo.introduce}</p>
           <div className={styles.buttons}>
-            <Link to="/CreateAdoptPage" className={styles.createAdopt}>
+            <div
+              onClick={() => {
+                userInfo.shelter != null ? navigate('/CreateAdoptPage') : alert('보호소 등록후 사용할 수 있습니다');
+              }}
+              className={styles.createAdopt}
+            >
               <div className={styles.button}>게시물 작성</div>
-            </Link>
+            </div>
             <Link to="/FollowingPage">
               <div className={styles.button}>팔로잉 보호소</div>
             </Link>

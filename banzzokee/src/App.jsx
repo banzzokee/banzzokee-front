@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import React from 'react';
+import React from 'react';
 import './App.css';
-import MainPage from './pages/home/MainPage'
+import MainPage from './pages/home/MainPage';
 import Nav from './components/common/nav/Nav';
 import Header from './components/common/header/Header';
 import ChatListPage from './pages/chat/ChatListPage';
 import ViewArticlePage from './pages/article/ViewArticlePage';
 import LoginPage from './pages/login/LoginPage';
-import MyPage from './pages/user/myPage';
+import MyPage from './pages/user/MyPage';
 import CreateAdoptPage from './pages/article/CreateAdoptPage';
 import Notification from './pages/home/Notification';
 import Register from './pages/register/Register';
@@ -16,7 +16,7 @@ import Tag from './Tag';
 import MapPage from './pages/map/MapPage';
 import OtherMyPage from './pages/article/OtherMyPage';
 import ShelterInfoPage from './pages/article/ShelterInfoPage';
-import SettingPage from './pages/setting/settingPage';
+import SettingPage from './pages/setting/SettingPage';
 import FollowingPage from './pages/user/FollowingPage';
 import AccountInfoPage from './pages/user/AccountInfoPage';
 import EmailConfirm from './pages/register/EmailConfirm';
@@ -36,7 +36,6 @@ import Filter from './pages/home/Filter';
 import ReviewList from './components/ReviewList';
 import NotificationToken from './NotificationToken';
 import ChangeStatus from './pages/article/ChangeStatus';
-
 
 function App() {
   return (

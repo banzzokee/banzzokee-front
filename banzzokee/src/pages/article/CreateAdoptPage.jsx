@@ -18,7 +18,7 @@ export default function CreateAdoptPage() {
       gender: '',
       neutering: '',
       age: '',
-      registeredAt: '',
+      registeredAt: '1111-11-11',
     },
     content: '',
   });

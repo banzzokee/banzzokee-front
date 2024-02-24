@@ -7,9 +7,10 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import MyArticleList from '../../components/MyArticleList';
+import { useNavigate } from 'react-router-dom';
 export default function OtherMyPage() {
   const { state } = useLocation();
-
+  const navigate = useNavigate();
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const myInfo = JSON.parse(sessionStorage.getItem('myInfo'));
   // adding feature to git branch bookmark
@@ -85,7 +86,9 @@ export default function OtherMyPage() {
   if (state.introduce) {
     introduce = state.introduce;
   }
-
+  const onClickShelter = () => {
+    navigate('/ShelterInfoPage', { state: state.shelter });
+  };
   return (
     <>
       <BackHeader style={{ backgroundColor: '#e1e1e1' }}></BackHeader>
@@ -93,15 +96,9 @@ export default function OtherMyPage() {
         <div className={styles.shelterInfo}>
           <div className={styles.picture}>{photo}</div>
           <div className={styles.infoAndName}>
-            <Link
-              className={styles.viewShelterInfoButton}
-              to={{
-                pathname: '/ShelterInfoPage',
-                data: { name: '서울보호소', body: '주소: 서울시 ㅇㅇ구 ㅇㅇ길' },
-              }}
-            >
+            <div className={styles.viewShelterInfoButton} onClick={onClickShelter}>
               <Button>보호소 조회</Button>
-            </Link>
+            </div>
             <div className={styles.shelterName}>{nickname}</div>
           </div>
           <p className={styles.introduce}>{introduce}</p>
