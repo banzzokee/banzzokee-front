@@ -4,7 +4,7 @@ import BackHeader from '../../components/common/header/BackHeader';
 import Nav from '../../components/common/nav/Nav';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import ImageSlider from './imageSlider';
+import ImageSlider from './ImageSlider';
 import TagsAll from '../../components/TagsAll';
 export default function ViewArticlePage() {
   const { id } = useParams();

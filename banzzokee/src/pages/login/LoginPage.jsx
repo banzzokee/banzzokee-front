@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 // import { useCookies } from 'react-cookie';
 import axios from 'axios';
-import MyPage from '../user/myPage';
+import MyPage from '../user/MyPage';
 import Nav from '../../components/common/nav/Nav';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/common/button/Button';
@@ -49,8 +49,8 @@ export default function LoginPage() {
     }
   };
 
-  const URL_MEMBER_SINGUP = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=679888049936-k5otspaavapavud961if59cjnstpb7rb.apps.googleusercontent.com&redirect_uri=https://server.banzzokee.homes/login/oauth2/code/google&response_type=code&scope=profile%20email';
-  // const URL_MEMBER_SINGUP = 'https://server.banzzokee.homes/oauth2/authorization/google';
+  // const URL_MEMBER_SINGUP = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=679888049936-k5otspaavapavud961if59cjnstpb7rb.apps.googleusercontent.com&redirect_uri=https://server.banzzokee.homes/login/oauth2/code/google&response_type=code&scope=profile%20email';
+  const URL_MEMBER_SINGUP = 'http://server.banzzokee.homes/oauth2/authorization/google';
   const handleGoogleLogin = () => {
     window.location.href = URL_MEMBER_SINGUP;
   };

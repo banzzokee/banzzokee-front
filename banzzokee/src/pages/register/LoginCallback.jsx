@@ -11,7 +11,7 @@ const LoginCallback = () => {
 
     if (code) {
       axios
-        .get('https://server.banzzokee.homes/login/oauth2/code/google', {
+        .get('http://localhost:5178/login/oauth2/code/google', {
           params: {
             code: code,
           },
@@ -21,7 +21,7 @@ const LoginCallback = () => {
           sessionStorage.setItem('accessToken', accessToken);
           console.log('User Data:', userData);
 
-          if (userData.isFirstLogin) {
+          if (userData.isFirstLogin === true) {
             navigate('/GoogleRegister');
           } else {
             navigate('/MyPage');
