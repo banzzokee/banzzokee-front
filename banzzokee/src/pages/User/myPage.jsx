@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Nav from '../../components/common/nav/Nav';
 import ReviewList from '../../components/ReviewList';
-import MyArticleList from '../../components/myArticleList';
+import MyArticleList from '../../components/MyArticleList';
 import BookmarkList from '../../components/BookmarkList';
 
 export default function MyPage() {
