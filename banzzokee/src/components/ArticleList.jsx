@@ -7,10 +7,11 @@ import Tags from './Tags';
 import { useInView } from 'react-intersection-observer';
 
 export default function ArticleList({ sortBy, appliedFilters }) {
-  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const [articleList, setArticleList] = useState([]);
   const [hasMore, setHasMore] = useState(true);
+  console.log('setPage 0');
   const [page, setPage] = useState(0);
+  console.log('page:', page);
   const { ref, inView } = useInView();
   // appliedFilters를 사용하여 데이터를 필터링하는 함수
   const applyFilters = (data, filters) => {
@@ -32,21 +33,19 @@ export default function ArticleList({ sortBy, appliedFilters }) {
     try {
       const config = {
         method: 'get',
-        url: `https://server.banzzokee.homes/api/adoptions?page=${page}&size=6&direction=${sortBy}`,
+        url: `https://server.banzzokee.homes/api/adoptions?page=${page}&size=5&direction=${sortBy}`,
       };
       const response = await axios.request(config);
-      console.log(page);
-      if (inView) {
-        setPage((page) => page + 1);
-      }
-      console.log(page);
+
+      setPage((page) => page + 1);
+
       // 데이터 받아온 후 appliedFilters를 사용하여 필터링
       const filteredList = applyFilters(response.data.content, appliedFilters);
-      // console.log(response.data.content);
+
       if (filteredList.length == 0) {
         setHasMore(false);
       }
-      console.log(setArticleList, page);
+
       setArticleList([...articleList, ...filteredList]);
       // setArticleList([...articleList, ...response.data.content]);
     } catch (error) {
@@ -55,11 +54,13 @@ export default function ArticleList({ sortBy, appliedFilters }) {
   };
 
   useEffect(() => {
+    console.log('sortby, filter applied:::::::::::::');
     getArticleList();
     setPage(0);
     setArticleList([]);
   }, [sortBy, appliedFilters]);
   useEffect(() => {
+    console.log('inview', inView);
     if (inView) {
       console.log('inview 무한스크롤 진행', inView);
       getArticleList();
