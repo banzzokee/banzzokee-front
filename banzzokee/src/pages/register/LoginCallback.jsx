@@ -11,17 +11,17 @@ const LoginCallback = () => {
 
     if (code) {
       axios
-        .get('http://localhost:5178/login/oauth2/code/google', {
+        .get('https://server.banzzokee.homes/api/oauth2/success', {
           params: {
             code: code,
           },
         })
         .then((response) => {
-          const { accessToken, userData } = response.data;
+          const { accessToken, refreshToken, firstLogin } = response.data;
           sessionStorage.setItem('accessToken', accessToken);
-          console.log('User Data:', userData);
+          sessionStorage.setItem('refreshToken', refreshToken);
 
-          if (userData.isFirstLogin === true) {
+          if (firstLogin) {
             navigate('/GoogleRegister');
           } else {
             navigate('/MyPage');
@@ -29,9 +29,9 @@ const LoginCallback = () => {
         })
         .catch((error) => {
           if (error.response && error.response.status === 400) {
-            console.error('Social login failed with status code 400');
+            console.error('400 에러');
           } else {
-            console.error('Error fetching user information:', error);
+            console.error('사용자 정보를 가져오는 중 에러 발생:', error);
             navigate('/LoginPage');
           }
         });
@@ -42,3 +42,15 @@ const LoginCallback = () => {
 };
 
 export default LoginCallback;
+
+
+
+
+
+
+
+
+
+
+
+
