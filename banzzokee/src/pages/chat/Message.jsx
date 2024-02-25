@@ -39,7 +39,7 @@ export default function Message() {
       while (true) {
         const config = {
           method: 'get',
-          url: `https://server.banzzokee.homes/api/rooms?page=${currentPage}&size=10`,
+          url: `https://server.banzzokee.homes/api/rooms?page=${currentPage}&size=10&direction=desc`,
           headers: { Authorization: `Bearer ${accessToken}` },
         };
         const response = await axios.request(config);
@@ -172,6 +172,7 @@ export default function Message() {
     }
     console.log('roomInfo', roomInfo);
     console.log('sendmessage', inputMessage);
+    setInputMessage('');
   };
   const onLeaveRoom = async () => {
     try {

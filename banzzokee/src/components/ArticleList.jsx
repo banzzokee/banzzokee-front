@@ -9,8 +9,8 @@ import { useInView } from 'react-intersection-observer';
 export default function ArticleList({ sortBy, appliedFilters }) {
   const [articleList, setArticleList] = useState([]);
   const [hasMore, setHasMore] = useState(true);
-  console.log('setPage 0');
   const [page, setPage] = useState(0);
+
   console.log('page:', page);
   const { ref, inView } = useInView();
   // appliedFilters를 사용하여 데이터를 필터링하는 함수
@@ -31,22 +31,26 @@ export default function ArticleList({ sortBy, appliedFilters }) {
 
   const getArticleList = async () => {
     try {
-      const config = {
-        method: 'get',
-        url: `https://server.banzzokee.homes/api/adoptions?page=${page}&size=5&direction=${sortBy}`,
-      };
-      const response = await axios.request(config);
-
-      setPage((page) => page + 1);
-
-      // 데이터 받아온 후 appliedFilters를 사용하여 필터링
-      const filteredList = applyFilters(response.data.content, appliedFilters);
-
-      if (filteredList.length == 0) {
-        setHasMore(false);
+      if (hasMore) {
+        console.log('Getarticle::: page:', page);
+        const config = {
+          method: 'get',
+          url: `https://server.banzzokee.homes/api/adoptions?page=${page}&size=7&direction=${sortBy}`,
+        };
+        const response = await axios.request(config);
+        console.log('page', page);
+        console.log('resp.data.content', response.data.content);
+        // 데이터 받아온 후 appliedFilters를 사용하여 필터링
+        const filteredList = applyFilters(response.data.content, appliedFilters);
+        setArticleList([...articleList, ...filteredList]);
+        if (response.data.content.length < 7) {
+          setHasMore(false);
+          console.log('hasmore:', hasMore);
+        }
       }
-
-      setArticleList([...articleList, ...filteredList]);
+      if (hasMore) {
+        setPage((page) => page + 1);
+      }
       // setArticleList([...articleList, ...response.data.content]);
     } catch (error) {
       console.error('Error:', error);
@@ -57,12 +61,11 @@ export default function ArticleList({ sortBy, appliedFilters }) {
     console.log('sortby, filter applied:::::::::::::');
     getArticleList();
     setPage(0);
-    setArticleList([]);
+    // setArticleList([]);
   }, [sortBy, appliedFilters]);
+
   useEffect(() => {
-    console.log('inview', inView);
-    if (inView) {
-      console.log('inview 무한스크롤 진행', inView);
+    if (inView && page !== 0) {
       getArticleList();
     }
   }, [inView]);
@@ -91,7 +94,7 @@ export default function ArticleList({ sortBy, appliedFilters }) {
             </li>
           ))}
         <div className={styles.observer} ref={ref}>
-          {hasMore ? 'loading' : 'end'}
+          {hasMore ? 'loading...' : 'end'}
         </div>
       </ul>
     </div>

@@ -21,15 +21,18 @@ export default function ReviewList() {
       };
 
       const response = await axios.request(config);
+      setPage((page) => page + 1);
       setArticleList(response.data.content);
-      if (response.data.content.length == 0) {
+      console.log('page:', page);
+      console.log('resp.data.content', response.data.content);
+
+      if (response.data.content.length < 10) {
         setHasMore(false);
+        console.log('sethasmore: false');
       }
     } catch (error) {
       console.error('Error:', error);
     }
-
-    setPage((page) => page + 1);
   };
   function doFilter() {
     const filtered = articleList.filter((obj) => obj?.status?.value === '분양완료');
@@ -38,7 +41,11 @@ export default function ReviewList() {
   }
 
   useEffect(() => {
-    if (hasMore) {
+    console.log('firstGetArticle()');
+    getArticleList();
+  }, []);
+  useEffect(() => {
+    if (hasMore && page !== 0) {
       getArticleList();
       console.log('inview getArticleList');
     }
@@ -46,7 +53,6 @@ export default function ReviewList() {
   useEffect(() => {
     console.log('dofilter');
     doFilter();
-    console.log('page::', page);
   }, [articleList]);
   return (
     <div className={styles.listBox}>
@@ -74,7 +80,7 @@ export default function ReviewList() {
             </li>
           ))}
         <div className={styles.observer} ref={ref}>
-          {hasMore ? 'loading' : 'end'}
+          {hasMore ? 'loading...' : 'end'}
           {inView}
         </div>
       </ul>

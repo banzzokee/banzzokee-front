@@ -41,7 +41,7 @@ export default function MessageList({ roomId }) {
     console.log('roomId, getMessageList', roomId);
     const config = {
       method: 'get',
-      url: `https://server.banzzokee.homes/api/chats/rooms/${roomId}?page=${index}&size=10`,
+      url: `https://server.banzzokee.homes/api/chats/rooms/${roomId}?page=${index}&size=100`,
       headers: { Authorization: `Bearer ${accessToken}` },
     };
     const response = await axios.request(config);
@@ -50,7 +50,7 @@ export default function MessageList({ roomId }) {
     const newMessages = response.data.content;
     setMessageList([...messageList, ...newMessages]);
     response.data.content.length > 0 ? setHasMore(true) : setHasMore(false);
-
+    console.log(messageList);
     setIndex(index + 1);
   };
 
