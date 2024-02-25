@@ -10,6 +10,7 @@ export default function ChangeStatus() {
   const navigate = useNavigate();
   const location = useLocation();
   const { state } = location;
+  console.log('changestatus page: state:', state);
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const [newStatus, setNewStatus] = useState('');
   const [isActive, setIsActive] = useState({

@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom';
 import styles from './ArticleList.module.css';
 import Tags from './Tags';
 
+import { useInView } from 'react-intersection-observer';
 
 export default function ArticleList({ sortBy, appliedFilters }) {
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const [articleList, setArticleList] = useState([]);
-
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(0);
+  const { ref, inView } = useInView();
   // appliedFilters를 사용하여 데이터를 필터링하는 함수
   const applyFilters = (data, filters) => {
     // 여기에 필터링 로직을 추가
@@ -29,15 +32,23 @@ export default function ArticleList({ sortBy, appliedFilters }) {
     try {
       const config = {
         method: 'get',
-        url: `https://server.banzzokee.homes/api/adoptions?page=0&size=10&direction=${sortBy}`,
+        url: `https://server.banzzokee.homes/api/adoptions?page=${page}&size=6&direction=${sortBy}`,
       };
       const response = await axios.request(config);
-
+      console.log(page);
+      if (inView) {
+        setPage((page) => page + 1);
+      }
+      console.log(page);
       // 데이터 받아온 후 appliedFilters를 사용하여 필터링
       const filteredList = applyFilters(response.data.content, appliedFilters);
-      console.log(response.data.content);
-      setArticleList(filteredList);
-      // setArticleList(response.data.content);
+      // console.log(response.data.content);
+      if (filteredList.length == 0) {
+        setHasMore(false);
+      }
+      console.log(setArticleList, page);
+      setArticleList([...articleList, ...filteredList]);
+      // setArticleList([...articleList, ...response.data.content]);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -45,8 +56,15 @@ export default function ArticleList({ sortBy, appliedFilters }) {
 
   useEffect(() => {
     getArticleList();
+    setPage(0);
+    setArticleList([]);
   }, [sortBy, appliedFilters]);
-
+  useEffect(() => {
+    if (inView) {
+      console.log('inview 무한스크롤 진행', inView);
+      getArticleList();
+    }
+  }, [inView]);
   return (
     <div className={styles.listBox}>
       <ul>
@@ -71,6 +89,9 @@ export default function ArticleList({ sortBy, appliedFilters }) {
               </Link>
             </li>
           ))}
+        <div className={styles.observer} ref={ref}>
+          {hasMore ? 'loading' : 'end'}
+        </div>
       </ul>
     </div>
   );

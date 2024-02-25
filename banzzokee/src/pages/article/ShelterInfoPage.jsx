@@ -55,10 +55,6 @@ export default function ShelterInfoPage() {
           <img src={shelterImgUrl}></img>
         </div>
 
-        <Link to="/ShelterEditPage">
-          <Button>보호소 수정</Button>
-        </Link>
-
         <div className={styles.shelterInfo}>
           <p>
             <span className={styles.title}>보호소 이름:</span> {shelterName}

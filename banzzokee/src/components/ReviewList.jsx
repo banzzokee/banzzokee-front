@@ -26,7 +26,7 @@ export default function ReviewList() {
   function doFilter(list) {
     const filtered = list.filter((obj) => obj.status.value === '분양완료');
     setReviewList(filtered);
-    console.log('reviewList', reviewList);
+    console.log('reviewList', filtered);
   }
   useEffect(() => {
     getArticleList();
@@ -40,7 +40,7 @@ export default function ReviewList() {
         {reviewList &&
           reviewList.map((adoption) => (
             <li key={adoption.id}>
-              <Link to={`/ReviewList/${adoption.adoptionId}`} key={adoption.adoptionId} className={styles.link}>
+              <Link to={`/ArticleList/${adoption.adoptionId}`} key={adoption.adoptionId} className={styles.link}>
                 <div className={styles.imageContainer}>
                   {adoption.imageUrls ? <img src={adoption.imageUrls[0]}></img> : <img src="../../../public/dog.webp" alt="" />}
 
@@ -59,6 +59,7 @@ export default function ReviewList() {
               </Link>
             </li>
           ))}
+        <div id="observer" style={{ height: '10px', backgroundColor: 'gray' }}></div>
       </ul>
     </div>
   );

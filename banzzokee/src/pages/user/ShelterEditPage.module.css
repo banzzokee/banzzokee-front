@@ -3,6 +3,7 @@
   width: 375px;
   height: 724px;
   padding: 20px;
+  overflow: scroll;
 }
 
 .picture {
@@ -16,10 +17,16 @@
   justify-content: center;
   align-items: center;
 }
+.picture img {
+  width: 100%;
+  height: 100%;
+}
 .pictures {
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
+  height: 100%;
 }
 .add {
   position: absolute;
