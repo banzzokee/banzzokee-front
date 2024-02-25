@@ -37,6 +37,7 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
+  align-items: center;
   /* z-index: -1; */
 }
 
@@ -52,15 +53,38 @@
   height: 100px;
   margin-top: 10px;
 }
-.status {
-  background-color: #ffee55;
-  padding: 0 15px;
+li a:hover {
+  border: 1px solid gray;
+}
+.statusAdopting {
+  background-color: #fff172f1;
   border-radius: 50px;
   height: 25px;
+  width: 70px;
   position: absolute;
   z-index: 1;
-  /* display: flex; */
-  /* align-items: center; */
+  top: 70px;
+  left: 15px;
+  font-size: 14px;
+}
+.statusReserving {
+  background-color: #feb524e5;
+  border-radius: 50px;
+  height: 25px;
+  width: 70px;
+  position: absolute;
+  z-index: 1;
+  top: 70px;
+  left: 15px;
+  font-size: 14px;
+}
+.statusFinished {
+  background-color: #66d2eae1;
+  border-radius: 50px;
+  height: 25px;
+  width: 80px;
+  position: absolute;
+  z-index: 1;
   top: 70px;
   left: 10px;
   font-size: 14px;
@@ -104,7 +128,7 @@
   border-radius: 50px;
   display: flex;
   align-items: center;
-  background-color: rgb(201, 244, 135);
+  background-color: rgb(222, 222, 222);
 }
 .observer {
   height: 15px;

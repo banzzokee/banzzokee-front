@@ -78,7 +78,7 @@ export default function ArticleList({ sortBy, appliedFilters }) {
               <Link to={`/ArticleList/${adoption.adoptionId}`} key={adoption.adoptionId} className={styles.link}>
                 <div className={styles.imageContainer}>
                   {adoption.imageUrls ? <img src={adoption.imageUrls[0]} alt={adoption.title} /> : <img src="../../../public/dog.webp" alt="" />}
-                  {adoption.status ? <div className={styles.status}>{adoption.status.value}</div> : <div className={styles.status}>loading</div>}
+                  {adoption.status ? <div className={adoption.status.value == '분양중' ? styles.statusAdopting : adoption.status.value == '예약중' ? styles.statusReserving : styles.statusFinished}>{adoption.status.value}</div> : <div className={styles.status}>loading</div>}
                 </div>
                 <div className={styles.infoBox}>
                   <div className={styles.user}>
