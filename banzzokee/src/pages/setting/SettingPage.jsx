@@ -1,7 +1,7 @@
 import styles from './SettingPage.module.css';
 import { Link } from 'react-router-dom';
 
-import BackHeader from '../../components/common/header/BackHeader';
+import SettingHeader from '../../components/common/header/SettingHeader';
 import React, { useState } from 'react';
 
 export default function SettingPage() {
@@ -14,9 +14,10 @@ export default function SettingPage() {
     sessionStorage.removeItem('accessToken');
     document.location.href = '/';
   };
+
   return (
     <>
-      <BackHeader style={{ backgroundColor: '#e1e1e1' }}></BackHeader>
+      <SettingHeader style={{ backgroundColor: '#e1e1e1' }}></SettingHeader>
       <div className={styles.container}>
         <div className={styles.eachSetting}>
           <p className={styles.title}>알림 설정</p>

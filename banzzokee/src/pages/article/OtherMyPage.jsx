@@ -88,6 +88,7 @@ export default function OtherMyPage() {
   }
   const onClickShelter = () => {
     navigate('/ShelterInfoPage', { state: state.shelter });
+    console.log(state.shelter);
   };
   return (
     <>

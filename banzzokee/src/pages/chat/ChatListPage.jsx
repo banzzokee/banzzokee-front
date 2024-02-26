@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 export default function ChatListPage() {
-  const userInfo = JSON.parse(sessionStorage.getItem('accessToken'));
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const [roomList, setRoomList] = useState([]);
   const navigate = useNavigate();
@@ -34,7 +33,7 @@ export default function ChatListPage() {
     navigate(`/Message/${room.adoption.adoptionId}`, { state: room.roomId });
   };
 
-  if (!userInfo) {
+  if (!accessToken) {
     return (
       <>
         <ChatHeader></ChatHeader>
@@ -63,7 +62,7 @@ export default function ChatListPage() {
                 </div>
                 <div className={styles.userContent}>
                   <div className={styles.userAndTime}>
-                    {room.user?.nickname ? <div className={styles.userName}>{room.user.nickname}</div> : <></>}
+                    {room.shelter?.user?.nickname ? <div className={styles.userName}>{room.shelter.user.nickname}</div> : <></>}
 
                     <div className={styles.sendTime}>{room.lastMessageCreatedAt ? room.lastMessageCreatedAt.substring(0, 10) : 'date'}</div>
                   </div>

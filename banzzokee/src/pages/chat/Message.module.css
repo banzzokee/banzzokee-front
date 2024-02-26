@@ -9,6 +9,12 @@
   border-bottom: 1px solid #dfdfdf;
   position: relative;
 }
+.messageContainer {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100%;
+}
+
 .back {
   position: absolute;
   left: 0;
