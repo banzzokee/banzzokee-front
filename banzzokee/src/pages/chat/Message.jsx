@@ -172,6 +172,7 @@ export default function Message() {
     }
     console.log('roomInfo', roomInfo);
     console.log('sendmessage', inputMessage);
+    setMessages([inputMessage, ...messages]);
     setInputMessage('');
   };
   const onLeaveRoom = async () => {
@@ -260,7 +261,7 @@ export default function Message() {
         <MessageList roomId={roomInfo.roomId}></MessageList>
         {messages &&
           messages.map((message) => (
-            <div key={message.chatId} className={styles.messageContainer}>
+            <div key={message.chatId} className={styles.messageBox}>
               {message.messageType === 'EXIT' ? (
                 <div className={styles.systemMessageContainer}>
                   <div className={styles.systemMessage}>{message.message}</div>
@@ -272,7 +273,7 @@ export default function Message() {
               ) : (
                 <div className={styles.otherMessageContainer}>
                   <div onClick={toOtherMyPage} className={styles.profileImage}>
-                    {message.user.profileImgUrl ? <img src={message.user.profileImgUrl} className={styles.profileImage} /> : <img src="../../public/user.png" className={styles.defaultProfileImage}></img>}
+                    {message.user?.profileImgUrl ? <img src={message.user.profileImgUrl} className={styles.profileImage} /> : <img src="../../public/user.png" className={styles.defaultProfileImage}></img>}
                   </div>
                   <div className={styles.otherMessage}>{message.message}</div>
                 </div>
@@ -304,23 +305,6 @@ export default function Message() {
           </div>
         </div>
       </form>
-      {/* <InputField message={message} setMessage={setMessage} sendMessage={sendMessage}></InputField> */}
     </>
   );
 }
-
-// local server 호출
-// useEffect(() => {
-//   const getList = async () => {
-//     try {
-//       const response = await axios.get(`http://localhost:3001/chats`);
-//       const data = response.data;
-//       setMessageList(data);
-//       // console.log(messageList);
-//       // console.log(nickname);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };]
-//   getList();
-// }, []);

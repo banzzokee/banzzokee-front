@@ -2,17 +2,18 @@ import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { useState } from 'react';
 import { useEffect } from 'react';
 const { kakao } = window;
-const Kakao = () => {
+const Kakao = ({ state }) => {
+  console.log('kakao: state:', state);
   return (
     <div>
       <Map
-        center={{ lat: 37.506320759000715, lng: 127.05368251210247 }}
+        center={{ lat: state.latitude, lng: state.longitude }}
         style={{
           width: '100%',
           height: '645px',
         }}
       >
-        <MapMarker style={{ border: 'tranparent' }} position={{ lat: 37.506320759000715, lng: 127.05368251210247 }}>
+        <MapMarker style={{ border: 'tranparent' }} position={{ lat: state.latitude, lng: state.longitude }}>
           <div style={{}}></div>
         </MapMarker>
       </Map>

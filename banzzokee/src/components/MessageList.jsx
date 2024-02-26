@@ -56,8 +56,8 @@ export default function MessageList({ roomId }) {
 
   return (
     <>
-      <div>
-        <InfiniteScroll dataLength={messageList.length} next={getMessageList} hasMore={hasMore} loader={messageList.length != 0 ? <>loading...</> : <></>} scrollThreshold={1.0} inverse={true}>
+      <div className={styles.messagebox}>
+        <InfiniteScroll className={styles.infiniteScroll} dataLength={messageList.length} next={getMessageList} hasMore={hasMore} loader={messageList.length != 0 ? <>loading...</> : <></>} scrollThreshold={1.0} inverse={true}>
           {messageList &&
             messageList.map((message) => (
               <div key={message.createdAt} className={styles.messageContainer}>

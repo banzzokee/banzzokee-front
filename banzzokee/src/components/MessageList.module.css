@@ -1,9 +1,19 @@
+.messagebox {
+  display: flex;
+  flex-direction: column;
+}
+
 .systemMessageContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
+.infiniteScroll {
+  width: 100%;
+  /* width: 375px; */
+  display: flex;
+  flex-direction: column-reverse;
+}
 .systemMessage {
   background-color: #3e3e3e58;
   border-radius: 10px;

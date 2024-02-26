@@ -46,7 +46,9 @@ export default function ShelterInfoPage() {
   if (state && state.registeredAt) {
     registeredAt = state.registeredAt;
   }
-
+  const toMap = () => {
+    navigate('/MapPage', { state: { latitude: state.latitude, longitude: state.longitude, name: shelterName } });
+  };
   return (
     <>
       <BackHeader></BackHeader>
@@ -72,6 +74,7 @@ export default function ShelterInfoPage() {
             <span className={styles.title}>반쪽이 보호소 등록일:</span> {registeredAt}
           </p>
         </div>
+        <button onClick={toMap}>보호소 위치 지도에서 보기</button>
       </div>
       <Nav></Nav>
     </>
