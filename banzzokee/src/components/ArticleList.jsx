@@ -24,18 +24,20 @@ export default function ArticleList({ sortBy, appliedFilters }) {
           url: `https://server.banzzokee.homes/api/adoptions`,
           params: {
             breed: appliedFilters.breed.join(','), 
-            dogSize: appliedFilters.dogSize, 
+            dogSize: appliedFilters.size, 
             neutering: appliedFilters.neutering,
             healthChecked: appliedFilters.healthChecked,
             gender: appliedFilters.gender,
             minAge: appliedFilters.minAge,
             maxAge: appliedFilters.maxAge,
-            direction: sortBy,
+            direction: `${sortBy}`,
             page: page,
             size: 7,
             
           },
         };
+        // console.log('url:', config.url);
+        console.log('params:', config.params);
         const response = await axios.request(config);
         console.log('page', page);
         console.log('resp.data.content', response.data.content);
