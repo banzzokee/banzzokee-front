@@ -22,11 +22,6 @@ export default function CreateAdoptPage() {
     },
     content: '',
   });
-  // const [isActive, setIsActive] = useState({
-  //   ongoing: false,
-  //   booking: false,
-  //   completion: false,
-  // });
 
   const { title, content, tags, imageUrls } = adoption;
   const formData = new FormData();
@@ -107,25 +102,12 @@ export default function CreateAdoptPage() {
       console.log('data', formData);
       const response = await axios.request(config);
       alert('게시 완료');
-      navigate('/MyPage');
+      navigate('/');
       console.log(response);
     } catch (error) {
       console.error('Error posting adoption:', error);
     }
   };
-
-  // const handleStatus = (status) => {
-  //   setAdoption({
-  //     ...adoption,
-  //     status,
-  //   });
-
-  //   setIsActive({
-  //     ongoing: status === '분양중',
-  //     booking: status === '예약중',
-  //     completion: status === '분양완료',
-  //   });
-  // };
 
   return (
     <div className={styles.CreateAdoptPage}>
@@ -149,20 +131,6 @@ export default function CreateAdoptPage() {
           <div className={styles.inputGroup}>
             <Tag onChange={onChange} />
           </div>
-          {/* <div className={styles.inputGroup}>
-            <label>상태</label>
-            <div className={styles.stateBox}>
-              <button type="button" name="status" value="분양중" onClick={() => handleStatus('분양중')} style={isActive.ongoing ? { backgroundColor: '#FFEE55' } : {}} className={styles.ongoing}>
-                분양중
-              </button>
-              <button type="button" name="status" value="예약중" onClick={() => handleStatus('예약중')} style={isActive.booking ? { backgroundColor: '#FFB155' } : {}} className={styles.booking}>
-                예약중
-              </button>
-              <button type="button" name="status" value="분양완료" onClick={() => handleStatus('분양완료')} style={isActive.completion ? { backgroundColor: '#79C7DF' } : {}} className={styles.completion}>
-                분양완료
-              </button>
-            </div>
-          </div> */}
           <div className={styles.inputGroup}>
             <label className={styles.textTitle}>본문</label>
             <textarea name="content" value={adoption.content} onChange={onChange} placeholder="500자 이내로 작성해주세요." maxLength="500"></textarea>
