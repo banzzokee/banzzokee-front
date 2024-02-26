@@ -94,17 +94,57 @@
   height: 100%;
   object-fit: cover;
 }
-
-.status {
-  background-color: #ffee55;
-  padding: 0 15px;
-  border-radius: 50px;
-  height: 30px;
+.statusAdopting {
+  background-color: #f8e852fc;
+  border-radius: 5px;
+  height: 25px;
+  width: 60px;
   position: absolute;
+  z-index: 1;
+  top: 5px;
+  left: 5px;
+  font-size: 14px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  top: 10px;
-  left: 10px;
+}
+.statusReserving {
+  background-color: #feb524fe;
+  border-radius: 5px;
+  height: 25px;
+  width: 60px;
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  left: 5px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.statusFinished {
+  background-color: #a1a1a1fa;
+  border-radius: 5px;
+  height: 25px;
+  width: 60px;
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  left: 5px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.status {
+  background-color: #a1a1a1fa;
+  border-radius: 5px;
+  height: 25px;
+  width: 60px;
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  left: 5px;
   font-size: 14px;
 }
 

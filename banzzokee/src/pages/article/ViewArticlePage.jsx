@@ -238,7 +238,7 @@ export default function ViewArticlePage() {
               <ImageSlider images={adoption.imageUrls} />
             </div>
 
-            {adoption.status ? <div className={styles.status}>{adoption.status.value}</div> : <div className={styles.status}>loading</div>}
+            {adoption.status ? <div className={adoption.status.value == '분양중' ? styles.statusAdopting : adoption.status.value == '예약중' ? styles.statusReserving : styles.statusFinished}>{adoption.status.value}</div> : <div className={styles.status}>loading</div>}
             <div className={styles.reviewbuttonBox}>
             {adoption.status && adoption.status.value === '분양완료' && isCurrentUserAssignedUser && (
               <>

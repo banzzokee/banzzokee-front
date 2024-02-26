@@ -55,39 +55,49 @@
 }
 li a:hover {
   border: 1px solid gray;
+  color: black;
 }
 .statusAdopting {
-  background-color: #fff172f1;
-  border-radius: 50px;
-  height: 25px;
-  width: 70px;
+  background-color: #f8e852fc;
+  border-radius: 5px;
+  height: 15px;
+  width: 40px;
   position: absolute;
   z-index: 1;
-  top: 70px;
-  left: 15px;
-  font-size: 14px;
+  top: 5px;
+  left: 5px;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .statusReserving {
-  background-color: #feb524e5;
-  border-radius: 50px;
-  height: 25px;
-  width: 70px;
+  background-color: #feb524fe;
+  border-radius: 5px;
+  height: 15px;
+  width: 40px;
   position: absolute;
   z-index: 1;
-  top: 70px;
-  left: 15px;
-  font-size: 14px;
+  top: 5px;
+  left: 5px;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .statusFinished {
-  background-color: #66d2eae1;
-  border-radius: 50px;
-  height: 25px;
-  width: 80px;
+  background-color: #a1a1a1fa;
+  border-radius: 5px;
+  height: 15px;
+  width: 40px;
   position: absolute;
   z-index: 1;
-  top: 70px;
-  left: 10px;
-  font-size: 14px;
+  top: 5px;
+  left: 5px;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .name {
   font-weight: bold;
@@ -128,7 +138,8 @@ li a:hover {
   border-radius: 50px;
   display: flex;
   align-items: center;
-  background-color: rgb(222, 222, 222);
+  background-color: #9aaee057;
+  /* color: #dce2f0; */
 }
 .observer {
   height: 15px;

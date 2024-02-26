@@ -68,7 +68,8 @@ export default function MyPage() {
       <div className={styles.container}>
         <div className={styles.userInfo}>
           <div className={styles.profilePhoto}>
-            <img src={userInfo.profileImgUrl}></img>
+            <img className={styles.pic} src={userInfo.profileImgUrl}></img>
+            <img className={styles.badgeIcon} src="../../../public/badge.svg"></img>
           </div>
 
           <div className={styles.profileHeader}>
