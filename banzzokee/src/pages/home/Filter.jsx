@@ -3,22 +3,20 @@ import styles from './Filter.module.css';
 
 export default function Filter({ onApplyFilter, onResetFilters }) {
   const [selectedFilters, setSelectedFilters] = useState({
-    status: '',
+    // status: '',
     size: '',
     healthChecked: false,
     gender: '',
     neutering: false,
-    ageRange: {
-      minAge: '',
-      maxAge: '',
-    },
+    minAge: '',
+    maxAge: '',
     breed: [],
   });
 
   const [isActive, setIsActive] = useState({
-    size: '',
+    dogSize: '',
     breed: '',
-    status: '',
+    // status: '',
     healthCheck: '',
     gender: '',
     neutering: '',
@@ -95,10 +93,8 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
       healthChecked: false,
       gender: '',
       neutering: false,
-      ageRange: {
-        minAge: '',
-        maxAge: '',
-      },
+      minAge: '',
+      maxAge: '',
       breed: [],
     });
     setIsActive({
@@ -151,7 +147,7 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
         </button> */}
       </div>
       <form style={{ overflowY: 'scroll', maxHeight: '520px' }} className={styles.container}>
-        <div className={styles.tag_item}>
+        {/* <div className={styles.tag_item}>
           <label>상태</label>
           <button type="button" name="status" onClick={() => handleFilter('status', 'ADOPTING')} style={isActive.status === 'ADOPTING' ? { backgroundColor: '#FFEE55' } : {}}>
             분양중
@@ -162,7 +158,7 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
           <button type="button" name="status" onClick={() => handleFilter('status', 'FINISHED')} style={isActive.status === 'FINISHED' ? { backgroundColor: '#79C7DF' } : {}}>
             분양완료
           </button>
-        </div>
+        </div> */}
         <div className={styles.tag_item}>
           <label>사이즈</label>
           <button type="button" name="size" onClick={() => handleFilter('size', 'ULTRA_SMALL')} style={isActive.size === 'ULTRA_SMALL' ? { ...selectStyle } : {}}>
@@ -207,14 +203,14 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
         <input
           type="text"
           placeholder="최소 나이"
-          value={selectedFilters.ageRange.minAge}
+          value={selectedFilters.minAge}
           onChange={(e) => handleAgeRange(e, 'minAge')}
         />
         <span>~</span>
         <input
           type="text"
           placeholder="최대 나이"
-          value={selectedFilters.ageRange.maxAge}
+          value={selectedFilters. maxAge}
           onChange={(e) => handleAgeRange(e, 'maxAge')}
         />
       </div>

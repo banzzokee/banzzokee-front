@@ -53,7 +53,7 @@ export default function LoginPage() {
   const URL_MEMBER_SINGUP = 'http://server.banzzokee.homes/oauth2/authorization/google';
 
   const handleGoogleLogin = () => {
-    window.location.href = URL_MEMBER_SINGUP;
+    window.location.href = URL_MEMBER_SINGUP; 
   };
 
   if (sessionStorage.getItem('accessToken') == null) {
@@ -86,7 +86,7 @@ export default function LoginPage() {
             <button className={styles.button__google__login} onClick={handleGoogleLogin}>
               구글 소셜 로그인
             </button>
-            <LoginCallback />
+            {/* <LoginCallback /> */}
           </div>
         </div>
         <Nav></Nav>

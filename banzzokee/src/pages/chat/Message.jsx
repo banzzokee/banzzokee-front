@@ -25,12 +25,9 @@ export default function Message() {
   const [otherUserId, setOtherUserId] = useState();
   const location = useLocation();
   // const client = useRef({});
-  const { state } = location;
-  let roomId
-  if (state == null) {
-    roomId = state.roomId;
-  
-  }
+  const [otherInfo, setOtherInfo] = useState();
+  const [roomId, setRoomId] = useState();
+  // let otherUserId
   // const path = location.pathname;
 
   // const gameId = path.split('/')[2];
@@ -42,11 +39,10 @@ export default function Message() {
       while (true) {
         const config = {
           method: 'get',
-          url: `https://server.banzzokee.homes/api/rooms?page=${currentPage}&size=10`,
+          url: `https://server.banzzokee.homes/api/rooms?page=${currentPage}&size=10&direction=desc`,
           headers: { Authorization: `Bearer ${accessToken}` },
         };
         const response = await axios.request(config);
-        // console.log('enterChat checkRoom response::', response.data);
 
         //모든 개설된 방을 불러와서 비교
         const roomList = response.data.content;
@@ -57,15 +53,15 @@ export default function Message() {
         currentPage++;
       }
 
+      console.log('checkRoom response::', rooms);
       // 채팅방 목록에 현제 게시글에서 연결된 방이 개설된곳이 있는지 확인
       let changeHasroom = true;
       for (let i = 0; i < rooms.length; i++) {
         if (rooms[i].adoption.adoptionId == id) {
           changeHasroom = false;
           setRoomInfo(rooms[i]);
-          if (roomId == null) {
-            roomId = roomInfo.roomId;
-          }
+          setOtherUserId(rooms[i].user.userId);
+          setRoomId(rooms[i].roomId);
           console.log('do not create new room');
           break;
         }
@@ -73,7 +69,7 @@ export default function Message() {
       if (changeHasroom) {
         setHasRoom(false);
       }
-      console.log(roomInfo);
+      console.log('roominfo', roomInfo);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -99,7 +95,7 @@ export default function Message() {
       const response = await axios.request(config);
       console.log('createRoom::', response.data);
       if (roomId == null) {
-        roomId = response.data.roomId;
+        setRoomId(response.data.roomId);
       }
       setRoomInfo(response.data);
       setOtherUserId(response.data.user.userId);
@@ -176,6 +172,8 @@ export default function Message() {
     }
     console.log('roomInfo', roomInfo);
     console.log('sendmessage', inputMessage);
+    setMessages([inputMessage, ...messages]);
+    setInputMessage('');
   };
   const onLeaveRoom = async () => {
     try {
@@ -207,12 +205,25 @@ export default function Message() {
       console.error('Error:', error);
     }
   };
-
+  const toOtherMyPage = () => {
+    if (roomInfo.shelter != null) {
+      if (roomInfo.user && roomInfo.user.userId) {
+        const dataSend = roomInfo.user;
+        navigate(`/OtherMyPage/${roomInfo.user.userId}`, { state: dataSend });
+      }
+    } else {
+      if (roomInfo.shelter.user && roomInfo.shelter.user.userId) {
+        const dataSend = roomInfo.shelter.user;
+        navigate(`/OtherMyPage/${roomInfo.shelter.user.userId}`, { state: dataSend });
+      }
+    }
+  };
   const onclickBack = () => {
     navigate(`/ChatListPage`);
   };
   const handleStatus = () => {
     navigate(`/ChangeStatus/${roomInfo.adoption.adoptionId}`, { state: otherUserId });
+    console.log('handle status: otheruserId', otherUserId);
   };
   const openEdit = () => {
     const editBox = document.getElementById('edit');
@@ -250,7 +261,7 @@ export default function Message() {
         <MessageList roomId={roomInfo.roomId}></MessageList>
         {messages &&
           messages.map((message) => (
-            <div key={message.chatId} className={styles.messageContainer}>
+            <div key={message.chatId} className={styles.messageBox}>
               {message.messageType === 'EXIT' ? (
                 <div className={styles.systemMessageContainer}>
                   <div className={styles.systemMessage}>{message.message}</div>
@@ -261,7 +272,9 @@ export default function Message() {
                 </div>
               ) : (
                 <div className={styles.otherMessageContainer}>
-                  <div className={styles.profileImage}>{message.user.profileImgUrl ? <img src={message.user.profileImgUrl} className={styles.profileImage} /> : <img src="../../public/user.png" className={styles.defaultProfileImage}></img>}</div>
+                  <div onClick={toOtherMyPage} className={styles.profileImage}>
+                    {message.user?.profileImgUrl ? <img src={message.user.profileImgUrl} className={styles.profileImage} /> : <img src="../../public/user.png" className={styles.defaultProfileImage}></img>}
+                  </div>
                   <div className={styles.otherMessage}>{message.message}</div>
                 </div>
               )}
@@ -292,23 +305,6 @@ export default function Message() {
           </div>
         </div>
       </form>
-      {/* <InputField message={message} setMessage={setMessage} sendMessage={sendMessage}></InputField> */}
     </>
   );
 }
-
-// local server 호출
-// useEffect(() => {
-//   const getList = async () => {
-//     try {
-//       const response = await axios.get(`http://localhost:3001/chats`);
-//       const data = response.data;
-//       setMessageList(data);
-//       // console.log(messageList);
-//       // console.log(nickname);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };]
-//   getList();
-// }, []);

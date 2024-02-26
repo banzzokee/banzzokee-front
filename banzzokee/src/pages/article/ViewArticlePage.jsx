@@ -10,6 +10,7 @@ import ViewReviewPage from './ViewReviewPage';
 export default function ViewArticlePage() {
   const { id } = useParams();
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
+  const myInfo = JSON.parse(sessionStorage.getItem('myInfo'));
   const navigate = useNavigate();
   const [bookmark, setBookmark] = useState();
 
@@ -146,8 +147,12 @@ export default function ViewArticlePage() {
   };
   const onclickMessage = () => {
     if (adoption.user && adoption.user.userId) {
-      const dataSend = adoption.user;
-      navigate(`/Message/${id}`);
+      if (adoption.user.userId == myInfo.userId) {
+        alert('본인 게시물과는 메세지 기능을 사용할 수 없습니다.');
+      } else {
+        const dataSend = adoption.user;
+        navigate(`/Message/${id}`);
+      }
     }
   };
   const loggedInUserId = JSON.parse(sessionStorage.getItem('myInfo'));

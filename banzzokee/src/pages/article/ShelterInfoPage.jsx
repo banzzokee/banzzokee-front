@@ -46,7 +46,9 @@ export default function ShelterInfoPage() {
   if (state && state.registeredAt) {
     registeredAt = state.registeredAt;
   }
-
+  const toMap = () => {
+    navigate('/MapPage', { state: state });
+  };
   return (
     <>
       <BackHeader></BackHeader>
@@ -54,10 +56,6 @@ export default function ShelterInfoPage() {
         <div className={styles.picture}>
           <img src={shelterImgUrl}></img>
         </div>
-
-        <Link to="/ShelterEditPage">
-          <Button>보호소 수정</Button>
-        </Link>
 
         <div className={styles.shelterInfo}>
           <p>
@@ -76,6 +74,9 @@ export default function ShelterInfoPage() {
             <span className={styles.title}>반쪽이 보호소 등록일:</span> {registeredAt}
           </p>
         </div>
+        <button className={styles.mapButton} onClick={toMap}>
+          보호소 위치 지도에서 보기
+        </button>
       </div>
       <Nav></Nav>
     </>
