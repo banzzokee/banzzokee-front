@@ -13,21 +13,6 @@ export default function ArticleList({ sortBy, appliedFilters }) {
 
   console.log('page:', page);
   const { ref, inView } = useInView();
-  // appliedFilters를 사용하여 데이터를 필터링하는 함수
-  const applyFilters = (data, filters) => {
-    // 여기에 필터링 로직을 추가
-    // filters에 따라 데이터를 필터링하고 결과를 반환
-    return data.filter((item) => {
-      // 예시: size 필터링
-      if (filters.size.length > 0 && !filters.size.includes(item.size)) {
-        return false;
-      }
-
-      // 다른 필터에 대한 로직 추가
-
-      return true;
-    });
-  };
 
   const getArticleList = async () => {
     try {
@@ -35,13 +20,26 @@ export default function ArticleList({ sortBy, appliedFilters }) {
         console.log('Getarticle::: page:', page);
         const config = {
           method: 'get',
-          url: `https://server.banzzokee.homes/api/adoptions?page=${page}&size=7&direction=${sortBy}`,
+          // url: `https://server.banzzokee.homes/api/adoptions?page=${page}&size=7&direction=${sortBy}`,
+          url: `https://server.banzzokee.homes/api/adoptions`,
+          params: {
+            breed: appliedFilters.breed.join(','), 
+            dogSize: appliedFilters.dogSize, 
+            neutering: appliedFilters.neutering,
+            healthChecked: appliedFilters.healthChecked,
+            gender: appliedFilters.gender,
+            minAge: appliedFilters.minAge,
+            maxAge: appliedFilters.maxAge,
+            direction: sortBy,
+            page: page,
+            size: 7,
+            
+          },
         };
         const response = await axios.request(config);
         console.log('page', page);
         console.log('resp.data.content', response.data.content);
-        // 데이터 받아온 후 appliedFilters를 사용하여 필터링
-        const filteredList = applyFilters(response.data.content, appliedFilters);
+        const filteredList = (response.data.content);
         setArticleList([...articleList, ...filteredList]);
         if (response.data.content.length < 7) {
           setHasMore(false);
@@ -51,7 +49,6 @@ export default function ArticleList({ sortBy, appliedFilters }) {
       if (hasMore) {
         setPage((page) => page + 1);
       }
-      // setArticleList([...articleList, ...response.data.content]);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -61,7 +58,6 @@ export default function ArticleList({ sortBy, appliedFilters }) {
     console.log('sortby, filter applied:::::::::::::');
     getArticleList();
     setPage(0);
-    // setArticleList([]);
   }, [sortBy, appliedFilters]);
 
   useEffect(() => {
@@ -100,3 +96,4 @@ export default function ArticleList({ sortBy, appliedFilters }) {
     </div>
   );
 }
+

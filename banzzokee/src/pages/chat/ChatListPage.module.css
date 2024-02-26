@@ -51,6 +51,7 @@
   font-size: 16px;
   display: flex;
   flex-direction: column;
+  max-width: 270px;
 }
 .userAndTime {
   display: flex;
@@ -70,7 +71,7 @@
   /* background-color: lightcoral; */
   /* height: 1.5em; */
   width: 100%;
-  /* white-space: nowrap; */
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   /* flex: 1; */

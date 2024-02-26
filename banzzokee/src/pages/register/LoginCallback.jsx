@@ -7,38 +7,60 @@ const LoginCallback = () => {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
+    const accessToken = urlParams.get('accessToken');
+    sessionStorage.setItem('accessToken', JSON.stringify(accessToken));
+    // console.log(code,"code")
+    const isFirstLogin = urlParams.get('isFirstLogin');
 
-    if (code) {
-      axios
-        .get('https://server.banzzokee.homes/login/oauth2/code/google', {
-          params: {
-            code: code,
-          },
-        })
-        .then((response) => {
-          const { accessToken, userData } = response.data;
-          sessionStorage.setItem('accessToken', accessToken);
-          console.log('User Data:', userData);
-
-          if (userData.isFirstLogin) {
-            navigate('/GoogleRegister');
-          } else {
-            navigate('/MyPage');
-          }
-        })
-        .catch((error) => {
-          if (error.response && error.response.status === 400) {
-            console.error('Social login failed with status code 400');
-          } else {
-            console.error('Error fetching user information:', error);
-            navigate('/LoginPage');
-          }
-        });
+    if (isFirstLogin) {
+      navigate('/GoogleRegister');
+    } else {
+      navigate('/MyPage');
     }
-  }, [navigate]);
+
+    // if (code) {
+    //   axios
+    //     .get('https://server.banzzokee.homes/oauth2/authorization/google', {
+    //       params: {
+    //         code: code,
+    //       },
+    //     })
+    //     .then((response) => {
+    //       const { accessToken, refreshToken, FirstLogin } = response.data;
+    //       sessionStorage.setItem('accessToken', accessToken);
+    //       sessionStorage.setItem('refreshToken', refreshToken);
+    //       console.log (response.data)
+
+    //       if (FirstLogin) {
+    //         navigate('/GoogleRegister');
+    //       } else {
+    //         navigate('/MyPage');
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       if (error.response && error.response.status === 400) {
+    //         console.error('400 에러');
+    //       } else {
+    //         console.error('사용자 정보를 가져오는 중 에러 발생:', error);
+    //         navigate('/LoginPage');
+    //       }
+    //     });
+    // }
+  }, []);
 
   return <></>;
 };
 
 export default LoginCallback;
+
+
+
+
+
+
+
+
+
+
+
+

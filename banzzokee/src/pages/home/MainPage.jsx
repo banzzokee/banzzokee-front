@@ -10,13 +10,15 @@ export default function MainPage() {
   const [sortBy, setSortBy] = useState('desc');
   const [isFilterOpen, setFilterOpen] = useState(false);
   const [appliedFilters, setAppliedFilters] = useState({
-    status: [],
-    size: [],
-    healthChecked: [],
-    gender: [],
-    neutering: [],
-    age: [],
-    breed: [],
+    // status: '',
+    dogSize: '',
+    healthChecked: '',
+    gender: '',
+    neutering: '',
+    minAge: '',
+    maxAge: '',
+    
+    breed: [''],
   });
   const sortOrder = (order) => {
     setSortBy(order);
@@ -32,12 +34,15 @@ export default function MainPage() {
 
   const resetFilters = () => {
     setAppliedFilters({
-      status: [],
+      // status: [],
       size: [],
       healthChecked: [],
       gender: [],
       neutering: [],
-      age: [],
+      ageRange: {
+        minAge: '',
+        maxAge: '',
+      },
       breed: [],
     });
   };

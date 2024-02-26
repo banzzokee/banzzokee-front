@@ -147,6 +147,16 @@
   left: 5px;
   font-size: 14px;
 }
+
+
+.reviewButton {
+  left: 50px;
+  top: 310px;
+  width: 280px;
+  height: 40px;
+  position: absolute;
+  background-color: #FFB155;
+}
 .articleTexts {
   padding: 5px 5px;
   text-align: left;

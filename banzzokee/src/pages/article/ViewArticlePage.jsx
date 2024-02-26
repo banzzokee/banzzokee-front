@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ImageSlider from './ImageSlider';
 import TagsAll from '../../components/TagsAll';
+import ViewReviewPage from './ViewReviewPage';
 export default function ViewArticlePage() {
   const { id } = useParams();
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
@@ -154,10 +155,33 @@ export default function ViewArticlePage() {
       }
     }
   };
+  const loggedInUserId = JSON.parse(sessionStorage.getItem('myInfo'));
+  let isCurrentUserAssignedUser = false
+  if (loggedInUserId !== null ) {
+  const assignedUserId = adoption?.assignedUser?.userId;
+   isCurrentUserAssignedUser = assignedUserId === loggedInUserId.userId ;
+  }
+  const handleReview = () => {
+    console.log('loggedInUserId:', loggedInUserId);
+    // console.log('assignedUserId:', assignedUserId);
+    console.log('isCurrentUserAssignedUser:', isCurrentUserAssignedUser);
+    navigate('/CreateReviewPage', {
+      state: {
+        adoptionId: id,
+       //  assignedUser: adoption?.assignedUser,
+      }
+ });
+};
+
+ 
+
+
+
   return (
     <>
       <BackHeader></BackHeader>
-      <div className={styles.container}>
+      <div style={adoption.status && adoption.status.value === '분양완료' ? { overflowY: 'scroll', maxHeight: '645px' } : {}}>
+      <div className={styles.container} >
         <div className={styles.article}>
           <div className={styles.articleHeader}>
             <div onClick={toOtherMyPage}>
@@ -213,7 +237,22 @@ export default function ViewArticlePage() {
               {/* <img src={adoption.imageUrls[1]} alt="" /> */}
               <ImageSlider images={adoption.imageUrls} />
             </div>
+
             {adoption.status ? <div className={adoption.status.value == '분양중' ? styles.statusAdopting : adoption.status.value == '예약중' ? styles.statusReserving : styles.statusFinished}>{adoption.status.value}</div> : <div className={styles.status}>loading</div>}
+            <div className={styles.reviewbuttonBox}>
+            {adoption.status && adoption.status.value === '분양완료' && isCurrentUserAssignedUser && (
+              <>
+             
+              <button
+                onClick={handleReview}
+                className={styles.createAdopt}
+              >
+                <div className={styles.reviewButton}>후기게시글 작성하기</div>
+              </button>
+          
+            </>
+            )}
+          </div>
           </div>
           <div className={styles.articleTexts}>
             <div className={styles.titleAndSave}>
@@ -231,6 +270,10 @@ export default function ViewArticlePage() {
             <div className={styles.body}>{adoption.content}</div>
           </div>
         </div>
+      </div>
+      {adoption.status && adoption.status.value === '분양완료' && adoption.review && (
+        <ViewReviewPage id = {adoption.review.reviewId}/>
+      )}
       </div>
       <Nav></Nav>
     </>

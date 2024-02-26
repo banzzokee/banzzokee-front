@@ -36,6 +36,7 @@ import Filter from './pages/home/Filter';
 import ReviewList from './components/ReviewList';
 import NotificationToken from './NotificationToken';
 import ChangeStatus from './pages/article/ChangeStatus';
+import LoginCallback from './pages/register/LoginCallback';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
           <Route path="/MapPage" element={<MapPage />} />
           <Route path="/CreateAdoptPage" element={<CreateAdoptPage />} />
           <Route path="/Notification" element={<Notification />} />
+          {/* <Route path="/notifications/:id" element={<Notification />} /> */}
           <Route path="/Register" element={<Register />} />
           <Route path="/Back" element={<Back />} />
           <Route path="/CreateAdoptPage" element={<CreateAdoptPage />} />
@@ -79,6 +81,7 @@ function App() {
           <Route path="/ReviewPage" element={<ReviewPage />} />
           <Route path="/Filter" element={<Filter />} />
           <Route path="/ReviewList" element={<ReviewList />} />
+          <Route path="/LoginCallback" element={<LoginCallback />} />
           <Route path="/changeStatus/:id" element={<ChangeStatus />} />
         </Routes>
         <NotificationToken />

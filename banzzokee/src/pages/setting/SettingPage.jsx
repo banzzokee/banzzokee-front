@@ -20,37 +20,6 @@ export default function SettingPage() {
       <SettingHeader style={{ backgroundColor: '#e1e1e1' }}></SettingHeader>
       <div className={styles.container}>
         <div className={styles.eachSetting}>
-          <p className={styles.title}>알림 설정</p>
-          <div className={styles.eachOnOff}>
-            <p className={styles.settingTitle}>채팅 알림</p>
-            <div className={styles.onOffBox}>
-              <input type="checkbox" checked={chatNotification} onChange={() => setChatNotification((prev) => !prev)} />
-              {/* <div className={styles.onOffCircle}></div> */}
-            </div>
-          </div>
-          <div className={styles.eachOnOff}>
-            <p className={styles.settingTitle}>관심 게시물 알림</p>
-            <div className={styles.onOffBox}>
-              <input type="checkbox" checked={interestPostNotification} onChange={() => setInterestPostNotification((prev) => !prev)} />
-              {/* <div className={styles.onOffCircle}></div> */}
-            </div>
-          </div>
-          <div className={styles.eachOnOff}>
-            <p className={styles.settingTitle}>후기 게시물 등록 알림</p>
-            <div className={styles.onOffBox}>
-              <input type="checkbox" checked={reviewPostNotification} onChange={() => setReviewPostNotification((prev) => !prev)} />
-              {/* <div className={styles.onOffCircle}></div> */}
-            </div>
-          </div>
-          <div className={styles.eachOnOff}>
-            <p className={styles.settingTitle}>팔로우 보호소 새로운 게시물 등록 알림</p>
-            <div className={styles.onOffBox}>
-              <input type="checkbox" checked={followShelterNotification} onChange={() => setFollowShelterNotification((prev) => !prev)} />
-              {/* <div className={styles.onOffCircle}></div> */}
-            </div>
-          </div>
-        </div>
-        <div className={styles.eachSetting}>
           <p className={styles.title}>디스플레이 설정</p>
           <div className={styles.eachOnOff}>
             <p className={styles.settingTitle}>라이트 / 다크 모드</p>

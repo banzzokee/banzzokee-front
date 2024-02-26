@@ -6,7 +6,7 @@ import Tags from './Tags.jsx';
 
 import { useInView } from 'react-intersection-observer';
 
-export default function ReviewList() {
+export default function ReviewList({sortBy}) {
   const [articleList, setArticleList] = useState([]);
   const [reviewList, setReviewList] = useState([]);
   const [hasMore, setHasMore] = useState(true);
@@ -17,7 +17,7 @@ export default function ReviewList() {
     try {
       const config = {
         method: 'get',
-        url: `https://server.banzzokee.homes/api/adoptions?page=${page}&size=10&direction=desc`,
+        url: `https://server.banzzokee.homes/api/adoptions?page=${page}&size=10&direction=${sortBy}`,
       };
 
       const response = await axios.request(config);
@@ -43,7 +43,7 @@ export default function ReviewList() {
   useEffect(() => {
     console.log('firstGetArticle()');
     getArticleList();
-  }, []);
+  }, [sortBy]);
   useEffect(() => {
     if (hasMore && page !== 0) {
       getArticleList();
@@ -53,7 +53,7 @@ export default function ReviewList() {
   useEffect(() => {
     console.log('dofilter');
     doFilter();
-  }, [articleList]);
+  }, [articleList, sortBy]);
   return (
     <div className={styles.listBox}>
       <ul>

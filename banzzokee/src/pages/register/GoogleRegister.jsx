@@ -3,10 +3,12 @@ import styles from './GoogleRegister.module.css'
 import BackHeader from "../../components/common/header/BackHeader";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function GoogleRegister() {
-
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
+  const navigate = useNavigate();
+  // const [cookies, setCookie, removeCookie] = useCookies();
   const [nickname, setNickname] = useState("");
   const onChange = (e) => {
     const { target: { name, value } } = e;
@@ -23,11 +25,12 @@ export default function GoogleRegister() {
         method: 'post',
         maxBodyLength: Infinity,
         url: 'https://server.banzzokee.homes/api/oauth2/sign-up',
-        headers: {},
+        headers: {Authorization: `Bearer ${accessToken}`},
         data: inputdata,
       };
       const response = await axios.request(config);
-      setCookie('accessToken', response.data['accessToken'], { path: '/', secure: true });
+      // setCookie('accessToken', response.data['accessToken'], { path: '/', secure: true });
+      navigate('/MyPage');
     } catch (error) {
       console.error(error);
     }
