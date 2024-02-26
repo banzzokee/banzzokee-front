@@ -11,7 +11,7 @@ export default function MainPage() {
   const [isFilterOpen, setFilterOpen] = useState(false);
   const [appliedFilters, setAppliedFilters] = useState({
     // status: '',
-    dogSize: '',
+    size: '',
     healthChecked: '',
     gender: '',
     neutering: '',
