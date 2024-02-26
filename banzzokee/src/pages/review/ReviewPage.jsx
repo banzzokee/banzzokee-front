@@ -1,24 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../../components/common/header/Header';
 import styles from './ReviewPage.module.css';
 import Nav from '../../components/common/nav/Nav';
 import ReviewList from '../../components/ReviewList';
 
 export default function ReviewPage() {
+  const [sortBy, setSortBy] = useState('desc');
+  const sortOrder = (order) => {
+    setSortBy(order);
+  };
+
   return (
     <>
       <Header />
       <div className={styles.wrap}>
         <div className={styles.mainPage_Header}>
-          <div className={styles.datesort}>최신순 / 오래된순</div>
-          {/* <div>
-            <button className={styles.filter}>
-              필터
-              <img src="/Filter.png" alt="필터" className={styles.filter_Img} />
-            </button>
-          </div> */}
+          <div>
+            <button onClick={() => sortOrder('desc')} className={styles.sortButton} >최신순</button>
+            <span>/</span>
+            <button onClick={() => sortOrder('asc')} className={styles.sortButton} >오래된순</button>
+          </div>
         </div>
-        <ReviewList />
+        <ReviewList sortBy={sortBy} />
       </div>
       <Nav />
     </>

@@ -1,33 +1,93 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './CreateReviewPage.module.css'
 import BackHeader from '../../components/common/header/BackHeader';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function CreateReviewPage() {
+  
   const navigate = useNavigate();
+  const location = useLocation();
+  const { state } = location;
+  const { adoptionId } = state;
+  const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const [review, setReview] = useState({
+    // imageUrls: [],
     title: '',
     content: '',
-  })
+    adoptionId: ''
+  });
 
-  const { title, content } = review;
+  useEffect(() => {
+    setReview(prevReview => ({
+      ...prevReview,
+      adoptionId: Number(adoptionId) 
+    }));
+  }, [adoptionId]);
 
+  const { title, content, imageUrls } = review;
+  const formData = new FormData();
+  const [submitImage, setSubmitImage] = useState(null);
+
+  const onFileChange = (e) => {
+    console.log('formData before file change:', formData);
+    console.log('images!!');
+    setSubmitImage(e.target.files[0]);
+    for (let i = 0; i < e.target.files.length; i++) {
+      formData.append('images', e.target.files[i]);
+    }
+    console.log('formData after file change:', formData);
+  };
   const onChange = (e) => {
     const { name, value } = e.target;
-    setReview({
-      ...review,
-      [name]: value,
-    });
+
+    if (name === 'image') {
+    } else if (name === 'adoptionId') {
+      console.warn("adoptionId는 직접 변경할 수 없습니다.");
+    } else {
+      setReview((prevReview) => ({
+        ...prevReview,
+        [name]: value,
+      }));
+    }
   };
 
   const postReview = async (e) => {
     e.preventDefault();
-    await axios.post('http://localhost:3001/review', 
-    review).then((res) => {
-      alert('등록되었습니다.');
-      // navigate('');
-    });
+    console.log('submitImage:', submitImage);
+    console.log('review:', review);
+    formData.append('images', submitImage);
+    formData.append(
+      'request',
+      new Blob(
+        [
+          JSON.stringify({
+            adoptionId: review.adoptionId,
+            title: review.title,
+            content: review.content,
+          }),
+        ],
+        { type: 'application/json' }
+      )
+    );
+
+    
+    const config = {
+      method: 'post',
+      url: 'https://server.banzzokee.homes/api/reviews',
+      headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${accessToken}` },
+      data: formData,
+    };
+    try {
+      console.log('data', formData);
+      const response = await axios.request(config);
+      alert('등록되었습니다');
+      navigate('/');
+      console.log(response);
+    } catch (error) {
+      console.error('Error posting adoption:', error);
+      console.log('Response data:', error.response.data); 
+    }
   };
   return (
     <div className={styles.CreateReviewPage}>
@@ -40,7 +100,7 @@ export default function CreateReviewPage() {
               <span>사진</span>
               <span>(최대 8장)</span>
             </label>
-            <input type='file' className={styles.img_upload}></input>
+            <input type="file" multiple accept="image/*" name="image" className={styles.img_upload} onChange={onFileChange}></input>
           </div>
           <div className={styles.inputGroup}>
             <label>제목</label>

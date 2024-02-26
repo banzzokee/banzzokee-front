@@ -3,22 +3,18 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styles from './ArticleList.module.css';
 import Tags from './Tags.jsx';
-export default function ReviewList() {
+export default function ReviewList({sortBy}) {
   const [articleList, setArticleList] = useState([]);
   const [reviewList, setReviewList] = useState([]);
   const getArticleList = async () => {
     try {
       const config = {
         method: 'get',
-        url: `https://server.banzzokee.homes/api/adoptions?page=0&size=10&direction=desc`,
+        url: `https://server.banzzokee.homes/api/adoptions?page=0&size=10&direction=${sortBy}`,
       };
       const response = await axios.request(config);
       setArticleList(response.data.content);
       console.log(response.data.content);
-
-      // const response = await axios.get('http://localhost:3001/adoption');
-      // setArticleList(response.data);
-      // console.log(response.data);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -30,17 +26,17 @@ export default function ReviewList() {
   }
   useEffect(() => {
     getArticleList();
-  }, []);
+  }, [sortBy]);
   useEffect(() => {
     doFilter(articleList);
-  }, [articleList]);
+  }, [articleList, sortBy]);
   return (
     <div className={styles.listBox}>
       <ul>
         {reviewList &&
           reviewList.map((adoption) => (
             <li key={adoption.id}>
-              <Link to={`/ReviewList/${adoption.adoptionId}`} key={adoption.adoptionId} className={styles.link}>
+              <Link to={`/ArticleList/${adoption.adoptionId}`} key={adoption.adoptionId} className={styles.link}>
                 <div className={styles.imageContainer}>
                   {adoption.imageUrls ? <img src={adoption.imageUrls[0]}></img> : <img src="../../../public/dog.webp" alt="" />}
 
