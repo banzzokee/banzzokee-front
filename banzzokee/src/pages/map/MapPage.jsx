@@ -5,6 +5,17 @@ import Kakao from './Kakao';
 import { useLocation } from 'react-router-dom';
 export default function MapPage() {
   const { state } = useLocation();
+  if (state == null) {
+    return (
+      <>
+        <MapHeader></MapHeader>
+        <div className={styles.container}>
+          <Kakao></Kakao>
+        </div>
+        <Nav></Nav>
+      </>
+    );
+  }
   return (
     <>
       <MapHeader></MapHeader>

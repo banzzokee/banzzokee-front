@@ -9,10 +9,9 @@ export default function ShelterEditPage() {
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const photo = <img src="../../../public/User.png"></img>;
   const myInfo = JSON.parse(sessionStorage.getItem('myInfo'));
-  console.log(myInfo);
   const navigate = useNavigate();
 
-  const [newInfo, setNewInfo] = useState(myInfo);
+  const [newInfo, setNewInfo] = useState(myInfo.shelter);
 
   const [profileImage, setProfileImage] = useState();
   const [submitImage, setSubmitImage] = useState(null);
@@ -20,8 +19,8 @@ export default function ShelterEditPage() {
 
   const onChange = (e) => {
     const { name, value } = e.target;
-    setShelterInfo({
-      ...shelterInfo,
+    setNewInfo({
+      ...newInfo,
       [name]: value,
     });
   };
@@ -39,20 +38,21 @@ export default function ShelterEditPage() {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
+    let sendData = new FormData();
+    sendData.append('profileImg', submitImage);
+    sendData.append('request', new Blob([JSON.stringify(newInfo)], { type: 'application/json' }));
     try {
       const config = {
         method: 'patch',
-        url: 'https://server.banzzokee.homes/api/shelters',
+        url: `https://server.banzzokee.homes/api/shelters/${shelterInfo.shelterId}`,
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${accessToken}`,
         },
-        data: shelterInfo,
+        data: sendData,
       };
       await axios.request(config).then((response) => {
-        alert('변경완료');
         console.log(response);
-        navigate('/MyPage');
       });
     } catch (error) {
       console.error(error);
@@ -99,17 +99,17 @@ export default function ShelterEditPage() {
             </div>
             <div className={styles.shelterInfo}>
               <p>보호소 이름:</p>
-              <input className={styles.input} type="text" name="name" onInput={onChange} value={shelterInfo.name} placeholder="" />
+              <input className={styles.input} type="text" name="name" onInput={onChange} value={newInfo.name} placeholder="" />
               <p>보호소 소개:</p>
-              <input className={styles.input} type="text" name="description" onInput={onChange} value={shelterInfo.description} placeholder="" />
+              <input className={styles.input} type="text" name="description" onInput={onChange} value={newInfo.description} placeholder="" />
               <p>연락처: (예시:000-000-0000)</p>
-              <input className={styles.input} type="text" name="tel" onInput={onChange} value={shelterInfo.tel} placeholder="" />
+              <input className={styles.input} type="text" name="tel" onInput={onChange} value={newInfo.tel} placeholder="" />
               <p>주소:</p>
-              <input className={styles.input} type="text" name="address" onInput={onChange} value={shelterInfo.address} placeholder="" />
+              <input className={styles.input} type="text" name="address" onInput={onChange} value={newInfo.address} placeholder="" />
               <p>위도:</p>
-              <input className={styles.input} type="number" step="0.001" name="latitude" onInput={onChange} placeholder="" />
+              <input className={styles.input} type="number" step="0.001" name="latitude" value={newInfo.latitude} onInput={onChange} placeholder="" />
               <p>경도:</p>
-              <input className={styles.input} type="number" step="0.001" name="longitude" onInput={onChange} placeholder="" />
+              <input className={styles.input} type="number" step="0.001" name="longitude" value={newInfo.longitude} onInput={onChange} placeholder="" />
             </div>
           </div>
           <button className={styles.button} type="submit">

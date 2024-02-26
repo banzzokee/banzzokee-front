@@ -1,9 +1,27 @@
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 const { kakao } = window;
 const Kakao = ({ state }) => {
   console.log('kakao: state:', state);
+  const navigate = useNavigate();
+  const onclickMarker = () => {
+    navigate('/ShelterInfoPage', { state: state });
+  };
+  if (state == null) {
+    return (
+      <div>
+        <Map
+          center={{ lat: 37.5585, lng: 126.8092 }}
+          style={{
+            width: '100%',
+            height: '645px',
+          }}
+        ></Map>
+      </div>
+    );
+  }
   return (
     <div>
       <Map
@@ -13,8 +31,27 @@ const Kakao = ({ state }) => {
           height: '645px',
         }}
       >
-        <MapMarker style={{ border: 'tranparent' }} position={{ lat: state.latitude, lng: state.longitude }}>
-          <div style={{}}></div>
+        <MapMarker
+          onClick={onclickMarker}
+          image={{
+            src: '/Review.png', // 마커이미지의 주소입니다
+            size: {
+              width: 60,
+              height: 60,
+            }, // 마커이미지의 크기입니다
+            options: {
+              offset: {
+                x: 27,
+                y: 69,
+              }, // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+            },
+          }}
+          style={{ border: 'none', display: 'flex', justifyContent: 'center' }}
+          position={{ lat: state.latitude, lng: state.longitude }}
+        >
+          <div onClick={onclickMarker} style={{ height: '30px', padding: '2px', fontWeight: 'bold', border: '1px solid black', backgroundColor: 'white', width: '170px', position: 'absolute', left: '-10px', top: '-1px', borderRadius: '10px' }}>
+            {state?.name}
+          </div>
         </MapMarker>
       </Map>
     </div>
