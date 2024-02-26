@@ -69,3 +69,42 @@
 }
 
 
+
+
+/* .filterPriceRangeWrap {
+  position: relative;
+}
+
+.filterPriceRangeMin,
+.filterPriceRangeMax {
+  pointer-events: none;
+}
+
+.filterPriceRangeMin::-webkit-slider-thumb,
+.filterPriceRangeMax::-webkit-slider-thumb {
+  pointer-events: auto;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 2px solid #b0b0b0;
+  background-color: white;
+  -webkit-appearance: none;
+}
+
+.filterPriceSlide {
+  position: relative;
+  height: 4px;
+  width: 650px;
+  border-radius: 10px;
+  background-color: #dddddd;
+}
+
+.filterPriceSlideInner {
+  position: absolute;
+  height: 4px;
+  border-radius: 10px;
+  background-color: #b0b0b0;
+} */
+
+
+

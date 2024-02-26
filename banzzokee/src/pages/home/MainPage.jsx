@@ -15,7 +15,10 @@ export default function MainPage() {
     healthChecked: [],
     gender: [],
     neutering: [],
-    age: [],
+    ageRange: {
+      minAge: '',
+      maxAge: '',
+    },
     breed: [],
   });
   const sortOrder = (order) => {
@@ -37,7 +40,10 @@ export default function MainPage() {
       healthChecked: [],
       gender: [],
       neutering: [],
-      age: [],
+      ageRange: {
+        minAge: '',
+        maxAge: '',
+      },
       breed: [],
     });
   };
