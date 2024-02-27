@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from './GoogleRegister.module.css'
-import BackHeader from "../../components/common/header/BackHeader";
+// import BackHeader from "../../components/common/header/BackHeader";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +38,7 @@ export default function GoogleRegister() {
 
   return (
     <>
-      <BackHeader/>
+      {/* <BackHeader/> */}
       <div className={styles.google_page}>
         <div className={styles.GoogleRegister}>
           <h2>회원가입</h2>
