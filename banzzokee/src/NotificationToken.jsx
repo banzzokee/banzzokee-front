@@ -34,10 +34,11 @@ export default function NotificationToken() {
   const navigate = useNavigate();
   const sendTokenToServer = async (token) => {
     try {
+      console.log('send', token)
       const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
       const response = await axios.put(
         'https://server.banzzokee.homes/api/notifications/tokens',
-        { token },
+        { token: JSON.stringify(token) },
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -60,7 +61,9 @@ export default function NotificationToken() {
       if (permission === 'granted') {
         console.log('Notification 권한 허용.');
         messaging.getToken(messaging, { vapidKey: 'BJgALk-acWHVF6O1MSyRXKW-6upKKByfWfp3lLEHpdonzLJtdIxzRdhrnD64rECNHeC9A1dp7mWZTeZpk_WKZ1w' }).then((currentToken) => {
+          console.log('Current token:', currentToken);
           if (currentToken) {
+            console.log('123')
             sendTokenToServer(currentToken);
           } else {
             console.log('토큰 사용불가. 토큰 사용을 위해서 권한 요청 필요.');
