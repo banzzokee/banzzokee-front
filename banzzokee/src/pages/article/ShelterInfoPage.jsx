@@ -51,7 +51,7 @@ export default function ShelterInfoPage() {
   };
   return (
     <>
-      <BackHeader></BackHeader>
+      <BackHeader style={{ backgroundColor: '#e1e1e1' }}></BackHeader>
       <div className={styles.container}>
         <div className={styles.picture}>
           <img src={shelterImgUrl}></img>

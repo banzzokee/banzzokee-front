@@ -67,7 +67,7 @@ export default function ChangePass() {
           <p>새로운 비밀번호 확인</p>
           <input className={styles.input} name="confirmPassword" onChange={onChange} type="password"></input>
           {passwordError && <span className={styles.passwordError}>{passwordError}</span>}
-          <Button style={{ width: '100%', height: '50px', marginTop: '20px' }}>비밀번호 변경</Button>
+          <Button style={{ width: '100%', height: '50px', marginTop: '20px', backgroundColor: '#50586c' }}>비밀번호 변경</Button>
         </form>
       </div>
     </>

@@ -7,7 +7,6 @@ import axios from 'axios';
 
 export default function ShelterEditPage() {
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
-  const photo = <img src="../../../public/User.png"></img>;
   const myInfo = JSON.parse(sessionStorage.getItem('myInfo'));
   const navigate = useNavigate();
 
@@ -89,7 +88,7 @@ export default function ShelterEditPage() {
         <form className={styles.edit} onSubmit={onSubmit}>
           <div className={styles.editInput}>
             <div className={styles.pictures}>
-              <div className={styles.picture}>{shelterInfo?.shelterImgUrl ? <img src={shelterInfo.shelterImgUrl} /> : { photo }}</div>
+              <div className={styles.picture}>{shelterInfo?.shelterImgUrl ? <img src={shelterInfo.shelterImgUrl} /> : <></>}</div>
               <div className={styles.add}>
                 <input className={styles.addPhoto} type="file" name="" id="fileInput"></input>
                 <label className={styles.addIcon} htmlFor="fileInput">

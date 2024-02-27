@@ -57,7 +57,7 @@ export default function Tag({ onChange }) {
   // 견종
   const handleBreed = (breed) => {
     setSelectedBreed(breed);
-    
+
     onChange({ target: { name: 'breed', value: breedEnglish[breed] } });
     console.log(breedEnglish[breed]);
   };
@@ -126,42 +126,42 @@ export default function Tag({ onChange }) {
 
   return (
     <div className={styles.tag_container}>
-      <label className={styles.label}>태그</label>
+      <div className={styles.label}>태그</div>
       <div className={styles.tag_box}>
         <div className={styles.tag_item}>
-          <label>견종</label>
+          <label className={styles.taglabel}>견종</label>
           <div className={styles.searchBreed}>
             <div className={styles.searchBox}>
               <input type="text" placeholder="견종을 검색하세요" value={searchQuery} onChange={handleSearchChange} className={styles.inputBreed} />
               <div className={`${styles.breedList} ${selectedBreed ? styles.breedListHidden : ''}`}>
-              {searchQuery &&
-                filteredBreeds.map((breed) => (
-                  <div key={breed} onClick={() => handleBreed(breed)}>
-                    {breed}
-                  </div>
-                ))}
-            </div>
+                {searchQuery &&
+                  filteredBreeds.map((breed) => (
+                    <div key={breed} onClick={() => handleBreed(breed)}>
+                      {breed}
+                    </div>
+                  ))}
+              </div>
             </div>
             <input type="text" value={selectedBreed} readOnly className={`${styles.breedSelected} ${selectedBreed ? styles.breedSelectedVisible : ''}`} />
           </div>
         </div>
         <div className={styles.tag_item}>
-          <label>사이즈</label>
-          <button type="button" name="size" onClick={() => handleTagClick('size', 'ULTRA_SMALL')} style={isActive.size === 'ULTRA_SMALL' ? { ...selectStyle } : {}}>
+          <label className={styles.taglabel}>사이즈</label>
+          <button className={styles.sizeButton} type="button" name="size" onClick={() => handleTagClick('size', 'ULTRA_SMALL')} style={isActive.size === 'ULTRA_SMALL' ? { ...selectStyle } : {}}>
             초소
           </button>
-          <button type="button" name="size" onClick={() => handleTagClick('size', 'SMALL')} style={isActive.size === 'SMALL' ? { ...selectStyle } : {}}>
+          <button className={styles.sizeButton} type="button" name="size" onClick={() => handleTagClick('size', 'SMALL')} style={isActive.size === 'SMALL' ? { ...selectStyle } : {}}>
             소
           </button>
-          <button type="button" name="size" onClick={() => handleTagClick('size', 'MEDIUM')} style={isActive.size === 'MEDIUM' ? { ...selectStyle } : {}}>
+          <button className={styles.sizeButton} type="button" name="size" onClick={() => handleTagClick('size', 'MEDIUM')} style={isActive.size === 'MEDIUM' ? { ...selectStyle } : {}}>
             중
           </button>
-          <button type="button" name="size" onClick={() => handleTagClick('size', 'LARGE')} style={isActive.size === 'LARGE' ? { ...selectStyle } : {}}>
+          <button className={styles.sizeButton} type="button" name="size" onClick={() => handleTagClick('size', 'LARGE')} style={isActive.size === 'LARGE' ? { ...selectStyle } : {}}>
             대
           </button>
         </div>
         <div className={styles.tag_item}>
-          <label>건강검진</label>
+          <label className={styles.taglabel}>건강검진</label>
           <button type="button" name="healthChecked" onClick={() => handleTagClick('healthChecked', true)} style={isActive.healthChecked === true ? { ...selectStyle } : {}}>
             검진 완료
           </button>
@@ -170,7 +170,7 @@ export default function Tag({ onChange }) {
           </button>
         </div>
         <div className={styles.tag_item}>
-          <label>성별</label>
+          <label className={styles.taglabel}>성별</label>
           <button type="button" name="gender" onClick={() => handleTagClick('gender', 'MALE')} style={isActive.gender === 'MALE' ? { ...selectStyle } : {}}>
             <img src="../../../public/Male.svg" alt="Male" />
           </button>
@@ -179,7 +179,7 @@ export default function Tag({ onChange }) {
           </button>
         </div>
         <div className={styles.tag_item}>
-          <label>중성화</label>
+          <label className={styles.taglabel}>중성화</label>
           <button type="button" name="neutering" onClick={() => handleTagClick('neutering', true)} style={isActive.neutering === true ? { ...selectStyle } : {}}>
             예
           </button>
@@ -188,9 +188,8 @@ export default function Tag({ onChange }) {
           </button>
         </div>
         <div className={styles.tag_item}>
-          <label>나이</label>
-          <input name="tag_age" onChange={onChange} className={styles.inputAge}></input>
-          <span>살</span>
+          <label className={styles.taglabel}>나이</label>
+          <input name="tag_age" onChange={onChange} className={styles.inputAge}></input>살
           {/* <select className={styles.select} onChange={handleAge} value={selectAge}>
             {selectList.map((item) => (
               <option value={item.value} key={item.value}>
@@ -200,10 +199,8 @@ export default function Tag({ onChange }) {
           </select> */}
         </div>
         <div className={styles.tag_item}>
-          <div className={styles.date}>
-            <span>유기견</span>
-            <span>등록날짜</span>
-          </div>
+          <label className={styles.taglabel}>유기견 등록일</label>
+
           <input type="text" value={date} name="tag_registeredAt" onChange={handleChangeDate} placeholder="YYYY-MM-DD" className={styles.inputDate}></input>
         </div>
       </div>
