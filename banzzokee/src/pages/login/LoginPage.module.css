@@ -1,7 +1,7 @@
 .container {
   /* background-color: gainsboro; */
   width: 375px;
-  height: 645px;
+  height: 655px;
   padding: 40px;
 }
 .logo {
@@ -50,7 +50,6 @@
   display: flex;
   justify-content: center;
   gap: 5px;
-  
 }
 
 .googleLogo {
