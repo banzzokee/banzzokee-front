@@ -81,7 +81,7 @@ export default function CreateAdoptPage() {
             size: adoption.tags.size,
             neutering: adoption.tags.neutering,
             gender: adoption.tags.gender,
-            age: 3,
+            age: adoption.tags.age,
             healthChecked: true,
             registeredAt: adoption.tags.registeredAt,
           }),

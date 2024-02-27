@@ -1,0 +1,65 @@
+.statusPage {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  /* justify-content: center; */
+  /* border: 2px solid #50586c; */
+  width: 385px;
+  height: 730px;
+  background-color: #50586c;
+}
+
+.container h2{
+  margin-top: 40px;
+}
+
+/* .statusBox {
+  width: 350px;
+  background-color: #000000;
+} */
+
+.currentStatus {
+  margin: 0;
+  width: 130px;
+  color: #FFFFFF;
+  font-size: 16px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.statusAdopting {
+  background-color: #f8e852fc;
+  border-radius: 5px;
+  height: 40px;
+  width: 80px;
+  padding: 0;
+  font-size: 17px;
+  margin: 6px;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+.statusReserving {
+  background-color: #feb524fe;
+  border-radius: 5px;
+  height: 40px;
+  width: 80px;
+  padding: 0;
+  font-size: 17px;
+  margin: 6px;
+}
+.statusFinished {
+  background-color: #a1a1a1fa;
+  border-radius: 5px;
+  height: 40px;
+  width: 80px;
+  padding: 0;
+  font-size: 17px;
+  margin: 6px;
+}

@@ -148,7 +148,7 @@ export default function ViewArticlePage() {
   const onclickMessage = () => {
     if (adoption.user && adoption.user.userId) {
       if (adoption.user.userId == myInfo.userId) {
-        alert('본인 게시물과는 메세지 기능을 사용할 수 없습니다.');
+        alert('본인 게시물에서는 메세지 기능을 사용할 수 없습니다.');
       } else {
         const dataSend = adoption.user;
         navigate(`/Message/${id}`);
@@ -257,7 +257,7 @@ export default function ViewArticlePage() {
           <div className={styles.articleTexts}>
             <div className={styles.titleAndSave}>
               <div className={styles.title}>{adoption.title}</div>
-              <div onClick={onClickBookmark}>{bookmark ? <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px', backgroundColor: 'gray' }} /> : <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px' }} />}</div>
+              <div onClick={onClickBookmark} style={{ cursor: 'pointer' }}>{bookmark ? <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px', backgroundColor: 'gray' }} /> : <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px' }} />}</div>
             </div>
 
             <div className={styles.tags}>

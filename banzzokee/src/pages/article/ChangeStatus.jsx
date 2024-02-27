@@ -77,21 +77,27 @@ export default function ChangeStatus() {
   };
 
   return (
-    <div>
-      <BackHeader style={{ backgroundColor: '#FFFFFF', border: 'none' }} />
-      <h2>상태 변경 페이지</h2>
-
-      <p>현재 상태: {newStatus.value}</p>
-
-      <button type="button" name="status" onClick={() => handleStatusChange('ADOPTING')} style={isActive.ADOPTING ? { backgroundColor: '#FFEE55' } : {}}>
-        분양중
-      </button>
-      <button type="button" name="status" onClick={() => handleStatusChange('RESERVING')} style={isActive.RESERVING ? { backgroundColor: '#FFB155' } : {}}>
-        예약중
-      </button>
-      <button type="button" name="status" onClick={() => handleStatusChange('FINISHED')} style={isActive.FINISHED ? { backgroundColor: '#79C7DF' } : {}}>
-        분양완료
-      </button>
+    <div style={{backgroundColor:'#50586c'}}>
+      <BackHeader style={{ backgroundColor: '#50586c', border: 'none'}} />
+      <div className={styles.statusPage}>
+        <div className={styles.container}>
+          <h2 style={{color: '#FFFFFF' }}>분양상태 변경</h2>
+          <div className={styles.statusBox}>
+          {/* <p className={styles.currentStatus}>현재 상태: {newStatus.value}</p> */}
+          <div className={styles.statusButton}>
+            <button type="button" name="status" onClick={() => handleStatusChange('ADOPTING')} className={styles.statusAdopting}>
+              분양중
+            </button>
+            <button type="button" name="status" onClick={() => handleStatusChange('RESERVING')} className={styles.statusReserving}>
+              예약중
+            </button>
+            <button type="button" name="status" onClick={() => handleStatusChange('FINISHED')} className={styles.statusFinished}>
+              분양완료
+            </button>
+            </div>
+            </div>
+          </div>
+      </div>
     </div>
   );
 }
