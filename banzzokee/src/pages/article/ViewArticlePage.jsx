@@ -52,10 +52,10 @@ export default function ViewArticlePage() {
     console.log('onclickBook', adoption.bookmarked);
     if (accessToken) {
       addBookmark();
+      setBookmark(!bookmark);
     } else {
       alert('로그인후 이용 가능한 서비스 입니다.');
     }
-    setBookmark(!bookmark);
   }
 
   const checkBookmark = async () => {
@@ -150,8 +150,7 @@ export default function ViewArticlePage() {
       if (adoption.user.userId == myInfo.userId) {
         alert('본인 게시물과는 메세지 기능을 사용할 수 없습니다.');
       } else {
-        const dataSend = adoption.user;
-        navigate(`/Message/${id}`);
+        navigate(`/Message/${id}`, { state: { otherName: adoption.user.nickname } });
       }
     }
   };
@@ -176,7 +175,7 @@ export default function ViewArticlePage() {
   return (
     <>
       <BackHeader></BackHeader>
-      <div style={adoption.status && adoption.status.value === '분양완료' ? { overflowY: 'scroll', maxHeight: '645px' } : {}}>
+      <div style={adoption.status && adoption.status.value === '분양완료' ? { overflowY: 'scroll', maxHeight: '655px' } : {}}>
         <div className={styles.container}>
           <div className={styles.article}>
             <div className={styles.articleHeader}>
@@ -249,7 +248,7 @@ export default function ViewArticlePage() {
             <div className={styles.articleTexts}>
               <div className={styles.titleAndSave}>
                 <div className={styles.title}>{adoption.title}</div>
-                <div onClick={onClickBookmark}>{bookmark ? <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px', backgroundColor: 'gray' }} /> : <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px' }} />}</div>
+                <div onClick={onClickBookmark}>{bookmark ? <img src="../../public/yesbookmark.svg" alt="저장하기" style={{ width: '30px', height: '30px' }} /> : <img src="../../public/notbookmark.svg" alt="저장하기" style={{ width: '30px', height: '30px' }} />}</div>
               </div>
 
               <div className={styles.tags}>

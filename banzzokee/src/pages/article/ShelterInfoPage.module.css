@@ -10,8 +10,8 @@
   font-weight: bold;
 }
 .picture {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   background-color: #bebebe;
   margin: 0 auto;
   border-radius: 50%;
@@ -41,4 +41,5 @@
   color: white;
   margin-top: 20px;
   width: 90%;
+  height: 50px;
 }

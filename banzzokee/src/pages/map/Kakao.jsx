@@ -36,8 +36,8 @@ const Kakao = ({ state }) => {
           image={{
             src: '/Review.png', // 마커이미지의 주소입니다
             size: {
-              width: 60,
-              height: 60,
+              width: 40,
+              height: 40,
             }, // 마커이미지의 크기입니다
             options: {
               offset: {

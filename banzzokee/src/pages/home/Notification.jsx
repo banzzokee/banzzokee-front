@@ -8,7 +8,13 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Notification() {
   const [notifications, setNotifications] = useState([]);
+  const [unreadCount, setUnreadCount] = useState(0);
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
+
+  useEffect(() => {
+    setUnreadCount(notifications.filter(notification => !notification.checked).length);
+  }, [notifications]); 
+
   const getNotifications = async () => {
     try {
       const config = {
@@ -79,6 +85,10 @@ export default function Notification() {
     }
   };
 
+  useEffect(() => {
+    setUnreadCount(notifications.filter(notification => !notification.checked).length);
+  }, [notifications]); 
+
 
   return (
     <>
@@ -88,20 +98,25 @@ export default function Notification() {
           <div className={styles.notification_Logo}>
             <img src="/Notification.png" alt="Notification" className={styles.notification_Img} />
             <span>알림</span>
+            {/* {unreadCount > 0 && (
+            <div className={styles.notificationCount}>{unreadCount}</div>
+          )} */}
           </div>
         </div>
         <ul>
           {notifications.map((notification) => (
             <li key={notification.id} onClick={() => handleNotificationClick(notification.id)}>
-              <div className={styles.deleteIcon} onClick={() => markNotificationAsRead(notification.id)}>
-                <img src="../../../public/X.svg" alt="" style={{ width: '14px', height: '14px' }} />
-              </div>
-              <div className={styles.notificationContainer}>
-                <div className={styles.notificationTitle}>{notification.title}</div>
-                <div className={styles.notificationBody}>{notification.body}</div>
-                {/* <div className={styles.notificationDate}>{String(notification.notifiedAt).substring(0,10)}</div> */}
-                <div className={styles.notificationDate}>{notificationDate(notification.notifiedAt)}</div>
+              <div className={styles.liBox}>
+                <div className={styles.notificationContainer}>
+                  <div className={styles.notificationTitle}>{notification.title}</div>
+                  <div className={styles.notificationBody}>{notification.body}</div>
+                  {/* <div className={styles.notificationDate}>{String(notification.notifiedAt).substring(0,10)}</div> */}
+                  <div className={styles.notificationDate}>{notificationDate(notification.notifiedAt)}</div>
 
+                </div>
+                <div className={styles.deleteIcon} onClick={() => markNotificationAsRead(notification.id)}>
+                  <img src="../../../public/X.svg" alt="" style={{ width: '14px', height: '14px' }} />
+                </div>
               </div>
             </li>
           ))}

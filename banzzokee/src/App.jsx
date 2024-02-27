@@ -77,7 +77,7 @@ function App() {
           <Route path="/ArticleList" element={<ArticleList />} />
           <Route path="/ArticleList/:id" element={<ViewArticlePage />} />
           <Route path="/update/:id" element={<AdoptEdit />} />
-          <Route path="/ViewArticlePage" element={<ViewArticlePage />} />
+          {/* <Route path="/ViewArticlePage" element={<ViewArticlePage />} /> */}
           <Route path="/ReviewPage" element={<ReviewPage />} />
           <Route path="/Filter" element={<Filter />} />
           <Route path="/ReviewList" element={<ReviewList />} />

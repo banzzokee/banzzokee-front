@@ -25,11 +25,19 @@ export default function CreateAdoptPage() {
 
   const { title, content, tags, imageUrls } = adoption;
   const formData = new FormData();
-
+  const [profileImage, setProfileImage] = useState();
   const [submitImage, setSubmitImage] = useState(null);
   const onFileChange = (e) => {
     console.log('images!!');
     setSubmitImage(e.target.files[0]);
+    const selectedImage = e.target.files[0];
+    if (selectedImage) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setProfileImage(reader.result);
+      };
+      reader.readAsDataURL(selectedImage);
+    }
     for (let i = 0; i < e.target.files.length; i++) {
       formData.append('images', e.target.files[i]);
     }
@@ -118,11 +126,9 @@ export default function CreateAdoptPage() {
         {/* 스크롤 시작되는 부분 */}
         <form style={{ overflowY: 'scroll', maxHeight: '800px' }} className={styles.container}>
           <div className={styles.inputGroup}>
-            <label>
-              <p>사진</p>
-              <p>(최대 8장)</p>
-            </label>
+            <label>사진</label>
             <input type="file" multiple accept="image/*" name="image" className={styles.img_upload} onChange={onFileChange}></input>
+            <div className={styles.addedImage}>{profileImage && <img src={profileImage} />}</div>
           </div>
           <div className={styles.inputGroup}>
             <label>제목</label>
@@ -133,11 +139,13 @@ export default function CreateAdoptPage() {
           </div>
           <div className={styles.inputGroup}>
             <label className={styles.textTitle}>본문</label>
-            <textarea name="content" value={adoption.content} onChange={onChange} placeholder="500자 이내로 작성해주세요." maxLength="500"></textarea>
+            <textarea name="content" value={adoption.content} onChange={onChange} className={styles.input} placeholder="500자 이내로 작성해주세요." maxLength="500"></textarea>
           </div>
-          <button onClick={postAdoption} className={styles.button}>
-            게시글 등록
-          </button>
+          <div className={styles.buttonContainer}>
+            <button onClick={postAdoption} className={styles.button}>
+              게시글 등록
+            </button>
+          </div>
         </form>
       </div>
     </div>
