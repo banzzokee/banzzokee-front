@@ -124,7 +124,7 @@ export default function CreateAdoptPage() {
         <h2 className={styles.adopt_Title}>분양 구하기 게시글</h2>
 
         {/* 스크롤 시작되는 부분 */}
-        <form style={{ overflowY: 'scroll', maxHeight: '800px' }} className={styles.container}>
+        <form className={styles.container}>
           <div className={styles.inputGroup}>
             <label>사진</label>
             <input type="file" multiple accept="image/*" name="image" className={styles.img_upload} onChange={onFileChange}></input>

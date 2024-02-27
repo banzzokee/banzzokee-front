@@ -2,6 +2,7 @@
   width: 375px;
   height: 724px;
   margin: 0 auto;
+  overflow: scroll;
   display: flex;
   flex-direction: column;
 }
@@ -39,7 +40,6 @@ label {
 }
 .inputGroup {
   border-radius: 20px;
-
   /* display: flex; */
   margin-bottom: 10px;
   display: flex;
