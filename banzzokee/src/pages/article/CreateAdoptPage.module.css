@@ -38,6 +38,7 @@
   border: none;
   border-radius: 0;
   background-color: #d9d9d9;
+  font-size: 15px;
 }
 
 .inputGroup {
@@ -51,6 +52,10 @@
   align-items: center;
   margin: 0;
 }
+
+/* .inputAge {
+  margin-right: 7px;
+} */
 
 .stateBox {
   width: 100%;
@@ -89,5 +94,6 @@
   color: #ffffff;
   margin-left: 90px;
   margin-bottom: 40px;
-  background-color: #9c9a9a;
+  background-color: #50586c;
+  /* background-color: #9c9a9a; */
 }

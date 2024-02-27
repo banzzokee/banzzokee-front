@@ -133,7 +133,7 @@ export default function CreateAdoptPage() {
           </div>
           <div className={styles.inputGroup}>
             <label className={styles.textTitle}>본문</label>
-            <textarea name="content" value={adoption.content} onChange={onChange} placeholder="500자 이내로 작성해주세요." maxLength="500"></textarea>
+            <textarea name="content" value={adoption.content} onChange={onChange} className={styles.input} placeholder="500자 이내로 작성해주세요." maxLength="500"></textarea>
           </div>
           <button onClick={postAdoption} className={styles.button}>
             게시글 등록

@@ -34,23 +34,33 @@
 .breedSelected {
   border: none;
   border-radius: 15px;
-  background-color: #B7E017;
+  background-color: #9aaee057;
   padding: 10px 10px;
-  height: 30px;
-  width: auto;
+  height: 35px;
+  width: 100px;
+  /* width: auto; */
+  margin-top: 10px;
+  font-size: 15px;
 }
 
 .inputBreed {
   height: 30px;
+  font-size: 15px;
+  border-radius: 5px;
 }
 
 .inputAge {
   width: 40px;
+  font-size: 15px;
+  border-radius: 5px;
+  /* background-color: #9aaee057; */
 }
 
 .inputDate {
   height: 40px;
-  width: 100px;
+  width: 110px;
+  font-size: 15px;
+  border-radius: 5px;
 }
 
 .date {
@@ -58,5 +68,18 @@
   flex-direction: column;
   margin: 0 10px;
 } 
+
+.breedSelected {
+  display: none;
+}
+
+.breedSelectedVisible {
+  display: block;
+}
+
+.breedListHidden {
+  display: none;
+}
+
 
 

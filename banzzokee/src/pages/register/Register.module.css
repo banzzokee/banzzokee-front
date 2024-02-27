@@ -36,6 +36,12 @@
   border: 1px solid #dadada;
   height: auto;
   margin: 0 10px;
+  width: 355px;
+}
+
+.inputGroup:first-child {
+  margin: 0;
+  border: none;
 }
 
 .emailBox {
@@ -55,6 +61,11 @@
   margin: 10px 30px 0 0;
 }
 
+.label {
+  width: 100px;
+  margin: 10px;
+}
+
 .numberVerify input {
   height: 35px;
   border: 1px solid #9C9A9A;
@@ -71,40 +82,46 @@ label {
 
 .input {
   border: 1px solid #9c9a9a;
-  border-radius: 2px;
-  height: 35px;
+  border-radius: 5px;
+  height: 40px;
   width: 220px;
   margin: 5px 10px 10px 15px;
+  font-size: 17px;
+}
+
+.numberInput {
+  border-radius: 5px;
 }
 
 .emailconfirmButton {
   width: 80px;
-  height: 34px;
+  height: 39px;
   padding: 0;
-  margin-top: 28px;
-  border-radius: 2px;
+  margin-top: 32px;
+  border-radius: 5px;
   background-color: #fafafa;
   border: 1px solid #9c9a9a;
 }
 
 .verifyButton {
-  width: 80px;
+  width: 150px;
   height: 34px;
   padding: 0;
-  border-radius: 2px;
+  border-radius: 5px;
   background-color: #fafafa;
   border: 1px solid #9c9a9a;
+  margin-right: 10px;
 }
 
 .registerButton {
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   height: 50px;
   margin: 40px 10px;
   color: #ffffff;
   font-size: 18px;
   margin-top: 40px;
-  background-color: black;
+  background-color: #50586c;
 }
 
 .errorMessage {
@@ -112,3 +129,10 @@ label {
   font-size: 12px;
   margin-bottom: 5px;
 }
+
+/* .disabledButton {
+  background-color: #cccccc; 
+  cursor: not-allowed;
+} */
+
+

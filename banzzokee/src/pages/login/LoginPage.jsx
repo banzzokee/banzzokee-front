@@ -83,7 +83,8 @@ export default function LoginPage() {
             <div className={styles.line}></div>
           </div>
           <div className={styles.loginButton} style={{ fontSize: '16px' }}>
-            <button className={styles.button__google__login} onClick={handleGoogleLogin}>
+            <button className={styles.googleLogin} onClick={handleGoogleLogin}>
+              <img src='../../../public/google.svg'></img>
               구글 소셜 로그인
             </button>
             {/* <LoginCallback /> */}

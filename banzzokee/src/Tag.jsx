@@ -51,12 +51,13 @@ export default function Tag({ onChange }) {
   });
 
   const selectStyle = {
-    backgroundColor: '#B7E017',
+    backgroundColor: '#9aaee057',
   };
 
   // 견종
   const handleBreed = (breed) => {
     setSelectedBreed(breed);
+    
     onChange({ target: { name: 'breed', value: breedEnglish[breed] } });
     console.log(breedEnglish[breed]);
   };
@@ -132,16 +133,16 @@ export default function Tag({ onChange }) {
           <div className={styles.searchBreed}>
             <div className={styles.searchBox}>
               <input type="text" placeholder="견종을 검색하세요" value={searchQuery} onChange={handleSearchChange} className={styles.inputBreed} />
-              <div className={styles.breedList}>
-                {searchQuery &&
-                  filteredBreeds.map((breed) => (
-                    <div key={breed} onClick={() => handleBreed(breed)}>
-                      {breed}
-                    </div>
-                  ))}
-              </div>
+              <div className={`${styles.breedList} ${selectedBreed ? styles.breedListHidden : ''}`}>
+              {searchQuery &&
+                filteredBreeds.map((breed) => (
+                  <div key={breed} onClick={() => handleBreed(breed)}>
+                    {breed}
+                  </div>
+                ))}
             </div>
-            <input type="text" value={selectedBreed} readOnly className={styles.breedSelected} />
+            </div>
+            <input type="text" value={selectedBreed} readOnly className={`${styles.breedSelected} ${selectedBreed ? styles.breedSelectedVisible : ''}`} />
           </div>
         </div>
         <div className={styles.tag_item}>
@@ -189,13 +190,14 @@ export default function Tag({ onChange }) {
         <div className={styles.tag_item}>
           <label>나이</label>
           <input name="tag_age" onChange={onChange} className={styles.inputAge}></input>
-          <select className={styles.select} onChange={handleAge} value={selectAge}>
+          <span>살</span>
+          {/* <select className={styles.select} onChange={handleAge} value={selectAge}>
             {selectList.map((item) => (
               <option value={item.value} key={item.value}>
                 {item.name}
               </option>
             ))}
-          </select>
+          </select> */}
         </div>
         <div className={styles.tag_item}>
           <div className={styles.date}>
