@@ -148,7 +148,7 @@ export default function ViewArticlePage() {
   const onclickMessage = () => {
     if (adoption.user && adoption.user.userId) {
       if (adoption.user.userId == myInfo.userId) {
-        alert('본인 게시물과는 메세지 기능을 사용할 수 없습니다.');
+        alert('본인 게시물에서는 메세지 기능을 사용할 수 없습니다.');
       } else {
         navigate(`/Message/${id}`, { state: { otherName: adoption.user.nickname } });
       }
