@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './FollowCard.module.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const FollowCard = ({ follower, list }) => {
+const FollowCard = ({ follower, userId }) => {
   const [follow, setFollow] = useState(true);
-  const [updatedList, setUpdatedList] = useState(list);
-
+  const [otherInfo, setOtherInfo] = useState();
+  // const [updatedList, setUpdatedList] = useState(list);
+  const navigate = useNavigate();
   //newList is for JSON-SERVER local
-  const newList = updatedList.filter((user) => user.userId !== follower.userId);
+  // const newList = updatedList.filter((user) => user.userId !== follower.userId);
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
+  useEffect(() => {
+    const getInfo = async () => {
+      try {
+        const config = {
+          method: 'get',
+          url: `https://server.banzzokee.homes/api/users/${userId}`,
+          headers: { Authorization: `Bearer ${accessToken}` },
+        };
+        const response = await axios.request(config);
+        console.log('userId get', response.data);
+        setOtherInfo(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getInfo();
+  }, []);
   const onClick = async (event) => {
     event.preventDefault();
     if (!follow) {
@@ -43,16 +62,21 @@ const FollowCard = ({ follower, list }) => {
       setFollow(!follow);
     }
   };
+  const onclickName = async () => {
+    navigate(`/OtherMyPage/${userId}`, { state: otherInfo });
+  };
   return (
     <>
       <div className={styles.follower}>
-        <Link to={`/OtherMyPage/${follower.userId}`} key={follower.userId}>
+        <div onClick={onclickName} key={userId}>
           <div className={styles.followerInfo}>
-            <div className={styles.userImage}></div>
-            <div className={styles.userName}>{follower.nickname}</div>
+            <div className={styles.userImage}>
+              <img src={otherInfo?.profileImgUrl}></img>
+            </div>
+            <div className={styles.userName}>{follower}</div>
             <div></div>
           </div>
-        </Link>
+        </div>
 
         <button className={styles.followButton} style={{ backgroundColor: follow ? '#bebebe' : '#9aaee057' }} onClick={onClick}>
           {follow ? '팔로잉' : '팔로우'}
