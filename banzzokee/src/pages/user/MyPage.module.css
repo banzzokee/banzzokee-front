@@ -1,6 +1,6 @@
 .container {
   width: 375px;
-  height: 645px;
+  height: 655px;
   margin: 0 auto;
   padding: 0;
 }
@@ -86,7 +86,6 @@
 
 .viewArticles {
   width: 100%;
-  background-color: lightblue;
   height: 245px;
 }
 
@@ -103,10 +102,11 @@
   /* height: 50px; */
   text-align: center;
   padding: 10px;
+  font-weight: bold;
 }
 
 .articleList {
-  height: 195px;
+  height: 205px;
   overflow: scroll;
   /* word-wrap: break-word; */
   background-color: white;

@@ -1,6 +1,6 @@
 .container {
   width: 375px;
-  height: 645px;
+  height: 655px;
   margin: 0 auto;
   padding: 10px;
   background-color: white;
@@ -37,5 +37,8 @@
   font-weight: bold;
 }
 .mapButton {
-  margin-top: 10px;
+  background-color: #50586c;
+  color: white;
+  margin-top: 20px;
+  width: 90%;
 }

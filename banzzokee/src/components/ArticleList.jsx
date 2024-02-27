@@ -58,13 +58,15 @@ export default function ArticleList({ sortBy, appliedFilters }) {
   useEffect(() => {
     console.log('sortby, filter applied:::::::::::::');
     setPage(0);
+    console.log('setPage0 :page', page);
     setArticleList([]);
 
     getArticleList();
+    console.log('after getlist :page', page);
   }, [sortBy, appliedFilters]);
 
   useEffect(() => {
-    if (inView && page !== 0) {
+    if (inView && page !== 0 && hasMore) {
       console.log('inview getArticleList: page', page);
       getArticleList();
     }

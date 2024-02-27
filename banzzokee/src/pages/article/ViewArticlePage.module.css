@@ -41,7 +41,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  /* overflow: hidden; */
+  position: relative;
+}
+.profile {
+  border-radius: 100px;
+}
+.badgeIcon {
+  width: 30%;
+  height: 30%;
+  position: absolute;
+  right: -5%;
+  top: 5%;
+  z-index: 10;
 }
 .name {
   font-weight: bold;
@@ -148,14 +160,13 @@
   font-size: 14px;
 }
 
-
 .reviewButton {
   left: 50px;
   top: 310px;
   width: 280px;
   height: 40px;
   position: absolute;
-  background-color: #FFB155;
+  background-color: #ffb155;
 }
 .articleTexts {
   padding: 5px 5px;

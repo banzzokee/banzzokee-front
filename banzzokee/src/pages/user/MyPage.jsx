@@ -61,7 +61,7 @@ export default function MyPage() {
   const toShelterInfoPage = () => {
     userInfo.shelter != null ? navigate(`/ShelterInfoPage/`, { state: userInfo.shelter }) : alert('보호소 등록후 사용할 수 있습니다');
   };
-
+  console.log(userInfo.shelter);
   return (
     <>
       <MyPageHeader></MyPageHeader>
@@ -69,7 +69,7 @@ export default function MyPage() {
         <div className={styles.userInfo}>
           <div className={styles.profilePhoto}>
             <img className={styles.pic} src={userInfo.profileImgUrl}></img>
-            <img className={styles.badgeIcon} src="../../../public/badge.svg"></img>
+            {userInfo.shelter ? <img className={styles.badgeIcon} src="../../../public/badge.svg" /> : <div className={styles.badgeIcon}></div>}
           </div>
 
           <div className={styles.profileHeader}>

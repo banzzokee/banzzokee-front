@@ -1,5 +1,5 @@
 .header {
-  background-color: #616a82;
+  background-color: #50586c;
   width: 375px;
   height: 44px;
   margin: 0 auto;
@@ -13,7 +13,7 @@
 .logo {
   width: auto;
   height: 155px;
-  filter: invert(100%) sepia(0%) saturate(100%) hue-rotate(360deg) brightness(100%) contrast(100%);
+  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
   /* margin-left: 117px; */
 }
 

@@ -229,7 +229,7 @@ export default function Message() {
     const editBox = document.getElementById('edit');
     editBox.style.display = editBox.style.display === 'none' ? 'block' : 'none';
   };
-
+  const space = ' ';
   return (
     <>
       <div className={styles.Header}>
@@ -240,7 +240,7 @@ export default function Message() {
         <div className={styles.headerFeature}>
           <div className={styles.name}>roomInfo</div>
           <div className={styles.headerRight}>
-            <button style={{ padding: 0, backgroundColor: 'white' }} onClick={openEdit}>
+            <button style={{ padding: 0, backgroundColor: '#50586c' }} onClick={openEdit}>
               <img src="../../../public/edit.svg" />
             </button>
             <div id="edit" className={styles.edit}>

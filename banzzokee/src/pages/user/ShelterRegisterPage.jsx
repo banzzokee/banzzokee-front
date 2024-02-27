@@ -73,7 +73,7 @@ export default function ShelterRegisterPage() {
           <div className={styles.editInput}>
             <div className={styles.pictures}>
               <div className={styles.picture}>
-                <img src={profileImage} alt="보호소 사진" />
+                <img src={profileImage} alt="" />
               </div>
               <div className={styles.add}>
                 <input className={styles.addPhoto} type="file" name="" id="fileInput" onChange={handleImageChange}></input>

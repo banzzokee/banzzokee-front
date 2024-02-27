@@ -55,7 +55,7 @@
 .button {
   height: 50px;
   width: 100%;
-  background-color: gray;
+  background-color: #50586c;
   display: flex;
   justify-content: center;
   align-items: center;

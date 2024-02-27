@@ -6,7 +6,7 @@ import Tags from './Tags.jsx';
 
 import { useInView } from 'react-intersection-observer';
 
-export default function ReviewList({sortBy}) {
+export default function ReviewList({ sortBy }) {
   const [articleList, setArticleList] = useState([]);
   const [reviewList, setReviewList] = useState([]);
   const [hasMore, setHasMore] = useState(true);
@@ -53,7 +53,7 @@ export default function ReviewList({sortBy}) {
   useEffect(() => {
     console.log('dofilter');
     doFilter();
-  }, [articleList, sortBy]);
+  }, [articleList]);
   return (
     <div className={styles.listBox}>
       <ul>

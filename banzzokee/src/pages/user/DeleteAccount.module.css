@@ -22,7 +22,8 @@ p {
 }
 .button {
   width: 100%;
-  background-color: red;
+  height: 50px;
+  background-color: rgb(255, 52, 52);
   margin-top: 20px;
   color: white;
 }

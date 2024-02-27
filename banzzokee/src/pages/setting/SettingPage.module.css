@@ -52,6 +52,8 @@ p {
 }
 .logout {
   margin-top: 20px;
-  background-color: #bebebe;
+  background-color: #50586c;
   width: 100%;
+  color: white;
+  font-size: 18px;
 }
