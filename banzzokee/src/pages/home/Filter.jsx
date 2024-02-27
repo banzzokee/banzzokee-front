@@ -23,7 +23,7 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
   });
 
   const selectStyle = {
-    backgroundColor: '#B7E017',
+    backgroundColor: '#9aaee057',
   };
 
   const [isOpen, setOpen] = useState(false);
@@ -200,19 +200,21 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
         </div>
         <div className={styles.tag_item}>
         <label>나이</label>
-        <input
-          type="text"
-          placeholder="최소 나이"
-          value={selectedFilters.minAge}
-          onChange={(e) => handleAgeRange(e, 'minAge')}
-        />
-        <span>~</span>
-        <input
-          type="text"
-          placeholder="최대 나이"
-          value={selectedFilters. maxAge}
-          onChange={(e) => handleAgeRange(e, 'maxAge')}
-        />
+        <div className={styles.age}>
+          <input
+            type="text"
+            placeholder="최소 나이"
+            value={selectedFilters.minAge}
+            onChange={(e) => handleAgeRange(e, 'minAge')}
+          />
+          <span>~</span>
+          <input
+            type="text"
+            placeholder="최대 나이"
+            value={selectedFilters. maxAge}
+            onChange={(e) => handleAgeRange(e, 'maxAge')}
+          />
+        </div>
       </div>
 
         {/* <div className={styles.tag_item}>
