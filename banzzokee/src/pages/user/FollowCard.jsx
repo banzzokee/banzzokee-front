@@ -37,7 +37,7 @@ const FollowCard = ({ follower, userId }) => {
         // axios.patch(`http://localhost:3001/users/APmgnc1`, { followers: list });
         const config = {
           method: 'post',
-          url: `https://server.banzzokee.homes/api/users/1/follow`,
+          url: `https://server.banzzokee.homes/api/users/${userId}/follow`,
           headers: { Authorization: `Bearer ${accessToken}` },
         };
         const response = await axios.request(config);
@@ -51,7 +51,7 @@ const FollowCard = ({ follower, userId }) => {
         // axios.patch(`http://localhost:3001/users/APmgnc1`, { followers: newList });
         const config = {
           method: 'post',
-          url: `https://server.banzzokee.homes/api/users/1/unfollow`,
+          url: `https://server.banzzokee.homes/api/users/${userId}/unfollow`,
           headers: { Authorization: `Bearer ${accessToken}` },
         };
         const response = await axios.request(config);
