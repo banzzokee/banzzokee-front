@@ -30,7 +30,7 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
   const side = useRef();
 
   const toggleMenu = () => {
-    setOpen(isOpen => !isOpen);
+    setOpen((isOpen) => !isOpen);
   };
 
   const handleClose = (e) => {
@@ -49,7 +49,7 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
   const handleFilter = (filterName, value) => {
     setSelectedFilters((prev) => {
       const updatedFilters = { ...prev };
-  
+
       if (Array.isArray(prev[filterName])) {
         if (!prev[filterName].includes(value)) {
           updatedFilters[filterName] = [value];
@@ -59,16 +59,16 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
       } else {
         updatedFilters[filterName] = prev[filterName] === value ? null : value;
       }
-  
+
       setIsActive((prev) => ({ ...prev, [filterName]: value }));
-  
+
       return updatedFilters;
     });
   };
 
   const handleAgeRange = (e, type) => {
     const value = e.target.value;
-    setSelectedFilters(prev => ({
+    setSelectedFilters((prev) => ({
       ...prev,
       ageRange: {
         ...prev.ageRange,
@@ -76,14 +76,11 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
       },
     }));
   };
-  
-  
 
   const applyFilters = (e) => {
     e.preventDefault();
     onApplyFilter(selectedFilters);
   };
-
 
   const resetFilters = (e) => {
     e.preventDefault();
@@ -134,9 +131,6 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
   //     setRangeMaxPercent(100 - (rangeMaxValue / fixedMaxPrice) * 100);
   //   }
   // };
-
-  
-
 
   return (
     <div className={styles.filterPage}>
@@ -199,23 +193,13 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
           </button>
         </div>
         <div className={styles.tag_item}>
-        <label>나이</label>
-        <div className={styles.age}>
-          <input
-            type="text"
-            placeholder="최소 나이"
-            value={selectedFilters.minAge}
-            onChange={(e) => handleAgeRange(e, 'minAge')}
-          />
-          <span>~</span>
-          <input
-            type="text"
-            placeholder="최대 나이"
-            value={selectedFilters. maxAge}
-            onChange={(e) => handleAgeRange(e, 'maxAge')}
-          />
+          <label>나이</label>
+          <div className={styles.age}>
+            <input type="text" placeholder="최소 나이" value={selectedFilters.minAge} onChange={(e) => handleAgeRange(e, 'minAge')} />
+            <span>~</span>
+            <input type="text" placeholder="최대 나이" value={selectedFilters.maxAge} onChange={(e) => handleAgeRange(e, 'maxAge')} />
+          </div>
         </div>
-      </div>
 
         {/* <div className={styles.tag_item}>
           <input className={`${styles.filterPriceRangeMin} ${styles.filterPriceRange}`} type="range" min={fixedMinPrice} max={fixedMaxPrice - priceGap} step="1000" value={rangeMinValue} onChange={e => {prcieRangeMinValueHandler(e);twoRangeHandler();}}/>
@@ -225,98 +209,100 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
           </div>
         </div> */}
 
-        <div className={styles.tag_item}>
+        <div className={styles.tag_breed}>
           <label>견종</label>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'GREYHOUND')} style={isActive.breed === 'GREYHOUND' ? { ...selectStyle } : {}}>
-          그레이하운드
+          <div>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'GREYHOUND')} style={isActive.breed === 'GREYHOUND' ? { ...selectStyle } : {}}>
+              그레이하운드
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'DACHSHUND')} style={isActive.breed === 'DACHSHUND' ? { ...selectStyle } : {}}>
+              닥스훈트
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'DOBERMAN')} style={isActive.breed === 'DOBERMAN' ? { ...selectStyle } : {}}>
+              도베르만
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'RETRIEVER')} style={isActive.breed === 'RETRIEVER' ? { ...selectStyle } : {}}>
+              리트리버
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'MALTESE')} style={isActive.breed === 'MALTESE' ? { ...selectStyle } : {}}>
+              말티즈
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'MIX')} style={isActive.breed === 'MIX' ? { ...selectStyle } : {}}>
+              믹스
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'BEDLINGTON_TERRIER')} style={isActive.breed === 'BEDLINGTON_TERRIER' ? { ...selectStyle } : {}}>
+              베들링턴 테리어
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'BULLDOG')} style={isActive.breed === 'BULLDOG' ? { ...selectStyle } : {}}>
+              불독
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'BICHON')} style={isActive.breed === 'BICHON' ? { ...selectStyle } : {}}>
+              비숑
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'SAMOYED')} style={isActive.breed === 'SAMOYED' ? { ...selectStyle } : {}}>
+              사모예드
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'SHEPHERD')} style={isActive.breed === 'SHEPHERD' ? { ...selectStyle } : {}}>
+              셰퍼드
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'SCHNAUZER')} style={isActive.breed === 'SCHNAUZER' ? { ...selectStyle } : {}}>
+              슈나우저
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'SPITZ')} style={isActive.breed === 'SPITZ' ? { ...selectStyle } : {}}>
+              스피츠
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'SHIBA_INU')} style={isActive.breed === 'SHIBA_INU' ? { ...selectStyle } : {}}>
+              시바
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'SIBERIAN_HUSKY')} style={isActive.breed === 'SIBERIAN_HUSKY' ? { ...selectStyle } : {}}>
+              시베리안 허스키
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'SHIHTZU')} style={isActive.breed === 'SHIHTZU' ? { ...selectStyle } : {}}>
+              시츄
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'ALASKAN_MALAMUTE')} style={isActive.breed === 'ALASKAN_MALAMUTE' ? { ...selectStyle } : {}}>
+              알래스카 맬러뮤트
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'YORKSHIRE_TERRIER')} style={isActive.breed === 'YORKSHIRE_TERRIER' ? { ...selectStyle } : {}}>
+              요크셔 테리어
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'WELSH_CORGI')} style={isActive.breed === 'WELSH_CORGI' ? { ...selectStyle } : {}}>
+              웰시코기
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'JACK_RUSSELL_TERRIOR')} style={isActive.breed === 'JACK_RUSSELL_TERRIOR' ? { ...selectStyle } : {}}>
+              잭 러셀 테리어
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'CHIHUAHUA')} style={isActive.breed === 'CHIHUAHUA' ? { ...selectStyle } : {}}>
+              치와와
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'PAPILON')} style={isActive.breed === 'PAPILON' ? { ...selectStyle } : {}}>
+              파피용
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'PUG')} style={isActive.breed === 'PUG' ? { ...selectStyle } : {}}>
+              퍼그
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'POMERANIAN')} style={isActive.breed === 'POMERANIAN' ? { ...selectStyle } : {}}>
+              포메라니안
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'POODLE')} style={isActive.breed === 'POODLE' ? { ...selectStyle } : {}}>
+              푸들
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'LPINSCHER')} style={isActive.breed === 'LPINSCHER' ? { ...selectStyle } : {}}>
+              핀셔
+            </button>
+            <button type="button" name="breed" onClick={() => handleFilter('breed', 'ETC')} style={isActive.breed === 'ETC' ? { ...selectStyle } : {}}>
+              기타
+            </button>
+          </div>
+        </div>
+        <div className={styles.filterButton}>
+          <button onClick={resetFilters} className={styles.reset}>
+            초기화
           </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'DACHSHUND')} style={isActive.breed === 'DACHSHUND' ? { ...selectStyle } : {}}>
-          닥스훈트
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'DOBERMAN')} style={isActive.breed === 'DOBERMAN' ? { ...selectStyle } : {}}>
-          도베르만
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'RETRIEVER')} style={isActive.breed === 'RETRIEVER' ? { ...selectStyle } : {}}>
-          리트리버
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'MALTESE')} style={isActive.breed === 'MALTESE' ? { ...selectStyle } : {}}>
-          말티즈
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'MIX')} style={isActive.breed === 'MIX' ? { ...selectStyle } : {}}>
-          믹스
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'BEDLINGTON_TERRIER')} style={isActive.breed === 'BEDLINGTON_TERRIER' ? { ...selectStyle } : {}}>
-          베들링턴 테리어
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'BULLDOG')} style={isActive.breed === 'BULLDOG' ? { ...selectStyle } : {}}>
-          불독
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'BICHON')} style={isActive.breed === 'BICHON' ? { ...selectStyle } : {}}>
-          비숑
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'SAMOYED')} style={isActive.breed === 'SAMOYED' ? { ...selectStyle } : {}}>
-          사모예드
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'SHEPHERD')} style={isActive.breed === 'SHEPHERD' ? { ...selectStyle } : {}}>
-          셰퍼드
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'SCHNAUZER')} style={isActive.breed === 'SCHNAUZER' ? { ...selectStyle } : {}}>
-          슈나우저
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'SPITZ')} style={isActive.breed === 'SPITZ' ? { ...selectStyle } : {}}>
-          스피츠
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'SHIBA_INU')} style={isActive.breed === 'SHIBA_INU' ? { ...selectStyle } : {}}>
-          시바
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'SIBERIAN_HUSKY')} style={isActive.breed === 'SIBERIAN_HUSKY' ? { ...selectStyle } : {}}>
-          시베리안 허스키
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'SHIHTZU')} style={isActive.breed === 'SHIHTZU' ? { ...selectStyle } : {}}>
-          시츄
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'ALASKAN_MALAMUTE')} style={isActive.breed === 'ALASKAN_MALAMUTE' ? { ...selectStyle } : {}}>
-          알래스카 맬러뮤트
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'YORKSHIRE_TERRIER')} style={isActive.breed === 'YORKSHIRE_TERRIER' ? { ...selectStyle } : {}}>
-          요크셔 테리어
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'WELSH_CORGI')} style={isActive.breed === 'WELSH_CORGI' ? { ...selectStyle } : {}}>
-          웰시코기
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'JACK_RUSSELL_TERRIOR')} style={isActive.breed === 'JACK_RUSSELL_TERRIOR' ? { ...selectStyle } : {}}>
-          잭 러셀 테리어
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'CHIHUAHUA')} style={isActive.breed === 'CHIHUAHUA' ? { ...selectStyle } : {}}>
-          치와와
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'PAPILON')} style={isActive.breed === 'PAPILON' ? { ...selectStyle } : {}}>
-          파피용
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'PUG')} style={isActive.breed === 'PUG' ? { ...selectStyle } : {}}>
-          퍼그
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'POMERANIAN')} style={isActive.breed === 'POMERANIAN' ? { ...selectStyle } : {}}>
-          포메라니안
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'POODLE')} style={isActive.breed === 'POODLE' ? { ...selectStyle } : {}}>
-          푸들
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'LPINSCHER')} style={isActive.breed === 'LPINSCHER' ? { ...selectStyle } : {}}>
-          핀셔
-          </button>
-          <button type="button" name="breed" onClick={() => handleFilter('breed', 'ETC')} style={isActive.breed === 'ETC' ? { ...selectStyle } : {}}>
-          기타
+          <button onClick={applyFilters} className={styles.apply}>
+            적용하기
           </button>
         </div>
-      <div className={styles.filterButton}>
-        <button onClick={resetFilters} className={styles.reset}>
-          초기화
-        </button>
-        <button onClick={applyFilters}  className={styles.apply}>
-          적용하기
-        </button>
-      </div>
       </form>
     </div>
   );

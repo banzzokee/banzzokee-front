@@ -12,6 +12,9 @@
   border-radius: 10px;
   z-index: 2;
 }
+.container {
+  height: 600px;
+}
 
 .open {
   transform: translateX(0);
@@ -19,10 +22,12 @@
 
 .filterHeader {
   display: flex;
-  justify-content: space-between;
-  margin: 15px;
+  justify-content: left;
+  padding: 10px;
+  padding-bottom: 0;
   font-size: 20px;
   font-weight: 700;
+  /* background-color: #9aaee057; */
 }
 
 .filterHeader img {
@@ -30,20 +35,66 @@
 }
 
 .tag_item {
-  border-bottom: 1px solid #afa8a8;
+  border: 1px solid #9aaee057;
+  border-radius: 10px;
+  display: flex;
+  justify-content: right;
+  height: auto;
+  position: relative;
+  /* align-items: center; */
+}
+.tag_breed {
+  border: 1px solid #9aaee057;
+  /* display: flex; */
+  flex-direction: row;
+  justify-content: right;
+  /* height: auto; */
+  position: relative;
+}
+.tag_breed label {
+  display: flex;
+  margin-bottom: 0;
 }
 
-.tag_item label {
-  width: 60px;
+.tag_breed button {
+  /* border: 1px solid #9aaee057; */
+  border-radius: 10px;
+  /* display: flex; */
+  /* justify-content: right; */
+  /* height: auto; */
   margin: 5px;
+  padding: 8px;
+  background-color: #e1e1e1;
+  position: relative;
+}
+.age {
+  /* height: 200px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.age input {
+  background-color: #e1e1e1;
+  border-radius: 10px;
+  width: 60px;
+  height: 30px;
+}
+.tag_item label {
+  width: 80px;
+  margin: 5px;
+  position: absolute;
+  left: 0;
+  display: flex;
 }
 
 .tag_item button {
   width: auto;
   margin: 5px 5px;
-  padding: 10px;
+  padding: 5px;
+  /* height: 30px; */
   border-radius: 20px;
   background-color: #d9d9d9;
+  font-size: 14px;
 }
 
 .tag_item div {
@@ -51,7 +102,7 @@
 }
 
 .filterButton {
-  margin: 20px 0;
+  /* margin: 20px 0; */
 }
 
 .reset {

@@ -52,7 +52,7 @@ export default function OtherMyPage() {
       try {
         const config = {
           method: 'post',
-          url: `https://server.banzzokee.homes/api/users/1/follow`,
+          url: `https://server.banzzokee.homes/api/users/${state.userId}/follow`,
           headers: { Authorization: `Bearer ${accessToken}` },
         };
         const response = await axios.request(config);
@@ -64,7 +64,7 @@ export default function OtherMyPage() {
       try {
         const config = {
           method: 'post',
-          url: `https://server.banzzokee.homes/api/users/1/unfollow`,
+          url: `https://server.banzzokee.homes/api/users/${state.userId}/unfollow`,
           headers: { Authorization: `Bearer ${accessToken}` },
         };
         const response = await axios.request(config);
