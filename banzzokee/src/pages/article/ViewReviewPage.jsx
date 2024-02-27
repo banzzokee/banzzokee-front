@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ImageSlider from './ImageSlider';
-export default function ViewReviewPage({id}) {
+export default function ViewReviewPage({ id }) {
   // const { id } = useParams();
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
   const navigate = useNavigate();
@@ -34,7 +34,6 @@ export default function ViewReviewPage({id}) {
     getReview();
     console.log('getAdoption run');
   }, [id]);
-
 
   const openEdit = () => {
     console.log('Open Edit Clicked');
@@ -75,7 +74,7 @@ export default function ViewReviewPage({id}) {
       navigate(`/OtherMyPage/${review.user.userId}`, { state: dataSend });
     }
   };
-  
+
   return (
     <>
       <div className={styles.container}>
@@ -95,7 +94,7 @@ export default function ViewReviewPage({id}) {
             </div>
             <div className={styles.headerRight}>
               <button style={{ padding: 0, backgroundColor: 'white' }} onClick={openEdit}>
-                <img src="../../../public/edit.svg" style={{ transform: 'rotate(90deg)' }} />
+                <img src="../../../public/edit.svg" style={{ transform: 'rotate(0deg)', width: '20px', marginLeft: '5px' }} />
               </button>
               <div id="edit" className={styles.edit}>
                 <button onClick={handleEdit}>

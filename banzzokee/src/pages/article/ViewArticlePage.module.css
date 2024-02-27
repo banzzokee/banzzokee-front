@@ -3,6 +3,7 @@
   height: 645px;
   margin: 0 auto;
   padding: 0;
+  overflow: scroll;
 }
 .articleHeader {
   height: 45px;
