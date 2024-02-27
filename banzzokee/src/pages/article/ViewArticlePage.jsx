@@ -221,10 +221,10 @@ export default function ViewArticlePage() {
               </button>
               <div id="edit" className={styles.edit}>
                 <button onClick={handleEdit}>
-                  <img src="../../../public/Pencil.svg" />
+                  <img src="../../../public/Pencil.svg" className={styles.editButton} />
                   수정
                 </button>
-                <button onClick={handleDelete}>
+                <button onClick={handleDelete} className={styles.deleteButton}>
                   <img src="../../../public/Delete.svg" />
                   삭제
                 </button>
