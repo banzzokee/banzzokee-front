@@ -1,6 +1,6 @@
 .container {
   width: 375px;
-  height: 645px;
+  height: 655px;
   margin: 0 auto;
   padding: 0;
 }
@@ -28,11 +28,13 @@
   align-items: center;
   /* overflow: hidden; */
   position: relative;
+  /* overflow: hidden; */
 }
 .pic {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  object-fit: cover;
+  border-radius: 100px;
 }
 
 .badgeIcon {
@@ -86,7 +88,6 @@
 
 .viewArticles {
   width: 100%;
-  background-color: lightblue;
   height: 245px;
 }
 
@@ -103,10 +104,11 @@
   /* height: 50px; */
   text-align: center;
   padding: 10px;
+  font-weight: bold;
 }
 
 .articleList {
-  height: 195px;
+  height: 205px;
   overflow: scroll;
   /* word-wrap: break-word; */
   background-color: white;

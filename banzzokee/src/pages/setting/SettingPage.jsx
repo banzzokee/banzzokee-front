@@ -9,12 +9,15 @@ export default function SettingPage() {
   const [interestPostNotification, setInterestPostNotification] = useState(true);
   const [reviewPostNotification, setReviewPostNotification] = useState(true);
   const [followShelterNotification, setFollowShelterNotification] = useState(true);
+  const myInfo = JSON.parse(sessionStorage.getItem('myInfo'));
   const logout = () => {
     sessionStorage.removeItem('userInfo');
     sessionStorage.removeItem('accessToken');
     document.location.href = '/';
   };
-
+  const onclickAlert = () => {
+    alert('보호소 등록후 이용할 수 있습니다.');
+  };
   return (
     <>
       <SettingHeader style={{ backgroundColor: '#e1e1e1' }}></SettingHeader>
@@ -33,9 +36,15 @@ export default function SettingPage() {
           <Link to="/ShelterRegisterPage">
             <p className={styles.option}>보호소 등록 요청</p>
           </Link>
-          <Link to="/ShelterEditPage">
-            <p className={styles.option}>보호소 정보 수정/삭제</p>
-          </Link>
+          {myInfo.shelter == null ? (
+            <p className={styles.option} onClick={onclickAlert}>
+              보호소 정보 수정/삭제
+            </p>
+          ) : (
+            <Link to="/ShelterEditPage">
+              <p className={styles.option}>보호소 정보 수정/삭제</p>
+            </Link>
+          )}
         </div>
         <div className={styles.eachSetting}>
           <p className={styles.title}>계정 설정</p>

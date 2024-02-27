@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 export default function ChatListPage() {
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
+  const myInfo = JSON.parse(sessionStorage.getItem('myInfo'));
   const [roomList, setRoomList] = useState([]);
   const navigate = useNavigate();
   const checkRooms = async () => {
@@ -30,7 +31,11 @@ export default function ChatListPage() {
     checkRooms();
   }, []);
   const onClick = (room) => {
-    navigate(`/Message/${room.adoption.adoptionId}`, { state: room.roomId });
+    if (myInfo.shelter == null) {
+      navigate(`/Message/${room.adoption.adoptionId}`, { state: { roomId: room.roomId, otherName: room.shelter.user.nickname } });
+    } else {
+      navigate(`/Message/${room.adoption.adoptionId}`, { state: { roomId: room.roomId, otherName: room.user.nickname } });
+    }
   };
 
   if (!accessToken) {

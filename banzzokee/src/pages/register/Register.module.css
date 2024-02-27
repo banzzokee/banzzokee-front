@@ -62,8 +62,9 @@
 }
 
 .label {
-  width: 100px;
+  /* width: 100px; */
   margin: 10px;
+  margin-left: 20px;
 }
 
 .numberVerify input {
@@ -76,8 +77,10 @@
 }
 
 label {
-  width: 100px;
+  /* width: 100px; */
+  text-align: left;
   margin: 10px;
+  margin-left: 20px;
 }
 
 .input {

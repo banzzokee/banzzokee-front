@@ -16,7 +16,7 @@ const Kakao = ({ state }) => {
           center={{ lat: 37.5585, lng: 126.8092 }}
           style={{
             width: '100%',
-            height: '645px',
+            height: '655px',
           }}
         ></Map>
       </div>
@@ -28,7 +28,7 @@ const Kakao = ({ state }) => {
         center={{ lat: state.latitude, lng: state.longitude }}
         style={{
           width: '100%',
-          height: '645px',
+          height: '655px',
         }}
       >
         <MapMarker
@@ -36,8 +36,8 @@ const Kakao = ({ state }) => {
           image={{
             src: '/Review.png', // 마커이미지의 주소입니다
             size: {
-              width: 60,
-              height: 60,
+              width: 40,
+              height: 40,
             }, // 마커이미지의 크기입니다
             options: {
               offset: {

@@ -52,10 +52,10 @@ export default function ViewArticlePage() {
     console.log('onclickBook', adoption.bookmarked);
     if (accessToken) {
       addBookmark();
+      setBookmark(!bookmark);
     } else {
       alert('로그인후 이용 가능한 서비스 입니다.');
     }
-    setBookmark(!bookmark);
   }
 
   const checkBookmark = async () => {
@@ -150,16 +150,15 @@ export default function ViewArticlePage() {
       if (adoption.user.userId == myInfo.userId) {
         alert('본인 게시물에서는 메세지 기능을 사용할 수 없습니다.');
       } else {
-        const dataSend = adoption.user;
-        navigate(`/Message/${id}`);
+        navigate(`/Message/${id}`, { state: { otherName: adoption.user.nickname } });
       }
     }
   };
   const loggedInUserId = JSON.parse(sessionStorage.getItem('myInfo'));
-  let isCurrentUserAssignedUser = false
-  if (loggedInUserId !== null ) {
-  const assignedUserId = adoption?.assignedUser?.userId;
-   isCurrentUserAssignedUser = assignedUserId === loggedInUserId.userId ;
+  let isCurrentUserAssignedUser = false;
+  if (loggedInUserId !== null) {
+    const assignedUserId = adoption?.assignedUser?.userId;
+    isCurrentUserAssignedUser = assignedUserId === loggedInUserId.userId;
   }
   const handleReview = () => {
     console.log('loggedInUserId:', loggedInUserId);
@@ -168,112 +167,102 @@ export default function ViewArticlePage() {
     navigate('/CreateReviewPage', {
       state: {
         adoptionId: id,
-       //  assignedUser: adoption?.assignedUser,
-      }
- });
-};
-
- 
-
-
+        //  assignedUser: adoption?.assignedUser,
+      },
+    });
+  };
 
   return (
     <>
       <BackHeader></BackHeader>
-      <div style={adoption.status && adoption.status.value === '분양완료' ? { overflowY: 'scroll', maxHeight: '645px' } : {}}>
-      <div className={styles.container} >
-        <div className={styles.article}>
-          <div className={styles.articleHeader}>
-            <div onClick={toOtherMyPage}>
-              <div className={styles.headerLeft}>
-                <div className={styles.userImage}>
-                  <img src="../../../public/User.png" alt="" style={{ width: '14px', height: '14px' }} />
-                </div>
-                <div className={styles.nameAndDate}>
-                  <div className={styles.name}>{adoptionNickname}</div>
+      <div style={adoption.status && adoption.status.value === '분양완료' ? { overflowY: 'scroll', maxHeight: '655px' } : {}}>
+        <div className={styles.container}>
+          <div className={styles.article}>
+            <div className={styles.articleHeader}>
+              <div onClick={toOtherMyPage}>
+                <div className={styles.headerLeft}>
+                  <div className={styles.userImage}>
+                    <img className={styles.profile} src="../../../public/User.png" alt="" style={{ width: '14px', height: '14px' }} />
+                    <img className={styles.badgeIcon} src="../../../public/badge.svg" />
+                  </div>
+                  <div className={styles.nameAndDate}>
+                    <div className={styles.name}>{adoptionNickname}</div>
 
-                  <div className={styles.date}>{String(adoption.createdAt).substring(0, 10)}</div>
+                    <div className={styles.date}>{String(adoption.createdAt).substring(0, 10)}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={styles.headerRight}>
-              {accessToken ? (
-                <div className="chat" onClick={onclickMessage}>
-                  <div className={styles.messageButton}>
+              <div className={styles.headerRight}>
+                {accessToken ? (
+                  <div className="chat" onClick={onclickMessage}>
+                    <div className={styles.messageButton}>
+                      메세지
+                      <img className={styles.messageIcon} src="../../../public/Message.png" />
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    className={styles.messageButton}
+                    onClick={() => {
+                      alert('로그인 하셔야 사용하실 수 있는 서비스 입니다.');
+                    }}
+                  >
                     메세지
                     <img className={styles.messageIcon} src="../../../public/Message.png" />
                   </div>
-                </div>
-              ) : (
-                <div
-                  className={styles.messageButton}
-                  onClick={() => {
-                    alert('로그인 하셔야 사용하실 수 있는 서비스 입니다.');
-                  }}
-                >
-                  메세지
-                  <img className={styles.messageIcon} src="../../../public/Message.png" />
-                </div>
-              )}
+                )}
 
-              <button style={{ padding: 0, backgroundColor: 'white' }} onClick={openEdit}>
-                <img src="../../../public/edit.svg" style={{ transform: 'rotate(90deg)' }} />
-              </button>
-              <div id="edit" className={styles.edit}>
-                <button onClick={handleEdit}>
-                  <img src="../../../public/Pencil.svg" className={styles.editButton} />
-                  수정
+                <button style={{ padding: 0, backgroundColor: 'white' }} onClick={openEdit}>
+                  <img src="../../../public/edit.svg" style={{ transform: 'rotate(0deg)', width: '20px', marginLeft: '5px' }} />
                 </button>
-                <button onClick={handleDelete} className={styles.deleteButton}>
-                  <img src="../../../public/Delete.svg" />
-                  삭제
-                </button>
+                <div id="edit" className={styles.edit}>
+                  <button onClick={handleEdit}>
+                    <img src="../../../public/Pencil.svg" />
+                    수정
+                  </button>
+                  <button onClick={handleDelete}>
+                    <img src="../../../public/Delete.svg" />
+                    삭제
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className={styles.articlePhotos}>
-            <div className={styles.imgContainer}>
-              {/* <img src={adoption.imageUrls[1]} alt="" /> */}
-              <ImageSlider images={adoption.imageUrls} />
-            </div>
+            <div className={styles.articlePhotos}>
+              <div className={styles.imgContainer}>
+                {/* <img src={adoption.imageUrls[1]} alt="" /> */}
+                <ImageSlider images={adoption.imageUrls} />
+              </div>
 
-            {adoption.status ? <div className={adoption.status.value == '분양중' ? styles.statusAdopting : adoption.status.value == '예약중' ? styles.statusReserving : styles.statusFinished}>{adoption.status.value}</div> : <div className={styles.status}>loading</div>}
-            <div className={styles.reviewbuttonBox}>
-            {adoption.status && adoption.status.value === '분양완료' && isCurrentUserAssignedUser && (
-              <>
-             
-              <button
-                onClick={handleReview}
-                className={styles.createAdopt}
-              >
-                <div className={styles.reviewButton}>후기게시글 작성하기</div>
-              </button>
-          
-            </>
-            )}
-          </div>
-          </div>
-          <div className={styles.articleTexts}>
-            <div className={styles.titleAndSave}>
-              <div className={styles.title}>{adoption.title}</div>
-              <div onClick={onClickBookmark} style={{ cursor: 'pointer' }}>{bookmark ? <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px', backgroundColor: 'gray' }} /> : <img src="../../../public/save.svg" alt="저장하기" style={{ width: '45px', height: '30px' }} />}</div>
+              {adoption.status ? <div className={adoption.status.value == '분양중' ? styles.statusAdopting : adoption.status.value == '예약중' ? styles.statusReserving : styles.statusFinished}>{adoption.status.value}</div> : <div className={styles.status}>loading</div>}
+              <div className={styles.reviewbuttonBox}>
+                {adoption.status && adoption.status.value === '분양완료' && isCurrentUserAssignedUser && (
+                  <>
+                    <button onClick={handleReview} className={styles.createAdopt}>
+                      <div className={styles.reviewButton}>후기게시글 작성하기</div>
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
+            <div className={styles.articleTexts}>
+              <div className={styles.titleAndSave}>
+                <div className={styles.title}>{adoption.title}</div>
+                <div onClick={onClickBookmark}>{bookmark ? <img src="../../public/yesbookmark.svg" alt="저장하기" style={{ width: '30px', height: '30px' }} /> : <img src="../../public/notbookmark.svg" alt="저장하기" style={{ width: '30px', height: '30px' }} />}</div>
+              </div>
 
-            <div className={styles.tags}>
-              {adoption && (
-                <>
-                  <TagsAll adoption={adoption}></TagsAll>
-                </>
-              )}
+              <div className={styles.tags}>
+                {adoption && (
+                  <>
+                    <TagsAll adoption={adoption}></TagsAll>
+                  </>
+                )}
+              </div>
+              <div className={styles.body}>{adoption.content}</div>
             </div>
-            <div className={styles.body}>{adoption.content}</div>
           </div>
         </div>
-      </div>
-      {adoption.status && adoption.status.value === '분양완료' && adoption.review && (
-        <ViewReviewPage id = {adoption.review.reviewId}/>
-      )}
+        {adoption.status && adoption.status.value === '분양완료' && adoption.review && <ViewReviewPage id={adoption.review.reviewId} />}
       </div>
       <Nav></Nav>
     </>

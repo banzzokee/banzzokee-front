@@ -11,6 +11,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import MessageList from '../../components/MessageList';
 import { useNavigate } from 'react-router-dom';
+
 export default function Message() {
   const navigate = useNavigate();
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
@@ -24,6 +25,8 @@ export default function Message() {
   const [roomInfo, setRoomInfo] = useState({});
   const [otherUserId, setOtherUserId] = useState();
   const location = useLocation();
+  const { state } = location;
+  console.log('state:: ', state);
   // const client = useRef({});
   const [otherInfo, setOtherInfo] = useState();
   const [roomId, setRoomId] = useState();
@@ -229,7 +232,7 @@ export default function Message() {
     const editBox = document.getElementById('edit');
     editBox.style.display = editBox.style.display === 'none' ? 'block' : 'none';
   };
-
+  const space = ' ';
   return (
     <>
       <div className={styles.Header}>
@@ -238,9 +241,9 @@ export default function Message() {
           <img src="/Arrow.png" alt="Arrow" className={styles.arrow} />
         </div>
         <div className={styles.headerFeature}>
-          <div className={styles.name}>roomInfo</div>
+          <div className={styles.name}>{state.otherName}</div>
           <div className={styles.headerRight}>
-            <button style={{ padding: 0, backgroundColor: 'white' }} onClick={openEdit}>
+            <button style={{ padding: 0, backgroundColor: '#50586c' }} onClick={openEdit}>
               <img src="../../../public/edit.svg" />
             </button>
             <div id="edit" className={styles.edit}>

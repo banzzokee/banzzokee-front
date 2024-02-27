@@ -95,7 +95,10 @@ export default function OtherMyPage() {
       <BackHeader style={{ backgroundColor: '#e1e1e1' }}></BackHeader>
       <div className={styles.container}>
         <div className={styles.shelterInfo}>
-          <div className={styles.picture}>{photo}</div>
+          <div className={styles.profileImage}>
+            <div className={styles.picture}>{photo}</div>
+            {state.shelter !== null ? <img className={styles.badgeIcon} src="../../../public/badge.svg" /> : <div className={styles.badgeIcon}></div>}
+          </div>
           <div className={styles.infoAndName}>
             <div className={styles.viewShelterInfoButton} onClick={onClickShelter}>
               <Button>보호소 조회</Button>
@@ -103,11 +106,10 @@ export default function OtherMyPage() {
             <div className={styles.shelterName}>{nickname}</div>
           </div>
           <p className={styles.introduce}>{introduce}</p>
-          <div>
-            <button style={{ width: '100%', color: 'white', backgroundColor: follow ? '#bebebe' : '#add8e6', fontSize: '20px' }} onClick={onClick}>
-              {follow ? '팔로잉' : '팔로우'}
-            </button>
-          </div>
+
+          <button className={styles.followButton} style={{ width: '100%', color: 'white', backgroundColor: follow ? '#bebebe' : '#50586c', fontSize: '18px' }} onClick={onClick}>
+            {follow ? '팔로잉' : '팔로우'}
+          </button>
         </div>
         <div className={styles.articleContainer}>
           <div className={styles.articleHeader}>작성 게시물</div>

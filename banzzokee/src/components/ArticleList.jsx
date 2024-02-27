@@ -18,13 +18,14 @@ export default function ArticleList({ sortBy, appliedFilters }) {
     try {
       if (hasMore) {
         console.log('Getarticle::: page:', page);
+        console.log('Getarticle::: inview:', inView);
         const config = {
           method: 'get',
           // url: `https://server.banzzokee.homes/api/adoptions?page=${page}&size=7&direction=${sortBy}`,
           url: `https://server.banzzokee.homes/api/adoptions`,
           params: {
-            breed: appliedFilters.breed.join(','), 
-            dogSize: appliedFilters.size, 
+            breed: appliedFilters.breed.join(','),
+            dogSize: appliedFilters.size,
             neutering: appliedFilters.neutering,
             healthChecked: appliedFilters.healthChecked,
             gender: appliedFilters.gender,
@@ -33,15 +34,13 @@ export default function ArticleList({ sortBy, appliedFilters }) {
             direction: `${sortBy}`,
             page: page,
             size: 7,
-            
           },
         };
         // console.log('url:', config.url);
         console.log('params:', config.params);
         const response = await axios.request(config);
-        console.log('page', page);
         console.log('resp.data.content', response.data.content);
-        const filteredList = (response.data.content);
+        const filteredList = response.data.content;
         setArticleList([...articleList, ...filteredList]);
         if (response.data.content.length < 7) {
           setHasMore(false);
@@ -58,12 +57,17 @@ export default function ArticleList({ sortBy, appliedFilters }) {
 
   useEffect(() => {
     console.log('sortby, filter applied:::::::::::::');
-    getArticleList();
     setPage(0);
+    console.log('setPage0 :page', page);
+    setArticleList([]);
+
+    getArticleList();
+    console.log('after getlist :page', page);
   }, [sortBy, appliedFilters]);
 
   useEffect(() => {
-    if (inView && page !== 0) {
+    if (inView && page !== 0 && hasMore) {
+      console.log('inview getArticleList: page', page);
       getArticleList();
     }
   }, [inView]);
@@ -98,4 +102,3 @@ export default function ArticleList({ sortBy, appliedFilters }) {
     </div>
   );
 }
-

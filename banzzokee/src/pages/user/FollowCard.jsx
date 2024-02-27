@@ -54,7 +54,7 @@ const FollowCard = ({ follower, list }) => {
           </div>
         </Link>
 
-        <button className={styles.followButton} style={{ backgroundColor: follow ? '#bebebe' : '#add8e6' }} onClick={onClick}>
+        <button className={styles.followButton} style={{ backgroundColor: follow ? '#bebebe' : '#9aaee057' }} onClick={onClick}>
           {follow ? '팔로잉' : '팔로우'}
         </button>
       </div>
