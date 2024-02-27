@@ -31,11 +31,13 @@ export default function ArticleList({ sortBy, appliedFilters }) {
             gender: appliedFilters.gender,
             minAge: appliedFilters.minAge,
             maxAge: appliedFilters.maxAge,
-            direction: sortBy,
+            direction: `${sortBy}`,
             page: page,
             size: 7,
           },
         };
+        // console.log('url:', config.url);
+        console.log('params:', config.params);
         const response = await axios.request(config);
         console.log('resp.data.content', response.data.content);
         const filteredList = response.data.content;
