@@ -60,6 +60,7 @@ export default function NotificationToken() {
       if (permission === 'granted') {
         console.log('Notification 권한 허용.');
         messaging.getToken(messaging, { vapidKey: 'BJgALk-acWHVF6O1MSyRXKW-6upKKByfWfp3lLEHpdonzLJtdIxzRdhrnD64rECNHeC9A1dp7mWZTeZpk_WKZ1w' }).then((currentToken) => {
+          console.log('Current token:', currentToken);
           if (currentToken) {
             sendTokenToServer(currentToken);
           } else {
