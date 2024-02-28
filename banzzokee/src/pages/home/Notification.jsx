@@ -80,7 +80,11 @@ export default function Notification() {
     console.log('Clicked notification:', notification);
     if (notification.message?.data?.chatRoomId) {
       console.log('Chat message ID:', notification.message.data.chatRoomId);
-      navigate(`/Message/${notification.message.data.chatRoomId}`);
+      let index = notification.message.notification.title.indexOf('님이');
+      console.log(index);
+      const sendName = notification.message.notification.title.substring(0, index);
+      console.log(sendName);
+      navigate(`/Message/${notification.message.data.chatRoomId}`, { state: { roomId: notification.message.data.chatRoomId, otherName: sendName } });
     } else if (notification.message?.data?.adoptionId) {
       console.log('Post ID:', notification.message.data.adoptionId);
       navigate(`/ArticleList/${notification.message.data.adoptionId}`);
