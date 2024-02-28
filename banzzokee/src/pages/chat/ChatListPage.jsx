@@ -32,9 +32,9 @@ export default function ChatListPage() {
   }, []);
   const onClick = (room) => {
     if (myInfo.shelter == null) {
-      navigate(`/Message/${room.adoption.adoptionId}`, { state: { roomId: room.roomId, otherName: room.shelter.user.nickname } });
+      navigate(`/Message/${room.roomId}`, { state: { roomId: room.roomId, otherName: room.shelter.user.nickname } });
     } else {
-      navigate(`/Message/${room.adoption.adoptionId}`, { state: { roomId: room.roomId, otherName: room.user.nickname } });
+      navigate(`/Message/${room.roomId}`, { state: { roomId: room.roomId, otherName: room.user.nickname } });
     }
   };
 

@@ -28,7 +28,6 @@ export default function Message() {
   const location = useLocation();
   const { state } = location;
   console.log('state', state);
-  console.log('id', id);
   // const client = useRef({});
   const [otherInfo, setOtherInfo] = useState();
   const [roomId, setRoomId] = useState();
@@ -65,7 +64,7 @@ export default function Message() {
         if (rooms[i].adoption.adoptionId == id) {
           changeHasroom = false;
           setRoomInfo(rooms[i]);
-          if (myInfo.userId == rooms[i].user.userId) {
+          if (state.roomId == rooms[i].roomId) {
             setOtherUserId(rooms[i].shelter.user.userId);
             setOtherUserName(rooms[i].shelter.user.nickname);
           } else {
@@ -90,36 +89,36 @@ export default function Message() {
     checkRoom();
   }, []);
 
-  useEffect(() => {
-    if (!hasRoom) {
-      createRoom();
-    }
-  }, [hasRoom]);
+  // useEffect(() => {
+  //   if (!hasRoom) {
+  //     // createRoom();
+  //   }
+  // }, [hasRoom]);
 
-  const createRoom = async () => {
-    try {
-      console.log('createRoom');
-      const config = {
-        method: 'post',
-        url: `https://server.banzzokee.homes/api/rooms/adoptions/${id}`,
-        headers: { Authorization: `Bearer ${accessToken}` },
-      };
-      const response = await axios.request(config);
-      console.log('createRoom::', response.data);
-      if (roomId == null) {
-        setRoomId(response.data.roomId);
-      }
-      setRoomId(response.data.roomId);
-      setRoomInfo(response.data);
-      setOtherUserId(response.data.user.userId);
-      setOtherUserName(response.data.user.nickname);
-      // const response = await axios.get('http://localhost:3001/adoption');
-      // setArticleList(response.data);
-      console.log(response.data);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+  // const createRoom = async () => {
+  //   try {
+  //     console.log('createRoom');
+  //     const config = {
+  //       method: 'post',
+  //       url: `https://server.banzzokee.homes/api/rooms/adoptions/${id}`,
+  //       headers: { Authorization: `Bearer ${accessToken}` },
+  //     };
+  //     const response = await axios.request(config);
+  //     console.log('createRoom::', response.data);
+  //     if (roomId == null) {
+  //       setRoomId(response.data.roomId);
+  //     }
+  //     setRoomId(response.data.roomId);
+  //     setRoomInfo(response.data);
+  //     setOtherUserId(response.data.user.userId);
+  //     setOtherUserName(response.data.user.nickname);
+  //     // const response = await axios.get('http://localhost:3001/adoption');
+  //     // setArticleList(response.data);
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
+  // };
 
   const [stompClient, setStompClient] = useState();
   const [messages, setMessages] = useState('');
@@ -144,7 +143,7 @@ export default function Message() {
 
       stomp.onConnect = () => {
         console.log('WebSocket 연결이 열렸습니다!.');
-
+        console.log('onconnect', state.roomId);
         const subscriptionDestination = `/topic/chats.rooms.${state.roomId}`;
 
         stomp.subscribe(subscriptionDestination, (chat) => {
@@ -176,9 +175,12 @@ export default function Message() {
   }, []);
 
   const sendMessage = () => {
+    if (inputMessage == '') {
+      return;
+    }
     // 메시지 전송
     if (stompClient && stompClient.connected) {
-      const destination = `/api/chats/rooms/${roomInfo.roomId}`;
+      const destination = `/api/chats/rooms/${state.roomId}`;
 
       stompClient.publish({
         destination,
@@ -269,7 +271,7 @@ export default function Message() {
           <img src="/Arrow.png" alt="Arrow" className={styles.arrow} />
         </div>
         <div className={styles.headerFeature}>
-          <div className={styles.name}>{otherUserName}</div>
+          <div className={styles.name}>{state.otherName}</div>
           <div className={styles.headerRight}>
             <button style={{ padding: 0, backgroundColor: '#50586c' }} onClick={openEdit}>
               <img src="../../../public/edit.svg" />
@@ -312,7 +314,7 @@ export default function Message() {
               </div>
             ))}
         </div>
-        <MessageList roomId={roomInfo.roomId}></MessageList>
+        <MessageList roomId={state.roomId}></MessageList>
       </div>
 
       <div>
