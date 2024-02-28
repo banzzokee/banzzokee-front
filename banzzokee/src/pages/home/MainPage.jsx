@@ -7,7 +7,7 @@ import Filter from './Filter';
 
 export default function MainPage() {
   const [sortBy, setSortBy] = useState('desc');
-  const [isFilterOpen, setFilterOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [appliedFilters, setAppliedFilters] = useState({
     // status: '',
     size: '',
@@ -24,7 +24,7 @@ export default function MainPage() {
   };
 
   const handleFilter = () => {
-    setFilterOpen(!isFilterOpen);
+    setIsFilterOpen(!isFilterOpen);
   };
 
   const applyFilter = (filters) => {
