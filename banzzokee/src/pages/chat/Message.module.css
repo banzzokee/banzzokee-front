@@ -11,12 +11,16 @@
 }
 .messageContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   width: 100%;
   background-color: #e1e1e1;
   height: 655px;
   padding: 5px;
   overflow: scroll;
+}
+.localMessageContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 .back {

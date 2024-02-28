@@ -85,9 +85,9 @@ export default function Notification() {
     if (notification.message?.data?.chatRoomId) {
       console.log('Chat message ID:', notification.message.data.chatRoomId);
       navigate(`/Message/${notification.message.data.chatRoomId}`);
-    } else if (notification.message?.data?.postId) {
-      console.log('Post ID:', notification.message.data.postId);
-      navigate(`/posts/${notification.message.data.postId}`);
+    } else if (notification.message?.data?.adoptionId) {
+      console.log('Post ID:', notification.message.data.adoptionId);
+      navigate(`/ArticleList/${notification.message.data.adoptionId}`);
     }
   };
 
@@ -113,7 +113,7 @@ export default function Notification() {
         {notifications.length === 0 ? (
           <p>알림이 없습니다.</p>
         ) : (
-          <ul>
+          <ul >
             {notifications.map((notification) => (
               <li key={notification.id}>
                 <div className={styles.content}>
