@@ -13,7 +13,7 @@ export default function ViewArticlePage() {
   const myInfo = JSON.parse(sessionStorage.getItem('myInfo'));
   const navigate = useNavigate();
   const [bookmark, setBookmark] = useState();
-
+  const [roomId, setRoomId] = useState();
   const [adoption, setAdoption] = useState({});
   const getAdoption = async () => {
     try {
@@ -146,13 +146,33 @@ export default function ViewArticlePage() {
     }
   };
   const onclickMessage = () => {
-    if (adoption.user && adoption.user.userId) {
-      if (adoption.user.userId == myInfo.userId) {
-        alert('본인 게시물에서는 메세지 기능을 사용할 수 없습니다.');
-      } else {
-        navigate(`/Message/${id}`, { state: { otherName: adoption.user.nickname } });
+    const createRoom = async () => {
+      try {
+        console.log('createRoom');
+        const config = {
+          method: 'post',
+          url: `https://server.banzzokee.homes/api/rooms/adoptions/${id}`,
+          headers: { Authorization: `Bearer ${accessToken}` },
+        };
+        const response = await axios.request(config);
+        console.log('createRoom::', response.data);
+
+        setRoomId(response.data.roomId);
+
+        console.log(response.data);
+        if (adoption.user && adoption.user.userId) {
+          if (adoption.user.userId == myInfo.userId) {
+            alert('본인 게시물에서는 메세지 기능을 사용할 수 없습니다.');
+          } else {
+            navigate(`/Message/${response.data.roomId}`, { state: { room: response.data } });
+          }
+        }
+      } catch (error) {
+        navigate(`/Message/${response.data.roomId}`, { state: { room: response.data } });
+        console.error('Error:', error);
       }
-    }
+    };
+    createRoom();
   };
   const loggedInUserId = JSON.parse(sessionStorage.getItem('myInfo'));
   let isCurrentUserAssignedUser = false;
@@ -248,7 +268,7 @@ export default function ViewArticlePage() {
             <div className={styles.articleTexts}>
               <div className={styles.titleAndSave}>
                 <div className={styles.title}>{adoption.title}</div>
-                <div onClick={onClickBookmark}>{bookmark ? <img src="../../public/yesbookmark.svg" alt="저장하기" style={{ width: '30px', height: '30px' }} /> : <img src="../../public/notbookmark.svg" alt="저장하기" style={{ width: '30px', height: '30px' }} />}</div>
+                <div onClick={onClickBookmark}>{bookmark ? <img src="../../public/yesbookmark.svg" alt="" style={{ width: '30px', height: '30px' }} /> : <img src="../../public/notbookmark.svg" alt="저장하기" style={{ width: '30px', height: '30px' }} />}</div>
               </div>
 
               <div className={styles.tags}>
