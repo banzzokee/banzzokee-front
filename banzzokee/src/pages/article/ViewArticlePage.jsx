@@ -148,7 +148,7 @@ export default function ViewArticlePage() {
   const onclickMessage = () => {
     const createRoom = async () => {
       try {
-        console.log('createRoom');
+        console.log('createRoom', id);
         const config = {
           method: 'post',
           url: `https://server.banzzokee.homes/api/rooms/adoptions/${id}`,
@@ -164,11 +164,12 @@ export default function ViewArticlePage() {
           if (adoption.user.userId == myInfo.userId) {
             alert('본인 게시물에서는 메세지 기능을 사용할 수 없습니다.');
           } else {
-            navigate(`/Message/${response.data.roomId}`, { state: { room: response.data } });
+            console.log('navigate', response.data);
+            navigate(`/Message/${response.data.roomId}`, { state: { roomId: response.data.roomId, otherName: response.data.shelter.user.nickname } });
           }
         }
       } catch (error) {
-        navigate(`/Message/${response.data.roomId}`, { state: { room: response.data } });
+        // navigate(`/Message/${response.data.roomId}`, { state: { room: response.data } });
         console.error('Error:', error);
       }
     };

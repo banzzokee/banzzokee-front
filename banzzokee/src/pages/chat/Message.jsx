@@ -13,8 +13,8 @@ import MessageList from '../../components/MessageList';
 import { useNavigate } from 'react-router-dom';
 
 export default function Message() {
-  const navigate = useNavigate();
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
+  const navigate = useNavigate();
   const myInfo = JSON.parse(sessionStorage.getItem('myInfo'));
   const { id } = useParams();
   const [message, setMessage] = useState();
@@ -27,7 +27,8 @@ export default function Message() {
   const [otherUserName, setOtherUserName] = useState();
   const location = useLocation();
   const { state } = location;
-
+  console.log('state', state);
+  console.log('id', id);
   // const client = useRef({});
   const [otherInfo, setOtherInfo] = useState();
   const [roomId, setRoomId] = useState();
@@ -73,6 +74,7 @@ export default function Message() {
           }
           setRoomId(rooms[i].roomId);
           console.log('do not create new room');
+          console.log('roomId', roomId);
           break;
         }
       }
@@ -107,9 +109,10 @@ export default function Message() {
       if (roomId == null) {
         setRoomId(response.data.roomId);
       }
+      setRoomId(response.data.roomId);
       setRoomInfo(response.data);
       setOtherUserId(response.data.user.userId);
-      setOtherUserId(response.data.user.nickname);
+      setOtherUserName(response.data.user.nickname);
       // const response = await axios.get('http://localhost:3001/adoption');
       // setArticleList(response.data);
       console.log(response.data);
@@ -123,43 +126,47 @@ export default function Message() {
   const [inputMessage, setInputMessage] = useState('');
   useEffect(() => {
     const initializeChat = async () => {
-      try {
-        const stomp = new Client({
-          brokerURL: 'wss://server.banzzokee.homes/ws-stomp',
-          connectHeaders: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-          reconnectDelay: 500, //자동 재 연결
-          heartbeatIncoming: 4000,
-          heartbeatOutgoing: 4000,
+      const stomp = new Client({
+        brokerURL: 'wss://server.banzzokee.homes/ws-stomp',
+        connectHeaders: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        debug: (str) => {
+          console.log(str);
+        },
+        reconnectDelay: 1000, //자동 재 연결
+        heartbeatIncoming: 4000,
+        heartbeatOutgoing: 4000,
+      });
+      setStompClient(stomp);
+
+      stomp.activate();
+
+      stomp.onConnect = () => {
+        console.log('WebSocket 연결이 열렸습니다!.');
+
+        const subscriptionDestination = `/topic/chats.rooms.${state.roomId}`;
+
+        stomp.subscribe(subscriptionDestination, (chat) => {
+          try {
+            console.log('subscribe');
+            const parsedMessage = JSON.parse(chat.body);
+
+            console.log('parsedMessage', parsedMessage);
+            setMessages((prevMessages) => [...prevMessages, parsedMessage]);
+          } catch (error) {
+            console.error('오류가 발생했습니다:', error);
+          }
         });
-        setStompClient(stomp);
-
-        stomp.activate();
-
-        stomp.onConnect = () => {
-          console.log('WebSocket 연결이 열렸습니다!.');
-          const subscriptionDestination = `/topic/chats.rooms.${roomInfo.roomId}`;
-
-          stomp.subscribe(subscriptionDestination, (chat) => {
-            try {
-              console.log('subscribe');
-              const parsedMessage = JSON.parse(chat.body);
-
-              console.log('parsedMessage', parsedMessage);
-              setMessages((prevMessages) => [...prevMessages, parsedMessage]);
-            } catch (error) {
-              console.error('오류가 발생했습니다:', error);
-            }
-          });
-        };
-      } catch (error) {
-        console.error('채팅 룸 생성 중 오류가 발생했습니다:', error);
-      }
+      };
     };
 
+    try {
+      initializeChat();
+    } catch (error) {
+      console.error('채팅 구독중 에러 발생');
+    }
     // 채팅 초기설정
-    initializeChat();
 
     return () => {
       if (stompClient && stompClient.connected) {
@@ -183,15 +190,17 @@ export default function Message() {
     }
     console.log('roomInfo', roomInfo);
     console.log('sendmessage', inputMessage);
-    setMessages([...inputMessage]);
+    // setMessages((prevMessages) => [...prevMessages, { chatId: Date.now(), message: inputMessage, messageType: 'TEXT', user: { nickname: `${myInfo.nickname}` } }]);
     setInputMessage('');
   };
   const onLeaveRoom = async () => {
+    const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
     try {
       console.log('deleteRoom');
       const config = {
         method: 'delete',
-        url: `https://server.banzzokee.homes/api/rooms/${roomInfo.roomId}`,
+        url: `https://server.banzzokee.homes/api/rooms/${state.roomId}`,
+
         headers: { Authorization: `Bearer ${accessToken}` },
       };
       const response = await axios.request(config);
@@ -212,11 +221,13 @@ export default function Message() {
       });
 
       stomp.unsubscribe(roomInfo.roomId, {});
+      navigate(`/ChatListPage`);
     } catch (error) {
       console.error('Error:', error);
     }
   };
   const toOtherMyPage = async () => {
+    const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
     let otherUserId = '';
     if (roomInfo.shelter != null) {
       if (roomInfo.user && roomInfo.user.userId) {
@@ -278,28 +289,30 @@ export default function Message() {
 
       <div className={styles.messageContainer}>
         {/* <MessageContainer messageList={messageList} user={nickname} /> */}
-        <MessageList roomId={roomInfo.roomId}></MessageList>
-        {messages &&
-          messages.map((message) => (
-            <div key={message.chatId} className={styles.messageBox}>
-              {message.messageType === 'EXIT' ? (
-                <div className={styles.systemMessageContainer}>
-                  <div className={styles.systemMessage}>{message.message}</div>
-                </div>
-              ) : message.user?.nickname === `${myInfo.nickname}` ? (
-                <div className={styles.myMessageContainer}>
-                  <div className={styles.myMessage}>{message.message}</div>
-                </div>
-              ) : (
-                <div className={styles.otherMessageContainer}>
-                  <div onClick={toOtherMyPage} className={styles.profileImage}>
-                    {message.user?.profileImgUrl ? <img src={message.user.profileImgUrl} className={styles.profileImage} /> : <img src="../../public/user.png" className={styles.defaultProfileImage}></img>}
+        <div className={styles.localMessageContainer}>
+          {messages &&
+            messages.map((message) => (
+              <div key={message.chatId} className={styles.messageBox}>
+                {message.messageType === 'EXIT' ? (
+                  <div className={styles.systemMessageContainer}>
+                    <div className={styles.systemMessage}>{message.message}</div>
                   </div>
-                  <div className={styles.otherMessage}>{message.message}</div>
-                </div>
-              )}
-            </div>
-          ))}
+                ) : message.user?.nickname === `${myInfo.nickname}` ? (
+                  <div className={styles.myMessageContainer}>
+                    <div className={styles.myMessage}>{message.message}</div>
+                  </div>
+                ) : (
+                  <div className={styles.otherMessageContainer}>
+                    <div onClick={toOtherMyPage} className={styles.profileImage}>
+                      {message.user?.profileImgUrl ? <img src={message.user.profileImgUrl} className={styles.profileImage} /> : <img src="../../public/user.png" className={styles.defaultProfileImage}></img>}
+                    </div>
+                    <div className={styles.otherMessage}>{message.message}</div>
+                  </div>
+                )}
+              </div>
+            ))}
+        </div>
+        <MessageList roomId={roomInfo.roomId}></MessageList>
       </div>
 
       <div>

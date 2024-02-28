@@ -50,7 +50,7 @@ export default function MessageList({ roomId }) {
     const newMessages = response.data.content;
     setMessageList([...messageList, ...newMessages]);
     response.data.content.length > 0 ? setHasMore(true) : setHasMore(false);
-    console.log(messageList);
+    console.log('', messageList);
     setIndex(index + 1);
   };
 
