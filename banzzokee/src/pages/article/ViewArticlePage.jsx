@@ -165,7 +165,7 @@ export default function ViewArticlePage() {
             alert('본인 게시물에서는 메세지 기능을 사용할 수 없습니다.');
           } else {
             console.log('navigate', response.data);
-            navigate(`/Message/${response.data.id}`, { state: { roomId: response.data.roomId, otherName: response.data.shelter.user.nickname } });
+            navigate(`/Message/${response.data.roomId}`, { state: { roomId: response.data.roomId, otherName: response.data.shelter.user.nickname } });
           }
         }
       } catch (error) {
