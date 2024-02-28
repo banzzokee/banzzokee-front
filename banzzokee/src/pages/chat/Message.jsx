@@ -1,6 +1,6 @@
 import styles from './Message.module.css';
 import Back from '../../components/common/back/Back';
-import MessageContainer from './MessageContainer';
+
 import InputField from './InputField';
 // import socket from './server';
 import axios from 'axios';
@@ -36,54 +36,54 @@ export default function Message() {
 
   // const gameId = path.split('/')[2];
   const checkRoom = async () => {
-    try {
-      console.log('checkRoom');
-      let currentPage = 0;
-      let rooms = [];
-      while (true) {
-        const config = {
-          method: 'get',
-          url: `https://server.banzzokee.homes/api/rooms?page=${currentPage}&size=10&direction=desc`,
-          headers: { Authorization: `Bearer ${accessToken}` },
-        };
-        const response = await axios.request(config);
+    // try {
+    console.log('checkRoom');
+    let currentPage = 0;
+    let rooms = [];
+    while (true) {
+      const config = {
+        method: 'get',
+        url: `https://server.banzzokee.homes/api/rooms?page=${currentPage}&size=10&direction=desc`,
+        headers: { Authorization: `Bearer ${accessToken}` },
+      };
+      const response = await axios.request(config);
 
-        //모든 개설된 방을 불러와서 비교
-        const roomList = response.data.content;
-        rooms = [...rooms, ...roomList];
-        if (roomList.length === 0) {
-          break;
-        }
-        currentPage++;
+      //모든 개설된 방을 불러와서 비교
+      const roomList = response.data.content;
+      rooms = [...rooms, ...roomList];
+      if (roomList.length === 0) {
+        break;
       }
-
-      console.log('checkRoom response::', rooms);
-      // 채팅방 목록에 현제 게시글에서 연결된 방이 개설된곳이 있는지 확인
-      let changeHasroom = true;
-      for (let i = 0; i < rooms.length; i++) {
-        if (rooms[i].adoption.adoptionId == id) {
-          changeHasroom = false;
-          setRoomInfo(rooms[i]);
-          if (state.roomId == rooms[i].roomId) {
-            setOtherUserId(rooms[i].shelter.user.userId);
-            setOtherUserName(rooms[i].shelter.user.nickname);
-          } else {
-            setOtherUserId(rooms[i].user.userId);
-            setOtherUserName(rooms[i].user.nickname);
-          }
-          setRoomId(rooms[i].roomId);
-          console.log('do not create new room');
-          console.log('roomId', roomId);
-          break;
-        }
-      }
-      if (changeHasroom) {
-        setHasRoom(false);
-      }
-      console.log('roominfo', roomInfo);
-    } catch (error) {
-      console.error('Error:', error);
+      currentPage++;
     }
+
+    console.log('checkRoom response::', rooms);
+    // 채팅방 목록에 현제 게시글에서 연결된 방이 개설된곳이 있는지 확인
+    let changeHasroom = true;
+    for (let i = 0; i < rooms.length; i++) {
+      if (rooms[i].adoption.adoptionId == id) {
+        changeHasroom = false;
+        setRoomInfo(rooms[i]);
+        if (state.roomId == rooms[i].roomId) {
+          setOtherUserId(rooms[i].shelter.user.userId);
+          setOtherUserName(rooms[i].shelter.user.nickname);
+        } else {
+          setOtherUserId(rooms[i].user.userId);
+          setOtherUserName(rooms[i].user.nickname);
+        }
+        setRoomId(rooms[i].roomId);
+        console.log('do not create new room');
+        console.log('roomId', roomId);
+        break;
+      }
+    }
+    if (changeHasroom) {
+      setHasRoom(false);
+    }
+    console.log('roominfo', roomInfo);
+    // } catch (error) {
+    //   console.error('Error:', error);
+    // }
   };
   useEffect(() => {
     checkRoom();

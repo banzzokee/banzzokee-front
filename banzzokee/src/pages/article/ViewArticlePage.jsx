@@ -170,6 +170,7 @@ export default function ViewArticlePage() {
         }
       } catch (error) {
         // navigate(`/Message/${response.data.roomId}`, { state: { room: response.data } });
+        console.log('viewarticle: navigate to message');
         console.error('Error:', error);
       }
     };
