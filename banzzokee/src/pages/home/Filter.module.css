@@ -16,9 +16,9 @@
   height: 600px;
 }
 
-.open {
+/* .open {
   transform: translateX(0);
-}
+} */
 
 .filterHeader {
   display: flex;
@@ -36,13 +36,15 @@
 
 .tag_item {
   border: 1px solid #9aaee057;
-  border-radius: 10px;
+  border-radius: 16px;
   display: flex;
+  flex-direction: column;
   justify-content: right;
   height: auto;
   position: relative;
   /* align-items: center; */
 }
+
 .tag_breed {
   border: 1px solid #9aaee057;
   /* display: flex; */
@@ -58,7 +60,7 @@
 
 .tag_breed button {
   /* border: 1px solid #9aaee057; */
-  border-radius: 10px;
+  border-radius: 16px;
   /* display: flex; */
   /* justify-content: right; */
   /* height: auto; */
@@ -80,19 +82,19 @@
   height: 30px;
 }
 .tag_item label {
-  width: 80px;
-  margin: 5px;
-  position: absolute;
-  left: 0;
-  display: flex;
+  /* width: 80px; */
+  margin: 8px;
+  /* position: absolute; */
+  /* left: 0; */
+  /* display: flex; */
 }
 
 .tag_item button {
   width: auto;
   margin: 5px 5px;
-  padding: 5px;
+  padding: 10px;
   /* height: 30px; */
-  border-radius: 20px;
+  border-radius: 15px;
   background-color: #d9d9d9;
   font-size: 14px;
 }

@@ -27,22 +27,32 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
   };
 
   const [isOpen, setOpen] = useState(false);
-  const side = useRef();
+  const side = useRef(null);
 
   const toggleMenu = () => {
     setOpen((isOpen) => !isOpen);
   };
 
   const handleClose = (e) => {
+    console.log('side.current:', side.current);
     if (isOpen && side.current && !side.current.contains(e.target)) {
       setOpen(false);
+      console.log('setOpen(false) 실행됨');
     }
   };
 
   useEffect(() => {
-    window.addEventListener('click', handleClose);
+    const handleClickOutside = (e) => {
+      if (isOpen && side.current && !side.current.contains(e.target)) {
+        setOpen(false);
+        console.log('setOpen(false) 실행됨');
+      }
+    };
+  
+    window.addEventListener('click', handleClickOutside);
+  
     return () => {
-      window.removeEventListener('click', handleClose);
+      window.removeEventListener('click', handleClickOutside);
     };
   }, [isOpen]);
 
@@ -66,20 +76,32 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
     });
   };
 
+
+
   const handleAgeRange = (e, type) => {
     const value = e.target.value;
     setSelectedFilters((prev) => ({
       ...prev,
-      ageRange: {
-        ...prev.ageRange,
-        [type]: value,
-      },
+      [type]: value,
     }));
   };
 
+  // const handleAgeRange = (e, type) => {
+  //   const value = e.target.value;
+  //   setSelectedFilters((prev) => ({
+  //     ...prev,
+  //     ageRange: {
+  //       ...prev.ageRange,
+  //       [type]: value,
+  //     },
+  //   }));
+  // };
+
   const applyFilters = (e) => {
     e.preventDefault();
+    console.log('Applying filters...', selectedFilters);
     onApplyFilter(selectedFilters);
+    setOpen(false);
   };
 
   const resetFilters = (e) => {
@@ -133,7 +155,7 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
   // };
 
   return (
-    <div className={styles.filterPage}>
+    <div ref={side} className={styles.filterPage}>
       <div className={styles.filterHeader}>
         필터
         {/* <button onClick={toggleMenu}>
@@ -155,49 +177,59 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
         </div> */}
         <div className={styles.tag_item}>
           <label>사이즈</label>
-          <button type="button" name="size" onClick={() => handleFilter('size', 'ULTRA_SMALL')} style={isActive.size === 'ULTRA_SMALL' ? { ...selectStyle } : {}}>
-            초소형
-          </button>
-          <button type="button" name="size" onClick={() => handleFilter('size', 'SMALL')} style={isActive.size === 'SMALL' ? { ...selectStyle } : {}}>
-            소형
-          </button>
-          <button type="button" name="size" onClick={() => handleFilter('size', 'MEDIUM')} style={isActive.size === 'MEDIUM' ? { ...selectStyle } : {}}>
-            중형
-          </button>
-          <button type="button" name="size" onClick={() => handleFilter('size', 'LARGE')} style={isActive.size === 'LARGE' ? { ...selectStyle } : {}}>
-            대형
-          </button>
+          <div className={styles.tagButton}>
+            <button type="button" name="size" onClick={() => handleFilter('size', 'ULTRA_SMALL')} style={isActive.size === 'ULTRA_SMALL' ? { ...selectStyle } : {}}>
+              초소형
+            </button>
+            <button type="button" name="size" onClick={() => handleFilter('size', 'SMALL')} style={isActive.size === 'SMALL' ? { ...selectStyle } : {}}>
+              소형
+            </button>
+            <button type="button" name="size" onClick={() => handleFilter('size', 'MEDIUM')} style={isActive.size === 'MEDIUM' ? { ...selectStyle } : {}}>
+              중형
+            </button>
+            <button type="button" name="size" onClick={() => handleFilter('size', 'LARGE')} style={isActive.size === 'LARGE' ? { ...selectStyle } : {}}>
+              대형
+            </button>
+          </div>
         </div>
         <div className={styles.tag_item}>
           <label>건강검진</label>
-          <button type="button" name="healthChecked" onClick={() => handleFilter('healthChecked', true)} style={isActive.healthChecked === true ? { ...selectStyle } : {}}>
-            검진 완료
-          </button>
-          <button type="button" name="healthChecked" onClick={() => handleFilter('healthChecked', false)} style={isActive.healthChecked === false ? { ...selectStyle } : {}}>
-            검진 미완료
-          </button>
+          <div className={styles.tagButton}>
+            <button type="button" name="healthChecked" onClick={() => handleFilter('healthChecked', true)} style={isActive.healthChecked === true ? { ...selectStyle } : {}}>
+              검진 완료
+            </button>
+            <button type="button" name="healthChecked" onClick={() => handleFilter('healthChecked', false)} style={isActive.healthChecked === false ? { ...selectStyle } : {}}>
+              검진 미완료
+            </button>
+          </div>
         </div>
         <div className={styles.tag_item}>
           <label>성별</label>
-          <button type="button" name="gender" onClick={() => handleFilter('gender', 'MALE')} style={isActive.gender === 'MALE' ? { ...selectStyle } : {}}>
-            <img src="../../../public/Male.svg" alt="Male" />
-          </button>
-          <button type="button" name="gender" onClick={() => handleFilter('gender', 'FEMALE')} style={isActive.gender === 'FEMALE' ? { ...selectStyle } : {}}>
-            <img src="../../../public/Female.svg" alt="Female" />
-          </button>
+          <div className={styles.tagButton}>
+            <button type="button" name="gender" onClick={() => handleFilter('gender', 'MALE')} style={isActive.gender === 'MALE' ? { ...selectStyle } : {}}>
+              <img src="../../../public/Male.svg" alt="Male" />
+            </button>
+            <button type="button" name="gender" onClick={() => handleFilter('gender', 'FEMALE')} style={isActive.gender === 'FEMALE' ? { ...selectStyle } : {}}>
+              <img src="../../../public/Female.svg" alt="Female" />
+            </button>
+          </div>
         </div>
         <div className={styles.tag_item}>
           <label>중성화</label>
-          <button type="button" name="neutering" onClick={() => handleFilter('neutering', true)} style={isActive.neutering === true ? { ...selectStyle } : {}}>
-            중성화
-          </button>
+          <div className={styles.tagButton}>
+            <button type="button" name="neutering" onClick={() => handleFilter('neutering', true)} style={isActive.neutering === true ? { ...selectStyle } : {}}>
+              중성화
+            </button>
+          </div>
         </div>
         <div className={styles.tag_item}>
           <label>나이</label>
           <div className={styles.age}>
-            <input type="text" placeholder="최소 나이" value={selectedFilters.minAge} onChange={(e) => handleAgeRange(e, 'minAge')} />
+            <input type="text" placeholder="최소" value={selectedFilters.minAge} onChange={(e) => handleAgeRange(e, 'minAge')} />
+            <span>살</span>
             <span>~</span>
-            <input type="text" placeholder="최대 나이" value={selectedFilters.maxAge} onChange={(e) => handleAgeRange(e, 'maxAge')} />
+            <input type="text" placeholder="최대" value={selectedFilters.maxAge} onChange={(e) => handleAgeRange(e, 'maxAge')} />
+            <span>살</span>
           </div>
         </div>
 
@@ -211,7 +243,7 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
 
         <div className={styles.tag_breed}>
           <label>견종</label>
-          <div>
+          <div className={styles.tagButton}>
             <button type="button" name="breed" onClick={() => handleFilter('breed', 'GREYHOUND')} style={isActive.breed === 'GREYHOUND' ? { ...selectStyle } : {}}>
               그레이하운드
             </button>
