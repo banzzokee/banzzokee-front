@@ -55,6 +55,7 @@ export default function NotificationToken() {
 
   useEffect(() => {
     const messaging = firebase.messaging();
+    console.log('Firebase Messaging:', messaging);
 
     // 사용자로부터 알림 권한 요청
     Notification.requestPermission().then((permission) => {
@@ -77,7 +78,7 @@ export default function NotificationToken() {
 
       // 포그라운드 메시지 수신 처리
     messaging.onMessage((payload) => {
-      console.log('Message received.', payload);
+      console.log('Message received in foreground:', payload);
       appendMessage(payload);
 
       const { title, body } = payload.notification;
@@ -108,15 +109,12 @@ export default function NotificationToken() {
 
 
     const handleNotificationClick = (payload) => {
-      if (payload.data && payload.data.notificationType) {
-        const notificationType = payload.data.notificationType;
-        const notificationId = payload.data.notificationId;
-  
-        if (notificationType === 'chat') {
-          navigate(`/Message/${notificationId}`);
-        } else if (notificationType === 'post') {
-          navigate(`/posts/${notificationId}`);
-        }
+      if (payload.data && payload.data.chatMessageId) {
+        const chatMessageId = payload.data.chatMessageId;
+        navigate(`/Message/${chatroomId}`);
+      } else if (payload.data && payload.data.postId) {
+        const postId = payload.data.postId;
+        navigate(`/posts/${postId}`);
       }
     };
 

@@ -28,11 +28,13 @@ export default function Notification() {
         },
         headers: { Authorization: `Bearer ${accessToken}` },
       };
+      console.log('Before API Request'); 
       const response = await axios.request(config);
 
       console.log('API Response:', response.data);
 
       if (Array.isArray(response.data.content)) {
+        console.log('Setting Notifications:', response.data.content);
         setNotifications(response.data.content);
       } else {
         console.error('Invalid data format received:', response.data);
@@ -77,11 +79,15 @@ export default function Notification() {
 
 
   const navigate = useNavigate();
+
   const handleNotificationClick = (notification) => {
-    if (notification.type === 'chat') {
-      navigate(`/Message/${notification.id}`);
-    } else if (notification.type === 'post') {
-      navigate(`/posts/${notification.postId}`);
+    console.log('Clicked notification:', notification);
+    if (notification.message?.data?.adoptionId) {
+      console.log('Chat message ID:', notification.message.data.chatRoomId);
+      navigate(`/Message/${notification.message.data.adoptionId}`);
+    } else if (notification.message?.data?.postId) {
+      console.log('Post ID:', notification.message.data.postId);
+      navigate(`/posts/${notification.message.data.postId}`);
     }
   };
 
@@ -103,30 +109,89 @@ export default function Notification() {
           )} */}
           </div>
         </div>
-        <ul>
-          {notifications.map((notification) => (
-            <li key={notification.id} onClick={() => handleNotificationClick(notification.id)}>
-              <div className={styles.liBox}>
-                <div className={styles.notificationContainer}>
-                  <div className={styles.notificationTitle}>{notification.title}</div>
-                  <div className={styles.notificationBody}>{notification.body}</div>
-                  {/* <div className={styles.notificationDate}>{String(notification.notifiedAt).substring(0,10)}</div> */}
-                  <div className={styles.notificationDate}>{notificationDate(notification.notifiedAt)}</div>
-
+  
+        {notifications.length === 0 ? (
+          <p>알림이 없습니다.</p>
+        ) : (
+          <ul>
+            {notifications.map((notification) => (
+              <li key={notification.id}>
+                <div className={styles.content}>
+                  <div className={styles.liBox} onClick={() => handleNotificationClick(notification)}>
+                    {notification.message.notification?.image && (
+                      <div>
+                        <img src={notification.message.notification.image} alt="Notification" className={styles.notificationImage} />
+                      </div>
+                    )}
+                    <div className={styles.notificationContainer}>
+                      <div className={styles.notificationTitle}>{notification.message.notification?.title}</div>
+                      <div className={styles.notificationBody}>{notification.message.notification?.body}</div>
+                      <div className={styles.notificationDate}>{notificationDate(notification.notifiedAt)}</div>
+                    </div>
+                  </div>
+                  <div className={styles.deleteIcon} onClick={() => markNotificationAsRead(notification.id)}>
+                    <img src="../../../public/X.svg" alt="" style={{ width: '14px', height: '14px' }} />
+                  </div>
                 </div>
-                <div className={styles.deleteIcon} onClick={() => markNotificationAsRead(notification.id)}>
-                  <img src="../../../public/X.svg" alt="" style={{ width: '14px', height: '14px' }} />
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-        <button className={styles.button} onClick={markAllNotificationsAsRead}>
-          전체 확인
-        </button>
+              </li>
+            ))}
+          </ul>
+        )}
+  
+        {notifications.length > 0 && (
+          <button className={styles.button} onClick={markAllNotificationsAsRead}>
+            전체 확인
+          </button>
+        )}
       </div>
     </>
   );
+
+
+
+  // return (
+  //   <>
+  //     <BackHeader />
+  //     <div className={styles.notification_Page}>
+  //       <div className={styles.notification_Header}>
+  //         <div className={styles.notification_Logo}>
+  //           <img src="/Notification.png" alt="Notification" className={styles.notification_Img} />
+  //           <span>알림</span>
+  //           {/* {unreadCount > 0 && (
+  //           <div className={styles.notificationCount}>{unreadCount}</div>
+  //         )} */}
+  //         </div>
+  //       </div>
+  //       <ul>
+  //         {notifications.map((notification) => (
+  //           <li key={notification.id}>
+  //             <div className={styles.content}>
+  //               <div className={styles.liBox} onClick={() => handleNotificationClick(notification)}>
+  //                 {notification.message.notification?.image && (
+  //                   <div>
+  //                     <img src={notification.message.notification.image} alt="Notification" className={styles.notificationImage} />
+  //                   </div>
+  //                 )}
+  //                 <div className={styles.notificationContainer}>
+  //                   <div className={styles.notificationTitle}>{notification.message.notification?.title}</div>
+  //                   <div className={styles.notificationBody}>{notification.message.notification?.body}</div>
+  //                   <div className={styles.notificationDate}>{notificationDate(notification.notifiedAt)}</div>
+
+  //                 </div>
+  //               </div>
+  //               <div className={styles.deleteIcon} onClick={() => markNotificationAsRead(notification.id)}>
+  //                 <img src="../../../public/X.svg" alt="" style={{ width: '14px', height: '14px' }} />
+  //               </div>
+  //             </div>
+  //           </li>
+  //         ))}
+  //       </ul>
+  //       <button className={styles.button} onClick={markAllNotificationsAsRead}>
+  //         전체 확인
+  //       </button>
+  //     </div>
+  //   </>
+  // );
 }
 
 
