@@ -24,9 +24,10 @@ export default function Message() {
   const [hasRoom, setHasRoom] = useState(true);
   const [roomInfo, setRoomInfo] = useState({});
   const [otherUserId, setOtherUserId] = useState();
+  const [otherUserName, setOtherUserName] = useState();
   const location = useLocation();
   const { state } = location;
-  console.log('state:: ', state);
+
   // const client = useRef({});
   const [otherInfo, setOtherInfo] = useState();
   const [roomId, setRoomId] = useState();
@@ -63,7 +64,13 @@ export default function Message() {
         if (rooms[i].adoption.adoptionId == id) {
           changeHasroom = false;
           setRoomInfo(rooms[i]);
-          setOtherUserId(rooms[i].user.userId);
+          if (myInfo.userId == rooms[i].user.userId) {
+            setOtherUserId(rooms[i].shelter.user.userId);
+            setOtherUserName(rooms[i].shelter.user.nickname);
+          } else {
+            setOtherUserId(rooms[i].user.userId);
+            setOtherUserName(rooms[i].user.nickname);
+          }
           setRoomId(rooms[i].roomId);
           console.log('do not create new room');
           break;
@@ -102,6 +109,7 @@ export default function Message() {
       }
       setRoomInfo(response.data);
       setOtherUserId(response.data.user.userId);
+      setOtherUserId(response.data.user.nickname);
       // const response = await axios.get('http://localhost:3001/adoption');
       // setArticleList(response.data);
       console.log(response.data);
@@ -121,7 +129,7 @@ export default function Message() {
           connectHeaders: {
             Authorization: `Bearer ${accessToken}`,
           },
-          reconnectDelay: 1000, //자동 재 연결
+          reconnectDelay: 500, //자동 재 연결
           heartbeatIncoming: 4000,
           heartbeatOutgoing: 4000,
         });
@@ -130,7 +138,7 @@ export default function Message() {
         stomp.activate();
 
         stomp.onConnect = () => {
-          console.log('WebSocket 연결이 열렸습니다.');
+          console.log('WebSocket 연결이 열렸습니다!.');
           const subscriptionDestination = `/topic/chats.rooms.${roomInfo.roomId}`;
 
           stomp.subscribe(subscriptionDestination, (chat) => {
@@ -158,7 +166,7 @@ export default function Message() {
         stompClient.deactivate();
       }
     };
-  }, [roomInfo]);
+  }, []);
 
   const sendMessage = () => {
     // 메시지 전송
@@ -175,7 +183,7 @@ export default function Message() {
     }
     console.log('roomInfo', roomInfo);
     console.log('sendmessage', inputMessage);
-    setMessages([inputMessage, ...messages]);
+    setMessages([...inputMessage]);
     setInputMessage('');
   };
   const onLeaveRoom = async () => {
@@ -198,7 +206,7 @@ export default function Message() {
         connectHeaders: {
           Authorization: `Bearer ${accessToken}`,
         },
-        reconnectDelay: 1000, //자동 재 연결
+        reconnectDelay: 500, //자동 재 연결
         heartbeatIncoming: 4000,
         heartbeatOutgoing: 4000,
       });
@@ -208,18 +216,27 @@ export default function Message() {
       console.error('Error:', error);
     }
   };
-  const toOtherMyPage = () => {
+  const toOtherMyPage = async () => {
+    let otherUserId = '';
     if (roomInfo.shelter != null) {
       if (roomInfo.user && roomInfo.user.userId) {
-        const dataSend = roomInfo.user;
-        navigate(`/OtherMyPage/${roomInfo.user.userId}`, { state: dataSend });
+        otherUserId = roomInfo.user.userId;
       }
     } else {
       if (roomInfo.shelter.user && roomInfo.shelter.user.userId) {
-        const dataSend = roomInfo.shelter.user;
-        navigate(`/OtherMyPage/${roomInfo.shelter.user.userId}`, { state: dataSend });
+        otherUserId = roomInfo.shelter.user.userId;
       }
     }
+    const config = {
+      method: 'get',
+      url: `https://server.banzzokee.homes/api/users/${otherUserId}`,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+
+    const response = await axios.request(config);
+    console.log(response);
   };
   const onclickBack = () => {
     navigate(`/ChatListPage`);
@@ -232,7 +249,7 @@ export default function Message() {
     const editBox = document.getElementById('edit');
     editBox.style.display = editBox.style.display === 'none' ? 'block' : 'none';
   };
-  const space = ' ';
+
   return (
     <>
       <div className={styles.Header}>
@@ -241,7 +258,7 @@ export default function Message() {
           <img src="/Arrow.png" alt="Arrow" className={styles.arrow} />
         </div>
         <div className={styles.headerFeature}>
-          <div className={styles.name}>{state.otherName}</div>
+          <div className={styles.name}>{otherUserName}</div>
           <div className={styles.headerRight}>
             <button style={{ padding: 0, backgroundColor: '#50586c' }} onClick={openEdit}>
               <img src="../../../public/edit.svg" />
@@ -285,7 +302,7 @@ export default function Message() {
           ))}
       </div>
 
-      <form onSubmit={sendMessage}>
+      <div>
         <div className={styles.messageInput}>
           <div className={styles.add}>
             <input className={styles.addPhoto} type="file" name="" id="fileInput"></input>
@@ -307,7 +324,7 @@ export default function Message() {
             </div>
           </div>
         </div>
-      </form>
+      </div>
     </>
   );
 }

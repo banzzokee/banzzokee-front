@@ -11,7 +11,7 @@
 }
 .messageContainer {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   width: 100%;
   background-color: #e1e1e1;
   height: 655px;
@@ -169,6 +169,7 @@ input::content {
   align-items: center;
   overflow: hidden;
   border-radius: 100px;
+  z-index: 10;
 }
 .otherMessage {
   background-color: white;

@@ -37,7 +37,7 @@ export default function FollowingPage() {
       <BackHeader style={{ backgroundColor: '#e1e1e1' }}></BackHeader>
       <div className={styles.container}>
         <div className={styles.followTitle}></div>
-        <div className={styles.listBox}>{list && list.map((follower) => <FollowCard key={follower.id} follower={follower} list={list} />)}</div>
+        <div className={styles.listBox}>{list && list.map((follower) => <FollowCard key={follower.userId} follower={follower.nickname} userId={follower.userId} />)}</div>
       </div>
 
       <Nav></Nav>
