@@ -19,6 +19,7 @@ export default function ArticleList({ sortBy, appliedFilters }) {
       if (hasMore) {
         console.log('Getarticle::: page:', page);
         console.log('Getarticle::: inview:', inView);
+        console.log('Fetching data...');
         const config = {
           method: 'get',
           // url: `https://server.banzzokee.homes/api/adoptions?page=${page}&size=7&direction=${sortBy}`,
@@ -36,11 +37,13 @@ export default function ArticleList({ sortBy, appliedFilters }) {
             size: 7,
           },
         };
-        // console.log('url:', config.url);
+        console.log('config:', config);
+        console.log('url:', config.url);
         console.log('params:', config.params);
         const response = await axios.request(config);
-        console.log('resp.data.content', response.data.content);
+        console.log('Response:', response);
         const filteredList = response.data.content;
+        console.log('FilteredList:', filteredList);
         setArticleList([...articleList, ...filteredList]);
         if (response.data.content.length < 7) {
           setHasMore(false);
@@ -54,6 +57,7 @@ export default function ArticleList({ sortBy, appliedFilters }) {
       console.error('Error:', error);
     }
   };
+
 
   useEffect(() => {
     console.log('sortby, filter applied:::::::::::::');

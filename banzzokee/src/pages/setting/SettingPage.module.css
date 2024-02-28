@@ -40,8 +40,9 @@ p {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background-color: white;
+  background-color: #333333;
   position: absolute;
+  transition: right 1s ease;
   /* right: 0; */
 }
 .title {
@@ -57,3 +58,33 @@ p {
   color: white;
   font-size: 18px;
 }
+
+.darkMode {
+  /* background-color: #333333; */
+  background-color: #50586c;
+  color: #ffffff;
+}
+
+.darkMode .onOffBox {
+  background-color: #555555;
+  /* background-color: #50586c; */
+}
+
+.darkMode .onOffCircle {
+  background-color: #ffffff;
+}
+
+.darkModeButton {
+  background-color: #ffffff;
+  /* color: #333333; */
+  color: #50586c;
+}
+
+.darkMode p {
+  color: #ffffff;
+}
+
+.darkMode .onOffCircle {
+  right: 0;
+}
+

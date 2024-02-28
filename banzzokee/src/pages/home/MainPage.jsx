@@ -51,6 +51,7 @@ export default function MainPage() {
       <Header />
       <div className={styles.wrap}>
         <div className={styles.mainPage_Header}>
+          <div className={styles.buttonContainer}>
           <div>
             <button onClick={() => sortOrder('desc')} className={styles.sortButton}>
               최신순
@@ -60,15 +61,18 @@ export default function MainPage() {
               오래된순
             </button>
           </div>
-          <div>
-            <div className={styles.filter} onClick={handleFilter}>
+          <div className={styles.buttonArea}>
+            <button className={`${styles.filter} ${isFilterOpen ? styles.filterOpen : ''}`} onClick={handleFilter}>
               필터
               <img src="/Filter.png" alt="필터" className={styles.filter_Img} />
+            </button>
             </div>
           </div>
         </div>
         {isFilterOpen && <Filter onApplyFilter={applyFilter} onResetFilters={resetFilters} />}
-        <ArticleList appliedFilters={appliedFilters} sortBy={sortBy} />
+        <div className={styles.articleListContainer}>
+          <ArticleList appliedFilters={appliedFilters} sortBy={sortBy} />
+        </div>
       </div>
       <Nav />
     </>
