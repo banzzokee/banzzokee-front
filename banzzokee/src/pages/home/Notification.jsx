@@ -82,9 +82,9 @@ export default function Notification() {
 
   const handleNotificationClick = (notification) => {
     console.log('Clicked notification:', notification);
-    if (notification.message?.data?.adoptionId) {
+    if (notification.message?.data?.chatRoomId) {
       console.log('Chat message ID:', notification.message.data.chatRoomId);
-      navigate(`/Message/${notification.message.data.adoptionId}`);
+      navigate(`/Message/${notification.message.data.chatRoomId}`);
     } else if (notification.message?.data?.postId) {
       console.log('Post ID:', notification.message.data.postId);
       navigate(`/posts/${notification.message.data.postId}`);

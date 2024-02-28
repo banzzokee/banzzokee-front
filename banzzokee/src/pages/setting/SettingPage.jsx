@@ -9,7 +9,11 @@ export default function SettingPage() {
   const [interestPostNotification, setInterestPostNotification] = useState(true);
   const [reviewPostNotification, setReviewPostNotification] = useState(true);
   const [followShelterNotification, setFollowShelterNotification] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const myInfo = JSON.parse(sessionStorage.getItem('myInfo'));
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
   const logout = () => {
     sessionStorage.removeItem('userInfo');
     sessionStorage.removeItem('accessToken');
@@ -20,7 +24,7 @@ export default function SettingPage() {
   };
   return (
     <>
-      <SettingHeader style={{ backgroundColor: '#e1e1e1' }}></SettingHeader>
+      {/* <SettingHeader style={{ backgroundColor: '#e1e1e1' }}></SettingHeader>
       <div className={styles.container}>
         <div className={styles.eachSetting}>
           <p className={styles.title}>디스플레이 설정</p>
@@ -30,7 +34,20 @@ export default function SettingPage() {
               <div className={styles.onOffCircle}></div>
             </div>
           </div>
-        </div>
+        </div> */}
+      <SettingHeader style={{ backgroundColor: darkMode ? '#50586c' : '#e1e1e1' }}></SettingHeader>
+      <div className={`${styles.container} ${darkMode ? styles.darkMode : ''}`}>
+        <div className={styles.eachSetting}>
+          <p className={styles.title}>디스플레이 설정</p>
+          <div className={styles.eachOnOff}>
+            <p className={styles.settingTitle}>라이트 / 다크 모드</p>
+            <div className={`${styles.onOffBox} ${darkMode ? styles.darkMode : ''}`} onClick={toggleDarkMode}>
+              <div className={styles.onOffCircle}></div>
+            </div>
+          </div>
+        </div> 
+
+
         <div className={styles.eachSetting}>
           <p className={styles.title}>보호소 등록</p>
           <Link to="/ShelterRegisterPage">
@@ -58,7 +75,7 @@ export default function SettingPage() {
             <p className={styles.option}>비밀번호 변경</p>
           </Link>
         </div>
-        <button className={styles.logout} onClick={logout}>
+        <button className={`${styles.logout} ${darkMode ? styles.darkModeButton : ''}`} onClick={logout}>
           로그아웃
         </button>
       </div>
