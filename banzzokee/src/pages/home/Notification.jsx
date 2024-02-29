@@ -5,15 +5,14 @@ import axios from 'axios';
 import { notificationDate } from '../../components/dateUtils';
 import { useNavigate } from 'react-router-dom';
 
-
 export default function Notification() {
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
 
   useEffect(() => {
-    setUnreadCount(notifications.filter(notification => !notification.checked).length);
-  }, [notifications]); 
+    setUnreadCount(notifications.filter((notification) => !notification.checked).length);
+  }, [notifications]);
 
   const getNotifications = async () => {
     try {
@@ -28,7 +27,7 @@ export default function Notification() {
         },
         headers: { Authorization: `Bearer ${accessToken}` },
       };
-      console.log('Before API Request'); 
+      console.log('Before API Request');
       const response = await axios.request(config);
 
       console.log('API Response:', response.data);
@@ -43,8 +42,6 @@ export default function Notification() {
       console.error(error);
     }
   };
-  
-
 
   const markNotificationAsRead = async (notificationId) => {
     try {
@@ -75,8 +72,7 @@ export default function Notification() {
   useEffect(() => {
     console.log('Notification component mounted.');
     getNotifications();
-  }, []); 
-
+  }, []);
 
   const navigate = useNavigate();
 
@@ -84,7 +80,11 @@ export default function Notification() {
     console.log('Clicked notification:', notification);
     if (notification.message?.data?.chatRoomId) {
       console.log('Chat message ID:', notification.message.data.chatRoomId);
-      navigate(`/Message/${notification.message.data.chatRoomId}`);
+      let index = notification.message.notification.title.indexOf('님이');
+      console.log(index);
+      const sendName = notification.message.notification.title.substring(0, index);
+      console.log(sendName);
+      navigate(`/Message/${notification.message.data.chatRoomId}`, { state: { roomId: notification.message.data.chatRoomId, otherName: sendName } });
     } else if (notification.message?.data?.adoptionId) {
       console.log('Post ID:', notification.message.data.adoptionId);
       navigate(`/ArticleList/${notification.message.data.adoptionId}`);
@@ -92,9 +92,8 @@ export default function Notification() {
   };
 
   useEffect(() => {
-    setUnreadCount(notifications.filter(notification => !notification.checked).length);
-  }, [notifications]); 
-
+    setUnreadCount(notifications.filter((notification) => !notification.checked).length);
+  }, [notifications]);
 
   return (
     <>
@@ -109,11 +108,11 @@ export default function Notification() {
           )} */}
           </div>
         </div>
-  
+
         {notifications.length === 0 ? (
           <p>알림이 없습니다.</p>
         ) : (
-          <ul >
+          <ul>
             {notifications.map((notification) => (
               <li key={notification.id}>
                 <div className={styles.content}>
@@ -137,7 +136,7 @@ export default function Notification() {
             ))}
           </ul>
         )}
-  
+
         {notifications.length > 0 && (
           <button className={styles.button} onClick={markAllNotificationsAsRead}>
             전체 확인
@@ -146,8 +145,6 @@ export default function Notification() {
       </div>
     </>
   );
-
-
 
   // return (
   //   <>
@@ -193,6 +190,3 @@ export default function Notification() {
   //   </>
   // );
 }
-
-
-
