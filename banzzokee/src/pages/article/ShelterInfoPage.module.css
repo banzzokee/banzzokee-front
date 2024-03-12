@@ -1,0 +1,45 @@
+.container {
+  width: 375px;
+  height: 655px;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: white;
+  background-color: #e1e1e1;
+}
+.title {
+  font-weight: bold;
+}
+.picture {
+  width: 150px;
+  height: 150px;
+  background-color: #bebebe;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.picture img {
+  width: 100%;
+  height: 100%;
+}
+.edit {
+  margin-top: 10px;
+}
+.shelterInfo {
+  text-align: left;
+  padding: 10px 20px;
+}
+
+.shelterName {
+  font-weight: bold;
+}
+.mapButton {
+  background-color: #50586c;
+  color: white;
+  margin-top: 20px;
+  width: 90%;
+  height: 50px;
+}

@@ -1,0 +1,302 @@
+{
+  "users": [
+    {
+      "email": "heejun@gmail.com",
+      "password": "$2a$10$JczW6aFaNy8mNaGJz7fI6u8rQ3h3BNmgt7M0kIWe.w5eZ2MXS7NVu",
+      "id": "1",
+      "nickname": "user_1234",
+      "profile_img_url": "../../../public/myPhoto.jpg",
+      "introduce": "안녕하세요. 소형견 입양 희망합니다."
+    },
+    {
+      "id": "c522",
+      "email": "testtest@naver.com",
+      "password": "111111aA@",
+      "passwordconfirm": "111111aA@",
+      "nickname": "1234"
+    },
+    {
+      "email": "a@aa.com",
+      "password": "$2a$10$iauw2QJMwapRRaEDamE9SO90c0NFn2AFH2GaigbiY1VIUtct/iTAO",
+      "passwordconfirm": "aaaaaaaaaa1!",
+      "profile_img_url": "../../../public/myPhoto.jpg",
+      "introduce": "안녕하세요. 소형견 입양 희망합니다.!d",
+      "nickname": "행복보호소장",
+      "userId": "APmgnc1",
+      "id": "APmgnc1",
+      "shelter": {
+        "name": "a보호소",
+        "description": "유기견센터입니다.",
+        "tel": "010-101-0101",
+        "address": "서울"
+      },
+      "followers": [
+        {
+          "userId": 1,
+          "nickname": "테스트계정"
+        }
+      ],
+      "followees": {
+        "userId": "3Y8GKEd",
+        "nickname": "ababababab"
+      },
+      "originPassword": "a",
+      "newPassword": "aa",
+      "confirmPassword": "aa"
+    },
+    {
+      "email": "ab@ab.com",
+      "password": "$2a$10$.rDqj5iyg4drqsR531CSAeBKBF7UogKIkzMmRvQdR1vwSxA81Nr..",
+      "passwordconfirm": "ababababab1!",
+      "nickname": "ababababab",
+      "id": "3Y8GKEd",
+      "shelter": {
+        "name": "a",
+        "description": "b",
+        "tel": "a",
+        "address": "b"
+      }
+    },
+    {
+      "email": "abc@abc.com",
+      "passwordconfirm": "ababababab1!",
+      "nickname": "abc",
+      "id": "2rwCeob",
+      "shelter": {
+        "name": "a",
+        "description": "a",
+        "tel": "a",
+        "address": "a"
+      }
+    },
+    {
+      "id": 22,
+      "email": "test@naver.com",
+      "password": "123123123!",
+      "profileImgUrl": "../../.../public/user.png",
+      "nickname": "user_123123123",
+      "introduce": "서울 입양 희만하는분 연락주세요!",
+      "role": "USER",
+      "shelter": {
+        "shelterId": 1,
+        "shelterImgUrl": "https://shelter.image.com",
+        "name": "shelter name",
+        "description": "shelter description",
+        "tel": "010-0000-0000",
+        "address": "서울시 강남구 대치동 123-23",
+        "registeredAt": "2024-01-18"
+      },
+      "joinedAt": "2024-01-18"
+    },
+    {
+      "email": "aaa@aaa.com",
+      "password": "aaaaaaaaaa1!",
+      "passwordconfirm": "aaaaaaaaaa1!",
+      "nickname": "aaaaaaaaaa1!",
+      "id": "GiT40ch"
+    }
+  ],
+  "adoption": [
+    {
+      "imageUrls": [],
+      "title": "aabb",
+      "tags": {
+        "breeds": "푸들",
+        "size": "초소형",
+        "healthChecked": "검진 완료",
+        "gender": "남",
+        "neutering": "예",
+        "age": "3",
+        "registeredAt": "2022",
+        "user": {
+          "email": "a@aa.com",
+          "password": "$2a$10$iauw2QJMwapRRaEDamE9SO90c0NFn2AFH2GaigbiY1VIUtct/iTAO",
+          "passwordconfirm": "aaaaaaaaaa1!",
+          "profile_img_url": "../../../public/myPhoto.jpg",
+          "introduce": "안녕하세요. 소형견 입양 희망합니다.",
+          "nickname": "행복보호소장",
+          "userId": "APmgnc1",
+          "shelter": {
+            "name": "d센터",
+            "description": "유기견센터입니다.",
+            "tel": "010-101-0101",
+            "address": "서울"
+          }
+        }
+      },
+      "status": "분양중",
+      "content": "안녕",
+      "id": "vIztRk2"
+    },
+    {
+      "imageUrls": [],
+      "title": "bbbb",
+      "tags": {
+        "breeds": "푸들",
+        "size": "초소형",
+        "healthChecked": "검진 완료",
+        "gender": "남",
+        "neutering": "예",
+        "age": "3",
+        "registeredAt": "2022",
+        "user": {
+          "email": "a@aa.com",
+          "password": "$2a$10$iauw2QJMwapRRaEDamE9SO90c0NFn2AFH2GaigbiY1VIUtct/iTAO",
+          "passwordconfirm": "aaaaaaaaaa1!",
+          "profile_img_url": "../../../public/myPhoto.jpg",
+          "introduce": "안녕하세요. 소형견 입양 희망합니다.",
+          "nickname": "행복보호소장",
+          "userId": "APmgnc1",
+          "shelter": {
+            "name": "d센터",
+            "description": "유기견센터입니다.",
+            "tel": "010-101-0101",
+            "address": "서울"
+          }
+        }
+      },
+      "status": "분양중",
+      "content": "안녕",
+      "id": "vIztRk3"
+    },
+    {
+      "imageUrls": [],
+      "title": "cccc",
+      "tags": {
+        "breeds": "푸들",
+        "size": "초소형",
+        "healthChecked": "검진 완료",
+        "gender": "남",
+        "neutering": "예",
+        "age": "3",
+        "registeredAt": "2022",
+        "user": {
+          "email": "a@aa.com",
+          "password": "$2a$10$iauw2QJMwapRRaEDamE9SO90c0NFn2AFH2GaigbiY1VIUtct/iTAO",
+          "passwordconfirm": "aaaaaaaaaa1!",
+          "profile_img_url": "../../../public/myPhoto.jpg",
+          "introduce": "안녕하세요. 소형견 입양 희망합니다.",
+          "nickname": "행복보호소장",
+          "userId": "APmgnc1",
+          "shelter": {
+            "name": "d센터",
+            "description": "유기견센터입니다.",
+            "tel": "010-101-0101",
+            "address": "서울"
+          }
+        }
+      },
+      "status": "분양중",
+      "content": "안녕",
+      "id": "vIztRk24"
+    },
+    {
+      "imageUrls": [],
+      "title": "11111111",
+      "tags": {
+        "breeds": "푸들",
+        "size": "중형",
+        "healthChecked": "검진 미완료",
+        "gender": "남",
+        "neutering": "아니오",
+        "age": "4",
+        "registeredAt": "2023-04-05"
+      },
+      "status": "분양완료",
+      "content": "2323232",
+      "id": "beIuSJl"
+    },
+    {
+      "imageUrls": [],
+      "title": "2222222",
+      "tags": {
+        "breeds": "",
+        "size": "대형",
+        "healthChecked": "검진 완료",
+        "gender": "여",
+        "neutering": "예",
+        "age": "4",
+        "registeredAt": "2023-04-05"
+      },
+      "status": "분양완료",
+      "content": "2323232",
+      "id": "LR9UwMy"
+    },
+    {
+      "imageUrls": [],
+      "title": "111",
+      "tags": {
+        "breeds": "",
+        "size": "",
+        "healthChecked": "",
+        "gender": "",
+        "neutering": "",
+        "age": "",
+        "registeredAt": ""
+      },
+      "status": "",
+      "content": "",
+      "id": "KEvMT_r"
+    },
+    {
+      "imageUrls": [],
+      "title": "111",
+      "tags": {
+        "breeds": "",
+        "size": "중",
+        "healthChecked": "검진 완료",
+        "gender": "남",
+        "neutering": "예",
+        "age": "",
+        "registeredAt": ""
+      },
+      "status": "분양완료",
+      "content": "111",
+      "id": "0xD-718"
+    }
+  ],
+  "shelter": [],
+  "review": [],
+  "chats": [
+    {
+      "user": {
+        "userId": 1,
+        "profileImgUrl": "https://one.png",
+        "nickname": "심신안정유저"
+      },
+      "message": "안녕하세요. 입양하고 싶어요!",
+      "messageType": "TEXT",
+      "createdAt": "2024-01-18T18:01:17.692302"
+    },
+    {
+      "user": {
+        "userId": 2,
+        "profileImgUrl": "https://two.png",
+        "nickname": "행복보호소장"
+      },
+      "message": "네 안녕하세요. 강아지 너무 귀엽죠?",
+      "messageType": "TEXT",
+      "createdAt": "2024-01-18T18:01:17.692302"
+    },
+    {
+      "user": {
+        "userId": 2,
+        "profileImgUrl": "https://two.png",
+        "nickname": "행복보호소장"
+      },
+      "message": "https://dog-picture.com",
+      "messageType": "PHOTO",
+      "createdAt": "2024-01-18T18:01:17.692302"
+    },
+    {
+      "user": {
+        "userId": 1,
+        "profileImgUrl": "https://one.png",
+        "nickname": "심신안정유저"
+      },
+      "message": "상대방이 나갔습니다.",
+      "messageType": "EXIT",
+      "createdAt": "2024-01-18T18:01:17.692302"
+    }
+  ]
+}

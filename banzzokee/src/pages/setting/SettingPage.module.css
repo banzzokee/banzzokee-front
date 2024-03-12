@@ -1,0 +1,90 @@
+.container {
+  width: 375px;
+  height: 724px;
+  margin: 0 auto;
+  background-color: #e1e1e1;
+  font-size: 16px;
+  color: black;
+  padding: 0 30px;
+}
+* {
+  margin: 0;
+}
+.eachSetting {
+  padding-top: 20px;
+}
+p {
+  text-align: left;
+  font-weight: 300;
+  font-size: 16px;
+  color: black;
+}
+.eachOnOff {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.onOffBox {
+  width: 40px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #bebebe;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  cursor: pointer;
+}
+.onOffCircle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #333333;
+  position: absolute;
+  transition: right 1s ease;
+  /* right: 0; */
+}
+.title {
+  font-weight: bold;
+}
+.option {
+  margin-top: 10px;
+}
+.logout {
+  margin-top: 20px;
+  background-color: #50586c;
+  width: 100%;
+  color: white;
+  font-size: 18px;
+}
+
+.darkMode {
+  /* background-color: #333333; */
+  background-color: #50586c;
+  color: #ffffff;
+}
+
+.darkMode .onOffBox {
+  background-color: #555555;
+  /* background-color: #50586c; */
+}
+
+.darkMode .onOffCircle {
+  background-color: #ffffff;
+}
+
+.darkModeButton {
+  background-color: #ffffff;
+  /* color: #333333; */
+  color: #50586c;
+}
+
+.darkMode p {
+  color: #ffffff;
+}
+
+.darkMode .onOffCircle {
+  right: 0;
+}
+

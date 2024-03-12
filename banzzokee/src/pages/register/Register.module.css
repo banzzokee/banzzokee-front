@@ -1,0 +1,141 @@
+.register_Page {
+  width: 375px;
+  height: 724px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}
+
+.registerTitle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin: 40px 0;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.infoContainer {
+  height: 50px;
+  border: 1px solid #dadada;
+  background-color: #fafafa;
+}
+
+.info {
+  margin-left: 10px;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dadada;
+  height: auto;
+  margin: 0 10px;
+  width: 355px;
+}
+
+.inputGroup:first-child {
+  margin: 0;
+  border: none;
+}
+
+.emailBox {
+  border: 1px solid #dadada;
+  height: auto;
+  margin: 0 10px;
+}
+
+.inputGroup div {
+  display: flex;
+  flex-direction: column;
+}
+
+.emailconfirmBox {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 30px 0 0;
+}
+
+.label {
+  /* width: 100px; */
+  margin: 10px;
+  margin-left: 20px;
+}
+
+.numberVerify input {
+  height: 35px;
+  border: 1px solid #9C9A9A;
+}
+
+.verifyContainer {
+  display: flex;
+}
+
+label {
+  /* width: 100px; */
+  text-align: left;
+  margin: 10px;
+  margin-left: 20px;
+}
+
+.input {
+  border: 1px solid #9c9a9a;
+  border-radius: 5px;
+  height: 40px;
+  width: 220px;
+  margin: 5px 10px 10px 15px;
+  font-size: 17px;
+}
+
+.numberInput {
+  border-radius: 5px;
+}
+
+.emailconfirmButton {
+  width: 80px;
+  height: 39px;
+  padding: 0;
+  margin-top: 32px;
+  border-radius: 5px;
+  background-color: #fafafa;
+  border: 1px solid #9c9a9a;
+}
+
+.verifyButton {
+  width: 150px;
+  height: 34px;
+  padding: 0;
+  border-radius: 5px;
+  background-color: #fafafa;
+  border: 1px solid #9c9a9a;
+  margin-right: 10px;
+}
+
+.registerButton {
+  border: none;
+  border-radius: 5px;
+  height: 50px;
+  margin: 40px 10px;
+  color: #ffffff;
+  font-size: 18px;
+  margin-top: 40px;
+  background-color: #50586c;
+}
+
+.errorMessage {
+  color: #ff0000;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+/* .disabledButton {
+  background-color: #cccccc; 
+  cursor: not-allowed;
+} */
+
+

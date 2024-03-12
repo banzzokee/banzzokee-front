@@ -1,0 +1,94 @@
+.container {
+  width: 375px;
+  height: 655px;
+  margin: 0 auto;
+  padding: 0;
+  background-color: white;
+}
+
+.shelterInfo {
+  padding: 20px 30px;
+  height: 400px;
+  background-color: #e1e1e1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.profileImage {
+  position: relative;
+  width: 150px;
+}
+.picture {
+  width: 150px;
+  height: 150px;
+  background-color: #bebebe;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  border-radius: 100px;
+  overflow: hidden;
+  align-items: center;
+}
+.picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.badgeIcon {
+  width: 30%;
+  height: 30%;
+  position: absolute;
+  right: -5%;
+  top: 5%;
+  z-index: 10;
+}
+
+.infoAndName {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+.introduce {
+  height: 6em;
+  width: 100%;
+}
+.viewShelterInfoButton {
+  position: absolute;
+  left: 0;
+  font-size: 14px;
+}
+.shelterName {
+  font-weight: bold;
+  margin: 0 auto;
+  font-size: 16px;
+}
+.articleContainer {
+  height: 245px;
+  position: relative;
+  width: 100%;
+  /* height: 100%; */
+}
+.articleHeader {
+  /* position: absolute; */
+  width: 100%;
+  height: 50px;
+  background-color: #bebebe;
+  font-weight: bold;
+  font-size: large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.articleList {
+  overflow: scroll;
+  height: 195px;
+}
+.article {
+  height: 100px;
+  margin-bottom: 5px;
+}
+.followButton {
+  height: 52px;
+}

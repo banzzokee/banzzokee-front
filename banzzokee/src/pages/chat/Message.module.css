@@ -1,0 +1,198 @@
+.Header {
+  background-color: #50586c;
+  width: 375px;
+  height: 44px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #dfdfdf;
+  position: relative;
+}
+.messageContainer {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100%;
+  background-color: #e1e1e1;
+  height: 655px;
+  padding: 5px;
+  overflow: scroll;
+}
+.localMessageContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.back {
+  position: absolute;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  /* background-color: black; */
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 10;
+}
+.arrow {
+  width: 30px;
+  height: 25px;
+  margin: 10px 0 0 10px;
+}
+.headerRight {
+  display: flex;
+  position: absolute;
+  right: 0;
+  padding-right: 10px;
+}
+.edit {
+  position: absolute;
+  display: none;
+  right: 1px;
+  top: 34px;
+  z-index: 1;
+}
+
+.editButton {
+  width: 130px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(300, 300, 300, 0.5);
+  border: 0.2px solid lightgray;
+}
+.headerFeature {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+.name {
+  font-weight: bold;
+}
+.leaveRoom {
+  position: absolute;
+  right: 0;
+  font-size: 14px;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+.messageInput {
+  /* height: 80px; */
+  background-color: #616a82;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  text-align: center;
+  justify-content: space-between;
+}
+.typeMessage {
+  height: 50px;
+  width: 100%;
+  /* border: none; */
+  background-color: white;
+  font-size: 20px;
+  border-radius: 20px;
+  padding: 10px;
+  padding-right: 5px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+.textbox {
+  background-color: white;
+  /* background-color: white; */
+  width: 85%;
+  height: 100%;
+  font-size: 16px;
+  padding-right: 5px;
+}
+.sendButton {
+  background-color: #9aaee0;
+  width: 50px;
+  height: 40px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-right: 5px; */
+}
+input::content {
+  background-color: white;
+}
+.addIcon {
+  cursor: pointer;
+  margin: 0;
+}
+.addIcon img {
+  width: 40px;
+  height: 40px;
+}
+.addPhoto {
+  display: none;
+}
+.systemMessageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.systemMessage {
+  background-color: #3e3e3e58;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  padding: 4px 20px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.myMessageContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 5px;
+}
+.myMessage {
+  background-color: #9aaee0;
+  /* color: white; */
+  border-radius: 10px;
+  padding: 8px;
+  max-width: 250px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.otherMessageContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 5px;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 100px;
+  z-index: 10;
+}
+.otherMessage {
+  background-color: white;
+  border-radius: 10px;
+  padding: 8px;
+  max-width: 250px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.profileImage {
+  width: 38px;
+  height: 38px;
+  border-radius: 100px;
+  margin-right: 10px;
+  background-color: #bebebe;
+}
+.defaultProfileImage {
+  margin-top: 3px;
+  width: 30px;
+  height: 30px;
+}

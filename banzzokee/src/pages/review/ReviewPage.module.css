@@ -1,0 +1,44 @@
+.wrap {
+  background-color: #ffffff;
+  width: 375px;
+  height: 655px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.mainPage_Header {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 13px 11px;
+}
+
+.datesort {
+  color: #000000;
+}
+
+.sortButton {
+  padding: 0;
+  background-color: #ffffff;
+}
+
+.filter {
+  width: 80px;
+  height: 28px;
+  border-radius: 40px;
+  padding: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d9d9d9;
+}
+
+.filter_Img {
+  width: 18px;
+  height: 14px;
+  margin-left: 5px;
+}

@@ -1,0 +1,66 @@
+.emailConfirm {
+  width: 375px;
+  height: 812px;
+  margin: 0 auto;
+  position: relative;
+  border: 1px solid rgb(177, 177, 177);
+}
+
+.back {
+  position: absolute;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 350px;
+  background-color: #D9D9D9;
+}
+
+.bold {
+  font-weight: 900;
+  font-size: 17px;
+}
+
+.body {
+  width: 290px;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  background-color: #FFFFFF;
+}
+
+.validTime {
+  width: 250px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  background-color: #D9D9D9;
+}
+
+.resendButton {
+  border-radius: 2px;
+  height: 20px;
+  margin-left: 10px;
+  padding: 0px;
+  color: #FFFFFF;
+  font-size: 15px;
+  background-color: #4C4545;
+}
+
+.completionButton {
+  width: 290px;
+  height: 40px;
+  margin-top: 15px;
+  border-radius: 2px;
+  font-size: 18px;
+  color: #FFFFFF;
+  background-color: #4C4545;
+}

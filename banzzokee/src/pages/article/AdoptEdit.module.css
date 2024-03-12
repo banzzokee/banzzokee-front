@@ -1,0 +1,95 @@
+.CreateAdoptPage {
+  border: 1px solid #d9d9d9;
+}
+
+.create_Page {
+  width: 375px;
+  height: 724px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.adopt_Title {
+  margin-bottom: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+/* 스크롤바 스타일링 */
+.container::-webkit-scrollbar {
+  width: 1px;
+}
+
+.img_upload {
+  width: 100%;
+  height: 120px;
+  border: none;
+  border-radius: 0;
+  background-color: #d9d9d9;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  background-color: #d9d9d9;
+  font-size: 15px;
+}
+
+.inputGroup {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.inputGroup label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.stateBox {
+  width: 100%;
+  height: 40px;
+  /* margin-right: 14px; */
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #d9d9d9;
+}
+
+.stateBox button {
+  width: 70px;
+  height: 22px;
+  padding: 0;
+}
+
+.inputGroup textarea {
+  border: none;
+  width: 100%;
+  height: 255px;
+  resize: none;
+  margin-right: 0;
+  background-color: #d9d9d9;
+}
+
+.textTitle {
+  width: 100px;
+}
+
+.button {
+  border: none;
+  width: 200px;
+  height: 40px;
+  margin-top: 20px;
+  color: #ffffff;
+  margin-left: 90px;
+  margin-bottom: 40px;
+  background-color: #50586c;
+  /* background-color: #9c9a9a; */
+}

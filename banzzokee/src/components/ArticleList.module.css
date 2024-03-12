@@ -1,0 +1,157 @@
+.listBox ul {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.listBox li {
+  list-style: none;
+  /* width: 330px; */
+  height: 120px;
+  border: 1px solid #e4e3e3;
+  display: flex;
+  margin: 0;
+  /* text-decoration: none; */
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  /* text-decoration: none; */
+  color: inherit;
+  width: 100%;
+  height: 100%;
+}
+
+/* .link:hover {
+  text-decoration: none;
+} */
+
+.imageContainer {
+  /* background-color: rgb(80, 77, 82); */
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  margin: 10px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* z-index: -1; */
+}
+
+.imageContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.infoBox {
+  flex: 1;
+  /* flex:1 이 옆에 다른 컨텐츠가 많아 공간 차지 많이해도 본 컨텐츠가 찌부되는걸 방지해줌 */
+  margin-right: 10px;
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+  max-width: 240px;
+}
+li a:hover {
+  border: 1px solid gray;
+  color: black;
+}
+.statusAdopting {
+  background-color: #f8e852fc;
+  border-radius: 5px;
+  height: 15px;
+  width: 40px;
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  left: 5px;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.statusReserving {
+  background-color: #feb524fe;
+  border-radius: 5px;
+  height: 15px;
+  width: 40px;
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  left: 5px;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.statusFinished {
+  background-color: #a1a1a1fa;
+  border-radius: 5px;
+  height: 15px;
+  width: 40px;
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  left: 5px;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.name {
+  font-weight: bold;
+}
+.user {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  font-size: 14px;
+}
+
+.date {
+  color: gray;
+}
+
+.title {
+  text-align: left;
+  font-size: 14px;
+  overflow: hidden;
+
+  height: 45px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.tags {
+  display: flex;
+  gap: 5px;
+  font-size: 14px;
+}
+
+.tag {
+  height: 25px;
+  padding: 0 10px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  background-color: #9aaee057;
+  /* color: #dce2f0; */
+}
+.observer {
+  height: 15px;
+  background-color: #bebebe;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
