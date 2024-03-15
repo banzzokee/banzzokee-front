@@ -4,14 +4,17 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 // import { useCookies } from 'react-cookie';
 import axios from 'axios';
-import MyPage from '../user/MyPagen';
+import MyPage from '../user/MyPage';
 import Nav from '../../components/common/nav/Nav';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/common/button/Button';
 // import GoogleLoginButton from '../register/GoogleLoginButton';
 import LoginCallback from '../register/LoginCallback';
+import { useQuery } from 'react-query';
+
 export default function LoginPage() {
   const navigate = useNavigate();
+
   const [inputValue, setInputValue] = useState({
     email: '',
     password: '',
@@ -55,6 +58,8 @@ export default function LoginPage() {
   const handleGoogleLogin = () => {
     window.location.href = URL_MEMBER_SINGUP;
   };
+  const resultQuery = useQuery('@getUser', onLogin);
+  console.log('resultQuery', resultQuery);
 
   if (sessionStorage.getItem('accessToken') == null) {
     return (
