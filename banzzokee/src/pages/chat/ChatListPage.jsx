@@ -25,6 +25,7 @@ export default function ChatListPage() {
       // console.log('long::: ', response.data.content[0].adoption.adoptionId);
     } catch (error) {
       console.error('Error:', error);
+      console.log('error found');
     }
   };
   useEffect(() => {
