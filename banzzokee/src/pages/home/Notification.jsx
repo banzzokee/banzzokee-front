@@ -118,7 +118,7 @@ export default function Notification() {
                 <div className={styles.content}>
                   <div className={styles.liBox} onClick={() => handleNotificationClick(notification)}>
                     {notification.message.notification?.image && (
-                      <div>
+                      <div className={styles.profileImg}>
                         <img src={notification.message.notification.image} alt="Notification" className={styles.notificationImage} />
                       </div>
                     )}
