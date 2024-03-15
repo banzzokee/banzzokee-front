@@ -38,57 +38,61 @@ import NotificationToken from './NotificationToken';
 import ChangeStatus from './pages/article/ChangeStatus';
 import LoginCallback from './pages/register/LoginCallback';
 import LogoPage from './logopage';
+import { QueryClientProvider, QueryClient } from 'react-query';
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div id="mobileView">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/Header" element={<Header />} />
-          <Route path="/Nav" element={<Nav />} />
-          <Route path="/MyPage" element={<MyPage />} />
-          <Route path="/ChatListPage" element={<ChatListPage />} />
-          <Route path="/ViewArticlePage/:id" element={<ViewArticlePage />} />
-          <Route path="/LoginPage" element={<LoginPage />} />
-          <Route path="/MapPage" element={<MapPage />} />
-          <Route path="/CreateAdoptPage" element={<CreateAdoptPage />} />
-          <Route path="/Notification" element={<Notification />} />
-          {/* <Route path="/notifications/:id" element={<Notification />} /> */}
-          <Route path="/Register" element={<Register />} />
-          <Route path="/Back" element={<Back />} />
-          <Route path="/CreateAdoptPage" element={<CreateAdoptPage />} />
-          <Route path="/CreateReviewPage" element={<CreateReviewPage />} />
-          <Route path="/Tag" element={<Tag />} />
-          <Route path="/OtherMyPage/:id" element={<OtherMyPage />} />
-          <Route path="/ShelterInfoPage" element={<ShelterInfoPage />} />
-          <Route path="/SettingPage" element={<SettingPage />} />
-          <Route path="/FollowingPage" element={<FollowingPage />} />
-          <Route path="/AccountInfoPage" element={<AccountInfoPage />} />
-          <Route path="/EmailConfirm" element={<EmailConfirm />} />
-          <Route path="/Message/:id" element={<Message />} />
-          <Route path="/DeleteAccount" element={<DeleteAccount />} />
-          <Route path="/ChangePass" element={<ChangePass />} />
-          <Route path="/GoogleRegister" element={<GoogleRegister />} />
-          <Route path="/CreateReviewPage" element={<CreateReviewPage />} />
-          <Route path="/ShelterEditPage" element={<ShelterEditPage />} />
-          <Route path="/ShelterRegisterPage" element={<ShelterRegisterPage />} />
-          <Route path="/MyPageEdit" element={<MyPageEdit />} />
-          {/* <Route path="/GoogleLoginButton" element={<GoogleLoginButton />} /> */}
-          <Route path="/ArticleList" element={<ArticleList />} />
-          <Route path="/ArticleList/:id" element={<ViewArticlePage />} />
-          <Route path="/update/:id" element={<AdoptEdit />} />
-          {/* <Route path="/ViewArticlePage" element={<ViewArticlePage />} /> */}
-          <Route path="/ReviewPage" element={<ReviewPage />} />
-          <Route path="/Filter" element={<Filter />} />
-          <Route path="/ReviewList" element={<ReviewList />} />
-          <Route path="/LoginCallback" element={<LoginCallback />} />
-          <Route path="/changeStatus/:id" element={<ChangeStatus />} />
-          <Route path="/LogoPage" element={<LogoPage />} />
-        </Routes>
-        <NotificationToken />
-      </BrowserRouter>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div id="mobileView">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/Header" element={<Header />} />
+            <Route path="/Nav" element={<Nav />} />
+            <Route path="/MyPage" element={<MyPage />} />
+            <Route path="/ChatListPage" element={<ChatListPage />} />
+            <Route path="/ViewArticlePage/:id" element={<ViewArticlePage />} />
+            <Route path="/LoginPage" element={<LoginPage />} />
+            <Route path="/MapPage" element={<MapPage />} />
+            <Route path="/CreateAdoptPage" element={<CreateAdoptPage />} />
+            <Route path="/Notification" element={<Notification />} />
+            {/* <Route path="/notifications/:id" element={<Notification />} /> */}
+            <Route path="/Register" element={<Register />} />
+            <Route path="/Back" element={<Back />} />
+            <Route path="/CreateAdoptPage" element={<CreateAdoptPage />} />
+            <Route path="/CreateReviewPage" element={<CreateReviewPage />} />
+            <Route path="/Tag" element={<Tag />} />
+            <Route path="/OtherMyPage/:id" element={<OtherMyPage />} />
+            <Route path="/ShelterInfoPage" element={<ShelterInfoPage />} />
+            <Route path="/SettingPage" element={<SettingPage />} />
+            <Route path="/FollowingPage" element={<FollowingPage />} />
+            <Route path="/AccountInfoPage" element={<AccountInfoPage />} />
+            <Route path="/EmailConfirm" element={<EmailConfirm />} />
+            <Route path="/Message/:id" element={<Message />} />
+            <Route path="/DeleteAccount" element={<DeleteAccount />} />
+            <Route path="/ChangePass" element={<ChangePass />} />
+            <Route path="/GoogleRegister" element={<GoogleRegister />} />
+            <Route path="/CreateReviewPage" element={<CreateReviewPage />} />
+            <Route path="/ShelterEditPage" element={<ShelterEditPage />} />
+            <Route path="/ShelterRegisterPage" element={<ShelterRegisterPage />} />
+            <Route path="/MyPageEdit" element={<MyPageEdit />} />
+            {/* <Route path="/GoogleLoginButton" element={<GoogleLoginButton />} /> */}
+            <Route path="/ArticleList" element={<ArticleList />} />
+            <Route path="/ArticleList/:id" element={<ViewArticlePage />} />
+            <Route path="/update/:id" element={<AdoptEdit />} />
+            {/* <Route path="/ViewArticlePage" element={<ViewArticlePage />} /> */}
+            <Route path="/ReviewPage" element={<ReviewPage />} />
+            <Route path="/Filter" element={<Filter />} />
+            <Route path="/ReviewList" element={<ReviewList />} />
+            <Route path="/LoginCallback" element={<LoginCallback />} />
+            <Route path="/changeStatus/:id" element={<ChangeStatus />} />
+            <Route path="/LogoPage" element={<LogoPage />} />
+          </Routes>
+          <NotificationToken />
+        </BrowserRouter>
+      </div>
+    </QueryClientProvider>
   );
 }
 

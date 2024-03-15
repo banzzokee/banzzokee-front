@@ -102,7 +102,7 @@ export default function Notification() {
         <div className={styles.notification_Header}>
           <div className={styles.notification_Logo}>
             <img src="/Notification.png" alt="Notification" className={styles.notification_Img} />
-            <span>알림</span>
+            <span className={styles.alert}>알림</span>
             {/* {unreadCount > 0 && (
             <div className={styles.notificationCount}>{unreadCount}</div>
           )} */}
