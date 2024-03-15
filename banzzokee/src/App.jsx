@@ -37,6 +37,7 @@ import ReviewList from './components/ReviewList';
 import NotificationToken from './NotificationToken';
 import ChangeStatus from './pages/article/ChangeStatus';
 import LoginCallback from './pages/register/LoginCallback';
+import LogoPage from './logopage';
 
 function App() {
   return (
@@ -83,6 +84,7 @@ function App() {
           <Route path="/ReviewList" element={<ReviewList />} />
           <Route path="/LoginCallback" element={<LoginCallback />} />
           <Route path="/changeStatus/:id" element={<ChangeStatus />} />
+          <Route path="/LogoPage" element={<LogoPage />} />
         </Routes>
         <NotificationToken />
       </BrowserRouter>
