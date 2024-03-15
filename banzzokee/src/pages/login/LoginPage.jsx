@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 // import { useCookies } from 'react-cookie';
 import axios from 'axios';
-import MyPage from '../user/MyPage';
+import MyPage from '../user/MyPagen';
 import Nav from '../../components/common/nav/Nav';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/common/button/Button';
@@ -53,7 +53,7 @@ export default function LoginPage() {
   const URL_MEMBER_SINGUP = 'http://server.banzzokee.homes/oauth2/authorization/google';
 
   const handleGoogleLogin = () => {
-    window.location.href = URL_MEMBER_SINGUP; 
+    window.location.href = URL_MEMBER_SINGUP;
   };
 
   if (sessionStorage.getItem('accessToken') == null) {
@@ -84,7 +84,7 @@ export default function LoginPage() {
           </div>
           <div className={styles.loginButton} style={{ fontSize: '16px' }}>
             <button className={styles.googleLogin} onClick={handleGoogleLogin}>
-              <img src='../../../public/google.svg'></img>
+              <img src="../../../public/google.svg"></img>
               구글 소셜 로그인
             </button>
             {/* <LoginCallback /> */}
