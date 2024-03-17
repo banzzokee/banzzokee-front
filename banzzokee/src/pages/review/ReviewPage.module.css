@@ -1,11 +1,23 @@
 .wrap {
   background-color: #ffffff;
-  width: 375px;
+  width: 100%;
   height: 655px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+
+@media (width < 1000px) {
+  .wrap {
+    height: 655px;
+  }
+}
+
+@media (width >= 1000px) {
+  .wrap {
+    height: 768px;
+  }
 }
 
 .mainPage_Header {
