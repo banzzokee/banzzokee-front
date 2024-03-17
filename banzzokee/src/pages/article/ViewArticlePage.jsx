@@ -230,20 +230,20 @@ export default function ViewArticlePage() {
                     }}
                   >
                     메세지
-                    <img className={styles.messageIcon} src="../../../public/Message.png" />
+                    <img className={styles.messageIcon} src="/Message.png" />
                   </div>
                 )}
 
                 <button style={{ padding: 0, backgroundColor: 'white' }} onClick={openEdit}>
-                  <img src="../../../public/edit.svg" style={{ transform: 'rotate(0deg)', width: '20px', marginLeft: '5px' }} />
+                  <img src="/edit.svg" style={{ transform: 'rotate(0deg)', width: '20px', marginLeft: '5px' }} />
                 </button>
                 <div id="edit" className={styles.edit}>
                   <button onClick={handleEdit}>
-                    <img src="../../../public/Pencil.svg" />
+                    <img src="/Pencil.svg" />
                     수정
                   </button>
                   <button onClick={handleDelete}>
-                    <img src="../../../public/Delete.svg" />
+                    <img src="/Delete.svg" />
                     삭제
                   </button>
                 </div>
@@ -270,7 +270,7 @@ export default function ViewArticlePage() {
             <div className={styles.articleTexts}>
               <div className={styles.titleAndSave}>
                 <div className={styles.title}>{adoption.title}</div>
-                <div onClick={onClickBookmark}>{bookmark ? <img src="../../public/yesbookmark.svg" alt="" style={{ width: '30px', height: '30px' }} /> : <img src="../../public/notbookmark.svg" alt="저장하기" style={{ width: '30px', height: '30px' }} />}</div>
+                <div onClick={onClickBookmark}>{bookmark ? <img src="/yesbookmark.svg" alt="" style={{ width: '30px', height: '30px' }} /> : <img src="../../public/notbookmark.svg" alt="저장하기" style={{ width: '30px', height: '30px' }} />}</div>
               </div>
 
               <div className={styles.tags}>
