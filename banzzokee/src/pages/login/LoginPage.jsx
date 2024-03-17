@@ -68,7 +68,7 @@ export default function LoginPage() {
         <BackHeader />
         <div className={styles.container}>
           <div className={styles.logoFrame}>
-            <img className={styles.logo} src="../../../public/Logo.svg"></img>
+            <img className={styles.logo} src="/Logo.svg"></img>
           </div>
           <div className={styles.loginMethod}>
             <form className={styles.login} action="" onSubmit={onLogin}>
@@ -95,7 +95,7 @@ export default function LoginPage() {
               </div>
               {/* <div className={styles.loginButton} style={{ fontSize: '16px' }}> */}
               <button className={styles.googleLogin} onClick={handleGoogleLogin}>
-                <img src="../../../public/google.svg"></img>
+                <img src="/google.svg"></img>
                 구글 소셜 로그인
               </button>
               {/* <LoginCallback /> */}
