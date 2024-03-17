@@ -1,14 +1,15 @@
-.navigation {
-    background-color: #50586c;
-    width: 100%;
-    height: 69px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+img {
+  width: 33px;
+  height: 33px;
 }
 
-img {
-    width: 33px;
-    height: 33px;
+.navigation {
+  background-color: #50586c;
+  width: 100%;
+  height: 69px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
+
