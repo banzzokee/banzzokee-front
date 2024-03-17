@@ -1,9 +1,18 @@
 .container {
-  width: 375px;
+  width: 100%;
   height: 655px;
   margin: 0 auto;
   padding: 0;
   overflow: scroll;
+}
+@media (width >= 1000px) {
+  .container {
+    width: 100%;
+    height: 775px;
+    margin: 0 auto;
+    padding: 0;
+    overflow: scroll;
+  }
 }
 .articleHeader {
   height: 45px;
