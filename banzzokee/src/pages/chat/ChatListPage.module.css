@@ -1,12 +1,12 @@
 .container {
-  height: 655px;
-  width: 375px;
+  height: 775px;
+  width: 100%;
   padding: 0 5px;
   overflow-y: scroll;
 }
 .noLoginContainer {
-  height: 655px;
-  width: 375px;
+  height: 775px;
+  width: 100%;
   padding: 0 10px;
   overflow-y: scroll;
   background-color: #d9d9d9;

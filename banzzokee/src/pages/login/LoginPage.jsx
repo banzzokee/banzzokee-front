@@ -11,6 +11,7 @@ import Button from '../../components/common/button/Button';
 // import GoogleLoginButton from '../register/GoogleLoginButton';
 import LoginCallback from '../register/LoginCallback';
 import { useQuery } from 'react-query';
+import { loginState } from '../../recoilState';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -66,33 +67,40 @@ export default function LoginPage() {
       <>
         <BackHeader />
         <div className={styles.container}>
-          <img className={styles.logo} src="../../../public/Logo.svg"></img>
-          <form className={styles.login} action="" onSubmit={onLogin}>
-            <div className={styles.loginInput}>
-              <input className={styles.input} type="email" placeholder="이메일" name="email" onChange={onChange} />
-              <input className={styles.input} type="password" placeholder="비밀번호" name="password" onChange={onChange} />
-            </div>
-            <button className={styles.loginButton} type="submit">
-              로그인
-            </button>
-            <div className={styles.text}>
-              아직 회원이 아니신가요?
-              <Link to="/Register">
-                <span>회원가입</span>
-              </Link>
-            </div>
-          </form>
-          <div className={styles.orLines}>
-            <div className={styles.line}></div>
-            <div>or</div>
-            <div className={styles.line}></div>
+          <div className={styles.logoFrame}>
+            <img className={styles.logo} src="../../../public/Logo.svg"></img>
           </div>
-          <div className={styles.loginButton} style={{ fontSize: '16px' }}>
-            <button className={styles.googleLogin} onClick={handleGoogleLogin}>
-              <img src="../../../public/google.svg"></img>
-              구글 소셜 로그인
-            </button>
-            {/* <LoginCallback /> */}
+          <div className={styles.loginMethod}>
+            <form className={styles.login} action="" onSubmit={onLogin}>
+              <div className={styles.loginInput}>
+                <input className={styles.input} type="email" placeholder="이메일" name="email" onChange={onChange} />
+                <input className={styles.input} type="password" placeholder="비밀번호" name="password" onChange={onChange} />
+              </div>
+              <button className={styles.loginButton} type="submit" onClick={onLogin}>
+                로그인
+              </button>
+            </form>
+
+            <div className={styles.loginAndRegister}>
+              <div className={styles.text}>
+                아직 회원이 아니신가요?
+                <Link to="/Register">
+                  <span>회원가입</span>
+                </Link>
+              </div>
+              <div className={styles.orLines}>
+                <div className={styles.line}></div>
+                <div className={styles.or}>or</div>
+                <div className={styles.line}></div>
+              </div>
+              {/* <div className={styles.loginButton} style={{ fontSize: '16px' }}> */}
+              <button className={styles.googleLogin} onClick={handleGoogleLogin}>
+                <img src="../../../public/google.svg"></img>
+                구글 소셜 로그인
+              </button>
+              {/* <LoginCallback /> */}
+              {/* </div> */}
+            </div>
           </div>
         </div>
         <Nav></Nav>

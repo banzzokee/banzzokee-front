@@ -204,8 +204,8 @@ export default function ViewArticlePage() {
               <div onClick={toOtherMyPage}>
                 <div className={styles.headerLeft}>
                   <div className={styles.userImage}>
-                    <img className={styles.profile} src="../../../public/User.png" alt="" style={{ width: '14px', height: '14px' }} />
-                    <img className={styles.badgeIcon} src="../../../public/badge.svg" />
+                    <img className={styles.profile} src="/User.png" alt="" style={{ width: '14px', height: '14px' }} />
+                    <img className={styles.badgeIcon} src="/badge.svg" />
                   </div>
                   <div className={styles.nameAndDate}>
                     <div className={styles.name}>{adoptionNickname}</div>
@@ -219,7 +219,7 @@ export default function ViewArticlePage() {
                   <div className="chat" onClick={onclickMessage}>
                     <div className={styles.messageButton}>
                       메세지
-                      <img className={styles.messageIcon} src="../../../public/Message.png" />
+                      <img className={styles.messageIcon} src="/Message.png" />
                     </div>
                   </div>
                 ) : (
