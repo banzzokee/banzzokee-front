@@ -13,6 +13,13 @@
     padding: 0;
     overflow: scroll;
   }
+  .articlePhotos {
+    width: 750px;
+    height: 750px;
+    position: relative;
+    overflow-x: scroll;
+    overflow: hidden;
+  }
 }
 .articleHeader {
   height: 45px;
