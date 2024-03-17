@@ -16,7 +16,7 @@ const Kakao = ({ state }) => {
           center={{ lat: 37.5585, lng: 126.8092 }}
           style={{
             width: '100%',
-            height: '655px',
+            height: '775px',
           }}
         ></Map>
       </div>
@@ -28,7 +28,7 @@ const Kakao = ({ state }) => {
         center={{ lat: state.latitude, lng: state.longitude }}
         style={{
           width: '100%',
-          height: '655px',
+          height: '775px',
         }}
       >
         <MapMarker
