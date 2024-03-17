@@ -270,7 +270,7 @@ export default function ViewArticlePage() {
             <div className={styles.articleTexts}>
               <div className={styles.titleAndSave}>
                 <div className={styles.title}>{adoption.title}</div>
-                <div onClick={onClickBookmark}>{bookmark ? <img src="/yesbookmark.svg" alt="" style={{ width: '30px', height: '30px' }} /> : <img src="../../public/notbookmark.svg" alt="저장하기" style={{ width: '30px', height: '30px' }} />}</div>
+                <div onClick={onClickBookmark}>{bookmark ? <img src="/yesbookmark.svg" alt="" style={{ width: '30px', height: '30px' }} /> : <img src="/notbookmark.svg" alt="저장하기" style={{ width: '30px', height: '30px' }} />}</div>
               </div>
 
               <div className={styles.tags}>
