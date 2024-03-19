@@ -29,6 +29,7 @@ export default function MainPage() {
 
   const applyFilter = (filters) => {
     setAppliedFilters(filters);
+    setIsFilterOpen(false);
   };
 
   const resetFilters = () => {
@@ -52,20 +53,20 @@ export default function MainPage() {
       <div className={styles.wrap}>
         <div className={styles.mainPage_Header}>
           <div className={styles.buttonContainer}>
-          <div>
-            <button onClick={() => sortOrder('desc')} className={styles.sortButton}>
-              최신순
-            </button>
-            <span>/</span>
-            <button onClick={() => sortOrder('asc')} className={styles.sortButton}>
-              오래된순
-            </button>
-          </div>
-          <div className={styles.buttonArea}>
-            <button className={`${styles.filter} ${isFilterOpen ? styles.filterOpen : ''}`} onClick={handleFilter}>
-              필터
-              <img src="/Filter.png" alt="필터" className={styles.filter_Img} />
-            </button>
+            <div>
+              <button onClick={() => sortOrder('desc')} className={styles.sortButton}>
+                최신순
+              </button>
+              <span>/</span>
+              <button onClick={() => sortOrder('asc')} className={styles.sortButton}>
+                오래된순
+              </button>
+            </div>
+            <div className={styles.buttonArea}>
+              <button className={`${styles.filter} ${isFilterOpen ? styles.filterOpen : ''}`} onClick={handleFilter}>
+                필터
+                <img src="/Filter.png" alt="필터" className={styles.filter_Img} />
+              </button>
             </div>
           </div>
         </div>
