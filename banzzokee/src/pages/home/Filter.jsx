@@ -114,12 +114,7 @@ export default function Filter({ onApplyFilter, onResetFilters }) {
 
   return (
     <div ref={side} className={styles.filterPage}>
-      <div className={styles.filterHeader}>
-        필터
-        {/* <button onClick={toggleMenu}>
-          <img src='../../../public/X.svg' alt="Close" />
-        </button> */}
-      </div>
+      <div className={styles.filterHeader}>필터</div>
       <form style={{ overflowY: 'scroll', maxHeight: '520px' }} className={styles.container}>
         <div className={styles.tag_item}>
           <label>사이즈</label>

@@ -8,7 +8,6 @@ import MyPage from '../user/MyPage';
 import Nav from '../../components/common/nav/Nav';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/common/button/Button';
-// import GoogleLoginButton from '../register/GoogleLoginButton';
 import LoginCallback from '../register/LoginCallback';
 import { useQuery } from 'react-query';
 import { loginState } from '../../recoilState';
@@ -53,7 +52,6 @@ export default function LoginPage() {
     }
   };
 
-  // const URL_MEMBER_SINGUP = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=679888049936-k5otspaavapavud961if59cjnstpb7rb.apps.googleusercontent.com&redirect_uri=https://server.banzzokee.homes/login/oauth2/code/google&response_type=code&scope=profile%20email';
   const URL_MEMBER_SINGUP = 'http://server.banzzokee.homes/oauth2/authorization/google';
 
   const handleGoogleLogin = () => {
@@ -74,13 +72,18 @@ export default function LoginPage() {
             <form className={styles.login} action="" onSubmit={onLogin}>
               <div className={styles.loginInput}>
                 <input className={styles.input} type="email" placeholder="이메일" name="email" onChange={onChange} />
-                <input className={styles.input} type="password" placeholder="비밀번호" name="password" onChange={onChange} />
+                <input
+                  className={styles.input}
+                  type="password"
+                  placeholder="비밀번호"
+                  name="password"
+                  onChange={onChange}
+                />
               </div>
               <button className={styles.loginButton} type="submit" onClick={onLogin}>
                 로그인
               </button>
             </form>
-
             <div className={styles.loginAndRegister}>
               <div className={styles.text}>
                 아직 회원이 아니신가요?
@@ -93,13 +96,10 @@ export default function LoginPage() {
                 <div className={styles.or}>or</div>
                 <div className={styles.line}></div>
               </div>
-              {/* <div className={styles.loginButton} style={{ fontSize: '16px' }}> */}
               <button className={styles.googleLogin} onClick={handleGoogleLogin}>
                 <img src="/google.svg"></img>
                 구글 소셜 로그인
               </button>
-              {/* <LoginCallback /> */}
-              {/* </div> */}
             </div>
           </div>
         </div>
