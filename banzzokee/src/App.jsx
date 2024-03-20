@@ -28,7 +28,6 @@ import ChangePass from './pages/user/ChangePass';
 import ShelterEditPage from './pages/user/ShelterEditPage';
 import ShelterRegisterPage from './pages/user/ShelterRegisterPage';
 import MyPageEdit from './pages/user/MyPageEdit';
-// import GoogleLoginButton from './pages/register/GoogleLoginButton';
 import ArticleList from './components/ArticleList';
 import AdoptEdit from './pages/article/AdoptEdit';
 import ReviewPage from './pages/review/ReviewPage';
@@ -59,7 +58,6 @@ function App() {
               <Route path="/MapPage" element={<MapPage />} />
               <Route path="/CreateAdoptPage" element={<CreateAdoptPage />} />
               <Route path="/Notification" element={<Notification />} />
-              {/* <Route path="/notifications/:id" element={<Notification />} /> */}
               <Route path="/Register" element={<Register />} />
               <Route path="/Back" element={<Back />} />
               <Route path="/CreateAdoptPage" element={<CreateAdoptPage />} />
@@ -79,11 +77,9 @@ function App() {
               <Route path="/ShelterEditPage" element={<ShelterEditPage />} />
               <Route path="/ShelterRegisterPage" element={<ShelterRegisterPage />} />
               <Route path="/MyPageEdit" element={<MyPageEdit />} />
-              {/* <Route path="/GoogleLoginButton" element={<GoogleLoginButton />} /> */}
               <Route path="/ArticleList" element={<ArticleList />} />
               <Route path="/ArticleList/:id" element={<ViewArticlePage />} />
               <Route path="/update/:id" element={<AdoptEdit />} />
-              {/* <Route path="/ViewArticlePage" element={<ViewArticlePage />} /> */}
               <Route path="/ReviewPage" element={<ReviewPage />} />
               <Route path="/Filter" element={<Filter />} />
               <Route path="/ReviewList" element={<ReviewList />} />
