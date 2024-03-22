@@ -9,7 +9,6 @@ export default function MainPage() {
   const [sortBy, setSortBy] = useState('desc');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [appliedFilters, setAppliedFilters] = useState({
-    // status: '',
     size: '',
     healthChecked: '',
     gender: '',
@@ -34,7 +33,6 @@ export default function MainPage() {
 
   const resetFilters = () => {
     setAppliedFilters({
-      // status: [],
       size: [],
       healthChecked: [],
       gender: [],

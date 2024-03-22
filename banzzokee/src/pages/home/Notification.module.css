@@ -42,8 +42,8 @@
   height: 100%;
   margin-right: 5px;
   object-fit: cover;
-  /* margin-top: 5px; */
 }
+
 .notification_Page ul {
   display: flex;
   flex-direction: column;
@@ -54,7 +54,6 @@
   list-style: none;
   width: 350px;
   height: auto;
-  /* height: 120px; */
   border-radius: 30px;
   background-color: #e4e3e3;
   margin: 5px 0px;
@@ -74,11 +73,6 @@
 .notificationTitle,
 .notificationBody,
 .notificationDate {
-  /* overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  margin-left: 40px; */
-
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -100,10 +94,9 @@
 }
 
 .notificationDate {
-  /* width: 20px;
- height: 20px; */
   margin-bottom: 5px;
 }
+
 .profileImg {
   width: 70px;
   height: 70px;
@@ -138,6 +131,4 @@ li:last-child {
 }
 .content {
   display: flex;
-  /* align-items: center; */
-  /* height: 120px; */
 }

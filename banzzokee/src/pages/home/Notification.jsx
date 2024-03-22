@@ -18,7 +18,6 @@ export default function Notification() {
     try {
       const config = {
         method: 'get',
-        // url: 'https://server.banzzokee.homes/api/notifications?page=?&size=?&checked=boolean',
         url: 'https://server.banzzokee.homes/api/notifications',
         params: {
           page: 0,
@@ -84,7 +83,9 @@ export default function Notification() {
       console.log(index);
       const sendName = notification.message.notification.title.substring(0, index);
       console.log(sendName);
-      navigate(`/Message/${notification.message.data.chatRoomId}`, { state: { roomId: notification.message.data.chatRoomId, otherName: sendName } });
+      navigate(`/Message/${notification.message.data.chatRoomId}`, {
+        state: { roomId: notification.message.data.chatRoomId, otherName: sendName },
+      });
     } else if (notification.message?.data?.adoptionId) {
       console.log('Post ID:', notification.message.data.adoptionId);
       navigate(`/ArticleList/${notification.message.data.adoptionId}`);
@@ -103,12 +104,8 @@ export default function Notification() {
           <div className={styles.notification_Logo}>
             <img src="/Notification.png" alt="Notification" className={styles.notification_Img} />
             <span className={styles.alert}>알림</span>
-            {/* {unreadCount > 0 && (
-            <div className={styles.notificationCount}>{unreadCount}</div>
-          )} */}
           </div>
         </div>
-
         {notifications.length === 0 ? (
           <p>알림이 없습니다.</p>
         ) : (
@@ -119,7 +116,11 @@ export default function Notification() {
                   <div className={styles.liBox} onClick={() => handleNotificationClick(notification)}>
                     {notification.message.notification?.image && (
                       <div className={styles.profileImg}>
-                        <img src={notification.message.notification.image} alt="Notification" className={styles.notificationImage} />
+                        <img
+                          src={notification.message.notification.image}
+                          alt="Notification"
+                          className={styles.notificationImage}
+                        />
                       </div>
                     )}
                     <div className={styles.notificationContainer}>
@@ -145,48 +146,4 @@ export default function Notification() {
       </div>
     </>
   );
-
-  // return (
-  //   <>
-  //     <BackHeader />
-  //     <div className={styles.notification_Page}>
-  //       <div className={styles.notification_Header}>
-  //         <div className={styles.notification_Logo}>
-  //           <img src="/Notification.png" alt="Notification" className={styles.notification_Img} />
-  //           <span>알림</span>
-  //           {/* {unreadCount > 0 && (
-  //           <div className={styles.notificationCount}>{unreadCount}</div>
-  //         )} */}
-  //         </div>
-  //       </div>
-  //       <ul>
-  //         {notifications.map((notification) => (
-  //           <li key={notification.id}>
-  //             <div className={styles.content}>
-  //               <div className={styles.liBox} onClick={() => handleNotificationClick(notification)}>
-  //                 {notification.message.notification?.image && (
-  //                   <div>
-  //                     <img src={notification.message.notification.image} alt="Notification" className={styles.notificationImage} />
-  //                   </div>
-  //                 )}
-  //                 <div className={styles.notificationContainer}>
-  //                   <div className={styles.notificationTitle}>{notification.message.notification?.title}</div>
-  //                   <div className={styles.notificationBody}>{notification.message.notification?.body}</div>
-  //                   <div className={styles.notificationDate}>{notificationDate(notification.notifiedAt)}</div>
-
-  //                 </div>
-  //               </div>
-  //               <div className={styles.deleteIcon} onClick={() => markNotificationAsRead(notification.id)}>
-  //                 <img src="../../../public/X.svg" alt="" style={{ width: '14px', height: '14px' }} />
-  //               </div>
-  //             </div>
-  //           </li>
-  //         ))}
-  //       </ul>
-  //       <button className={styles.button} onClick={markAllNotificationsAsRead}>
-  //         전체 확인
-  //       </button>
-  //     </div>
-  //   </>
-  // );
 }
